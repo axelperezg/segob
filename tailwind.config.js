@@ -12,9 +12,22 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                burgundy: '#611232',
+                'burgundy-soft': '#8B4B5F',
+                gold: '#C59426',
+                'gold-soft': '#D4B36B',
+                'gold-lighter': '#F4E7C1'
+            }
         },
     },
-    plugins: [],
+    plugins: [
+        function({ addBase }) {
+            addBase({
+                'p': { fontWeight: '500' },
+            })
+        }
+    ],
 };

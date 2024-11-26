@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segob Web</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script defer src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/43a8eadd9b.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif']
+                    },
+                    colors: {
+                        burgundy: '#611232',
+                        'burgundy-soft': '#8B4B5F',
+                        gold: '#C59426',
+                        'gold-soft': '#D4B36B',
+                        'gold-lighter': '#F4E7C1'
+                    }
+                }
+            },
+            plugins: [
+                function({ addBase }) {
+                    addBase({
+                        'p': { fontWeight: '500' },
+                    })
+                }
+            ]
+        }
+    </script>
+    <style>
+        /* Ocultar flechas por defecto */
+        .slick-prev:before,
+        .slick-next:before {
+            display: none;
+        }
+
+        /* Estilos para los botones de navegación */
+        .slick-prev,
+        .slick-next {
+            width: 40px;
+            height: 40px;
+            z-index: 1;
+        }
+
+        .slick-prev {
+            left: -50px;
+        }
+
+        .slick-next {
+            right: -50px;
+        }
+
+        .slick-dots {
+            position: relative;
+            bottom: -1rem;
+        }
+        
+        /* Ajuste para móviles */
+        @media (max-width: 768px) {
+            .slick-prev {
+                left: -30px;
+            }
+
+            .slick-next {
+                right: -30px;
+            }
+        }
+
+        .slick-dots li {
+            margin: 0 6px;
+        }
+
+        .slick-dots li button {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Dot normal */
+        .slick-dots li button:before {
+            content: '';
+            width: 14px;
+            height: 14px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23C59426'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+
+        /* Dot activo */
+        .slick-dots li.slick-active button:before {
+            opacity: 1;
+            transform: scale(1.2);
+            background-color: transparent;
+        }
+
+        /* Hover sobre los dots */
+        .slick-dots li button:hover:before {
+            opacity: 0.8;
+            background-color: transparent;
+        }
+
+        /* Para la sección con fondo gold */
+        .bg-gold .slick-dots li button:before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z'/%3E%3C/svg%3E");
+        }
+
+        .bg-gold .slick-dots li.slick-active button:before {
+            opacity: 1;
+            background-color: transparent;
+        }
+
+        .bg-gold .slick-dots li button:hover:before {
+            opacity: 0.8;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <main class="px-4 pt-8 mx-auto font-montserrat">
+            <div class="border-b border-burgundy bg-burgundy -mx-4">
+                <div class="flex items-center justify-between px-6 py-2 -mt-8 max-w-7xl mx-auto">
+                    <div class="flex items-center">
+                        <img class="w-[9rem]" src="./assets/esados-unidos-mexicanos.svg" alt="Logo Gobierno de México"
+                            class="h-8">
+                    </div>
+                    <div class="flex items-center space-x-4 text-white">
+                        <a href="#" class="text-sm hover:text-gold">Noticias</a>
+                        <a href="#" class="text-sm hover:text-gold">Gobierno</a>
+                        <a href="#" class="text-sm hover:text-gold">Español</a>
+                    </div>
+                </div>
+            </div>
+            <div class="py-8 md:flex md:justify-between md:items-center mx-auto max-w-6xl">
+                <h1 class="flex flex-col text-4xl font-bold text-gold">
+                    <figure>
+                        <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias">
+                    </figure>
+                </h1>
+                <div class="flex items-center">
+                    <div class="hidden md:block pr-6">
+                        <div class="flex items-center justify-center gap-4">
+                            <i class="text-3xl text-burgundy fa-brands fa-facebook-f"></i>
+                            <i class="text-3xl text-burgundy fa-brands fa-x-twitter"></i>
+                            <i class="text-3xl text-burgundy fa-brands fa-instagram"></i>
+                            <i class="text-3xl text-burgundy fa-brands fa-youtube"></i>
+                            <i class="text-3xl text-burgundy fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                    <figure class="hidden md:inline-block w-[6rem] -my-8">
+                        <img class="-mb-[9px]" src="./assets/pleca.jpg" alt="">
+                    </figure>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <nav class="-mx-4 border-burgundy md:bg-gold md:border-t-[.6rem] md:border-burgundy">
+                <div class="px-4 mx-auto max-w-7xl">
+                    <div class="flex flex-wrap items-center justify-between">
+                        <ul class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
+                            :class="{ 'hidden md:flex': !isMenuOpen, 'block': isMenuOpen }">
+                            <li class="py-2 md:py-4" v-for="item in menuItems" :key="item">
+                                <a href="#" class="font-medium transition-colors md:text-white hover:text-gold-soft">{{
+                                    item
+                                    }}</a>
+                            </li>
+                        </ul>
+                        <button @click="toggleMenu" class="w-full px-4 py-2 text-white rounded md:hidden bg-burgundy">
+                            Menú
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Posts -->
+            <section class="py-8 max-w-7xl mx-auto">
+                <h3 class="text-2xl font-bold lg:text-3xl">Noticias</h3>
+                <div class="grid grid-cols-1 gap-6 pb-8 pt-4 lg:flex">
+                    <div class="space-y-6 lg:w-2/3">
+                        <!-- Main posts -->
+                        <article v-for="post in mainPosts" :key="post.id" class="overflow-hidden border rounded-lg">
+                            <img :src="post.image" :alt="post.title" class="w-full">
+                            <div class="p-4">
+                                <h2 class="mb-2 text-xl font-bold lg:text-4xl">{{ post.title }}</h2>
+                                <p class="mb-1 text-xs italic text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    {{ post.date }}
+                                </p>
+                                <p class="text-gray-600">{{ post.content }}</p>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- Secondary posts -->
+                    <div class="space-y-6 lg:w-1/3">
+                        <article v-for="post in secondaryPosts" :key="post.id"
+                            class="overflow-hidden border rounded-lg">
+                            <img :src="post.image" :alt="post.title" class="w-full">
+                            <div class="p-4">
+                                <h2 class="mb-2 text-lg font-bold leading-tight">{{ post.title }}</h2>
+                                <p class="mb-1 text-xs italic text-gray-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                    {{ post.date }}
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
+                    <article v-for="post in tertiaryPosts" :key="post.id" class="overflow-hidden border rounded-lg">
+                        <img :src="post.image" :alt="post.title" class="w-full">
+                        <div class="p-4">
+                            <h2 class="mb-2 text-lg font-bold">{{ post.title }}</h2>
+                            <p class="mb-1 text-xs italic text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ post.date }}
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="flex justify-center mt-8">
+                    <button
+                        class="px-8 py-2 font-medium text-white transition-colors rounded bg-burgundy hover:bg-gold">
+                        Ver más
+                    </button>
+                </div>
+            </section>
+
+            <!-- Actions -->
+            <section class="py-12 -mx-4 bg-gold">
+                <div class="container px-16 mx-auto">
+                    <h2 class="mb-8 text-3xl font-medium text-center text-white">Acciones</h2>
+                    <div class="actions-slider">
+                        <div class="px-2">
+                            <img src="./assets/rtc.jpg" alt="RTC" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/ceav.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/hora-nacional.jpg" alt="La Hora Nacional" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/rtc.jpg" alt="RTC" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/ceav.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/hora-nacional.jpg" alt="La Hora Nacional" class="w-full rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Banner -->
+            <section class="py-12 -mx-4">
+                <div class="container px-16 mx-auto">
+                    <h2 class="mb-8 text-3xl font-bold text-center">Banner</h2>
+                    <div class="actions-slider">
+                        <div class="px-2">
+                            <img src="./assets/banner.jpg" alt="RTC" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/banner.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Segob -->
+            <section class="py-12 -mx-4">
+                <div class="container px-16 mx-auto">
+                    <h2 class="mb-8 text-3xl font-bold text-center">Segob</h2>
+                    <div class="actions-slider">
+                        <div class="px-2">
+                            <img src="./assets/inafed.jpg" alt="RTC" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/talleres.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/conapred.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/inafed.jpg" alt="RTC" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/talleres.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                        <div class="px-2">
+                            <img src="./assets/conapred.jpg" alt="CEAV" class="w-full rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Noticias MX -->
+            <section class="-mx-4 bg-gold md:py-6">
+                <div class="container px-4 mx-auto">
+                    <div class="flex flex-col items-center md:flex-row md:max-w-5xl mx-auto">
+                        <div class="flex flex-col items-center space-y-2 md:flex-row md:space-y-0">
+                            <figure class="md:pr-12">
+                                <img src="./assets/noticias-mx.svg" alt="Noticias MX" class="w-32 md:w-24">
+                            </figure>
+                            <div>
+                                <p class="font-medium text-white text-md">Noticias Mexico</p>
+                                <p class="font-medium text-white text-md">Comunicados generados por el Gobierno de México</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Infografías -->
+            <section class="py-12 -mx-4">
+                <div class="container px-16 mx-auto">
+                    <h2 class="mb-8 text-3xl font-bold text-center">Infografías</h2>
+                    <div class="actions-slider">
+                        <div class="px-2" v-for="infographic in infographics" :key="infographic.id">
+                            <img :src="infographic.image" :alt="infographic.alt" class="w-full mb-4 rounded-lg">
+                            <p class="mb-1 text-xs italic text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ infographic.date }}
+                            </p>
+                            <p class="font-semibold text-left text-gray-700">{{ infographic.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fotos y Videos -->
+            <section class="py-12 -mx-4 bg-gold-lighter">
+                <div class="container px-16 mx-auto">
+                    <h2 class="mb-8 text-3xl font-bold text-center">Fotos</h2>
+                    <div class="actions-slider">
+                        <div class="px-2" v-for="photo in mediaItems.photos" :key="photo.id">
+                            <img :src="photo.src" :alt="photo.title" class="w-full mb-4 rounded-lg">
+                            <p class="mb-1 text-xs italic text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ photo.date }}
+                            </p>
+                            <p class="font-semibold text-left text-gray-700">{{ photo.title }}</p>
+                        </div>
+                    </div>
+
+                    <h2 class="mt-12 mb-8 text-3xl font-bold text-center">Videos</h2>
+                    <div class="actions-slider">
+                        <div class="px-2" v-for="video in mediaItems.videos" :key="video.id">
+                            <img :src="video.src" :alt="video.title" class="w-full mb-4 rounded-lg">
+                            <p class="mb-1 text-xs italic text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {{ video.date }}
+                            </p>
+                            <p class="font-semibold text-left text-gray-700">{{ video.title }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Redes Sociales -->
+            <section class="py-12 -mx-4">
+                <div class="container px-4 mx-auto">
+                    <h2 class="mb-8 text-3xl font-bold text-center">Redes Sociales</h2>
+                </div>
+
+                <div class="flex justify-center gap-4">
+                    <div class="px-3 py-2 border-2 rounded-lg border-burgundy">
+                        <i class="text-3xl text-burgundy fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div class="px-3 py-2 border-2 rounded-lg border-burgundy">
+                        <i class="text-3xl text-burgundy fa-brands fa-x-twitter"></i>
+                    </div>
+                    <div class="px-3 py-2 border-2 rounded-lg border-burgundy">
+                        <i class="text-3xl text-burgundy fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="px-3 py-2 border-2 rounded-lg border-burgundy">
+                        <i class="text-3xl text-burgundy fa-brands fa-youtube"></i>
+                    </div>
+                    <div class="px-3 py-2 border-2 rounded-lg border-burgundy">
+                        <i class="text-3xl text-burgundy fa-brands fa-tiktok"></i>
+                    </div>
+                </div>
+
+                <div class="container px-4 mx-auto mt-12">
+                    <div class="flex flex-col md:mb-12">
+                        <h4 class="pb-1 text-2xl font-bold text-left text-gray-600 border-b-2 border-gray-300">
+                            Contacto
+                        </h4>
+                        <span class="inline-block w-[2rem] border-b-4 border-gold relative top-[-2px]"></span>
+                    </div>
+                    <div class="space-y-8 lg:flex">
+                        <div class="lg:w-3/12">
+                            <p class="mt-4 text-gray-600">Abraham González 48 Col.</p>
+                            <p class="text-gray-600">Juárez 06600 Ciudad de México</p>
+                            <p class="text-gray-600">Teléfono: 5552098800</p>
+                            <p class="text-gray-600">Atención Ciudadana:</p>
+                            <p class="text-gray-600">Secretaría de Gobernación.</p>
+                            <p class="mt-4 font-bold text-gray-600">¿De qué se trata tu petición?</p>
+                            <p class="text-gray-600">Envía tus dudas o comentarios a</p>
+                            <p class="text-gray-600">atencionciudadana@segob.gob.mx</p>
+                        </div>
+                        <div class="lg:w-9/12">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15050.271987476912!2d-99.1523161!3d19.4310629!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff349aad0195%3A0x7866e51535dc348!2sSecretaria%20de%20Gobernaci%C3%B3n!5e0!3m2!1ses-419!2sec!4v1731261284015!5m2!1ses-419!2sec"
+                                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="py-12 -mx-4 bg-burgundy">
+                <div class="container px-4 mx-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-4">
+                        <div>
+                            <img src="./assets/logoheader.svg" alt="Gobierno de México" class="w-[12rem]">
+                        </div>
+                        <div>
+                            <h4 class="mb-4 font-bold text-white">Enlaces</h4>
+                            <ul class="space-y-2 text-sm text-white">
+                                <li><a href="#" class="hover:underline">Datos</a></li>
+                                <li><a href="#" class="hover:underline">Publicaciones</a></li>
+                                <li><a href="#" class="hover:underline">Política de transparencia</a></li>
+                                <li><a href="#" class="hover:underline">PNT</a></li>
+                                <li><a href="#" class="hover:underline">INAI</a></li>
+                                <li><a href="#" class="hover:underline">Alerta</a></li>
+                                <li><a href="#" class="hover:underline">Denuncia</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-4 font-bold text-white">¿Qué es gob.mx?</h4>
+                            <ul class="space-y-2 text-sm text-white">
+                                <li><a href="#" class="hover:underline">Es el portal único de trámites, información y
+                                        participación ciudadana</a></li>
+                                <li><a href="#" class="hover:underline">Declaración de accesibilidad</a></li>
+                                <li><a href="#" class="hover:underline">Aviso de privacidad</a></li>
+                                <li><a href="#" class="hover:underline">Términos y condiciones</a></li>
+                                <li><a href="#" class="hover:underline">Política de seguridad</a></li>
+                                <li><a href="#" class="hover:underline">Marco jurídico</a></li>
+                                <li><a href="#" class="hover:underline">Mapa de sitio</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="mb-4 font-bold text-white">Contacto</h4>
+                            <p class="text-white">Dudas e información a</p>
+                            <p class="text-white break-words">www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54</p>
+                            <h4 class="mt-4 mb-2 text-sm font-bold text-white">Síguenos en</h4>
+                            <div class="flex gap-2">
+                                <a href="#" class="text-lg text-white hover:text-gray-300"><i
+                                        class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" class="text-lg text-white hover:text-gray-300"><i
+                                        class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" class="text-lg text-white hover:text-gray-300"><i
+                                        class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="text-lg text-white hover:text-gray-300"><i
+                                        class="fa-brands fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const menuItems = ref(['INICIO', 'NOTICIAS', 'VERSIONES', 'DOCUMENTOS', 'SEGOB', 'GALERÍAS', 'VIDEO', 'NOTICIAS MÉXICO', 'ACCIONES'])
+                const isMenuOpen = ref(false)
+
+                const toggleMenu = () => {
+                    isMenuOpen.value = !isMenuOpen.value
+                }
+
+                const mainPosts = ref([{
+                    id: 1,
+                    title: 'Sesiona Junta de Gobierno del Mecanismo de Protección para Personas Defensoras de Derechos Humanos y Periodistas',
+                    date: '17 septiembre 2024',
+                    content: 'La Junta de Gobierno del Mecanismo de Protección para Personas Defensoras de Derechos Humanos y Periodistas sesionó este día para revisar diversos casos en materia de otorgamiento de medidas...',
+                    image: 'https://picsum.photos/800/400'
+                }])
+
+                const secondaryPosts = ref([
+                    {
+                        id: 2,
+                        title: 'Gobierno de México fortalece coordinación estratégica en materia migratoria',
+                        date: '16 septiembre 2024',
+                        content: 'Reunión de trabajo con funcionarios para tratar temas migratorios...',
+                        image: 'https://picsum.photos/800/400'
+                    },
+                    {
+                        id: 3,
+                        title: 'Nuevos titulares de Gobernación asumen cargos para transformar México',
+                        date: '15 septiembre 2024',
+                        content: 'Nuevos funcionarios toman protesta para continuar con el proyecto...',
+                        image: 'https://picsum.photos/800/400?random=2'
+                    }
+                ])
+
+                const tertiaryPosts = ref([
+                    {
+                        id: 4,
+                        title: 'Gobernación fortalece coordinación estatal para nuevas estrategias de seguridad',
+                        date: '14 septiembre 2024',
+                        content: 'Reunión con gobernadores para fortalecer estrategias de seguridad...',
+                        image: 'https://picsum.photos/800/400?random=3'
+                    },
+                    {
+                        id: 5,
+                        title: 'Programa nacional logra avances en protección a periodistas mexicanos',
+                        date: '13 septiembre 2024',
+                        content: 'Se presentan resultados del programa de protección a periodistas...',
+                        image: 'https://picsum.photos/800/400?random=4'
+                    },
+                    {
+                        id: 6,
+                        title: 'Nueva política migratoria prioriza enfoque humanitario y derechos humanos',
+                        date: '12 septiembre 2024',
+                        content: 'Segob implementa nuevas medidas para atención a migrantes...',
+                        image: 'https://picsum.photos/800/400?random=5'
+                    }
+                ])
+
+                const infographics = ref([
+                    {
+                        id: 1,
+                        image: 'https://picsum.photos/800/400?random=1',
+                        alt: 'Infografía 1',
+                        description: 'Información importante sobre políticas públicas y su impacto en la sociedad',
+                        date: '17 septiembre 2024'
+                    },
+                    {
+                        id: 2,
+                        image: 'https://picsum.photos/800/400?random=2',
+                        alt: 'Infografía 2',
+                        description: 'Estadísticas detalladas de programas sociales y su efectividad en la población',
+                        date: '16 septiembre 2024'
+                    },
+                    {
+                        id: 3,
+                        image: 'https://picsum.photos/800/400?random=3',
+                        alt: 'Infografía 3',
+                        description: 'Resultados de iniciativas gubernamentales y su influencia positiva en el desarrollo',
+                        date: '15 septiembre 2024'
+                    },
+                    {
+                        id: 4,
+                        image: 'https://picsum.photos/800/400?random=4',
+                        alt: 'Infografía 4',
+                        description: 'Avances en proyectos estratégicos y su contribución significativa al progreso',
+                        date: '14 septiembre 2024'
+                    },
+                    {
+                        id: 5,
+                        image: 'https://picsum.photos/800/400?random=5',
+                        alt: 'Infografía 5',
+                        description: 'Logros y metas alcanzadas en el ámbito gubernamental actual y su importancia',
+                        date: '13 septiembre 2024'
+                    }
+                ])
+
+                // Nueva información para fotos y videos
+                const mediaItems = ref({
+                    photos: [
+                        {
+                            id: 1,
+                            src: "https://picsum.photos/800/400?random=6",
+                            date: "21 septiembre 2024",
+                            title: "Reunión del Secretario de Gobernación con representantes estatales"
+                        },
+                        {
+                            id: 2,
+                            src: "https://picsum.photos/800/400?random=7",
+                            date: "19 septiembre 2024",
+                            title: "Firma de convenio para fortalecer la seguridad en estados fronterizos"
+                        },
+                        {
+                            id: 3,
+                            src: "https://picsum.photos/800/400?random=8",
+                            date: "18 septiembre 2024",
+                            title: "Inauguración del Centro de Atención Ciudadana en Monterrey"
+                        },
+                        {
+                            id: 4,
+                            src: "https://picsum.photos/800/400?random=9",
+                            date: "16 septiembre 2024",
+                            title: "Ceremonia del Grito de Independencia desde Palacio Nacional"
+                        },
+                        {
+                            id: 5,
+                            src: "https://picsum.photos/800/400?random=10",
+                            date: "15 septiembre 2024",
+                            title: "Entrega de reconocimientos a servidores públicos destacados"
+                        }
+                    ],
+                    videos: [
+                        {
+                            id: 1,
+                            src: "https://picsum.photos/800/400?random=11",
+                            date: "20 septiembre 2024",
+                            title: "Mensaje del Secretario sobre nueva política migratoria"
+                        },
+                        {
+                            id: 2,
+                            src: "https://picsum.photos/800/400?random=12",
+                            date: "17 septiembre 2024",
+                            title: "Resumen semanal de actividades de la Secretaría"
+                        },
+                        {
+                            id: 3,
+                            src: "https://picsum.photos/800/400?random=13",
+                            date: "14 septiembre 2024",
+                            title: "Conferencia sobre derechos humanos y gobernabilidad"
+                        },
+                        {
+                            id: 4,
+                            src: "https://picsum.photos/800/400?random=14",
+                            date: "12 septiembre 2024",
+                            title: "Presentación del programa nacional de prevención del delito"
+                        },
+                        {
+                            id: 5,
+                            src: "https://picsum.photos/800/400?random=15",
+                            date: "10 septiembre 2024",
+                            title: "Diálogo con organizaciones de la sociedad civil"
+                        }
+                    ]
+                });
+
+                return {
+                    menuItems,
+                    isMenuOpen,
+                    toggleMenu,
+                    mainPosts,
+                    secondaryPosts,
+                    tertiaryPosts,
+                    infographics,
+                    mediaItems
+                }
+            }
+        }).mount('#app')
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.actions-slider').each(function() {
+                const isInGoldSection = $(this).closest('section').hasClass('bg-gold');
+                const isBannerSection = $(this).closest('section').find('h2').text().trim() === 'Banner';
+                
+                $(this).slick({
+                    dots: true,
+                    infinite: true,
+                    arrows: true,
+                    speed: 500,
+                    slidesToShow: isBannerSection ? 1 : 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 3000,
+                    centerPadding: '100px',
+                    prevArrow: `<button type="button" class="slick-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="${isInGoldSection ? '#FFFFFF' : '#C59426'}" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>`,
+                    nextArrow: `<button type="button" class="slick-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="${isInGoldSection ? '#FFFFFF' : '#C59426'}" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>`,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: isBannerSection ? 1 : 2,
+                                slidesToScroll: 1,
+                                centerPadding: '40px'
+                            }
+                        },
+                        {
+                            breakpoint: 640,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                centerPadding: '20px'
+                            }
+                        }
+                    ]
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
