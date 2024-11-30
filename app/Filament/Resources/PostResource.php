@@ -82,6 +82,14 @@ class PostResource extends Resource
                             ->label('Autor'),
                     ])
                     ->columns(2),
+                Section::make('Acciones')
+                    ->schema([
+                        Select::make('actions')
+                            ->relationship('actions', 'name')
+                            ->multiple()
+                            ->label('Acciones'),
+                    ])
+                    ->columns(2),
                 Section::make('Image')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('image')

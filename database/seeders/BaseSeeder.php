@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Action;
 use App\Models\FeaturedPost;
 use App\Models\Post;
 use App\Models\User;
@@ -76,6 +77,11 @@ class BaseSeeder extends Seeder
             ]
         ]);
 
+        Post::all()->each(function (Post $post) {
+            $actions = Action::factory(rand(1, 3))->create();
+            $post->actions()->attach($actions);
+        });
+
         FeaturedPost::create([
             'post_id' => 1,
             'sort' => 1
@@ -100,5 +106,7 @@ class BaseSeeder extends Seeder
             'post_id' => 6,
             'sort' => 6
         ]);
+
+
     }
 }

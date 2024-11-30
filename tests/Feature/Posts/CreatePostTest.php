@@ -2,6 +2,7 @@
 
 use App\Filament\Resources\PostResource;
 use App\Filament\Resources\PostResource\Pages\CreatePost;
+use App\Models\Action;
 use App\Models\Post;
 use Livewire\Livewire;
 
@@ -18,7 +19,8 @@ it('can render create post page', function () {
 
 it('can create a post', function () {
     // Arrange
-    $data = Post::factory()->make();;
+    $data = Post::factory()->make();
+    $action = Action::factory()->create();
 
     // Act
     $this->component->fillForm([
@@ -30,6 +32,7 @@ it('can create a post', function () {
         'state' => $data->state,
         'published_at' => $data->published_at,
         'created_by' => $data->created_by,
+        'actions' => [$action->id],
     ])->call('create');
 
     // Assert
@@ -44,4 +47,7 @@ it('can create a post', function () {
         ->state->toBe($data->state)
         ->published_at->format('Y-m-d H:i')->toBe($data->published_at->format('Y-m-d H:i'))
         ->created_by->toBe($data->created_by);
+
+    assertCount(1, $post->actions);
+    expect($post->actions->first())->id->toBe($action->id);
 });
