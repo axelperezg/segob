@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\MexicanStateEnum;
+use App\Enums\Posts\ContentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,6 +32,8 @@ class Post extends Model implements HasMedia
         return [
             'published_at' => 'date',
             'is_published' => 'boolean',
+            'content_type' => ContentTypeEnum::class,
+            'state' => MexicanStateEnum::class,
         ];
     }
 

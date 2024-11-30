@@ -26,8 +26,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>El gobierno mexicano anunció hoy nuevos acuerdos comerciales con países de América Latina, fortaleciendo la integración económica regional. Durante la cumbre realizada en Ciudad de México, representantes de diversos países firmaron convenios que facilitarán el intercambio comercial y la cooperación económica.</p>',
                 'slug' => 'mexico-fortalece-lazos-comerciales-america-latina',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ],
             [
@@ -35,8 +33,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>La Secretaría de Bienestar presentó un ambicioso programa de desarrollo social que busca reducir la desigualdad en el país. El plan incluye inversiones significativas en educación, salud y vivienda, con especial énfasis en las comunidades más vulnerables.</p>',
                 'slug' => 'nueva-politica-desarrollo-social-beneficiara-millones-mexicanos',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ],
             [
@@ -44,8 +40,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>El gobierno federal anuncia una inversión sin precedentes en infraestructura para los estados del sur del país. El proyecto incluye la construcción de nuevas carreteras, puentes y sistemas de transporte público que impulsarán el desarrollo económico de la región.</p>',
                 'slug' => 'inversion-historica-infraestructura-sur-mexico',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ],
             [
@@ -53,8 +47,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>En el marco de la conferencia internacional sobre cambio climático, México presentó un plan integral de protección ambiental que incluye medidas para reducir emisiones de carbono y promover energías renovables. El programa ha sido reconocido como un modelo a seguir en la región.</p>',
                 'slug' => 'mexico-lidera-iniciativas-ambientales-america-latina',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ],
             [
@@ -62,8 +54,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>La Secretaría de la Función Pública implementará un nuevo sistema digital que modernizará los servicios gubernamentales. Esta iniciativa busca mejorar la eficiencia administrativa y facilitar el acceso de los ciudadanos a los servicios públicos.</p>',
                 'slug' => 'programa-nacional-digitalizacion-gubernamental',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ],
             [
@@ -71,8 +61,6 @@ class BaseSeeder extends Seeder
                 'content' => '<p>El gobierno federal presenta los resultados de su estrategia de seguridad pública, mostrando una reducción significativa en los índices delictivos en varias regiones del país. El informe destaca la importancia de la coordinación entre los diferentes niveles de gobierno.</p>',
                 'slug' => 'avances-seguridad-publica-muestran-resultados-positivos',
                 'is_published' => true,
-                'content_type' => null,
-                'state' => null,
                 'created_by' => User::first()->id
             ]
         ]);

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\MexicanStateEnum;
+use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -15,8 +17,8 @@ class PostFactory extends Factory
             'content' => fake()->paragraph(),
             'slug' => fake()->slug(),
             'is_published' => fake()->boolean(),
-            'content_type' => fake()->randomElement(['text', 'image', 'video']),
-            'state' => fake()->randomElement(['Jalisco', 'Nuevo León', 'Yucatán', 'Chiapas', 'Oaxaca', 'Veracruz']),
+            'content_type' => collect(ContentTypeEnum::cases())->random(),
+            'state' => collect(MexicanStateEnum::cases())->random(),
             'published_at' => fake()->dateTime(),
             'created_by' => User::factory(),
             'keywords' => fake()->words(3, true),
