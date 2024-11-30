@@ -18,6 +18,7 @@ class PostFactory extends Factory
             'state' => fake()->randomElement(['Jalisco', 'Nuevo León', 'Yucatán', 'Chiapas', 'Oaxaca', 'Veracruz']),
             'published_at' => fake()->dateTime(),
             'created_by' => User::factory(),
+            'keywords' => fake()->words(3, true),
         ];
     }
 }

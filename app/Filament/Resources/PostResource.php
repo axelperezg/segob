@@ -65,6 +65,8 @@ class PostResource extends Resource
                                 'video' => 'Video',
                             ])
                             ->label('Tipo de contenido'),
+                        TextInput::make('keywords')
+                            ->label('Palabras clave'),
                         Select::make('state')
                             ->nullable()
                             ->options([

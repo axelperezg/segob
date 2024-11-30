@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('slug')->unique();
+            $table->string('keywords')->nullable();
             $table->boolean('is_published')->default(false);
             $table->string('content_type')->nullable();
             $table->string('state')->nullable();
