@@ -20,8 +20,11 @@ use Filament\Tables\Table;
 class VideoResource extends Resource
 {
     protected static ?string $model = Video::class;
+
     protected static ?int $navigationSort = 4;
+
     protected static ?string $navigationLabel = 'Videos';
+
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
 
     public static function form(Form $form): Form
@@ -49,7 +52,7 @@ class VideoResource extends Resource
                 Section::make('Imagen')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('image')
-                        ->hiddenLabel()
+                            ->hiddenLabel()
                             ->collection('image'),
                     ]),
             ]);

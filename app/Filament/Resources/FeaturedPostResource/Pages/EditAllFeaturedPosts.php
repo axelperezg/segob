@@ -4,20 +4,21 @@ namespace App\Filament\Resources\FeaturedPostResource\Pages;
 
 use App\Filament\Resources\FeaturedPostResource;
 use App\Models\FeaturedPost;
-use Filament\Resources\Pages\Page;
-use Filament\Forms\Form;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use App\Models\Post;
 use Filament\Actions\Action;
-use Filament\Notifications\Notification;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Resources\Pages\Page;
 
 class EditAllFeaturedPosts extends Page
 {
     use InteractsWithForms;
 
     protected static string $resource = FeaturedPostResource::class;
+
     protected static string $view = 'filament.resources.featured-post-resource.pages.edit-all-featured-posts';
 
     public ?array $data = [];
@@ -27,7 +28,7 @@ class EditAllFeaturedPosts extends Page
         $featuredPosts = FeaturedPost::with('post')->orderBy('sort')->get();
 
         $this->form->fill([
-            'featured_posts' => $featuredPosts->pluck('post_id')->toArray()
+            'featured_posts' => $featuredPosts->pluck('post_id')->toArray(),
         ]);
     }
 
@@ -50,7 +51,7 @@ class EditAllFeaturedPosts extends Page
                                     ->pluck('title', 'id')
                                     ->toArray()
                             )
-                    )
+                    ),
             ])
             ->statePath('data');
     }
@@ -60,7 +61,7 @@ class EditAllFeaturedPosts extends Page
         return [
             Action::make('save')
                 ->label('Guardar cambios')
-                ->action('save')
+                ->action('save'),
         ];
     }
 
@@ -73,7 +74,7 @@ class EditAllFeaturedPosts extends Page
             FeaturedPost::create([
                 'post_id' => $postId,
                 'sort' => $index + 1,
-                'is_active' => true
+                'is_active' => true,
             ]);
         }
 

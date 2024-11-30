@@ -20,8 +20,11 @@ use Filament\Tables\Table;
 class PhotoGalleryResource extends Resource
 {
     protected static ?string $model = PhotoGallery::class;
+
     protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationLabel = 'Fotogalerías';
+
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
     public static function form(Form $form): Form
@@ -36,7 +39,7 @@ class PhotoGalleryResource extends Resource
                             ->columnSpanFull()
                             ->label('Publicado'),
                         TextInput::make('name')
-                        ->placeholder('Nombre de fotogalería')
+                            ->placeholder('Nombre de fotogalería')
                             ->required()
                             ->label('Título'),
                         DatePicker::make('published_at')

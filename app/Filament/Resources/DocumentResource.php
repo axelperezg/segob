@@ -7,7 +7,6 @@ use App\Enums\Documents\DocumentTypeEnum;
 use App\Filament\Resources\DocumentResource\Pages;
 use App\Models\Document;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -21,12 +20,14 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-/** @package App\Filament\Resources */
 class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
+
     protected static ?int $navigationSort = 2;
+
     protected static ?string $navigationLabel = 'Documentos';
+
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
     public static function form(Form $form): Form

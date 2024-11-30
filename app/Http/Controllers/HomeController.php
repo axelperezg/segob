@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\FeaturedPost;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -18,13 +17,14 @@ class HomeController extends Controller
             ->map(function ($featuredPost) {
                 $post = $featuredPost->post;
                 $post->setAttribute('image', $post->getFirstMedia('image')?->getFullUrl());
+
                 return $post;
             });
 
         return Inertia::render('Home', [
             'mainPosts' => $featuredPosts->slice(0, 1),
             'secondaryPosts' => $featuredPosts->slice(1, 2),
-            'tertiaryPosts' => $featuredPosts->slice(3)
+            'tertiaryPosts' => $featuredPosts->slice(3),
         ]);
     }
 }

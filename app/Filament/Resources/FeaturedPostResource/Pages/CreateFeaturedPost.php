@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\FeaturedPostResource\Pages;
 
 use App\Filament\Resources\FeaturedPostResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +17,7 @@ class CreateFeaturedPost extends CreateRecord
         foreach ($postIds as $index => $postId) {
             $lastFeaturedPost = static::getModel()::create([
                 'post_id' => $postId,
-                'sort' => $index + 1
+                'sort' => $index + 1,
             ]);
         }
 

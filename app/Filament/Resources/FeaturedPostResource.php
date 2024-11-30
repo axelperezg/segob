@@ -3,27 +3,25 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FeaturedPostResource\Pages;
-use App\Filament\Resources\FeaturedPostResource\RelationManagers;
 use App\Models\FeaturedPost;
 use App\Models\Post;
-use Filament\Actions\EditAction;
-use Filament\Forms;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class FeaturedPostResource extends Resource
 {
     protected static ?string $model = FeaturedPost::class;
+
     protected static ?string $navigationLabel = 'Noticias';
+
     protected static ?string $navigationGroup = 'Home';
+
     protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
     public static function form(Form $form): Form
@@ -39,7 +37,7 @@ class FeaturedPostResource extends Resource
                             ->required()
                             ->searchable()
                             ->options(Post::all()->pluck('title', 'id'))
-                    )
+                    ),
             ]);
     }
 

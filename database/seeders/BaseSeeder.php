@@ -26,43 +26,43 @@ class BaseSeeder extends Seeder
                 'content' => '<p>El gobierno mexicano anunció hoy nuevos acuerdos comerciales con países de América Latina, fortaleciendo la integración económica regional. Durante la cumbre realizada en Ciudad de México, representantes de diversos países firmaron convenios que facilitarán el intercambio comercial y la cooperación económica.</p>',
                 'slug' => 'mexico-fortalece-lazos-comerciales-america-latina',
                 'is_published' => true,
-                'created_by' => User::first()->id
+                'created_by' => User::first()->id,
             ],
             [
                 'title' => 'Nueva política de desarrollo social beneficiará a millones de mexicanos',
                 'content' => '<p>La Secretaría de Bienestar presentó un ambicioso programa de desarrollo social que busca reducir la desigualdad en el país. El plan incluye inversiones significativas en educación, salud y vivienda, con especial énfasis en las comunidades más vulnerables.</p>',
                 'slug' => 'nueva-politica-desarrollo-social-beneficiara-millones-mexicanos',
                 'is_published' => true,
-                'created_by' => User::first()->id
+                'created_by' => User::first()->id,
             ],
             [
                 'title' => 'Inversión histórica en infraestructura para el sur de México',
                 'content' => '<p>El gobierno federal anuncia una inversión sin precedentes en infraestructura para los estados del sur del país. El proyecto incluye la construcción de nuevas carreteras, puentes y sistemas de transporte público que impulsarán el desarrollo económico de la región.</p>',
                 'slug' => 'inversion-historica-infraestructura-sur-mexico',
                 'is_published' => true,
-                'created_by' => User::first()->id
+                'created_by' => User::first()->id,
             ],
             [
                 'title' => 'México lidera iniciativas ambientales en América Latina',
                 'content' => '<p>En el marco de la conferencia internacional sobre cambio climático, México presentó un plan integral de protección ambiental que incluye medidas para reducir emisiones de carbono y promover energías renovables. El programa ha sido reconocido como un modelo a seguir en la región.</p>',
                 'slug' => 'mexico-lidera-iniciativas-ambientales-america-latina',
                 'is_published' => true,
-                'created_by' => User::first()->id
+                'created_by' => User::first()->id,
             ],
             [
                 'title' => 'Programa nacional de digitalización gubernamental',
                 'content' => '<p>La Secretaría de la Función Pública implementará un nuevo sistema digital que modernizará los servicios gubernamentales. Esta iniciativa busca mejorar la eficiencia administrativa y facilitar el acceso de los ciudadanos a los servicios públicos.</p>',
                 'slug' => 'programa-nacional-digitalizacion-gubernamental',
                 'is_published' => true,
-                'created_by' => User::first()->id
+                'created_by' => User::first()->id,
             ],
             [
                 'title' => 'Avances en seguridad pública muestran resultados positivos',
                 'content' => '<p>El gobierno federal presenta los resultados de su estrategia de seguridad pública, mostrando una reducción significativa en los índices delictivos en varias regiones del país. El informe destaca la importancia de la coordinación entre los diferentes niveles de gobierno.</p>',
                 'slug' => 'avances-seguridad-publica-muestran-resultados-positivos',
                 'is_published' => true,
-                'created_by' => User::first()->id
-            ]
+                'created_by' => User::first()->id,
+            ],
         ]);
 
         $this->createActions();
@@ -77,29 +77,28 @@ class BaseSeeder extends Seeder
 
         FeaturedPost::create([
             'post_id' => 1,
-            'sort' => 1
+            'sort' => 1,
         ]);
         FeaturedPost::create([
             'post_id' => 2,
-            'sort' => 2
+            'sort' => 2,
         ]);
         FeaturedPost::create([
             'post_id' => 3,
-            'sort' => 3
+            'sort' => 3,
         ]);
         FeaturedPost::create([
             'post_id' => 4,
-            'sort' => 4
+            'sort' => 4,
         ]);
         FeaturedPost::create([
             'post_id' => 5,
-            'sort' => 5
+            'sort' => 5,
         ]);
         FeaturedPost::create([
             'post_id' => 6,
-            'sort' => 6
+            'sort' => 6,
         ]);
-
 
     }
 
@@ -107,29 +106,29 @@ class BaseSeeder extends Seeder
     {
         return Action::factory()->createMany([
             [
-                'name' => '+ Beis - Violencia'
+                'name' => '+ Beis - Violencia',
             ],
             [
-                'name' => 'Cero Impunidad'
+                'name' => 'Cero Impunidad',
             ],
             [
-                'name' => 'Ciberguía'
+                'name' => 'Ciberguía',
             ],
             [
-                'name' => 'Constructores de Paz'
+                'name' => 'Constructores de Paz',
             ],
             [
-                'name' => 'Ferias de Paz y Desarme Voluntario'
+                'name' => 'Ferias de Paz y Desarme Voluntario',
             ],
             [
-                'name' => 'Mi yo digital'
+                'name' => 'Mi yo digital',
             ],
             [
-                'name' => 'ONPRENNA'
+                'name' => 'ONPRENNA',
             ],
             [
-                'name' => 'Tianguis del Bienestar'
-            ]
+                'name' => 'Tianguis del Bienestar',
+            ],
         ]);
     }
 
@@ -152,7 +151,7 @@ class BaseSeeder extends Seeder
             ['name' => 'Unidad de Planeación y Evaluación Institucional'],
             ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones'],
             ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional'],
-            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)']
+            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)'],
         ]);
     }
 }

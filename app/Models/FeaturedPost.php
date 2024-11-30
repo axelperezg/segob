@@ -10,7 +10,7 @@ class FeaturedPost extends Model
     protected $fillable = [
         'post_id',
         'sort',
-        'is_active'
+        'is_active',
     ];
 
     public function post(): BelongsTo

@@ -3,9 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AudioResource\Pages;
-use App\Filament\Resources\AudioResource\RelationManagers;
 use App\Models\Audio;
-use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -16,14 +14,15 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AudioResource extends Resource
 {
     protected static ?string $model = Audio::class;
+
     protected static ?int $navigationSort = 5;
+
     protected static ?string $navigationLabel = 'Audios';
+
     protected static ?string $navigationIcon = 'heroicon-o-speaker-wave';
 
     public static function form(Form $form): Form
@@ -37,9 +36,9 @@ class AudioResource extends Resource
                             ->label('Publicado')
                             ->columnSpanFull()
                             ->default(true),
-                            TextInput::make('title')
-                                ->required()
-                                ->label('Título'),
+                        TextInput::make('title')
+                            ->required()
+                            ->label('Título'),
                         DatePicker::make('published_at')
                             ->default(now())
                             ->label('Fecha'),
