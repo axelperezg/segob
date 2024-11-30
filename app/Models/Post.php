@@ -43,6 +43,11 @@ class Post extends Model implements HasMedia
         return $this->belongsToMany(Action::class);
     }
 
+    public function dependencies(): BelongsToMany
+    {
+        return $this->belongsToMany(Dependency::class);
+    }
+
     public function registerMediaCollections(): void
     {
         $this

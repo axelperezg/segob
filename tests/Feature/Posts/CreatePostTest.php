@@ -3,6 +3,7 @@
 use App\Filament\Resources\PostResource;
 use App\Filament\Resources\PostResource\Pages\CreatePost;
 use App\Models\Action;
+use App\Models\Dependency;
 use App\Models\Post;
 use Livewire\Livewire;
 
@@ -21,7 +22,7 @@ it('can create a post', function () {
     // Arrange
     $data = Post::factory()->make();
     $action = Action::factory()->create();
-
+    $dependency = Dependency::factory()->create();
     // Act
     $this->component->fillForm([
         'is_published' => true,
@@ -33,6 +34,7 @@ it('can create a post', function () {
         'published_at' => $data->published_at,
         'created_by' => $data->created_by,
         'actions' => [$action->id],
+        'dependencies' => [$dependency->id],
     ])->call('create');
 
     // Assert
@@ -50,4 +52,7 @@ it('can create a post', function () {
 
     assertCount(1, $post->actions);
     expect($post->actions->first())->id->toBe($action->id);
+
+    assertCount(1, $post->dependencies);
+    expect($post->dependencies->first())->id->toBe($dependency->id);
 });

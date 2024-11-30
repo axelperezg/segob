@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -82,15 +83,21 @@ class PostResource extends Resource
                             ->label('Autor'),
                     ])
                     ->columns(2),
-                Section::make('Acciones')
+                Section::make()
                     ->schema([
                         Select::make('actions')
                             ->relationship('actions', 'name')
                             ->multiple()
-                            ->label('Acciones'),
+                            ->label('Acciones')
+                            ->columnSpan(1),
+                        Select::make('dependencies')
+                            ->relationship('dependencies', 'name')
+                            ->multiple()
+                            ->label('Dependencias')
+                            ->columnSpan(1),
                     ])
                     ->columns(2),
-                Section::make('Image')
+                Section::make('Imagen')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('image')
                             ->image()

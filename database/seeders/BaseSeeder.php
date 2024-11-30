@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Action;
+use App\Models\Dependency;
 use App\Models\FeaturedPost;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BaseSeeder extends Seeder
@@ -77,9 +77,14 @@ class BaseSeeder extends Seeder
             ]
         ]);
 
+        $this->createActions();
+        $this->createDependencies();
+
         Post::all()->each(function (Post $post) {
-            $actions = Action::factory(rand(1, 3))->create();
+            $actions = Action::all()->take(rand(2, 4));
             $post->actions()->attach($actions);
+            $dependencies = Dependency::all()->take(rand(2, 4));
+            $post->dependencies()->attach($dependencies);
         });
 
         FeaturedPost::create([
@@ -108,5 +113,58 @@ class BaseSeeder extends Seeder
         ]);
 
 
+    }
+
+    private function createActions()
+    {
+        return Action::factory()->createMany([
+            [
+                'name' => '+ Beis - Violencia'
+            ],
+            [
+                'name' => 'Cero Impunidad'
+            ],
+            [
+                'name' => 'Ciberguía'
+            ],
+            [
+                'name' => 'Constructores de Paz'
+            ],
+            [
+                'name' => 'Ferias de Paz y Desarme Voluntario'
+            ],
+            [
+                'name' => 'Mi yo digital'
+            ],
+            [
+                'name' => 'ONPRENNA'
+            ],
+            [
+                'name' => 'Tianguis del Bienestar'
+            ]
+        ]);
+    }
+
+    private function createDependencies()
+    {
+        return Dependency::factory()->createMany([
+            ['name' => 'Sistema Nacional de Protección Civil (SINAPROC)'],
+            ['name' => 'Protección Federal'],
+            ['name' => 'Prevención y Readaptación Social'],
+            ['name' => 'Guardia Nacional (GN)'],
+            ['name' => 'Coordinación Nacional Antisecuestro (CONASE)'],
+            ['name' => 'Coordinación Nacional de Protección Civil (CNPC)'],
+            ['name' => 'Centro Nacional de Inteligencia (CNI)'],
+            ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)'],
+            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública'],
+            ['name' => 'Subsecretario de Seguridad Pública'],
+            ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica'],
+            ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada'],
+            ['name' => 'Unidad de Prevención de la Violencia y el Delito'],
+            ['name' => 'Unidad de Planeación y Evaluación Institucional'],
+            ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones'],
+            ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional'],
+            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)']
+        ]);
     }
 }
