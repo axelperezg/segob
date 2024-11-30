@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
@@ -66,14 +67,8 @@ class PostResource extends Resource
                             ->label('Palabras clave'),
                         Select::make('state')
                             ->nullable()
-                            ->options([
-                                'Jalisco' => 'Jalisco',
-                                'Nuevo León' => 'Nuevo León',
-                                'Yucatán' => 'Yucatán',
-                                'Chiapas' => 'Chiapas',
-                                'Oaxaca' => 'Oaxaca',
-                                'Veracruz' => 'Veracruz',
-                            ])
+                            ->searchable()
+                            ->options(MexicanStateEnum::class)
                             ->label('Estado'),
                         DatePicker::make('published_at')
                             ->required()
