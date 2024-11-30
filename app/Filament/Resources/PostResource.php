@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use App\Models\User;
@@ -59,11 +60,7 @@ class PostResource extends Resource
                             ->columnSpanFull(),
                         Select::make('content_type')
                             ->nullable()
-                            ->options([
-                                'text' => 'Texto',
-                                'image' => 'Imagen',
-                                'video' => 'Video',
-                            ])
+                            ->options(ContentTypeEnum::class)
                             ->label('Tipo de contenido'),
                         TextInput::make('keywords')
                             ->label('Palabras clave'),
