@@ -5,6 +5,7 @@ use App\Filament\Resources\PostResource\Pages\CreatePost;
 use App\Models\Action;
 use App\Models\Dependency;
 use App\Models\Post;
+use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 
 use function Pest\Laravel\get;
@@ -35,6 +36,8 @@ it('can create a post', function () {
         'created_by' => $data->created_by,
         'actions' => [$action->id],
         'dependencies' => [$dependency->id],
+        'image' => UploadedFile::fake()->image('image.jpg'),
+        'document' => UploadedFile::fake()->create('document.pdf'),
     ])->call('create');
 
     // Assert

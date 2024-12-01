@@ -8,6 +8,7 @@ use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -97,14 +98,28 @@ class PostResource extends Resource
                             ->columnSpan(1),
                     ])
                     ->columns(2),
-                Section::make('Imagen')
-                    ->schema([
-                        SpatieMediaLibraryFileUpload::make('image')
-                            ->image()
-                            ->collection('image')
-                            ->hiddenLabel(),
+                    Grid::make([
+                        'sm' => 2,
                     ])
-                    ->collapsible(),
+                    ->schema([
+                        Section::make('Imagen')
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('image')
+                                    ->image()
+                                    ->collection('image')
+                                    ->hiddenLabel(),
+                            ])
+                            ->collapsible()
+                            ->columnSpan(1),
+                        Section::make('Documento')
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('documents')
+                                    ->collection('documents')
+                                    ->hiddenLabel(),
+                            ])
+                            ->collapsible()
+                            ->columnSpan(1),
+                    ]),
             ]);
     }
 

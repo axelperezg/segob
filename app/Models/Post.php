@@ -58,5 +58,9 @@ class Post extends Model implements HasMedia
             ->addMediaCollection('image')
             ->singleFile()
             ->useDisk('public');
+
+        $this
+            ->addMediaCollection('documents')
+            ->useDisk('public');
     }
 }
