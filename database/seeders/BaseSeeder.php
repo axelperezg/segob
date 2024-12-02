@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Action;
+use App\Models\Audio;
 use App\Models\Dependency;
 use App\Models\FeaturedPost;
 use App\Models\Post;
@@ -20,6 +21,10 @@ class BaseSeeder extends Seeder
             'name' => 'Miguel Bonifaz',
             'email' => 'miguel@gmail.com',
         ]);
+        $audio = Audio::factory()->create();
+        $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
+        $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
+
         Post::factory()->createMany([
             [
                 'title' => 'México fortalece lazos comerciales con América Latina',
@@ -27,6 +32,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'mexico-fortalece-lazos-comerciales-america-latina',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => $audio->id,
             ],
             [
                 'title' => 'Nueva política de desarrollo social beneficiará a millones de mexicanos',
@@ -34,6 +40,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'nueva-politica-desarrollo-social-beneficiara-millones-mexicanos',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
             ],
             [
                 'title' => 'Inversión histórica en infraestructura para el sur de México',
@@ -41,6 +48,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'inversion-historica-infraestructura-sur-mexico',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
             ],
             [
                 'title' => 'México lidera iniciativas ambientales en América Latina',
@@ -48,6 +56,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'mexico-lidera-iniciativas-ambientales-america-latina',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
             ],
             [
                 'title' => 'Programa nacional de digitalización gubernamental',
@@ -55,6 +64,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'programa-nacional-digitalizacion-gubernamental',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
             ],
             [
                 'title' => 'Avances en seguridad pública muestran resultados positivos',
@@ -62,6 +72,7 @@ class BaseSeeder extends Seeder
                 'slug' => 'avances-seguridad-publica-muestran-resultados-positivos',
                 'is_published' => true,
                 'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
             ],
         ]);
 

@@ -16,6 +16,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -120,6 +121,18 @@ class PostResource extends Resource
                             ->collapsible()
                             ->columnSpan(1),
                     ]),
+                Section::make()
+                    ->heading(function (Get $get) {
+                        return $get('audio_id')
+                            ? 'Audio Relacionado'
+                            : 'Relacionar Audio';
+                    })
+                    ->schema([
+                        Select::make('audio_id')
+                            ->searchable()
+                            ->hiddenLabel()
+                            ->relationship('audio', 'title'),
+                    ])
             ]);
     }
 

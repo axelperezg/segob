@@ -11,11 +11,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/43a8eadd9b.js" crossorigin="anonymous"></script>
+    @routes
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     @inertiaHead
 </head>
 
-<body>
+<body class="font-montserrat">
     @inertia
 </body>
 

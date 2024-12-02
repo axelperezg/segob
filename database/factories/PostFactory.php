@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
+use App\Models\Audio;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,6 +23,7 @@ class PostFactory extends Factory
             'published_at' => fake()->dateTime(),
             'created_by' => User::factory(),
             'keywords' => fake()->words(3, true),
+            'audio_id' => Audio::factory(),
         ];
     }
 

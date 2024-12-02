@@ -25,6 +25,7 @@ class Post extends Model implements HasMedia
         'state',
         'published_at',
         'created_by',
+        'audio_id',
     ];
 
     protected function casts(): array
@@ -35,6 +36,11 @@ class Post extends Model implements HasMedia
             'content_type' => ContentTypeEnum::class,
             'state' => MexicanStateEnum::class,
         ];
+    }
+
+    public function audio(): BelongsTo
+    {
+        return $this->belongsTo(Audio::class);
     }
 
     public function createdBy(): BelongsTo

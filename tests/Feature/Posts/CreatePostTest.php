@@ -3,6 +3,7 @@
 use App\Filament\Resources\PostResource;
 use App\Filament\Resources\PostResource\Pages\CreatePost;
 use App\Models\Action;
+use App\Models\Audio;
 use App\Models\Dependency;
 use App\Models\Post;
 use Illuminate\Http\UploadedFile;
@@ -10,6 +11,8 @@ use Livewire\Livewire;
 
 use function Pest\Laravel\get;
 use function PHPUnit\Framework\assertCount;
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotNull;
 
 beforeEach(function () {
     $this->component = Livewire::test(CreatePost::class);
@@ -24,6 +27,8 @@ it('can create a post', function () {
     $data = Post::factory()->make();
     $action = Action::factory()->create();
     $dependency = Dependency::factory()->create();
+    $audio = Audio::factory()->create();
+
     // Act
     $this->component->fillForm([
         'is_published' => true,
@@ -38,6 +43,7 @@ it('can create a post', function () {
         'dependencies' => [$dependency->id],
         'image' => UploadedFile::fake()->image('image.jpg'),
         'document' => UploadedFile::fake()->create('document.pdf'),
+        'audio_id' => $audio->id,
     ])->call('create');
 
     // Assert
@@ -58,4 +64,7 @@ it('can create a post', function () {
 
     assertCount(1, $post->dependencies);
     expect($post->dependencies->first())->id->toBe($dependency->id);
+
+    assertNotNull($post->audio_id);
+    assertEquals($audio->id, $post->audio_id);
 });

@@ -6,6 +6,8 @@ use App\Filament\Resources\AudioResource\Pages;
 use App\Models\Audio;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -14,6 +16,8 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Filament\Resources\AudioResource\RelationManagers;
+use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 
 class AudioResource extends Resource
 {
@@ -42,6 +46,12 @@ class AudioResource extends Resource
                         DatePicker::make('published_at')
                             ->default(now())
                             ->label('Fecha'),
+                        SpatieMediaLibraryFileUpload::make('audio')
+                            ->label('Audio')
+                            ->collection('audio')
+                            ->maxSize(5120)
+                            ->acceptedFileTypes(['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp3'])
+                            ->required(),
                     ]),
             ]);
     }
@@ -59,6 +69,9 @@ class AudioResource extends Resource
                 TextColumn::make('published_at')
                     ->label('Fecha')
                     ->dateTime('d/m/Y'),
+                TextColumn::make('posts_count')
+                    ->label('Posts')
+                    ->counts('posts'),
             ])
             ->filters([
                 //
@@ -76,7 +89,7 @@ class AudioResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class,
         ];
     }
 

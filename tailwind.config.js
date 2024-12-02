@@ -26,7 +26,11 @@ export default {
     plugins: [
         function({ addBase }) {
             addBase({
-                'p': { fontWeight: '500' },
+                'p': {
+                    fontWeight: '400',
+                    fontSize: '1.2rem',
+                    lineHeight: '1.6',
+                },
             })
         }
     ],
