@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\Documents\DocumentSectionEnum;
-use App\Enums\DocumentTypeEnum;
+use App\Enums\Documents\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DocumentFactory extends Factory

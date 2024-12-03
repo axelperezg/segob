@@ -13,9 +13,4 @@ class CreatePost extends CreateRecord
     {
         return 'Crear post';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }

@@ -26,6 +26,7 @@ class Post extends Model implements HasMedia
         'published_at',
         'created_by',
         'audio_id',
+        'document_id',
     ];
 
     protected function casts(): array
@@ -41,6 +42,11 @@ class Post extends Model implements HasMedia
     public function audio(): BelongsTo
     {
         return $this->belongsTo(Audio::class);
+    }
+
+    public function document(): BelongsTo
+    {
+        return $this->belongsTo(Document::class);
     }
 
     public function createdBy(): BelongsTo

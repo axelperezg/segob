@@ -22,9 +22,4 @@ class EditPost extends EditRecord
     {
         return 'Editar post';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }

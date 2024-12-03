@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
 use App\Filament\Resources\DocumentResource\Pages;
+use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 use App\Models\Document;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
@@ -62,7 +63,20 @@ class DocumentResource extends Resource
                             ->hiddenLabel()
                             ->required(),
                     ])->collapsible(),
+                SpatieMediaLibraryFileUpload::make('document')
+                    ->label('Documento')
+                    ->collection('document')
+                    ->maxSize(5120)
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->required(),
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            PostsRelationManager::class,
+        ];
     }
 
     public static function table(Table $table): Table
@@ -83,6 +97,9 @@ class DocumentResource extends Resource
                 IconColumn::make('is_published')
                     ->label('Publicado')
                     ->boolean(),
+                TextColumn::make('posts_count')
+                    ->label('Posts')
+                    ->counts('posts'),
             ])
             ->filters([
                 //
@@ -95,13 +112,6 @@ class DocumentResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

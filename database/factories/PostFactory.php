@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Audio;
+use App\Models\Document;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -24,6 +25,7 @@ class PostFactory extends Factory
             'created_by' => User::factory(),
             'keywords' => fake()->words(3, true),
             'audio_id' => Audio::factory(),
+            'document_id' => Document::factory(),
         ];
     }
 

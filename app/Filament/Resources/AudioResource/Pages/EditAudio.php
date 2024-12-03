@@ -21,9 +21,4 @@ class EditAudio extends EditRecord
     {
         return 'Editar audio';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }

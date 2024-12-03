@@ -6,9 +6,9 @@ use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
 class Document extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -37,5 +37,10 @@ class Document extends Model implements HasMedia
             ->addMediaCollection('image')
             ->singleFile()
             ->useDisk('public');
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
     }
 }

@@ -132,6 +132,18 @@ class PostResource extends Resource
                             ->searchable()
                             ->hiddenLabel()
                             ->relationship('audio', 'title'),
+                    ]),
+                Section::make('Documento')
+                    ->heading(function (Get $get) {
+                        return $get('document_id')
+                            ? 'Documento Relacionado'
+                            : 'Relacionar Documento';
+                    })
+                    ->schema([
+                        Select::make('document_id')
+                            ->searchable()
+                            ->hiddenLabel()
+                            ->relationship('document', 'name'),
                     ])
             ]);
     }

@@ -13,9 +13,4 @@ class CreateAudio extends CreateRecord
     {
         return 'Crear audio';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }
