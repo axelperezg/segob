@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.2.0",
+        "@tailwindcss/typography": "^0.5.15",
         "@vue/server-renderer": "^3.5.13",
         "dayjs": "^1.11.13"
     }

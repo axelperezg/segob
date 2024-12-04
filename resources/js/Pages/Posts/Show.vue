@@ -22,7 +22,7 @@ const postPresenter = new PostPresenter(props.post.data);
             <img :src="postPresenter.featuredImage" alt="Featured Image" />
         </section>
 
-        <div class="prose" v-html="postPresenter.content">
+        <div class="prose max-w-7xl" v-html="postPresenter.content">
         </div>
     </div>
 </template>

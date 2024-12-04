@@ -13,9 +13,4 @@ class CreateDocument extends CreateRecord
     {
         return 'Crear documento';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }

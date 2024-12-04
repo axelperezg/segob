@@ -24,6 +24,7 @@ export default {
         },
     },
     plugins: [
+        require('@tailwindcss/typography'),
         function({ addBase }) {
             addBase({
                 'p': {

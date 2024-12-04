@@ -21,9 +21,4 @@ class EditDocument extends EditRecord
     {
         return 'Editar documento';
     }
-
-    protected function getRedirectUrl(): string
-    {
-        return $this->getResource()::getUrl('index');
-    }
 }

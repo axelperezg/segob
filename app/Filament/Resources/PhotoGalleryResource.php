@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PhotoGalleryResource\Pages;
+use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 use App\Models\PhotoGallery;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
@@ -31,6 +32,13 @@ class PhotoGalleryResource extends Resource
     {
         return $form
             ->schema([
+                Section::make('Imagen')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->image()
+                            ->collection('image')
+                            ->hiddenLabel(),
+                    ]),
                 Section::make('Información')
                     ->columns()
                     ->schema([
@@ -46,11 +54,11 @@ class PhotoGalleryResource extends Resource
                             ->default(now())
                             ->label('Fecha'),
                     ]),
-                Section::make('Imagen')
+                Section::make('Galería')
                     ->schema([
-                        SpatieMediaLibraryFileUpload::make('image')
-                            ->image()
-                            ->collection('image')
+                        SpatieMediaLibraryFileUpload::make('gallery')
+                            ->multiple()
+                            ->collection('gallery')
                             ->hiddenLabel(),
                     ]),
             ]);
@@ -88,7 +96,7 @@ class PhotoGalleryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class,
         ];
     }
 

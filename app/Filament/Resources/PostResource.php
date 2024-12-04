@@ -144,7 +144,19 @@ class PostResource extends Resource
                             ->searchable()
                             ->hiddenLabel()
                             ->relationship('document', 'name'),
-                    ])
+                    ]),
+                Section::make('Galería')
+                    ->heading(function (Get $get) {
+                        return $get('photo_gallery_id')
+                            ? 'Galería Relacionada'
+                            : 'Relacionar Galería';
+                    })
+                    ->schema([
+                        Select::make('photo_gallery_id')
+                            ->searchable()
+                            ->hiddenLabel()
+                            ->relationship('photoGallery', 'name'),
+                    ]),
             ]);
     }
 
