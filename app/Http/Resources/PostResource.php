@@ -28,6 +28,7 @@ class PostResource extends JsonResource
             'video_id' => $this->video_id,
 
             'photoGallery' => PhotoGalleryResource::make($this->whenLoaded('photoGallery')),
+            'document' => DocumentResource::make($this->whenLoaded('document')),
         ];
     }
 }
