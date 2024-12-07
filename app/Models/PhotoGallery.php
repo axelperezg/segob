@@ -18,6 +18,14 @@ class PhotoGallery extends Model implements HasMedia
         'name',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'date',
+            'is_published' => 'boolean',
+        ];
+    }
+
     public function registerMediaCollections(): void
     {
         $this

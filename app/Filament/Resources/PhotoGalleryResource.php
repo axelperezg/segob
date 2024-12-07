@@ -78,7 +78,7 @@ class PhotoGalleryResource extends Resource
                     ->dateTime('d/m/Y'),
                 SpatieMediaLibraryImageColumn::make('image')
                     ->label('Imagen')
-                    ->collection('image'),
+                    ->collection('gallery'),
             ])
             ->filters([
                 //

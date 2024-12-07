@@ -21,6 +21,13 @@ class PostResource extends JsonResource
             'state' => $this->state,
             'published_at' => $this->published_at,
             'created_by' => UserResource::make($this->whenLoaded('createdBy')),
+
+            'audio_id' => $this->audio_id,
+            'document_id' => $this->document_id,
+            'photo_gallery_id' => $this->photo_gallery_id,
+            'video_id' => $this->video_id,
+
+            'photoGallery' => PhotoGalleryResource::make($this->whenLoaded('photoGallery')),
         ];
     }
 }

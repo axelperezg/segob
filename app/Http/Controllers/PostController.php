@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function __invoke(Post $post)
     {
-        $post->load('createdBy');
+        $post->load('createdBy', 'photoGallery');
 
         return Inertia::render('Posts/Show', [
             'post' => PostResource::make($post),

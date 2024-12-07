@@ -64,4 +64,20 @@ export default class PostPresenter {
     get documents() {
         return this.post.documents;
     }
+
+    get hasPhotos() {
+        return this.post.photo_gallery_id;
+    }
+
+    get hasAudio() {
+        return this.post.audio_id;
+    }
+
+    get hasDocument() {
+        return this.post.document_id;
+    }
+
+    get hasVideo() {
+        return this.post.video_id;
+    }
 }

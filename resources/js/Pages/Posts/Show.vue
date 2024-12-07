@@ -1,11 +1,13 @@
 <script setup>
 import PostPresenter from '@/Presenters/PostPresenter';
+import { ref } from 'vue';
 
 let props = defineProps({
     post: Object,
 });
 
 const postPresenter = new PostPresenter(props.post.data);
+const activeTab = ref(1);
 </script>
 
 <template>
@@ -25,13 +27,75 @@ const postPresenter = new PostPresenter(props.post.data);
             <img :src="postPresenter.featuredImage" alt="Featured Image" />
         </section>
 
-        <div class="pb-4">
-            <span class="font-[300] text-lg border-b-4 border-gold">
-                {{ postPresenter.contentType }}
-            </span>
-        </div>
 
-        <div class="prose max-w-7xl" v-html="postPresenter.content">
+        <div class="pb-4">
+            <div class="border-b border-gray-200">
+                <nav class="flex flex-col md:flex-row gap-6">
+                    <button
+                        @click="activeTab = 1"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 1 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        {{ postPresenter.contentType }}
+                    </button>
+                    <button
+                        v-if="postPresenter.hasPhotos"
+                        @click="activeTab = 2"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 2 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        Fotografías
+                    </button>
+                    <button
+                        v-if="postPresenter.hasAudio"
+                        @click="activeTab = 3"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 3 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        Audio
+                    </button>
+                    <button
+                        v-if="postPresenter.hasDocument"
+                        @click="activeTab = 4"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 4 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        Documento
+                    </button>
+                    <button
+                        v-if="postPresenter.hasVideo"
+                        @click="activeTab = 5"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 5 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        Video
+                    </button>
+                </nav>
+            </div>
+
+            <div class="mt-4">
+                <div class="prose max-w-7xl" v-show="activeTab === 1" v-html="postPresenter.content">
+                </div>
+                <div class="grid grid-cols-3 gap-4" v-show="activeTab === 2">
+                    <a
+                        v-for="photo in post.data.photoGallery.photos"
+                        :href="photo"
+                        :download="true"
+                    >
+                        <img class="rounded-md" :src="photo" :alt="postPresenter.name" />
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </template>
