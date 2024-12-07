@@ -24,6 +24,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Filament\Support\Colors\Color;
 
 class PostResource extends Resource
 {
@@ -79,10 +80,27 @@ class PostResource extends Resource
                             ->label('Fecha de publicación'),
                         Select::make('created_by')
                             ->relationship('createdBy', 'name')
+                            ->searchable()
                             ->required()
                             ->default(auth()->id())
                             ->options(User::all()->pluck('name', 'id'))
-                            ->label('Autor'),
+                            ->label('Autor')
+                            ->createOptionForm([
+                                TextInput::make('name')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->label('Nombre'),
+                                TextInput::make('email')
+                                    ->email()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->label('Correo'),
+                                TextInput::make('password')
+                                    ->password()
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->label('Contraseña'),
+                            ])
                     ])
                     ->columns(2),
                 Section::make()
