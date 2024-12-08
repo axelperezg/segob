@@ -45,8 +45,16 @@ export default class PostPresenter {
         return this.post.keywords;
     }
 
+    get bulletin() {
+        return this.post.bulletin;
+    }
+
+    get year() {
+        return this.post.year;
+    }
+
     get createdBy() {
-        return this.post.created_by;
+        return this.post.createdBy?.name;
     }
 
     get featuredImage() {

@@ -24,7 +24,6 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Filament\Support\Colors\Color;
 
 class PostResource extends Resource
 {
@@ -64,11 +63,18 @@ class PostResource extends Resource
                             ->required()
                             ->columnSpanFull(),
                         Select::make('content_type')
-                            ->nullable()
+                            ->live()
+                            ->required()
                             ->options(ContentTypeEnum::class)
                             ->label('Tipo de contenido'),
                         TextInput::make('keywords')
                             ->label('Palabras clave'),
+                        TextInput::make('bulletin')
+                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
+                            ->label('Boletín'),
+                        TextInput::make('year')
+                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
+                            ->label('Año'),
                         Select::make('state')
                             ->nullable()
                             ->searchable()
@@ -100,7 +106,7 @@ class PostResource extends Resource
                                     ->required()
                                     ->maxLength(255)
                                     ->label('Contraseña'),
-                            ])
+                            ]),
                     ])
                     ->columns(2),
                 Section::make()
@@ -117,9 +123,9 @@ class PostResource extends Resource
                             ->columnSpan(1),
                     ])
                     ->columns(2),
-                    Grid::make([
-                        'sm' => 2,
-                    ])
+                Grid::make([
+                    'sm' => 2,
+                ])
                     ->schema([
                         Section::make('Imagen')
                             ->schema([

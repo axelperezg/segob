@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource;
 use App\Filament\Resources\PostResource\Pages\CreatePost;
 use App\Models\Action;
@@ -26,7 +27,7 @@ it('can render create post page', function () {
 
 it('can create a post', function () {
     // Arrange
-    $data = Post::factory()->make();
+    $data = Post::factory()->make(['content_type' => ContentTypeEnum::JOINT_STATEMENT->value]);
     $action = Action::factory()->create();
     $dependency = Dependency::factory()->create();
     $audio = Audio::factory()->create();
@@ -63,7 +64,9 @@ it('can create a post', function () {
         ->content_type->toBe($data->content_type)
         ->state->toBe($data->state)
         ->published_at->format('Y-m-d H:i')->toBe($data->published_at->format('Y-m-d H:i'))
-        ->created_by->toBe($data->created_by);
+        ->created_by->toBe($data->created_by)
+        ->bulletin->toBeNull()
+        ->year->toBeNull();
 
     assertCount(1, $post->actions);
     expect($post->actions->first())->id->toBe($action->id);
@@ -79,4 +82,41 @@ it('can create a post', function () {
 
     assertNotNull($post->video_id);
     assertEquals($video->id, $post->video_id);
+});
+
+it('can create a bulletin post', function () {
+    // Arrange
+    $data = Post::factory()->make(['content_type' => ContentTypeEnum::BULLETIN->value]);
+    $action = Action::factory()->create();
+    $dependency = Dependency::factory()->create();
+    $audio = Audio::factory()->create();
+    $document = Document::factory()->create();
+    $video = Video::factory()->create();
+
+    // Act
+    $this->component->fillForm([
+        'is_published' => true,
+        'title' => $data->title,
+        'content' => $data->content,
+        'content_type' => $data->content_type->value,
+        'bulletin' => $data->bulletin,
+        'year' => $data->year,
+        'keywords' => $data->keywords,
+        'state' => $data->state->value,
+        'published_at' => $data->published_at,
+        'created_by' => $data->created_by,
+        'actions' => [$action->id],
+        'dependencies' => [$dependency->id],
+        'image' => UploadedFile::fake()->image('image.jpg'),
+        'document' => UploadedFile::fake()->create('document.pdf'),
+        'audio_id' => $audio->id,
+        'document_id' => $document->id,
+        'video_id' => $video->id,
+    ])->call('create');
+
+    // Assert
+    $post = Post::first();
+    expect($post)
+        ->bulletin->toBe($data->bulletin)
+        ->year->toBe($data->year);
 });

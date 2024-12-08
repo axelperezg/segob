@@ -86,6 +86,12 @@ const activeTab = ref(1);
             <div class="mt-4">
                 <div class="prose max-w-7xl" v-show="activeTab === 1" v-html="postPresenter.content">
                 </div>
+                <div class="pt-10" v-if="postPresenter.contentType === 'Boletín'">
+                    <p class="text-lg font-bold">Boletín No. {{ postPresenter.bulletin }}</p>
+                </div>
+                <div class="flex justify-center">
+                    <h5 class="text-sm text-center italic font-normal border-l border-gray-600 pl-2">{{ postPresenter.createdBy }}</h5>
+                </div>
                 <div class="grid grid-cols-3 gap-4" v-show="activeTab === 2">
                     <a
                         v-for="photo in post.data.photoGallery.photos"

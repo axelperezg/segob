@@ -22,6 +22,8 @@ class Post extends Model implements HasMedia
         'slug',
         'is_published',
         'content_type',
+        'bulletin',
+        'year',
         'state',
         'published_at',
         'created_by',
