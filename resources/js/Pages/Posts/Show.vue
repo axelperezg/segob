@@ -112,6 +112,26 @@ const activeTab = ref(1);
                         </a>
                     </div>
                 </div>
+                <div v-show="activeTab === 3" class="max-w-3xl mx-auto">
+                    <div v-if="post.data.audio" class="flex flex-col items-center">
+                        <audio
+                            controls
+                            class="w-full"
+                        >
+                            <source :src="post.data.audio.audio_file" type="audio/mpeg">
+                            Tu navegador no soporta el elemento de audio.
+                        </audio>
+                        <div class="flex justify-center mb-4 mt-10">
+                            <a
+                                :href="post.data.audio.audio_file"
+                                download
+                                class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center"
+                            >
+                                <span>Descargar Audio</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
