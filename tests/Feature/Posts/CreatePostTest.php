@@ -7,6 +7,7 @@ use App\Models\Audio;
 use App\Models\Dependency;
 use App\Models\Document;
 use App\Models\Post;
+use App\Models\Video;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 
@@ -30,6 +31,7 @@ it('can create a post', function () {
     $dependency = Dependency::factory()->create();
     $audio = Audio::factory()->create();
     $document = Document::factory()->create();
+    $video = Video::factory()->create();
 
     // Act
     $this->component->fillForm([
@@ -47,6 +49,7 @@ it('can create a post', function () {
         'document' => UploadedFile::fake()->create('document.pdf'),
         'audio_id' => $audio->id,
         'document_id' => $document->id,
+        'video_id' => $video->id,
     ])->call('create');
 
     // Assert
@@ -73,4 +76,7 @@ it('can create a post', function () {
 
     assertNotNull($post->document_id);
     assertEquals($document->id, $post->document_id);
+
+    assertNotNull($post->video_id);
+    assertEquals($video->id, $post->video_id);
 });

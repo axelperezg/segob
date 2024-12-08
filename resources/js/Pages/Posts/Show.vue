@@ -132,6 +132,21 @@ const activeTab = ref(1);
                         </div>
                     </div>
                 </div>
+                <div v-show="activeTab === 5" class="max-w-5xl mx-auto h-screen">
+                    <div v-if="post.data.video" class="flex flex-col items-center">
+                        <div class="relative w-full pt-[56.25%]">
+                            <iframe
+                                :src="`https://www.youtube.com/embed/${post.data.video.url.split('v=')[1]}`"
+                                class="absolute top-0 left-0 w-full h-full"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

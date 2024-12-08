@@ -175,6 +175,18 @@ class PostResource extends Resource
                             ->hiddenLabel()
                             ->relationship('photoGallery', 'name'),
                     ]),
+                Section::make('Video')
+                    ->heading(function (Get $get) {
+                        return $get('video_id')
+                            ? 'Video Relacionado'
+                            : 'Relacionar Video';
+                    })
+                    ->schema([
+                        Select::make('video_id')
+                            ->searchable()
+                            ->hiddenLabel()
+                            ->relationship('video', 'title'),
+                    ]),
             ]);
     }
 

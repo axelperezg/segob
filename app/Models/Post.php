@@ -28,6 +28,7 @@ class Post extends Model implements HasMedia
         'audio_id',
         'document_id',
         'photo_gallery_id',
+        'video_id',
     ];
 
     protected function casts(): array
@@ -53,6 +54,11 @@ class Post extends Model implements HasMedia
     public function photoGallery(): BelongsTo
     {
         return $this->belongsTo(PhotoGallery::class);
+    }
+
+    public function video(): BelongsTo
+    {
+        return $this->belongsTo(Video::class);
     }
 
     public function createdBy(): BelongsTo
