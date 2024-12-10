@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ActionFactory extends Factory
 {
@@ -15,6 +16,9 @@ class ActionFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'slug' => function (array $attributes) {
+                return Str::slug($attributes['name']);
+            },
         ];
     }
 }

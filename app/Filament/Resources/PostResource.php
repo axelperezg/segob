@@ -115,10 +115,12 @@ class PostResource extends Resource
                             ->relationship('actions', 'name')
                             ->multiple()
                             ->label('Acciones')
+                            ->preload()
                             ->columnSpan(1),
                         Select::make('dependencies')
                             ->relationship('dependencies', 'name')
                             ->multiple()
+                            ->preload()
                             ->label('Dependencias')
                             ->columnSpan(1),
                     ])

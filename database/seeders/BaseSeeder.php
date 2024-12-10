@@ -74,13 +74,93 @@ class BaseSeeder extends Seeder
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
             ],
+            [
+                'title' => 'Plan nacional de innovación tecnológica en educación',
+                'content' => '<p>La Secretaría de Educación Pública presenta un ambicioso plan para integrar nuevas tecnologías en las aulas de todo el país. El programa incluye la distribución de equipos de cómputo, capacitación docente y desarrollo de contenidos educativos digitales.</p>',
+                'slug' => 'plan-nacional-innovacion-tecnologica-educacion',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Impulso al turismo sustentable en zonas arqueológicas',
+                'content' => '<p>El Instituto Nacional de Antropología e Historia implementa nuevas estrategias para promover el turismo sustentable en zonas arqueológicas. El proyecto busca preservar el patrimonio cultural mientras se genera desarrollo económico local.</p>',
+                'slug' => 'impulso-turismo-sustentable-zonas-arqueologicas',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Programa de modernización del sistema de salud',
+                'content' => '<p>La Secretaría de Salud anuncia una importante inversión para modernizar hospitales y centros de salud en todo el país. El programa incluye la adquisición de equipo médico de última generación y mejoras en la infraestructura sanitaria.</p>',
+                'slug' => 'programa-modernizacion-sistema-salud',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Fortalecimiento de programas culturales comunitarios',
+                'content' => '<p>La Secretaría de Cultura amplía su red de centros culturales comunitarios, llevando actividades artísticas y culturales a más regiones del país. La iniciativa busca promover la inclusión social a través del arte y la cultura.</p>',
+                'slug' => 'fortalecimiento-programas-culturales-comunitarios',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Nueva estrategia nacional de ciencia y tecnología',
+                'content' => '<p>El CONACYT presenta su nueva estrategia para impulsar la investigación científica y el desarrollo tecnológico en México. El plan incluye mayores recursos para proyectos de investigación y colaboraciones internacionales.</p>',
+                'slug' => 'nueva-estrategia-nacional-ciencia-tecnologia',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Plan integral de desarrollo urbano sustentable',
+                'content' => '<p>La SEDATU implementa un nuevo plan de desarrollo urbano que prioriza la sustentabilidad y la calidad de vida en las ciudades mexicanas. El programa incluye mejoras en transporte público y espacios verdes.</p>',
+                'slug' => 'plan-integral-desarrollo-urbano-sustentable',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Fortalecimiento de la economía social y solidaria',
+                'content' => '<p>La Secretaría de Economía lanza nuevos programas para apoyar a cooperativas y empresas sociales. La iniciativa busca promover un modelo económico más inclusivo y equitativo.</p>',
+                'slug' => 'fortalecimiento-economia-social-solidaria',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Programa nacional de prevención de adicciones',
+                'content' => '<p>La CONADIC presenta una nueva estrategia integral para la prevención y tratamiento de adicciones. El programa enfatiza la importancia de la prevención temprana y el apoyo comunitario.</p>',
+                'slug' => 'programa-nacional-prevencion-adicciones',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Innovación en servicios financieros digitales',
+                'content' => '<p>La CNBV anuncia nuevas regulaciones para promover la innovación en servicios financieros digitales. Las medidas buscan aumentar la inclusión financiera y la competencia en el sector.</p>',
+                'slug' => 'innovacion-servicios-financieros-digitales',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
+            [
+                'title' => 'Estrategia nacional de agricultura sostenible',
+                'content' => '<p>La SADER implementa un nuevo programa para promover prácticas agrícolas sostenibles. La iniciativa incluye apoyo técnico y financiero para pequeños productores y comunidades rurales.</p>',
+                'slug' => 'estrategia-nacional-agricultura-sostenible',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+            ],
         ]);
 
         $this->createActions();
         $this->createDependencies();
 
         Post::all()->each(function (Post $post) {
-            $actions = Action::all()->take(rand(2, 4));
+            $actions = Action::where('name', 'Cero Impunidad')->get();
             $post->actions()->attach($actions);
             $dependencies = Dependency::all()->take(rand(2, 4));
             $post->dependencies()->attach($dependencies);

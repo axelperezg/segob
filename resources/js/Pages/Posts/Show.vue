@@ -84,17 +84,20 @@ const activeTab = ref(1);
             </div>
 
             <div class="mt-4">
-                <div class="prose max-w-7xl" v-show="activeTab === 1" v-html="postPresenter.content">
+                <div v-show="activeTab === 1">
+                    <div class="prose max-w-7xl" v-html="postPresenter.content">
+                    </div>
+                    <div class="flex justify-center">
+                    <h5 class="text-sm text-center italic font-normal border-l border-gray-400 pl-2 mt-10">{{ postPresenter.createdBy }}</h5>
+                </div>
                 </div>
                 <div class="pt-10" v-if="postPresenter.contentType === 'Boletín'">
                     <p class="text-lg font-bold">Boletín No. {{ postPresenter.bulletin }}</p>
                 </div>
-                <div class="flex justify-center">
-                    <h5 class="text-sm text-center italic font-normal border-l border-gray-600 pl-2">{{ postPresenter.createdBy }}</h5>
-                </div>
+
                 <div class="grid grid-cols-3 gap-4" v-show="activeTab === 2">
                     <a
-                        v-for="photo in post.data.photoGallery.photos"
+                        v-for="photo in post.data.photoGallery?.photos"
                         :href="photo"
                         :download="true"
                     >
@@ -103,14 +106,14 @@ const activeTab = ref(1);
                 </div>
                 <div v-show="activeTab === 4" class="w-full h-screen">
                     <iframe
-                        :src="post.data.document.document_file"
+                        :src="post.data.document?.document_file"
                         class="w-full h-[80vh]"
                         type="application/pdf"
                     >
                     </iframe>
                     <div class="flex justify-center mb-4 mt-10">
                         <a
-                            :href="post.data.document.document_file"
+                            :href="post.data.document?.document_file"
                             download
                             class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center"
                         >
@@ -119,7 +122,7 @@ const activeTab = ref(1);
                     </div>
                 </div>
                 <div v-show="activeTab === 3" class="max-w-3xl mx-auto">
-                    <div v-if="post.data.audio" class="flex flex-col items-center">
+                    <div v-if="post.data?.audio" class="flex flex-col items-center">
                         <audio
                             controls
                             class="w-full"
@@ -139,7 +142,7 @@ const activeTab = ref(1);
                     </div>
                 </div>
                 <div v-show="activeTab === 5" class="max-w-5xl mx-auto h-screen">
-                    <div v-if="post.data.video" class="flex flex-col items-center">
+                    <div v-if="post.data?.video" class="flex flex-col items-center">
                         <div class="relative w-full pt-[56.25%]">
                             <iframe
                                 :src="`https://www.youtube.com/embed/${post.data.video.url.split('v=')[1]}`"

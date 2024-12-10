@@ -93,7 +93,7 @@
     </main>
     <!-- Footer -->
      <div class="pt-12"></div>
-    <footer class="py-12 -mx-4 bg-burgundy">
+    <footer class="py-12 bg-burgundy">
         <div class="container px-4 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-4">
                 <div>

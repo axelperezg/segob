@@ -29,6 +29,18 @@ export default class PostPresenter {
         return `Publicado el ${day} de ${month} de ${year}`;
     }
 
+    get formattedDate() {
+        const months = [
+            'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+            'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+        ];
+        const date = dayjs(this.post.published_at);
+        const day = date.date().toString().padStart(2, '0');
+        const month = months[date.month()];
+        const year = date.year();
+        return `${day} de ${month} de ${year}`;
+    }
+
     get isPublished() {
         return this.post.is_published;
     }

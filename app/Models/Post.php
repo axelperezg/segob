@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -88,5 +89,13 @@ class Post extends Model implements HasMedia
         $this
             ->addMediaCollection('documents')
             ->useDisk('public');
+    }
+
+    public function scopeSearch(Builder $query, ?string $search): Builder
+    {
+        return $query->when(
+            $search,
+            fn (Builder $query, string $search) => $query->where('title', 'like', "%{$search}%")
+        );
     }
 }
