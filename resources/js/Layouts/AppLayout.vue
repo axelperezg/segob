@@ -1,4 +1,7 @@
 <script setup>
+import { usePage } from '@inertiajs/vue3';
+
+const mainMenu = usePage().props.main_menu;
 </script>
 
 <template>
@@ -47,38 +50,25 @@
                             <a href="#"
                                 class="font-medium transition-colors md:text-white hover:text-gold-soft">INICIO</a>
                         </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">NOTICIAS</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">VERSIONES</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">DOCUMENTOS</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">SEGOB</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">GALERÍAS</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">VIDEO</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">NOTICIAS
-                                MÉXICO</a>
-                        </li>
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">ACCIONES</a>
+                        <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4 group">
+                            <a :href="item.url"
+                                class="flex items-center gap-2 font-medium transition-colors md:text-white hover:text-gold-soft">
+                                {{ item.name }}
+                                <svg v-if="item.submenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1"
+                                    viewBox="0 0 512 512">
+                                    <path fill="currentColor"
+                                        d="M239 401c9.4 9.4 24.6 9.4 33.9 0L465 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-175 175L81 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L239 401z" />
+                                </svg>
+                            </a>
+                            <ul v-if="item.submenu"
+                                class="hidden absolute left-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded shadow-lg group-hover:block">
+                                <li v-for="subitem in item.submenu" :key="subitem.name">
+                                    <a :href="subitem.url"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        {{ subitem.name }}
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                     <button @click="toggleMenu" class="w-full px-4 py-2 text-white rounded md:hidden bg-burgundy">
@@ -92,7 +82,7 @@
         </div>
     </main>
     <!-- Footer -->
-     <div class="pt-12"></div>
+    <div class="pt-12"></div>
     <footer class="py-12 bg-burgundy">
         <div class="container px-4 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-4">

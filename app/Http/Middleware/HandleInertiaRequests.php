@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\Action;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,7 +37,46 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'main_menu' => [
+                [
+                    'name' => 'NOTICIAS',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'VERSIONES',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'DOCUMENTOS',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'SEGOB',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'GALERÍAS',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'VIDEO',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'NOTICIAS MÉXICO',
+                    'url' => '#',
+                ],
+                [
+                    'name' => 'ACCIONES',
+                    'url' => '#',
+                    'submenu' => Action::all()->map(function($action) {
+                        return [
+                            'name' => $action->name,
+                            'url' => route('actions.show', $action->slug)
+                        ];
+                    })->toArray()
+                ],
+            ]
         ]);
     }
 }
