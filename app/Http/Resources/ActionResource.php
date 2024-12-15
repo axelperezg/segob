@@ -13,7 +13,12 @@ class ActionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'banner' => $this->getFirstMediaUrl('banner'),
+            'banner' => $this->getFirstMediaUrl('banner') == null
+                ? 'https://placehold.co/600x400'
+                : $this->getFirstMediaUrl('banner'),
+            'image' => $this->getFirstMediaUrl('image') == null
+                ? 'https://placehold.co/600x400'
+                : $this->getFirstMediaUrl('image'),
 
             'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];

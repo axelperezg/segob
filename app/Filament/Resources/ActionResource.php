@@ -50,6 +50,10 @@ class ActionResource extends Resource
                         SpatieMediaLibraryFileUpload::make('banner')
                             ->image()
                             ->collection('banner'),
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->image()
+                            ->required()
+                            ->collection('image'),
                     ]),
             ]);
     }
@@ -64,6 +68,8 @@ class ActionResource extends Resource
                     ->searchable(),
                 SpatieMediaLibraryImageColumn::make('banner')
                     ->collection('banner'),
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->collection('image'),
             ])
             ->filters([
                 //

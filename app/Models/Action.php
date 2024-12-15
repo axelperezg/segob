@@ -23,6 +23,10 @@ class Action extends Model implements HasMedia
         $this->addMediaCollection('banner')
             ->singleFile()
             ->useDisk('public');
+
+        $this->addMediaCollection('image')
+            ->singleFile()
+            ->useDisk('public');
     }
 
     public function posts(): BelongsToMany

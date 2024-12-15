@@ -20,9 +20,11 @@ const mainMenu = usePage().props.main_menu
         </div>
         <div class="py-8 md:flex md:justify-between md:items-center mx-auto max-w-6xl">
             <h1 class="flex flex-col text-4xl font-bold text-gold">
-                <figure>
-                    <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias" />
-                </figure>
+                <Link href="/">
+                    <figure>
+                        <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias" />
+                    </figure>
+                </Link>
             </h1>
             <div class="flex items-center">
                 <div class="hidden md:block pr-6">
