@@ -1,7 +1,7 @@
 <script setup>
-import { usePage } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3'
 
-const mainMenu = usePage().props.main_menu;
+const mainMenu = usePage().props.main_menu
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const mainMenu = usePage().props.main_menu;
         <div class="border-b border-burgundy bg-burgundy -mx-4">
             <div class="flex items-center justify-between px-6 py-2 -mt-8 max-w-7xl mx-auto">
                 <div class="flex items-center">
-                    <img class="w-[9rem]" src="/assets/esados-unidos-mexicanos.svg" alt="Logo Gobierno de México">
+                    <img class="w-[9rem]" src="/assets/esados-unidos-mexicanos.svg" alt="Logo Gobierno de México" />
                 </div>
                 <div class="flex items-center space-x-4 text-white">
                     <a href="#" class="text-sm hover:text-gold">Noticias</a>
@@ -21,7 +21,7 @@ const mainMenu = usePage().props.main_menu;
         <div class="py-8 md:flex md:justify-between md:items-center mx-auto max-w-6xl">
             <h1 class="flex flex-col text-4xl font-bold text-gold">
                 <figure>
-                    <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias">
+                    <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias" />
                 </figure>
             </h1>
             <div class="flex items-center">
@@ -35,7 +35,7 @@ const mainMenu = usePage().props.main_menu;
                     </div>
                 </div>
                 <figure class="hidden md:inline-block w-[6rem] -my-8">
-                    <img class="-mb-[9px]" src="/assets/pleca.jpg" alt="">
+                    <img class="-mb-[9px]" src="/assets/pleca.jpg" alt="" />
                 </figure>
             </div>
         </div>
@@ -44,29 +44,39 @@ const mainMenu = usePage().props.main_menu;
         <nav class="-mx-4 border-burgundy md:bg-gold md:border-t-[.6rem] md:border-burgundy">
             <div class="px-4 mx-auto max-w-7xl">
                 <div class="flex flex-wrap items-center justify-between">
-                    <ul class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
-                        :class="{ 'hidden md:flex': !isMenuOpen, 'block': isMenuOpen }">
-                        <li class="py-2 md:py-4">
-                            <a href="#"
-                                class="font-medium transition-colors md:text-white hover:text-gold-soft">INICIO</a>
-                        </li>
+                    <ul
+                        class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
+                        :class="{ 'hidden md:flex': !isMenuOpen, block: isMenuOpen }"
+                    >
                         <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4 group">
-                            <a :href="item.url"
-                                class="flex items-center gap-2 font-medium transition-colors md:text-white hover:text-gold-soft">
+                            <Link
+                                :href="item.url"
+                                class="flex items-center gap-2 font-medium transition-colors md:text-white"
+                            >
                                 {{ item.name }}
-                                <svg v-if="item.submenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1"
-                                    viewBox="0 0 512 512">
-                                    <path fill="currentColor"
-                                        d="M239 401c9.4 9.4 24.6 9.4 33.9 0L465 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-175 175L81 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L239 401z" />
+                                <svg
+                                    v-if="item.submenu"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4 ml-1"
+                                    viewBox="0 0 512 512"
+                                >
+                                    <path
+                                        fill="currentColor"
+                                        d="M239 401c9.4 9.4 24.6 9.4 33.9 0L465 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-175 175L81 175c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9L239 401z"
+                                    />
                                 </svg>
-                            </a>
-                            <ul v-if="item.submenu"
-                                class="hidden absolute left-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded shadow-lg group-hover:block">
+                            </Link>
+                            <ul
+                                v-if="item.submenu"
+                                class="hidden absolute left-0 mt-2 py-2 w-[20rem] bg-white border border-gray-200 rounded shadow-lg group-hover:block"
+                            >
                                 <li v-for="subitem in item.submenu" :key="subitem.name">
-                                    <a :href="subitem.url"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <Link
+                                        :href="subitem.url"
+                                        class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100"
+                                    >
                                         {{ subitem.name }}
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>
@@ -87,7 +97,7 @@ const mainMenu = usePage().props.main_menu;
         <div class="container px-4 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-4">
                 <div>
-                    <img src="/assets/logoheader.svg" alt="Gobierno de México" class="w-[12rem]">
+                    <img src="/assets/logoheader.svg" alt="Gobierno de México" class="w-[12rem]" />
                 </div>
                 <div>
                     <h4 class="mb-4 font-bold text-white">Enlaces</h4>
@@ -104,9 +114,14 @@ const mainMenu = usePage().props.main_menu;
                 <div>
                     <h4 class="mb-4 font-bold text-white">¿Qué es gob.mx?</h4>
                     <ul class="space-y-2 text-sm text-white">
-                        <li><a href="#" class="hover:underline">Es el portal único de trámites, información y
-                                participación ciudadana</a></li>
-                        <li><a href="#" class="hover:underline">Declaración de accesibilidad</a></li>
+                        <li>
+                            <a href="#" class="hover:underline"
+                                >Es el portal único de trámites, información y participación ciudadana</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Declaración de accesibilidad</a>
+                        </li>
                         <li><a href="#" class="hover:underline">Aviso de privacidad</a></li>
                         <li><a href="#" class="hover:underline">Términos y condiciones</a></li>
                         <li><a href="#" class="hover:underline">Política de seguridad</a></li>
@@ -118,17 +133,22 @@ const mainMenu = usePage().props.main_menu;
                     <h4 class="mb-4 font-bold text-white">Contacto</h4>
                     <p class="text-white">Dudas e información a</p>
                     <p class="text-white break-words">
-                        www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54</p>
+                        www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54
+                    </p>
                     <h4 class="mt-4 mb-2 text-sm font-bold text-white">Síguenos en</h4>
                     <div class="flex gap-2">
-                        <a href="#" class="text-lg text-white hover:text-gray-300"><i
-                                class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="text-lg text-white hover:text-gray-300"><i
-                                class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="text-lg text-white hover:text-gray-300"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="text-lg text-white hover:text-gray-300"><i
-                                class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="text-lg text-white hover:text-gray-300"
+                            ><i class="fa-brands fa-facebook-f"></i
+                        ></a>
+                        <a href="#" class="text-lg text-white hover:text-gray-300"
+                            ><i class="fa-brands fa-x-twitter"></i
+                        ></a>
+                        <a href="#" class="text-lg text-white hover:text-gray-300"
+                            ><i class="fa-brands fa-instagram"></i
+                        ></a>
+                        <a href="#" class="text-lg text-white hover:text-gray-300"
+                            ><i class="fa-brands fa-youtube"></i
+                        ></a>
                     </div>
                 </div>
             </div>

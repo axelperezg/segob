@@ -39,8 +39,12 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'main_menu' => [
                 [
+                    'name' => 'INICIO',
+                    'url' => '/',
+                ],
+                [
                     'name' => 'NOTICIAS',
-                    'url' => '#',
+                    'url' => '/',
                 ],
                 [
                     'name' => 'VERSIONES',

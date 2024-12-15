@@ -33,7 +33,7 @@ let searchPost = () => {
         <img :src="action.data.banner" alt="Banner" class="w-[20rem]">
     </div>
     <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[1fr_2fr_1fr]">
+        <div v-if="mainPosts.data.length > 0" class="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[1fr_2fr_1fr]">
             <div class="flex gap-10 xl:order-1">
                 <article>
                     <figure>
@@ -91,6 +91,9 @@ let searchPost = () => {
                 </article>
             </div>
         </div>
+        <div v-else class="text-center py-10">
+            <p class="text-gray-500 text-lg">No hay posts disponibles en esta categoría</p>
+        </div>
 
         <div>
             <div class="bg-gray-50 p-6 rounded-lg shadow-sm mt-8">
@@ -104,7 +107,7 @@ let searchPost = () => {
                     </button>
                 </form>
             </div>
-            <div class="lg:grid lg:grid-cols-2 lg:gap-4">
+            <div v-if="posts.data.length > 0" class="lg:grid lg:grid-cols-2 lg:gap-4">
                 <article v-for="post in posts.data" :key="post.id">
                     <a :href="route('posts.show', post.slug)"
                         class="flex gap-4 items-start border-b border-gray-200 py-6">
@@ -124,6 +127,9 @@ let searchPost = () => {
                         </div>
                     </a>
                 </article>
+            </div>
+            <div v-else class="text-center py-10">
+                <p class="text-gray-500 text-lg">No se encontraron resultados para tu búsqueda</p>
             </div>
         </div>
     </div>
