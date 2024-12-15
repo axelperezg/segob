@@ -1,7 +1,13 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3'
+import { ref } from 'vue'
 
 const mainMenu = usePage().props.main_menu
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value
+}
 </script>
 
 <template>
@@ -50,8 +56,9 @@ const mainMenu = usePage().props.main_menu
                         class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
                         :class="{ 'hidden md:flex': !isMenuOpen, block: isMenuOpen }"
                     >
-                        <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4 group">
+                        <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4">
                             <Link
+                                @click.prevent="item.isOpen = !item.isOpen"
                                 :href="item.url"
                                 class="flex items-center gap-2 font-medium transition-colors md:text-white"
                             >
@@ -59,7 +66,8 @@ const mainMenu = usePage().props.main_menu
                                 <svg
                                     v-if="item.submenu"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-4 h-4 ml-1"
+                                    class="w-4 h-4 ml-1 transition-transform"
+                                    :class="{ 'rotate-180': item.isOpen }"
                                     viewBox="0 0 512 512"
                                 >
                                     <path
@@ -70,7 +78,9 @@ const mainMenu = usePage().props.main_menu
                             </Link>
                             <ul
                                 v-if="item.submenu"
-                                class="hidden absolute left-0 mt-2 py-2 w-[20rem] bg-white border border-gray-200 rounded shadow-lg group-hover:block"
+                                class="left-0 mt-2 py-2 md:w-[20rem] bg-white border border-gray-200 rounded shadow-lg md:absolute"
+                                :class="{ hidden: !item.isOpen, block: item.isOpen }"
+                                @mouseleave="item.isOpen = false"
                             >
                                 <li v-for="subitem in item.submenu" :key="subitem.name">
                                     <Link

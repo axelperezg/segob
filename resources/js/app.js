@@ -1,4 +1,6 @@
 import './bootstrap'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 import { createSSRApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
