@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 const mainMenu = usePage().props.main_menu
 const isMenuOpen = ref(false)
+const appSettings = usePage().props.app_settings
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value
@@ -28,18 +29,28 @@ const toggleMenu = () => {
             <h1 class="flex flex-col text-4xl font-bold text-gold">
                 <Link href="/">
                     <figure>
-                        <img class="w-[12rem]" src="/assets/segob-noticias.png" alt="Segob Noticias" />
+                        <img class="w-[12rem]" :src="`/storage/${appSettings.logo}`" alt="Segob Noticias" />
                     </figure>
                 </Link>
             </h1>
             <div class="flex items-center">
                 <div class="hidden md:block pr-6">
                     <div class="flex items-center justify-center gap-4">
-                        <i class="text-3xl text-burgundy fa-brands fa-facebook-f"></i>
-                        <i class="text-3xl text-burgundy fa-brands fa-x-twitter"></i>
-                        <i class="text-3xl text-burgundy fa-brands fa-instagram"></i>
-                        <i class="text-3xl text-burgundy fa-brands fa-youtube"></i>
-                        <i class="text-3xl text-burgundy fa-brands fa-tiktok"></i>
+                        <a :href="appSettings.facebook" target="_blank">
+                            <i class="text-3xl text-burgundy fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a :href="appSettings.twitter" target="_blank">
+                            <i class="text-3xl text-burgundy fa-brands fa-x-twitter"></i>
+                        </a>
+                        <a :href="appSettings.instagram" target="_blank">
+                            <i class="text-3xl text-burgundy fa-brands fa-instagram"></i>
+                        </a>
+                        <a :href="appSettings.youtube" target="_blank">
+                            <i class="text-3xl text-burgundy fa-brands fa-youtube"></i>
+                        </a>
+                        <a :href="appSettings.tiktok" target="_blank">
+                            <i class="text-3xl text-burgundy fa-brands fa-tiktok"></i>
+                        </a>
                     </div>
                 </div>
                 <figure class="hidden md:inline-block w-[6rem] -my-8">

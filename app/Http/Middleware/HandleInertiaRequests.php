@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use App\Models\Action;
+use App\Settings\AppSettings;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -80,6 +81,14 @@ class HandleInertiaRequests extends Middleware
                         ];
                     })->toArray()
                 ],
+            ],
+            'app_settings' => [
+                'logo' => app(AppSettings::class)->logo,
+                'facebook' => app(AppSettings::class)->facebook,
+                'twitter' => app(AppSettings::class)->twitter,
+                'instagram' => app(AppSettings::class)->instagram,
+                'youtube' => app(AppSettings::class)->youtube,
+                'tiktok' => app(AppSettings::class)->tiktok,
             ]
         ]);
     }
