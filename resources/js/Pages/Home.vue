@@ -1,12 +1,13 @@
 <script setup>
 import Actions from '@/Components/Home/Actions.vue';
-import AppLayout from '@/Layouts/AppLayout.vue'
+import Banners from '@/Components/Home/Banners.vue';
 
 defineProps({
     mainPosts: Object,
     secondaryPosts: Object,
     tertiaryPosts: Object,
     actions: Object,
+    banners: Object,
 })
 </script>
 
@@ -142,4 +143,7 @@ defineProps({
     </section>
     <!-- Actions -->
     <Actions :actions="actions.data" />
+
+    <!-- Banners -->
+    <Banners :banners="banners.data" />
 </template>
