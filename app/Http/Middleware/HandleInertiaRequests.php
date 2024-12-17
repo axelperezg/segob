@@ -84,11 +84,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'app_settings' => [
                 'logo' => app(AppSettings::class)->logo,
-                'facebook' => app(AppSettings::class)->facebook,
-                'twitter' => app(AppSettings::class)->twitter,
-                'instagram' => app(AppSettings::class)->instagram,
-                'youtube' => app(AppSettings::class)->youtube,
-                'tiktok' => app(AppSettings::class)->tiktok,
+                'social_networks' => app(AppSettings::class)->social_networks,
             ]
         ]);
     }

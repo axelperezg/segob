@@ -17,6 +17,7 @@ class GeneralSettings extends SettingsPage
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?int $navigationSort = 7;
     protected static string $settings = AppSettings::class;
+    protected static ?string $navigationLabel = 'Configuración General';
 
     public function form(Form $form): Form
     {
@@ -32,33 +33,26 @@ class GeneralSettings extends SettingsPage
                     ]),
                 Section::make('social')
                     ->heading('Redes Sociales')
-                    ->columns(3)
                     ->schema([
-                        TextInput::make('facebook')
-                            ->label('Facebook')
-                            ->url()
-                            ->prefix('https://')
-                            ->placeholder('facebook.com/your-page'),
-                        TextInput::make('twitter')
-                            ->label('X (Twitter)')
-                            ->url()
-                            ->prefix('https://')
-                            ->placeholder('twitter.com/your-handle'),
-                        TextInput::make('instagram')
-                            ->label('Instagram')
-                            ->url()
-                            ->prefix('https://')
-                            ->placeholder('instagram.com/your-handle'),
-                        TextInput::make('youtube')
-                            ->label('Youtube')
-                            ->url()
-                            ->prefix('https://')
-                            ->placeholder('youtube.com/your-channel'),
-                        TextInput::make('tiktok')
-                            ->label('TikTok')
-                            ->url()
-                            ->prefix('https://')
-                            ->placeholder('tiktok.com/@your-handle'),
+                        Forms\Components\Repeater::make('social_networks')
+                            ->schema([
+                                Forms\Components\Select::make('network')
+                                    ->options([
+                                        'facebook' => 'Facebook',
+                                        'twitter' => 'X (Twitter)',
+                                        'instagram' => 'Instagram',
+                                        'youtube' => 'Youtube',
+                                        'tiktok' => 'TikTok',
+                                    ])
+                                    ->unique()
+                                    ->required(),
+                                TextInput::make('url')
+                                    ->label('URL')
+                                    ->url()
+                                    ->required(),
+                            ])
+                            ->columns(2)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

@@ -36,21 +36,11 @@ const toggleMenu = () => {
             <div class="flex items-center">
                 <div class="hidden md:block pr-6">
                     <div class="flex items-center justify-center gap-4">
-                        <a :href="appSettings.facebook" target="_blank">
-                            <i class="text-3xl text-burgundy fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a :href="appSettings.twitter" target="_blank">
-                            <i class="text-3xl text-burgundy fa-brands fa-x-twitter"></i>
-                        </a>
-                        <a :href="appSettings.instagram" target="_blank">
-                            <i class="text-3xl text-burgundy fa-brands fa-instagram"></i>
-                        </a>
-                        <a :href="appSettings.youtube" target="_blank">
-                            <i class="text-3xl text-burgundy fa-brands fa-youtube"></i>
-                        </a>
-                        <a :href="appSettings.tiktok" target="_blank">
-                            <i class="text-3xl text-burgundy fa-brands fa-tiktok"></i>
-                        </a>
+                        <template v-for="social in appSettings.social_networks" :key="social.network">
+                            <a :href="social.url" target="_blank">
+                                <i :class="`text-3xl text-burgundy fa-brands fa-${social.network === 'twitter' ? 'x-twitter' : social.network}`"></i>
+                            </a>
+                        </template>
                     </div>
                 </div>
                 <figure class="hidden md:inline-block w-[6rem] -my-8">
