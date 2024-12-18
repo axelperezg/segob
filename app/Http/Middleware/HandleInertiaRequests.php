@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
-use Inertia\Middleware;
 use App\Models\Action;
 use App\Settings\AppSettings;
+use Illuminate\Http\Request;
+use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -74,18 +74,18 @@ class HandleInertiaRequests extends Middleware
                 [
                     'name' => 'ACCIONES',
                     'url' => '#',
-                    'submenu' => Action::all()->map(function($action) {
+                    'submenu' => Action::all()->map(function ($action) {
                         return [
                             'name' => $action->name,
-                            'url' => route('actions.show', $action->slug)
+                            'url' => route('actions.show', $action->slug),
                         ];
-                    })->toArray()
+                    })->toArray(),
                 ],
             ],
             'app_settings' => [
                 'logo' => app(AppSettings::class)->logo,
                 'social_networks' => app(AppSettings::class)->social_networks,
-            ]
+            ],
         ]);
     }
 }

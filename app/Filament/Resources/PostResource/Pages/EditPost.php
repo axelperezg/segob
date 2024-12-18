@@ -6,7 +6,6 @@ use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class EditPost extends EditRecord
 {

@@ -8,10 +8,8 @@ use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 
 use function Pest\Laravel\get;
-use function Pest\Laravel\post;
 use function PHPUnit\Framework\assertCount;
 use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertFalse;
 use function PHPUnit\Framework\assertNotNull;
 
 beforeEach(function () {

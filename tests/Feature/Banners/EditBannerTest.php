@@ -3,10 +3,8 @@
 namespace Tests\Feature\Banners;
 
 use App\Filament\Resources\BannerResource;
-use App\Filament\Resources\BannerResource\Pages\CreateBanner;
 use App\Filament\Resources\BannerResource\Pages\EditBanner;
 use App\Models\Banner;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -74,7 +72,7 @@ class EditBannerTest extends TestCase
         $component->assertHasFormErrors([
             'title' => 'required',
             'external_url' => 'required',
-            'banner' => 'required'
+            'banner' => 'required',
         ]);
     }
 
@@ -94,7 +92,7 @@ class EditBannerTest extends TestCase
 
         // Assert
         $component->assertHasFormErrors([
-            'external_url' => 'url'
+            'external_url' => 'url',
         ]);
     }
 }

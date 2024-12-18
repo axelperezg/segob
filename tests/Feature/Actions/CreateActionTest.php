@@ -6,10 +6,8 @@ use App\Models\Action;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 use function Pest\Laravel\get;
-use function Pest\Laravel\post;
 use function PHPUnit\Framework\assertCount;
 
 beforeEach(function () {
