@@ -47,7 +47,7 @@ const sliderConfig = {
 
 onMounted(() => {
     setTimeout(() => {
-        $('.banner-slider').slick(sliderConfig)
+        $('.segob-slider').slick(sliderConfig)
     }, 100)
 })
 </script>
@@ -57,7 +57,7 @@ onMounted(() => {
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-bold text-center">Segob</h2>
 
-            <div v-if="dependencies && dependencies.length > 0" class="banner-slider">
+            <div v-if="dependencies && dependencies.length > 0" class="segob-slider">
                 <div v-for="dependency in dependencies" class="px-2">
                     <a :href="dependency.external_url" target="_blank" rel="noopener noreferrer">
                         <img :src="dependency.image" :alt="dependency.title" class="w-full rounded-lg">

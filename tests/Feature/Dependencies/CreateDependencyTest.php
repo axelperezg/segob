@@ -32,8 +32,9 @@ class CreateDependencyTest extends TestCase
         ])->call('create');
 
         // Assert
-        $component->assertHasNoErrors();
-        $component->assertRedirect(DependencyResource::getUrl('index'));
+        $component
+            ->assertHasNoErrors()
+            ->assertRedirect(DependencyResource::getUrl('index'));
 
         $this->assertCount(1, Dependency::all());
         $dependency = Dependency::first();
