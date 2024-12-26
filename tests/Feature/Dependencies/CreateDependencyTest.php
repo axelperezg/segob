@@ -65,4 +65,3 @@ class CreateDependencyTest extends TestCase
         ]);
     }
 }
-

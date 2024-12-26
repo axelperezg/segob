@@ -12,7 +12,7 @@ use Tests\TestCase;
 class DependenciesTest extends TestCase
 {
     public Dependency $dependency;
-    
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,7 +27,7 @@ class DependenciesTest extends TestCase
 
         return $this->get($uri);
     }
-    
+
     public function test_dependencies_page_loads_successfully(): void
     {
         // Act
@@ -52,7 +52,7 @@ class DependenciesTest extends TestCase
             ->create();
 
         $post = $posts->first();
-            
+
         // Act
         $response = $this->getDependencyPage([
             'filter' => [
@@ -100,7 +100,7 @@ class DependenciesTest extends TestCase
     {
         // Arrange
         $this->withoutExceptionHandling();
-        
+
         Post::factory()->hasAttached($this->dependency)->create(['published_at' => now()->subDay()]);
         $post = Post::factory()->hasAttached($this->dependency)->create(['published_at' => today()]);
 

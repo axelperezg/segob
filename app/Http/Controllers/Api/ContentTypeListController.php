@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Enums\Posts\ContentTypeEnum;
+use App\Http\Controllers\Controller;
 
 class ContentTypeListController extends Controller
 {
@@ -12,10 +12,10 @@ class ContentTypeListController extends Controller
         $contentTypes = collect(ContentTypeEnum::cases())->map(function ($type) {
             return [
                 'id' => $type->value,
-                'name' => $type->getLabel()
+                'name' => $type->getLabel(),
             ];
         });
 
         return response()->json($contentTypes);
     }
-} 
+}

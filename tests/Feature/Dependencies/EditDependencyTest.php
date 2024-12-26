@@ -14,8 +14,8 @@ use Tests\TestCase;
 class EditDependencyTest extends TestCase
 {
     private Dependency $dependency;
-    
-    public function setUp(): void
+
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -77,4 +77,3 @@ class EditDependencyTest extends TestCase
         ]);
     }
 }
-

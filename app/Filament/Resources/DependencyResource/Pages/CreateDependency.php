@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\DependencyResource\Pages;
 
 use App\Filament\Resources\DependencyResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateDependency extends CreateRecord
