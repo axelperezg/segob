@@ -17,7 +17,9 @@ class DependencyResource extends Resource
 {
     protected static ?string $model = Dependency::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Dependencias';
+
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Form $form): Form
     {
