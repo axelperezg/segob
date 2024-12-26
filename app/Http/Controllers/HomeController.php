@@ -27,7 +27,6 @@ class HomeController extends Controller
                 return $post;
             });
 
-
         return Inertia::render('Home', [
             'mainPosts' => $featuredPosts->slice(0, 1),
             'secondaryPosts' => $featuredPosts->slice(1, 2),

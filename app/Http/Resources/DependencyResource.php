@@ -12,8 +12,9 @@ class DependencyResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
-            'banner' => $this->getFirstMedia('banner')?->getFullUrl() ?? 'https://placehold.co/600x350',
+            'banner' => $this->getFirstMedia('banner')?->getFullUrl() ?? 'https://placehold.co/600x200',
         ];
     }
 }

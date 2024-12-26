@@ -98,4 +98,20 @@ class Post extends Model implements HasMedia
             fn (Builder $query, string $search) => $query->where('title', 'like', "%{$search}%")
         );
     }
+
+    public function scopeFilterByContentType(Builder $query, ?string $contentType): Builder
+    {
+        return $query->when(
+            $contentType,
+            fn (Builder $query, string $contentType) => $query->where('content_type', $contentType)
+        );
+    }
+
+    public function scopeFilterByPublishedAt(Builder $query, ?string $publishedAt): Builder
+    {
+        return $query->when(
+            $publishedAt,
+            fn (Builder $query, string $publishedAt) => $query->whereDate('published_at', $publishedAt)
+        );
+    }
 }

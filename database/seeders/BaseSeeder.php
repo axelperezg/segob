@@ -162,31 +162,31 @@ class BaseSeeder extends Seeder
         Post::all()->each(function (Post $post) {
             $actions = Action::where('name', 'Cero Impunidad')->get();
             $post->actions()->attach($actions);
-            $dependencies = Dependency::all()->take(rand(2, 4));
+            $dependencies = Dependency::query()->where('slug', 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional')->get();
             $post->dependencies()->attach($dependencies);
         });
 
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 1,
             'sort' => 1,
         ]);
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 2,
             'sort' => 2,
         ]);
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 3,
             'sort' => 3,
         ]);
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 4,
             'sort' => 4,
         ]);
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 5,
             'sort' => 5,
         ]);
-        FeaturedPost::create([
+        FeaturedPost::query()->create([
             'post_id' => 6,
             'sort' => 6,
         ]);
@@ -226,23 +226,23 @@ class BaseSeeder extends Seeder
     private function createDependencies()
     {
         return Dependency::factory()->createMany([
-            ['name' => 'Sistema Nacional de Protección Civil (SINAPROC)'],
-            ['name' => 'Protección Federal'],
-            ['name' => 'Prevención y Readaptación Social'],
-            ['name' => 'Guardia Nacional (GN)'],
-            ['name' => 'Coordinación Nacional Antisecuestro (CONASE)'],
-            ['name' => 'Coordinación Nacional de Protección Civil (CNPC)'],
-            ['name' => 'Centro Nacional de Inteligencia (CNI)'],
-            ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)'],
-            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública'],
-            ['name' => 'Subsecretario de Seguridad Pública'],
-            ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica'],
-            ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada'],
-            ['name' => 'Unidad de Prevención de la Violencia y el Delito'],
-            ['name' => 'Unidad de Planeación y Evaluación Institucional'],
-            ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones'],
-            ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional'],
-            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)'],
+            ['name' => 'Sistema Nacional de Protección Civil (SINAPROC)', 'slug' => 'sistema-nacional-de-proteccion-civil-sinaproc'],
+            ['name' => 'Protección Federal', 'slug' => 'proteccion-federal'],
+            ['name' => 'Prevención y Readaptación Social', 'slug' => 'prevencion-y-readaptacion-social'],
+            ['name' => 'Guardia Nacional (GN)', 'slug' => 'guardia-nacional-gn'],
+            ['name' => 'Coordinación Nacional Antisecuestro (CONASE)', 'slug' => 'coordinacion-nacional-antisecuestro-conase'],
+            ['name' => 'Coordinación Nacional de Protección Civil (CNPC)', 'slug' => 'coordinacion-nacional-de-proteccion-civil-cnpc'],
+            ['name' => 'Centro Nacional de Inteligencia (CNI)', 'slug' => 'centro-nacional-de-inteligencia-cni'],
+            ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)', 'slug' => 'centro-nacional-de-prevencion-de-desastres-cenapred'],
+            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública', 'slug' => 'secretariado-ejecutivo-del-sistema-nacional-de-seguridad-publica'],
+            ['name' => 'Subsecretario de Seguridad Pública', 'slug' => 'subsecretario-de-seguridad-publica'],
+            ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica', 'slug' => 'unidad-de-informacion-infraestructura-informatica-y-vinculacion-tecnologica'],
+            ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada', 'slug' => 'unidad-de-politica-policial-penitenciaria-y-seguridad-privada'],
+            ['name' => 'Unidad de Prevención de la Violencia y el Delito', 'slug' => 'unidad-de-prevencion-de-la-violencia-y-el-delito'],
+            ['name' => 'Unidad de Planeación y Evaluación Institucional', 'slug' => 'unidad-de-planeacion-y-evaluacion-institucional'],
+            ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones', 'slug' => 'unidad-de-politicas-y-estrategias-para-la-construccion-de-paz-con-entidades-federativas-y-regiones'],
+            ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional', 'slug' => 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional'],
+            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)', 'slug' => 'secretaria-de-seguridad-y-proteccion-ciudadana-sspc'],
         ]);
     }
 }

@@ -1,8 +1,10 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
 import { onMounted } from 'vue'
 
 defineProps({
     dependencies: Array,
+    filter: Object,
 })
 
 const sliderConfig = {
@@ -56,12 +58,11 @@ onMounted(() => {
     <section class="py-12 -mx-4">
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-bold text-center">Segob</h2>
-
             <div v-if="dependencies && dependencies.length > 0" class="segob-slider">
                 <div v-for="dependency in dependencies" class="px-2">
-                    <a :href="dependency.external_url" target="_blank" rel="noopener noreferrer">
-                        <img :src="dependency.image" :alt="dependency.title" class="w-full rounded-lg">
-                    </a>
+                    <Link :href="route('dependencies.show', dependency.slug)" target="_blank" rel="noopener noreferrer">
+                        <img :src="dependency.image" :alt="dependency.name" class="w-full rounded-lg">
+                    </Link>
                 </div>
             </div>
 

@@ -31,7 +31,7 @@ class PostFactory extends Factory
         ];
     }
 
-    public function configure()
+    public function withImage()
     {
         return $this->afterCreating(function (Post $post) {
             $post
