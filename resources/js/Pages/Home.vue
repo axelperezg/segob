@@ -2,6 +2,7 @@
 import Actions from '@/Components/Home/Actions.vue';
 import Banners from '@/Components/Home/Banners.vue';
 import Dependecies from '@/Components/Home/Dependecies.vue';
+import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
 
 defineProps({
     mainPosts: Object,
@@ -113,4 +114,5 @@ defineProps({
     <!-- Segob(dependencies) -->
     <Dependecies :dependencies="dependencies.data" />
 
+    <NoticiasMx />
 </template>
