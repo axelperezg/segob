@@ -3,6 +3,7 @@ import Actions from '@/Components/Home/Actions.vue';
 import Banners from '@/Components/Home/Banners.vue';
 import Dependecies from '@/Components/Home/Dependecies.vue';
 import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
+import Infographics from '@/Components/Home/Infographics.vue';
 
 defineProps({
     mainPosts: Object,
@@ -11,6 +12,7 @@ defineProps({
     actions: Object,
     banners: Object,
     dependencies: Object,
+    infographics: Object,
 })
 </script>
 
@@ -113,6 +115,9 @@ defineProps({
 
     <!-- Segob(dependencies) -->
     <Dependecies :dependencies="dependencies.data" />
+
+    <!-- Infographics -->
+    <Infographics :infographics="infographics.data" />
 
     <NoticiasMx />
 </template>
