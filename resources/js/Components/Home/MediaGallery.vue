@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
-import MediaItem from './MediaItem.vue';
+import PhotoGalleryItem from './PhotoGalleryItem.vue';
+import VideoItem from './VideoItem.vue';
 
 let props = defineProps({
     photos: Array,
@@ -60,7 +61,7 @@ onMounted(() => {
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-bold text-center">Fotos</h2>
             <div class="photos-slider">
-                <MediaItem
+                <PhotoGalleryItem
                     v-for="photo in photos"
                     :key="photo.id"
                     :item="photo"
@@ -69,7 +70,7 @@ onMounted(() => {
 
             <h2 class="mt-12 mb-8 text-3xl font-bold text-center">Videos</h2>
             <div class="videos-slider">
-                <MediaItem
+                <VideoItem
                     v-for="video in videos"
                     :key="video.id"
                     :item="video"
