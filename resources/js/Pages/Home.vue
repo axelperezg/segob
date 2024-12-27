@@ -4,6 +4,7 @@ import Banners from '@/Components/Home/Banners.vue';
 import Dependecies from '@/Components/Home/Dependecies.vue';
 import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
 import Infographics from '@/Components/Home/Infographics.vue';
+import MediaGallery from '@/Components/Home/MediaGallery.vue';
 
 defineProps({
     mainPosts: Object,
@@ -13,6 +14,7 @@ defineProps({
     banners: Object,
     dependencies: Object,
     infographics: Object,
+    mediaGallery: Object,
 })
 </script>
 
@@ -118,6 +120,9 @@ defineProps({
 
     <!-- Infographics -->
     <Infographics :infographics="infographics.data" />
+
+    <!-- Media Gallery -->
+    <MediaGallery :photos="mediaGallery.photos.data" :videos="mediaGallery.videos.data" />
 
     <NoticiasMx />
 </template>

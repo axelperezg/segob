@@ -7,11 +7,15 @@ use App\Http\Resources\ActionResource;
 use App\Http\Resources\BannerResource;
 use App\Http\Resources\DependencyResource;
 use App\Http\Resources\DocumentResource;
+use App\Http\Resources\PhotoGalleryResource;
+use App\Http\Resources\VideoResource;
 use App\Models\Action;
 use App\Models\Banner;
 use App\Models\Dependency;
 use App\Models\Document;
 use App\Models\FeaturedPost;
+use App\Models\PhotoGallery;
+use App\Models\Video;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -42,6 +46,10 @@ class HomeController extends Controller
             'banners' => BannerResource::collection(Banner::query()->get()->reverse()),
             'dependencies' => DependencyResource::collection(Dependency::query()->get()->reverse()),
             'infographics' => DocumentResource::collection($infographics),
+            'mediaGallery' => [
+                'photos' => PhotoGalleryResource::collection(PhotoGallery::query()->latest()->get()),
+                'videos' => VideoResource::collection(Video::query()->latest()->get()),
+            ]
         ]);
     }
 }

@@ -17,7 +17,9 @@ class PhotoGalleryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'is_published' => true,
+            'published_at' => now(),
         ];
     }
 }

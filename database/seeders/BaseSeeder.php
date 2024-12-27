@@ -6,8 +6,10 @@ use App\Models\Action;
 use App\Models\Audio;
 use App\Models\Dependency;
 use App\Models\FeaturedPost;
+use App\Models\PhotoGallery;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class BaseSeeder extends Seeder
@@ -191,6 +193,8 @@ class BaseSeeder extends Seeder
             'sort' => 6,
         ]);
 
+        PhotoGallery::factory()->create();
+        Video::factory()->create();
     }
 
     private function createActions()
