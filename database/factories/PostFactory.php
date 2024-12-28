@@ -17,6 +17,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'content' => fake()->paragraph(),
+            'excerpt' => fake()->sentences(2, true),
             'bulletin' => fake()->randomElement(['A', 'B', 'C']),
             'year' => fake()->year(),
             'slug' => fake()->slug(),

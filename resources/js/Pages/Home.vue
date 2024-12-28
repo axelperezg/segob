@@ -43,7 +43,7 @@ defineProps({
                                     })
                                 }}
                             </p>
-                            <div v-html="post.content"></div>
+                            <div v-html="post.excerpt"></div>
                         </div>
                     </article>
                 </a>
