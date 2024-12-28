@@ -24,9 +24,8 @@ defineProps({
         <div class="grid grid-cols-1 gap-6 pb-8 pt-4 lg:flex">
             <div class="space-y-6 lg:w-2/3">
                 <!-- Main posts -->
-                <a :href="route('posts.show', post.slug)" v-for="post in mainPosts" :key="post.id"
-                    class="overflow-hidden border rounded-lg">
-                    <article>
+                <a :href="route('posts.show', post.slug)" v-for="post in mainPosts" :key="post.id">
+                    <article class="overflow-hidden border rounded-lg">
                         <img :src="post.image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-xl font-bold lg:text-4xl">{{ post.title }}</h2>
@@ -51,9 +50,8 @@ defineProps({
             </div>
             <!-- Secondary posts -->
             <div class="space-y-6 lg:w-1/3">
-                <a :href="route('posts.show', post.slug)" v-for="post in secondaryPosts" :key="post.id"
-                    class="overflow-hidden border rounded-lg">
-                    <article>
+                <a :href="route('posts.show', post.slug)" v-for="post in secondaryPosts" :key="post.id">
+                    <article class="overflow-hidden border rounded-lg">
                         <img :src="post.image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-lg font-bold leading-tight">{{ post.title }}</h2>
@@ -77,10 +75,10 @@ defineProps({
             </div>
         </div>
 
+        <!-- Tertiary posts -->
         <div class="space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
-            <a :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts" :key="post.id"
-                class="overflow-hidden border rounded-lg">
-                <article>
+            <a :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts" :key="post.id">
+                <article class="overflow-hidden border rounded-lg">
                     <img :src="post.image" :alt="post.title" class="w-full" />
                     <div class="p-4">
                         <h2 class="mb-2 text-lg font-bold">{{ post.title }}</h2>
