@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export default class VideoPresenter {
     constructor(video) {
         this.video = video;
@@ -15,12 +17,20 @@ export default class VideoPresenter {
         return this.video.url;
     }
 
-    get isPublished() {
+    get is_published() {
         return this.video.is_published;
     }
 
-    get publishedAt() {
-        return this.video.published_at;
+    get published_at() {
+        const months = [
+            'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+            'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+        ];
+        const date = dayjs(this.video.published_at);
+        const day = date.date().toString().padStart(2, '0');
+        const month = months[date.month()];
+        const year = date.year();
+        return `${day} de ${month} de ${year}`;
     }
 
     get thumbnail() {

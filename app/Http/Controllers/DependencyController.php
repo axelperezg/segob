@@ -21,7 +21,7 @@ class DependencyController extends Controller
             ->with('media', 'createdBy')
             ->when(request('content_type'), fn ($query) => $query->whereIn('content_type', request('content_type')))
             ->whereRelation('dependencies', 'dependency_id', $dependency->id)
-            ->paginate(1)
+            ->paginate(10)
             ->withQueryString();
 
         $filters = [

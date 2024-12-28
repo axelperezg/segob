@@ -27,7 +27,7 @@ class BaseSeeder extends Seeder
         $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
         $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
 
-        Post::factory()->createMany([
+        Post::factory()->withImage()->createMany([
             [
                 'title' => 'México fortalece lazos comerciales con América Latina',
                 'content' => '<p>El gobierno mexicano anunció hoy nuevos acuerdos comerciales con países de América Latina, fortaleciendo la integración económica regional. Durante la cumbre realizada en Ciudad de México, representantes de diversos países firmaron convenios que facilitarán el intercambio comercial y la cooperación económica.</p>',

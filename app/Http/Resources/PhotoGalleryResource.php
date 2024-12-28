@@ -12,7 +12,7 @@ class PhotoGalleryResource extends JsonResource
         return [
             'id' => $this->id,
             'is_published' => $this->is_published,
-            'published_at' => $this->published_at->format('d/m/Y'),
+            'published_at' => $this->published_at,
             'name' => $this->name,
             'photos' => $this->getMedia('gallery')->map(fn ($photo) => $photo->getFullUrl()),
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://via.placeholder.com/150',
