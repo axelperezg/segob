@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Banner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BannerFactory extends Factory
@@ -12,5 +13,13 @@ class BannerFactory extends Factory
             'title' => fake()->sentence(),
             'external_url' => fake()->url(),
         ];
+    }
+
+    public function withImage(): self
+    {
+        return $this->afterCreating(function (Banner $banner) {
+            $banner->addMediaFromUrl('https://picsum.photos/1200/300')
+                ->toMediaCollection('banner');
+        });
     }
 }

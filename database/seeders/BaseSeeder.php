@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\Documents\DocumentTypeEnum;
 use App\Models\Action;
 use App\Models\Audio;
+use App\Models\Banner;
 use App\Models\Dependency;
 use App\Models\Document;
 use App\Models\FeaturedPost;
@@ -215,9 +216,7 @@ class BaseSeeder extends Seeder
         PhotoGallery::factory(6)->withImage()->create();
         Video::factory(6)->withImage()->create();
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
-        $settings = new AppSettings();
-        $settings->logo = asset('assets/segob-noticias.png');
-        $settings->save();
+        Banner::factory(4)->withImage()->create();
     }
 
     private function createActions()
