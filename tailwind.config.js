@@ -27,13 +27,13 @@ export default {
         require('@tailwindcss/typography'),
         require('@tailwindcss/forms'),
         function({ addBase }) {
-            addBase({
-                'p': {
-                    fontWeight: '400',
-                    fontSize: '1.2rem',
-                    lineHeight: '1.6',
-                },
-            })
+            // addBase({
+            //     'p': {
+            //         fontWeight: '400',
+            //         fontSize: '1.2rem',
+            //         lineHeight: '1.6',
+            //     },
+            // })
         }
     ],
 };

@@ -12,6 +12,7 @@ use App\Models\PhotoGallery;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Video;
+use App\Settings\AppSettings;
 use Illuminate\Database\Seeder;
 
 class BaseSeeder extends Seeder
@@ -214,6 +215,9 @@ class BaseSeeder extends Seeder
         PhotoGallery::factory(6)->withImage()->create();
         Video::factory(6)->withImage()->create();
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
+        $settings = new AppSettings();
+        $settings->logo = asset('assets/segob-noticias.png');
+        $settings->save();
     }
 
     private function createActions()

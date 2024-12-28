@@ -1,13 +1,38 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
 return new class extends SettingsMigration
 {
     public function up(): void
     {
+        $logo = asset('assets/segob-noticias.png');
+        Storage::disk('public')->put('logo.png', file_get_contents($logo));
+        
         $this->migrator->add('general.logo', 'logo.png');
-        $this->migrator->add('general.social_networks', []);
+        $this->migrator->add('general.social_networks', [
+            [
+                'network' => 'facebook',
+                'url' => 'https://www.facebook.com/',
+            ],
+            [
+                'network' => 'twitter', 
+                'url' => 'https://www.twitter.com/',
+            ],
+            [
+                'network' => 'instagram',
+                'url' => 'https://www.instagram.com/',
+            ],
+            [
+                'network' => 'youtube',
+                'url' => 'https://www.youtube.com/',
+            ],
+            [
+                'network' => 'tiktok',
+                'url' => 'https://www.tiktok.com/',
+            ]
+        ]);
     }
 
     public function down(): void

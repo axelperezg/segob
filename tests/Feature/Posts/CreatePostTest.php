@@ -39,6 +39,7 @@ it('can create a post', function () {
         'is_published' => true,
         'title' => $data->title,
         'content' => $data->content,
+        'excerpt' => $data->excerpt,
         'content_type' => $data->content_type,
         'keywords' => $data->keywords,
         'state' => $data->state,
@@ -60,6 +61,7 @@ it('can create a post', function () {
         ->is_published->toBeTrue()
         ->title->toBe($data->title)
         ->content->toBe($data->content)
+        ->excerpt->toBe($data->excerpt)
         ->keywords->toBe($data->keywords)
         ->content_type->toBe($data->content_type)
         ->state->toBe($data->state)
@@ -98,6 +100,7 @@ it('can create a bulletin post', function () {
         'is_published' => true,
         'title' => $data->title,
         'content' => $data->content,
+        'excerpt' => $data->excerpt,
         'content_type' => $data->content_type->value,
         'bulletin' => $data->bulletin,
         'year' => $data->year,

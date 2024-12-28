@@ -5,7 +5,9 @@ namespace App\Filament\Pages;
 use App\Settings\AppSettings;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
@@ -35,9 +37,9 @@ class GeneralSettings extends SettingsPage
                 Section::make('social')
                     ->heading('Redes Sociales')
                     ->schema([
-                        Forms\Components\Repeater::make('social_networks')
+                        Repeater::make('social_networks')
                             ->schema([
-                                Forms\Components\Select::make('network')
+                                Select::make('network')
                                     ->options([
                                         'facebook' => 'Facebook',
                                         'twitter' => 'X (Twitter)',

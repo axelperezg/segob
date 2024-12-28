@@ -62,6 +62,10 @@ class PostResource extends Resource
                         RichEditor::make('content')
                             ->required()
                             ->columnSpanFull(),
+                        RichEditor::make('excerpt')
+                            ->label('Resumen')
+                            ->required()
+                            ->columnSpanFull(),
                         Select::make('content_type')
                             ->live()
                             ->required()

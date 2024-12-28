@@ -85,7 +85,7 @@ const activeTab = ref(1);
 
             <div class="mt-4">
                 <div v-show="activeTab === 1">
-                    <div class="prose max-w-7xl" v-html="postPresenter.content">
+                    <div class="prose-lg max-w-7xl" v-html="postPresenter.content">
                     </div>
                     <div class="flex justify-center">
                     <h5 class="text-sm text-center italic font-normal border-l border-gray-400 pl-2 mt-10">{{ postPresenter.createdBy }}</h5>
