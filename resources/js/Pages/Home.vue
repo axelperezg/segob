@@ -109,20 +109,16 @@ defineProps({
             </button>
         </div>
     </section>
-    <!-- Actions -->
+
     <Actions :actions="actions.data" />
 
-    <!-- Banners -->
     <Banners :banners="banners.data" />
 
-    <!-- Segob(dependencies) -->
     <Dependecies :dependencies="dependencies.data" />
 
-    <!-- Infographics -->
+    <NoticiasMx />
+    
     <Infographics :infographics="infographics.data" />
 
-    <!-- Media Gallery -->
     <MediaGallery :photos="mediaGallery.photos.data" :videos="mediaGallery.videos.data" />
-
-    <NoticiasMx />
 </template>

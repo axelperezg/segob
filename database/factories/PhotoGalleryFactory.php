@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\PhotoGallery;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,5 +22,12 @@ class PhotoGalleryFactory extends Factory
             'is_published' => true,
             'published_at' => now(),
         ];
+    }
+
+    public function withImage()
+    {
+        return $this->afterCreating(function (PhotoGallery $photoGallery) {
+            $photoGallery->addMediaFromUrl('https://picsum.photos/600/400')->toMediaCollection('image');
+        });
     }
 }

@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Documents\DocumentTypeEnum;
 use App\Models\Action;
 use App\Models\Audio;
 use App\Models\Dependency;
+use App\Models\Document;
 use App\Models\FeaturedPost;
 use App\Models\PhotoGallery;
 use App\Models\Post;
@@ -34,7 +36,8 @@ class BaseSeeder extends Seeder
                 'slug' => 'mexico-fortalece-lazos-comerciales-america-latina',
                 'is_published' => true,
                 'created_by' => User::first()->id,
-                'audio_id' => $audio->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Nueva política de desarrollo social beneficiará a millones de mexicanos',
@@ -43,6 +46,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Inversión histórica en infraestructura para el sur de México',
@@ -51,6 +55,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'México lidera iniciativas ambientales en América Latina',
@@ -59,6 +64,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Programa nacional de digitalización gubernamental',
@@ -67,6 +73,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Avances en seguridad pública muestran resultados positivos',
@@ -75,6 +82,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Plan nacional de innovación tecnológica en educación',
@@ -83,6 +91,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Impulso al turismo sustentable en zonas arqueológicas',
@@ -91,6 +100,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Programa de modernización del sistema de salud',
@@ -99,6 +109,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Fortalecimiento de programas culturales comunitarios',
@@ -107,6 +118,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Nueva estrategia nacional de ciencia y tecnología',
@@ -115,6 +127,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Plan integral de desarrollo urbano sustentable',
@@ -123,6 +136,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Fortalecimiento de la economía social y solidaria',
@@ -131,6 +145,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Programa nacional de prevención de adicciones',
@@ -139,6 +154,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Innovación en servicios financieros digitales',
@@ -147,6 +163,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
             [
                 'title' => 'Estrategia nacional de agricultura sostenible',
@@ -155,6 +172,7 @@ class BaseSeeder extends Seeder
                 'is_published' => true,
                 'created_by' => User::first()->id,
                 'audio_id' => Audio::factory(),
+                'document_id' => null,
             ],
         ]);
 
@@ -193,8 +211,9 @@ class BaseSeeder extends Seeder
             'sort' => 6,
         ]);
 
-        PhotoGallery::factory()->create();
-        Video::factory()->create();
+        PhotoGallery::factory(6)->withImage()->create();
+        Video::factory(6)->withImage()->create();
+        Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
     }
 
     private function createActions()
@@ -238,7 +257,7 @@ class BaseSeeder extends Seeder
             ['name' => 'Coordinación Nacional de Protección Civil (CNPC)', 'slug' => 'coordinacion-nacional-de-proteccion-civil-cnpc'],
             ['name' => 'Centro Nacional de Inteligencia (CNI)', 'slug' => 'centro-nacional-de-inteligencia-cni'],
             ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)', 'slug' => 'centro-nacional-de-prevencion-de-desastres-cenapred'],
-            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública', 'slug' => 'secretariado-ejecutivo-del-sistema-nacional-de-seguridad-publica'],
+            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Se   guridad Pública', 'slug' => 'secretariado-ejecutivo-del-sistema-nacional-de-seguridad-publica'],
             ['name' => 'Subsecretario de Seguridad Pública', 'slug' => 'subsecretario-de-seguridad-publica'],
             ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica', 'slug' => 'unidad-de-informacion-infraestructura-informatica-y-vinculacion-tecnologica'],
             ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada', 'slug' => 'unidad-de-politica-policial-penitenciaria-y-seguridad-privada'],
