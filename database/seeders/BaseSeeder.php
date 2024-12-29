@@ -31,6 +31,246 @@ class BaseSeeder extends Seeder
         $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
         $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
 
+        $this->createInitialPosts();
+        $this->createAdditionalPosts();
+
+        $this->createActions();
+        $this->createDependencies();
+
+        Post::all()->each(function (Post $post) {
+            $actions = Action::where('name', 'Cero Impunidad')->get();
+            $post->actions()->attach($actions);
+            $dependencies = Dependency::query()->where('slug', 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional')->get();
+            $post->dependencies()->attach($dependencies);
+        });
+
+        FeaturedPost::query()->create([
+            'post_id' => 1,
+            'sort' => 1,
+        ]);
+        FeaturedPost::query()->create([
+            'post_id' => 2,
+            'sort' => 2,
+        ]);
+        FeaturedPost::query()->create([
+            'post_id' => 3,
+            'sort' => 3,
+        ]);
+        FeaturedPost::query()->create([
+            'post_id' => 4,
+            'sort' => 4,
+        ]);
+        FeaturedPost::query()->create([
+            'post_id' => 5,
+            'sort' => 5,
+        ]);
+        FeaturedPost::query()->create([
+            'post_id' => 6,
+            'sort' => 6,
+        ]);
+
+        PhotoGallery::factory(6)->withImage()->create();
+        Video::factory(6)->withImage()->create();
+        Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
+        Banner::factory(4)->withImage()->create();
+    }
+
+    private function createActions()
+    {
+        return Action::factory()->createMany([
+            [
+                'name' => '+ Beis - Violencia',
+            ],
+            [
+                'name' => 'Cero Impunidad',
+            ],
+            [
+                'name' => 'Ciberguía',
+            ],
+            [
+                'name' => 'Constructores de Paz',
+            ],
+            [
+                'name' => 'Ferias de Paz y Desarme Voluntario',
+            ],
+            [
+                'name' => 'Mi yo digital',
+            ],
+            [
+                'name' => 'ONPRENNA',
+            ],
+            [
+                'name' => 'Tianguis del Bienestar',
+            ],
+        ]);
+    }
+
+    private function createDependencies()
+    {
+        return Dependency::factory()->createMany([
+            ['name' => 'Sistema Nacional de Protección Civil (SINAPROC)', 'slug' => 'sistema-nacional-de-proteccion-civil-sinaproc'],
+            ['name' => 'Protección Federal', 'slug' => 'proteccion-federal'],
+            ['name' => 'Prevención y Readaptación Social', 'slug' => 'prevencion-y-readaptacion-social'],
+            ['name' => 'Guardia Nacional (GN)', 'slug' => 'guardia-nacional-gn'],
+            ['name' => 'Coordinación Nacional Antisecuestro (CONASE)', 'slug' => 'coordinacion-nacional-antisecuestro-conase'],
+            ['name' => 'Coordinación Nacional de Protección Civil (CNPC)', 'slug' => 'coordinacion-nacional-de-proteccion-civil-cnpc'],
+            ['name' => 'Centro Nacional de Inteligencia (CNI)', 'slug' => 'centro-nacional-de-inteligencia-cni'],
+            ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)', 'slug' => 'centro-nacional-de-prevencion-de-desastres-cenapred'],
+            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Se   guridad Pública', 'slug' => 'secretariado-ejecutivo-del-sistema-nacional-de-seguridad-publica'],
+            ['name' => 'Subsecretario de Seguridad Pública', 'slug' => 'subsecretario-de-seguridad-publica'],
+            ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica', 'slug' => 'unidad-de-informacion-infraestructura-informatica-y-vinculacion-tecnologica'],
+            ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada', 'slug' => 'unidad-de-politica-policial-penitenciaria-y-seguridad-privada'],
+            ['name' => 'Unidad de Prevención de la Violencia y el Delito', 'slug' => 'unidad-de-prevencion-de-la-violencia-y-el-delito'],
+            ['name' => 'Unidad de Planeación y Evaluación Institucional', 'slug' => 'unidad-de-planeacion-y-evaluacion-institucional'],
+            ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones', 'slug' => 'unidad-de-politicas-y-estrategias-para-la-construccion-de-paz-con-entidades-federativas-y-regiones'],
+            ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional', 'slug' => 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional'],
+            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)', 'slug' => 'secretaria-de-seguridad-y-proteccion-ciudadana-sspc'],
+        ]);
+    }
+
+    private function createAdditionalPosts(): void
+    {
+        Post::factory()->withImage()->createMany([
+            [
+                'title' => 'Nuevo sistema de transporte sustentable',
+                'content' => '<p>La Secretaría de Movilidad presenta un innovador sistema de transporte público que integra energías limpias y tecnologías inteligentes para mejorar la movilidad urbana.</p>',
+                'slug' => 'nuevo-sistema-transporte-sustentable',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Programa de rescate del patrimonio histórico',
+                'content' => '<p>El INAH lanza un ambicioso programa de restauración y conservación de monumentos históricos en todo el país, preservando la riqueza cultural de México.</p>',
+                'slug' => 'programa-rescate-patrimonio-historico',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Innovación en energías renovables',
+                'content' => '<p>México implementa nuevos proyectos de energía solar y eólica, consolidando su posición como líder regional en energías limpias y desarrollo sostenible.</p>',
+                'slug' => 'innovacion-energias-renovables',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Programa de desarrollo artesanal',
+                'content' => '<p>La Secretaría de Cultura impulsa un programa nacional para preservar y promover las artesanías tradicionales mexicanas en mercados internacionales.</p>',
+                'slug' => 'programa-desarrollo-artesanal',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Modernización del sistema judicial',
+                'content' => '<p>El Poder Judicial implementa nuevas tecnologías y procesos para agilizar los trámites judiciales y mejorar el acceso a la justicia.</p>',
+                'slug' => 'modernizacion-sistema-judicial',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Plan nacional de seguridad alimentaria',
+                'content' => '<p>La SADER presenta estrategias para garantizar la seguridad alimentaria mediante el apoyo a pequeños productores y la agricultura sustentable.</p>',
+                'slug' => 'plan-nacional-seguridad-alimentaria',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Innovación en medicina preventiva',
+                'content' => '<p>El sector salud implementa nuevos programas de medicina preventiva utilizando tecnologías avanzadas y estrategias comunitarias.</p>',
+                'slug' => 'innovacion-medicina-preventiva',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Desarrollo de ciudades inteligentes',
+                'content' => '<p>México impulsa la transformación de sus principales urbes en ciudades inteligentes mediante la implementación de tecnologías IoT y gestión eficiente.</p>',
+                'slug' => 'desarrollo-ciudades-inteligentes',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Protección de ecosistemas marinos',
+                'content' => '<p>La SEMARNAT implementa nuevas medidas para la conservación de ecosistemas marinos y la protección de especies en peligro de extinción.</p>',
+                'slug' => 'proteccion-ecosistemas-marinos',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Fomento a la investigación científica',
+                'content' => '<p>El gobierno federal aumenta el presupuesto para investigación científica y desarrollo tecnológico en universidades públicas.</p>',
+                'slug' => 'fomento-investigacion-cientifica',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Programa de vivienda sustentable',
+                'content' => '<p>La SEDATU lanza un programa innovador de vivienda que incorpora tecnologías verdes y diseños ecológicos para comunidades sustentables.</p>',
+                'slug' => 'programa-vivienda-sustentable',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Fortalecimiento del turismo cultural',
+                'content' => '<p>La Secretaría de Turismo desarrolla nuevas rutas culturales que destacan la riqueza histórica y artística de diferentes regiones del país.</p>',
+                'slug' => 'fortalecimiento-turismo-cultural',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Innovación en educación digital',
+                'content' => '<p>La SEP implementa nuevas plataformas educativas digitales para mejorar el acceso a la educación en zonas remotas.</p>',
+                'slug' => 'innovacion-educacion-digital',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Desarrollo de energía geotérmica',
+                'content' => '<p>México expande su capacidad de generación de energía geotérmica con nuevos proyectos en zonas volcánicas del país.</p>',
+                'slug' => 'desarrollo-energia-geotermica',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+            [
+                'title' => 'Modernización del sistema aduanero',
+                'content' => '<p>El SAT implementa nuevas tecnologías y procesos para agilizar los trámites aduaneros y mejorar el comercio internacional.</p>',
+                'slug' => 'modernizacion-sistema-aduanero',
+                'is_published' => true,
+                'created_by' => User::first()->id,
+                'audio_id' => Audio::factory(),
+                'document_id' => null,
+            ],
+        ]);
+    }
+
+    private function createInitialPosts(): void
+    {
         Post::factory()->withImage()->createMany([
             [
                 'title' => 'México fortalece lazos comerciales con América Latina',
@@ -176,99 +416,6 @@ class BaseSeeder extends Seeder
                 'audio_id' => Audio::factory(),
                 'document_id' => null,
             ],
-        ]);
-
-        $this->createActions();
-        $this->createDependencies();
-
-        Post::all()->each(function (Post $post) {
-            $actions = Action::where('name', 'Cero Impunidad')->get();
-            $post->actions()->attach($actions);
-            $dependencies = Dependency::query()->where('slug', 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional')->get();
-            $post->dependencies()->attach($dependencies);
-        });
-
-        FeaturedPost::query()->create([
-            'post_id' => 1,
-            'sort' => 1,
-        ]);
-        FeaturedPost::query()->create([
-            'post_id' => 2,
-            'sort' => 2,
-        ]);
-        FeaturedPost::query()->create([
-            'post_id' => 3,
-            'sort' => 3,
-        ]);
-        FeaturedPost::query()->create([
-            'post_id' => 4,
-            'sort' => 4,
-        ]);
-        FeaturedPost::query()->create([
-            'post_id' => 5,
-            'sort' => 5,
-        ]);
-        FeaturedPost::query()->create([
-            'post_id' => 6,
-            'sort' => 6,
-        ]);
-
-        PhotoGallery::factory(6)->withImage()->create();
-        Video::factory(6)->withImage()->create();
-        Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
-        Banner::factory(4)->withImage()->create();
-    }
-
-    private function createActions()
-    {
-        return Action::factory()->createMany([
-            [
-                'name' => '+ Beis - Violencia',
-            ],
-            [
-                'name' => 'Cero Impunidad',
-            ],
-            [
-                'name' => 'Ciberguía',
-            ],
-            [
-                'name' => 'Constructores de Paz',
-            ],
-            [
-                'name' => 'Ferias de Paz y Desarme Voluntario',
-            ],
-            [
-                'name' => 'Mi yo digital',
-            ],
-            [
-                'name' => 'ONPRENNA',
-            ],
-            [
-                'name' => 'Tianguis del Bienestar',
-            ],
-        ]);
-    }
-
-    private function createDependencies()
-    {
-        return Dependency::factory()->createMany([
-            ['name' => 'Sistema Nacional de Protección Civil (SINAPROC)', 'slug' => 'sistema-nacional-de-proteccion-civil-sinaproc'],
-            ['name' => 'Protección Federal', 'slug' => 'proteccion-federal'],
-            ['name' => 'Prevención y Readaptación Social', 'slug' => 'prevencion-y-readaptacion-social'],
-            ['name' => 'Guardia Nacional (GN)', 'slug' => 'guardia-nacional-gn'],
-            ['name' => 'Coordinación Nacional Antisecuestro (CONASE)', 'slug' => 'coordinacion-nacional-antisecuestro-conase'],
-            ['name' => 'Coordinación Nacional de Protección Civil (CNPC)', 'slug' => 'coordinacion-nacional-de-proteccion-civil-cnpc'],
-            ['name' => 'Centro Nacional de Inteligencia (CNI)', 'slug' => 'centro-nacional-de-inteligencia-cni'],
-            ['name' => 'Centro Nacional de Prevención de Desastres (CENAPRED)', 'slug' => 'centro-nacional-de-prevencion-de-desastres-cenapred'],
-            ['name' => 'Secretariado Ejecutivo del Sistema Nacional de Se   guridad Pública', 'slug' => 'secretariado-ejecutivo-del-sistema-nacional-de-seguridad-publica'],
-            ['name' => 'Subsecretario de Seguridad Pública', 'slug' => 'subsecretario-de-seguridad-publica'],
-            ['name' => 'Unidad de Información, Infraestructura Informática y Vinculación Tecnológica', 'slug' => 'unidad-de-informacion-infraestructura-informatica-y-vinculacion-tecnologica'],
-            ['name' => 'Unidad de Política Policial, Penitenciaria y Seguridad Privada', 'slug' => 'unidad-de-politica-policial-penitenciaria-y-seguridad-privada'],
-            ['name' => 'Unidad de Prevención de la Violencia y el Delito', 'slug' => 'unidad-de-prevencion-de-la-violencia-y-el-delito'],
-            ['name' => 'Unidad de Planeación y Evaluación Institucional', 'slug' => 'unidad-de-planeacion-y-evaluacion-institucional'],
-            ['name' => 'Unidad de Políticas y Estrategias para la Construcción de Paz con Entidades Federativas y Regiones', 'slug' => 'unidad-de-politicas-y-estrategias-para-la-construccion-de-paz-con-entidades-federativas-y-regiones'],
-            ['name' => 'Unidad de Análisis Estratégicos y Vinculación Interinstitucional', 'slug' => 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional'],
-            ['name' => 'Secretaría de Seguridad y Protección Ciudadana (SSPC)', 'slug' => 'secretaria-de-seguridad-y-proteccion-ciudadana-sspc'],
         ]);
     }
 }

@@ -24,7 +24,7 @@ class PostFactory extends Factory
             'is_published' => fake()->boolean(),
             'content_type' => collect(ContentTypeEnum::cases())->random(),
             'state' => collect(MexicanStateEnum::cases())->random(),
-            'published_at' => fake()->dateTime(),
+            'published_at' => fake()->dateTimeBetween('-2 weeks', 'now'),
             'created_by' => User::factory(),
             'keywords' => fake()->words(3, true),
             'audio_id' => Audio::factory(),

@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'NOTICIAS',
-                    'url' => '/',
+                    'url' => route('news.index'),
                 ],
                 [
                     'name' => 'VERSIONES',
