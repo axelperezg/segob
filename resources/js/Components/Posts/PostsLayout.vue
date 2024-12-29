@@ -9,7 +9,11 @@ import { useContentTypes } from '@/Composables/useContentTypes';
 const props = defineProps({
     posts: Object,
     routeName: String,
-    routeParams: Object,
+    routeParams: {
+        type: Object,
+        required: true,
+        default: {},
+    },
     filters: Object,
     title: {
         type: String,
@@ -24,15 +28,13 @@ let search = ref(props.filters.title);
 let publishedAt = ref(props.filters.published_at);
 
 let queryString = {
-    filter: {
-        title: search.value,
-    },
+    title: search.value,
     published_at: publishedAt.value,
     content_type: contentTypesSelected.value,
 }
 
 const throttledSearch = throttle((value) => {
-    queryString.filter.title = value
+    queryString.title = value
     router.get(route(props.routeName, props.routeParams), queryString, {
         preserveState: true,
         preserveScroll: true,

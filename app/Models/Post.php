@@ -100,11 +100,19 @@ class Post extends Model implements HasMedia
         );
     }
 
-    public function scopeFilterByContentType(Builder $query, ?string $contentType): Builder
+    public function scopeFilterByTitle(Builder $query, ?string $title): Builder
+    {
+        return $query->when(
+            $title,
+            fn (Builder $query, string $title) => $query->where('title', 'like', "%{$title}%")
+        );
+    }
+
+    public function scopeFilterByContentType(Builder $query, array $contentType = []): Builder
     {
         return $query->when(
             $contentType,
-            fn (Builder $query, string $contentType) => $query->where('content_type', $contentType)
+            fn (Builder $query, array $contentType) => $query->whereIn('content_type', $contentType)
         );
     }
 
