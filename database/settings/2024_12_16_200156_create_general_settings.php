@@ -33,6 +33,8 @@ return new class extends SettingsMigration
                 'url' => 'https://www.tiktok.com/',
             ]
         ]);
+        $this->migrator->add('general.map_url', 'https://www.google.com/maps');
+        $this->migrator->add('general.contact_content', 'Contenido de contacto');
     }
 
     public function down(): void

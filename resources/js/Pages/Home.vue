@@ -5,6 +5,7 @@ import Dependecies from '@/Components/Home/Dependecies.vue';
 import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
 import Infographics from '@/Components/Home/Infographics.vue';
 import MediaGallery from '@/Components/Home/MediaGallery.vue';
+import Contact from '@/Components/Home/Contact.vue';
 
 defineProps({
     mainPosts: Object,
@@ -115,8 +116,10 @@ defineProps({
     <Dependecies :dependencies="dependencies.data" />
 
     <NoticiasMx />
-    
+
     <Infographics :infographics="infographics.data" />
 
     <MediaGallery :photos="mediaGallery.photos.data" :videos="mediaGallery.videos.data" />
+
+    <Contact />
 </template>

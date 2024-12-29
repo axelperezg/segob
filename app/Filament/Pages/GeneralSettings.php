@@ -4,8 +4,10 @@ namespace App\Filament\Pages;
 
 use App\Settings\AppSettings;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -20,7 +22,7 @@ class GeneralSettings extends SettingsPage
 
     protected static string $settings = AppSettings::class;
 
-    protected static ?string $navigationLabel = 'Configuración General';
+    protected static ?string $navigationLabel = 'Configuración del Sitio';
 
     public function form(Form $form): Form
     {
@@ -38,6 +40,7 @@ class GeneralSettings extends SettingsPage
                     ->heading('Redes Sociales')
                     ->schema([
                         Repeater::make('social_networks')
+                            ->maxItems(5)
                             ->schema([
                                 Select::make('network')
                                     ->options([
@@ -55,6 +58,17 @@ class GeneralSettings extends SettingsPage
                                     ->required(),
                             ])
                             ->columns(2)
+                            ->columnSpanFull(),
+                    ]),
+                Section::make('contact')
+                    ->heading('Contacto')
+                    ->schema([
+                        TextInput::make('map_url')
+                            ->label('URL del Mapa')
+                            ->columnSpanFull(),
+                        RichEditor::make('contact_content')
+                            ->label('Contenido')
+                            ->toolbarButtons(['bold'])
                             ->columnSpanFull(),
                     ]),
             ]);
