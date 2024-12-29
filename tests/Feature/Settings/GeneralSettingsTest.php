@@ -10,13 +10,13 @@ use Tests\TestCase;
 
 class GeneralSettingsTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         $component = Livewire::test(GeneralSettings::class);
         $component->fillForm(['social_networks' => []])->call('save');
     }
-    
+
     public function test_settings_page_loads_successfully(): void
     {
         // Act
@@ -31,7 +31,7 @@ class GeneralSettingsTest extends TestCase
         // Arrange
         $component = Livewire::test(GeneralSettings::class);
         $settings = app(AppSettings::class);
-        
+
         // Act
         $component->fillForm([
             'logo' => UploadedFile::fake()->image('logo.jpg'),
@@ -83,4 +83,4 @@ class GeneralSettingsTest extends TestCase
             'social_networks.0.url' => 'url',
         ]);
     }
-} 
+}

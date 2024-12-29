@@ -13,7 +13,6 @@ use App\Models\PhotoGallery;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Video;
-use App\Settings\AppSettings;
 use Illuminate\Database\Seeder;
 
 class BaseSeeder extends Seeder

@@ -3,8 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Settings\AppSettings;
-use Filament\Forms;
-use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
@@ -65,7 +63,11 @@ class GeneralSettings extends SettingsPage
                     ->schema([
                         TextInput::make('map_url')
                             ->label('URL del Mapa')
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->dehydrateStateUsing(function ($state) {
+                                if (!$state) return null;
+                                return preg_replace('/width="[0-9]+"/', 'width="100%"', $state);
+                            }),
                         RichEditor::make('contact_content')
                             ->label('Contenido')
                             ->toolbarButtons(['bold'])

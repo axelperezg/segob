@@ -30,4 +30,4 @@ class NewsController extends Controller
             'filters' => $filters,
         ]);
     }
-} 
+}

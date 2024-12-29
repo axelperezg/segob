@@ -16,6 +16,7 @@ use App\Models\Document;
 use App\Models\FeaturedPost;
 use App\Models\PhotoGallery;
 use App\Models\Video;
+use App\Settings\AppSettings;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -49,7 +50,7 @@ class HomeController extends Controller
             'mediaGallery' => [
                 'photos' => PhotoGalleryResource::collection(PhotoGallery::query()->latest()->get()),
                 'videos' => VideoResource::collection(Video::query()->latest()->get()),
-            ]
+            ],
         ]);
     }
 }
