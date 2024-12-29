@@ -16,7 +16,6 @@ use App\Models\Document;
 use App\Models\FeaturedPost;
 use App\Models\PhotoGallery;
 use App\Models\Video;
-use App\Settings\AppSettings;
 use Inertia\Inertia;
 
 class HomeController extends Controller

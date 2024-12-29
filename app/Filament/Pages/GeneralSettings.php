@@ -65,7 +65,10 @@ class GeneralSettings extends SettingsPage
                             ->label('URL del Mapa')
                             ->columnSpanFull()
                             ->dehydrateStateUsing(function ($state) {
-                                if (!$state) return null;
+                                if (! $state) {
+                                    return null;
+                                }
+
                                 return preg_replace('/width="[0-9]+"/', 'width="100%"', $state);
                             }),
                         RichEditor::make('contact_content')
