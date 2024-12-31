@@ -49,7 +49,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'VERSIONES',
-                    'url' => '#',
+                    'url' => route('versions.index'),
                 ],
                 [
                     'name' => 'DOCUMENTOS',

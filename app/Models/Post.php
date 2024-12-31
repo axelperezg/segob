@@ -123,4 +123,12 @@ class Post extends Model implements HasMedia
             fn (Builder $query, string $publishedAt) => $query->whereDate('published_at', $publishedAt)
         );
     }
+
+    public function scopeFilterByDependency(Builder $query, ?string $dependencyId): Builder
+    {
+        return $query->when(
+            $dependencyId,
+            fn (Builder $query, string $dependencyId) => $query->whereHas('dependencies', fn (Builder $query) => $query->where('dependency_id', $dependencyId))
+        );
+    }
 }

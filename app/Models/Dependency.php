@@ -11,12 +11,10 @@ class Dependency extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['name', 'slug'];
-
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    protected $fillable = [
+        'name',
+        'slug',
+    ];
 
     public function registerMediaCollections(): void
     {

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\Documents\DocumentTypeEnum;
+use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Action;
 use App\Models\Audio;
 use App\Models\Banner;
@@ -415,6 +416,10 @@ class BaseSeeder extends Seeder
                 'audio_id' => Audio::factory(),
                 'document_id' => null,
             ],
+        ]);
+
+        Post::factory(30)->withImage()->create([
+            'content_type' => ContentTypeEnum::STENOGRAPHIC_VERSION,
         ]);
     }
 }
