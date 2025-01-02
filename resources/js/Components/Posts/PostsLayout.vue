@@ -9,6 +9,10 @@ const props = defineProps({
         type: Boolean,
         default: true,
     },
+    showDependency: {
+        type: Boolean,
+        default: true,
+    },
     posts: Object,
     routeName: String,
     routeParams: {
@@ -38,6 +42,7 @@ const handlePageChange = (url) => {
             <!-- Left sidebar -->
             <PostsFilter
                 :show-content-type="showContentType"
+                :show-dependency="showDependency"
                 :route-name="routeName"
                 :route-params="routeParams"
                 :filters="filters"

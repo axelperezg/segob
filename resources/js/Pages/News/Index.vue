@@ -4,6 +4,7 @@ import PostsLayout from '@/Components/Posts/PostsLayout.vue';
 let props = defineProps({
     posts: Object,
     filters: Object,
+    showDependency: Boolean,
 });
 </script>
 
@@ -15,6 +16,7 @@ let props = defineProps({
             route-name="news.index"
             title="Noticias"
             :route-params="{}"
+            :show-dependency="showDependency"
         />
     </div>
 </template> 

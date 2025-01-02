@@ -28,6 +28,7 @@ class NewsController extends Controller
         return Inertia::render('News/Index', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
+            'showDependency' => false,
         ]);
     }
 }

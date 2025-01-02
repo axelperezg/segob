@@ -10,6 +10,10 @@ const props = defineProps({
         type: Boolean,
         default: true,
     },
+    showDependency: {
+        type: Boolean,
+        default: true,
+    },
     routeName: String,
     routeParams: {
         type: Object,
@@ -107,7 +111,7 @@ watch(dependencySelected, (value) => {
             </div>
 
             <!-- Dependency filter -->
-            <div>
+            <div v-if="showDependency">
                 <h2 class="text-xl mb-4">Dependencia</h2>
                 <select v-model="dependencySelected"
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black">
