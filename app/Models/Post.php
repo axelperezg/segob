@@ -128,7 +128,10 @@ class Post extends Model implements HasMedia
     {
         return $query->when(
             $dependencyId,
-            fn (Builder $query, string $dependencyId) => $query->whereHas('dependencies', fn (Builder $query) => $query->where('dependency_id', $dependencyId))
+            fn (Builder $query, string $dependencyId) => $query->whereHas(
+                'dependencies',
+                fn (Builder $query) => $query->where('dependency_id', $dependencyId)
+            )
         );
     }
 }

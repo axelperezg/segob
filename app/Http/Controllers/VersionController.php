@@ -15,6 +15,7 @@ class VersionController extends Controller
             ->with('media', 'createdBy')
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
+            ->filterByDependency(request('dependency_id'))
             ->where('content_type', ContentTypeEnum::STENOGRAPHIC_VERSION)
             ->orderByDesc('published_at')
             ->paginate(10)
@@ -25,7 +26,7 @@ class VersionController extends Controller
             'published_at' => request('published_at', ''),
             'dependency_id' => request('dependency_id', ''),
         ];
-
+    
         return Inertia::render('Version', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
