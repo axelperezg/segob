@@ -6,6 +6,7 @@ use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
 use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class DocumentFactory extends Factory
 {
@@ -15,6 +16,7 @@ class DocumentFactory extends Factory
             'is_published' => fake()->boolean(),
             'published_at' => fake()->date(),
             'name' => fake()->name(),
+            'slug' => fn ($data) => Str::slug($data['name']),
             'type' => fake()->randomElement(DocumentTypeEnum::cases()),
             'document_section' => fake()->randomElement(DocumentSectionEnum::cases()),
         ];

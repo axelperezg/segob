@@ -28,4 +28,11 @@ class DocumentController extends Controller
             'filters' => $filters,
         ]);
     }
+
+    public function show(Document $document)
+    {
+        return Inertia::render('Documents/Show', [
+            'document' => new DocumentResource($document),
+        ]);
+    }
 }

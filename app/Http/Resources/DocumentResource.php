@@ -12,6 +12,7 @@ class DocumentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'type' => $this->type,
             'document_section' => $this->document_section,
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',

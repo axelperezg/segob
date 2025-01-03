@@ -14,12 +14,14 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class DocumentResource extends Resource
 {
@@ -44,7 +46,17 @@ class DocumentResource extends Resource
                             ->columnSpanFull(),
                         TextInput::make('name')
                             ->required()
-                            ->label('Nombre'),
+                            ->label('Nombre')
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(
+                                fn (string $operation, $state, Set $set) => $set('slug', Str::slug($state))
+                            ),
+                        TextInput::make('slug')
+                            ->disabled()
+                            ->dehydrated()
+                            ->required()
+                            ->label('Slug')
+                            ->unique(Document::class, 'slug', ignoreRecord: true),
                         DatePicker::make('published_at')
                             ->label('Fecha')
                             ->default(now()),

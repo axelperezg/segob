@@ -19,6 +19,7 @@ class Document extends Model implements HasMedia
         'is_published',
         'published_at',
         'name',
+        'slug',
         'type',
         'document_section',
     ];
