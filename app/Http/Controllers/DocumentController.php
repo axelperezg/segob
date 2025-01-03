@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
-use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -17,7 +16,7 @@ class DocumentController extends Controller
             ->searchByDocumentSection(request('document_section'))
             ->orderByDesc('published_at')
             ->paginate(12)
-            ->withQueryString(); 
+            ->withQueryString();
 
         $filters = [
             'name' => request('title', ''),
@@ -29,4 +28,4 @@ class DocumentController extends Controller
             'filters' => $filters,
         ]);
     }
-} 
+}

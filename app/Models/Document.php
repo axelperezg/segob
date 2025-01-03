@@ -46,7 +46,7 @@ class Document extends Model implements HasMedia
         return $this->hasMany(Post::class);
     }
 
-    public function scopeSearchByName(Builder $query, string|null $name): Builder
+    public function scopeSearchByName(Builder $query, ?string $name): Builder
     {
         return $query->when(
             $name,
@@ -54,7 +54,7 @@ class Document extends Model implements HasMedia
         );
     }
 
-    public function scopeSearchByDocumentSection(Builder $query, string|null $documentSection): Builder
+    public function scopeSearchByDocumentSection(Builder $query, ?string $documentSection): Builder
     {
         return $query->when(
             $documentSection,

@@ -26,7 +26,7 @@ class VersionController extends Controller
             'published_at' => request('published_at', ''),
             'dependency_id' => request('dependency_id', ''),
         ];
-    
+
         return Inertia::render('Version', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,

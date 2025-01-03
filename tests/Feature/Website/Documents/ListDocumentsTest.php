@@ -5,8 +5,6 @@ namespace Tests\Feature\Website\Documents;
 use App\Enums\Documents\DocumentSectionEnum;
 use App\Models\Document;
 use Tests\TestCase;
-use App\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListDocumentsTest extends TestCase
 {
@@ -58,7 +56,7 @@ class ListDocumentsTest extends TestCase
         }
 
         $document = Document::all()->random();
-    
+
         // Act
         $response = $this->documentList(['document_section' => $document->document_section->value]);
 
@@ -69,4 +67,4 @@ class ListDocumentsTest extends TestCase
             ->where('documents.data.0.id', $document->id)
         );
     }
-} 
+}

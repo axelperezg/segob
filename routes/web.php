@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\DependencyController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VersionController;
-use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);

@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Dependency;
 use App\Models\Post;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class VersionTest extends TestCase
@@ -24,7 +23,7 @@ class VersionTest extends TestCase
 
         $uri = route('versions.index', ['dependency_id' => $dependency->id]);
 
-        // Act  
+        // Act
         $response = $this->get($uri);
 
         // Assert

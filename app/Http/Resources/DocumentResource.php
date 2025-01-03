@@ -16,7 +16,7 @@ class DocumentResource extends JsonResource
             'document_section' => $this->document_section,
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
-            'published_at' => $this->published_at
+            'published_at' => $this->published_at,
         ];
     }
 }
