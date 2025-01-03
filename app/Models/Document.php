@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +44,21 @@ class Document extends Model implements HasMedia
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeSearchByName(Builder $query, string|null $name): Builder
+    {
+        return $query->when(
+            $name,
+            fn (Builder $query, string $name) => $query->where('name', 'like', "%{$name}%")
+        );
+    }
+
+    public function scopeSearchByDocumentSection(Builder $query, string|null $documentSection): Builder
+    {
+        return $query->when(
+            $documentSection,
+            fn (Builder $query, string $documentSection) => $query->where('document_section', $documentSection)
+        );
     }
 }

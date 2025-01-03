@@ -25,13 +25,19 @@ const handleClick = (url) => {
                     'px-4 py-2 rounded-md cursor-pointer transition-colors',
                     link.active
                         ? 'bg-indigo-600 text-white'
-                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700',
+                    // Hide numbered pages on mobile, only show Previous/Next
+                    !['Anterior', 'Siguiente'].includes(link.label) ? 'hidden sm:block' : ''
                 ]"
                 v-html="link.label"
             />
             <div
                 v-else
-                class="px-4 py-2 text-gray-400 cursor-not-allowed"
+                :class="[
+                    'px-4 py-2 text-gray-400 cursor-not-allowed',
+                    // Hide numbered pages on mobile, only show Previous/Next
+                    !['Anterior', 'Siguiente'].includes(link.label) ? 'hidden sm:block' : ''
+                ]"
                 v-html="link.label"
             />
         </template>

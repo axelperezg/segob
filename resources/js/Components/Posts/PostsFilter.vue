@@ -4,6 +4,7 @@ import { throttle } from 'lodash';
 import { router } from '@inertiajs/vue3';
 import { useContentTypes } from '@/Composables/useContentTypes';
 import { useDependencies } from '@/Composables/useDependencies';
+import { DocumentSectionType } from '@/Enums/DocumentSectionType';
 
 const props = defineProps({
     showContentType: {
@@ -13,6 +14,14 @@ const props = defineProps({
     showDependency: {
         type: Boolean,
         default: true,
+    },
+    showPublishedAt: {
+        type: Boolean,
+        default: true,
+    },
+    showDocumentSection: {
+        type: Boolean,
+        default: false,
     },
     routeName: String,
     routeParams: {
@@ -30,12 +39,14 @@ let contentTypesSelected = ref(props.filters.content_type);
 let search = ref(props.filters.title);
 let publishedAt = ref(props.filters.published_at);
 let dependencySelected = ref(props.filters.dependency_id);
+let documentSectionSelected = ref(props.filters.document_section);
 
 let queryString = {
     title: search.value,
     published_at: publishedAt.value,
     content_type: contentTypesSelected.value,
     dependency_id: dependencySelected.value,
+    document_section: documentSectionSelected.value,
 }
 
 const throttledSearch = throttle((value) => {
@@ -77,6 +88,14 @@ watch(dependencySelected, (value) => {
         preserveScroll: true,
     });
 });
+
+watch(documentSectionSelected, (value) => {
+    queryString.document_section = value
+    router.get(route(props.routeName, props.routeParams), queryString, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+});
 </script>
 
 <template>
@@ -104,7 +123,7 @@ watch(dependencySelected, (value) => {
             </div>
 
             <!-- Date filter -->
-            <div>
+            <div v-if="showPublishedAt">
                 <h2 class="text-xl mb-4">Fecha</h2>
                 <input type="date" v-model="publishedAt"
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black">
@@ -122,6 +141,20 @@ watch(dependencySelected, (value) => {
                 </select>
             </div>
 
+            <!-- Document Section filter -->
+            <div v-if="showDocumentSection">
+                <h2 class="text-xl mb-4">Sección del Documento</h2>
+                <select v-model="documentSectionSelected"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black">
+                    <option value="">Todas las secciones</option>
+                    <option v-for="section in DocumentSectionType" :key="section.value" :value="section.value">
+                        {{ section.label }}
+                    </option>
+                </select>
+            </div>
+
+            
+            
             <button type="button"
                 class="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium rounded-md transition-colors"
                 @click="clearFilters">

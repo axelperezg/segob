@@ -53,7 +53,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'DOCUMENTOS',
-                    'url' => '#',
+                    'url' => route('documents.index'),
                 ],
                 [
                     'name' => 'SEGOB',

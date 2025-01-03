@@ -72,6 +72,7 @@ class BaseSeeder extends Seeder
         PhotoGallery::factory(6)->withImage()->create();
         Video::factory(6)->withImage()->create();
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
+        Document::factory(10)->withImage()->create(['type' => DocumentTypeEnum::PRESENTATION]);
         Banner::factory(4)->withImage()->create();
     }
 
