@@ -26,7 +26,7 @@ export default class PostPresenter {
         const day = date.date();
         const month = months[date.month()];
         const year = date.year();
-        return `Publicado el ${day} de ${month} de ${year}`;
+        return `${day} de ${month} de ${year}`;
     }
 
     get formattedDate() {

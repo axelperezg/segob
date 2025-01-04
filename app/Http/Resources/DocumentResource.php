@@ -18,6 +18,9 @@ class DocumentResource extends JsonResource
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
             'published_at' => $this->published_at,
+            'document' => $this->getFirstMedia('document')?->getFullUrl(),
+
+            'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];
     }
 }

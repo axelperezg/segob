@@ -40,6 +40,11 @@ class Document extends Model implements HasMedia
             ->addMediaCollection('image')
             ->singleFile()
             ->useDisk('public');
+
+        $this
+            ->addMediaCollection('document')
+            ->singleFile()
+            ->useDisk('public');
     }
 
     public function posts(): HasMany

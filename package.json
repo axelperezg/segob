@@ -23,6 +23,7 @@
         "@vue/server-renderer": "^3.5.13",
         "dayjs": "^1.11.13",
         "jquery": "^3.7.1",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "vue-pdf-embed": "^2.1.1"
     }
 }

@@ -13,6 +13,10 @@ export default class DocumentPresenter {
         return this.document.name;
     }
 
+    get slug() {
+        return this.document.slug;
+    }
+
     get type() {
         return this.document.type;
     }
@@ -31,5 +35,9 @@ export default class DocumentPresenter {
 
     get image() {
         return this.document.image;
+    }
+
+    get document_file() {
+        return this.document.document;
     }
 } 

@@ -13,7 +13,7 @@ const documentPresent = new DocumentPresenter(props.document);
 </script>
 
 <template>
-    <Link href="/" class="hover:opacity-95">
+    <Link :href="route('documents.show', documentPresent.slug)" class="hover:opacity-95">
         <article class="flex flex-col">
             <img :src="documentPresent.image" :alt="documentPresent.name" class="w-full rounded">
             <div>

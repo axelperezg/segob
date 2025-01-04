@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class DocumentController extends Controller
 {
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         $documents = Document::query()
             ->searchByName(request('title'))
@@ -31,8 +31,10 @@ class DocumentController extends Controller
 
     public function show(Document $document)
     {
+        $document->load('posts');
+
         return Inertia::render('Documents/Show', [
-            'document' => new DocumentResource($document),
+            'document' => DocumentResource::make($document),
         ]);
     }
 }

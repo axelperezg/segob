@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class);
 Route::get('/noticias', NewsController::class)->name('news.index');
 Route::get('/versiones', VersionController::class)->name('versions.index');
-Route::get('/documentos', DocumentController::class)->name('documents.index');
+Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
 Route::get('/documentos/{document:slug}', [DocumentController::class, 'show'])->name('documents.show');
 
 Route::get('/posts/{post:slug}', PostController::class)->name('posts.show');
