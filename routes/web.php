@@ -8,15 +8,17 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VersionController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
 Route::get('/noticias', NewsController::class)->name('news.index');
 Route::get('/versiones', VersionController::class)->name('versions.index');
 Route::get('/galerias', [PhotoGalleryController::class, 'index'])->name('photo-galleries.index');
-Route::get('/galerias/{photoGallery:slug}', [PhotoGalleryController::class, 'show'])->name('photo-galleries.show');
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
+Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
 
+Route::get('/galerias/{photoGallery:slug}', [PhotoGalleryController::class, 'show'])->name('photo-galleries.show');
 Route::get('/documentos/{document:slug}', [DocumentController::class, 'show'])->name('documents.show');
 Route::get('/posts/{post:slug}', PostController::class)->name('posts.show');
 Route::get('/acciones/{action:slug}', ActionController::class)->name('actions.show');

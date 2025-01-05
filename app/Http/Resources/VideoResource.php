@@ -13,7 +13,6 @@ class VideoResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'url' => $this->url,
-            'is_published' => $this->is_published,
             'published_at' => $this->published_at,
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://via.placeholder.com/150',
         ];
