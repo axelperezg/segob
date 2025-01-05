@@ -27,4 +27,13 @@ class PhotoGalleryController extends Controller
             'filters' => $filters,
         ]);
     }
+
+    public function show(PhotoGallery $photoGallery)
+    {
+        $photoGallery->load('posts');
+
+        return Inertia::render('PhotoGalleries/Show', [
+            'gallery' => PhotoGalleryResource::make($photoGallery),
+        ]);
+    }
 }

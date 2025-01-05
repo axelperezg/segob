@@ -14,7 +14,7 @@ const photoGalleryPresenter = new PhotoGalleryPresenter(props.gallery);
 
 <template>
     <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
-        <Link href="/" class="block">
+        <Link :href="route('photo-galleries.show', gallery.slug)" class="block">
             <div class="aspect-w-16 aspect-h-9 bg-gray-100">
                 <img v-if="gallery.image" :src="gallery.image" :alt="gallery.name"
                     class="w-full h-full object-cover" />
@@ -35,4 +35,4 @@ const photoGalleryPresenter = new PhotoGalleryPresenter(props.gallery);
             </div>
         </Link>
     </article>
-</template> 
+</template>

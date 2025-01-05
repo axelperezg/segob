@@ -17,6 +17,8 @@ class PhotoGalleryResource extends JsonResource
             'slug' => $this->slug,
             'photos' => $this->getMedia('gallery')->map(fn ($photo) => $photo->getFullUrl()),
             'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://via.placeholder.com/150',
+
+            'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];
     }
 }
