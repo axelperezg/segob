@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PhotoGalleryResource;
 use App\Models\PhotoGallery;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PhotoGalleryController extends Controller
@@ -28,4 +27,4 @@ class PhotoGalleryController extends Controller
             'filters' => $filters,
         ]);
     }
-} 
+}

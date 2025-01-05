@@ -10,10 +10,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
-    public function run(): void {
-
-        PhotoGallery::query()->delete();
-
-        PhotoGallery::factory(30)->create();
+    public function run(): void
+    {
     }
 }

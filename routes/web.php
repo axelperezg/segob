@@ -5,9 +5,9 @@ use App\Http\Controllers\DependencyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PhotoGalleryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VersionController;
-use App\Http\Controllers\PhotoGalleryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
