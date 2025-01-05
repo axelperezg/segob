@@ -61,7 +61,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'GALERÍAS',
-                    'url' => '#',
+                    'url' => route('photo-galleries.index'),
                 ],
                 [
                     'name' => 'VIDEO',

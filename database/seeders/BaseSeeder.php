@@ -69,7 +69,7 @@ class BaseSeeder extends Seeder
             'sort' => 6,
         ]);
 
-        PhotoGallery::factory(6)->withImage()->create();
+        PhotoGallery::factory(12)->withImage()->create();
         Video::factory(6)->withImage()->create();
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
         Document::factory(10)->withImage()->create(['type' => DocumentTypeEnum::PRESENTATION]);

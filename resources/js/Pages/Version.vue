@@ -8,14 +8,12 @@ let props = defineProps({
 </script>
 
 <template>
-    <div>
-        <PostsLayout
-            :posts="posts"
-            :filters="filters"
-            route-name="versions.index"
-            title="Versiones Estenográficas"
-            :route-params="{}"
-            :show-content-type="false"
-        />
-    </div>
+    <PostsLayout
+        :posts="posts"
+        :filters="filters"
+        route-name="versions.index"
+        title="Versiones Estenográficas"
+        :route-params="{}"
+        :show-content-type="false"
+    />
 </template>

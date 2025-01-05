@@ -11,12 +11,14 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 
 class PhotoGalleryResource extends Resource
 {
@@ -48,8 +50,20 @@ class PhotoGalleryResource extends Resource
                             ->label('Publicado'),
                         TextInput::make('name')
                             ->placeholder('Nombre de fotogalería')
+                            ->live(onBlur: true)
                             ->required()
-                            ->label('Título'),
+                            ->label('Título')
+                            ->afterStateUpdated(
+                                fn (string $operation, $state, Set $set) => $operation === 'create'
+                                    ? $set('slug', Str::slug($state))
+                                    : null
+                            ),
+                        TextInput::make('slug')
+                            ->disabled()
+                            ->dehydrated()
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(PhotoGallery::class, 'slug', ignoreRecord: true),
                         DatePicker::make('published_at')
                             ->default(now())
                             ->label('Fecha'),

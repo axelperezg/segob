@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +17,7 @@ class PhotoGallery extends Model implements HasMedia
         'is_published',
         'published_at',
         'name',
+        'slug',
     ];
 
     protected function casts(): array
@@ -40,5 +42,23 @@ class PhotoGallery extends Model implements HasMedia
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function scopeSearchByName(Builder $query, ?string $name): Builder
+    {
+        return $query
+            ->when(
+                $name,
+                fn ($query, $name) => $query->where('name', 'like', "%{$name}%")
+            );
+    }
+
+    public function scopeFilterByPublishedAt(Builder $query, ?string $publishedAt): Builder
+    {
+        return $query
+            ->when(
+                $publishedAt,
+                fn ($query, $publishedAt) => $query->where('published_at', $publishedAt)
+            );
     }
 }
