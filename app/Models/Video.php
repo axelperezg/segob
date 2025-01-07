@@ -32,4 +32,18 @@ class Video extends Model implements HasMedia
             ->addMediaCollection('image')
             ->singleFile();
     }
+
+    public function scopeFilterByPublishedAt($query, $date)
+    {
+        return $query->when(
+            $date, fn ($query) => $query->whereDate('published_at', $date)
+        );
+    }
+
+    public function scopeSearchByTitle($query, $title)
+    {
+        return $query->when(
+            $title, fn ($query) => $query->where('title', 'like', "%{$title}%")
+        );
+    }
 }

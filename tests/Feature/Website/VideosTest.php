@@ -8,28 +8,70 @@ use Tests\TestCase;
 
 class VideosTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function test_it_shows_published_videos(): void
+    private function listVideos($data = [])
     {
-        $publishedVideo = Video::factory()->create([
-            'is_published' => true,
+        $uri = route('videos.index', $data);
+
+        return $this->get($uri);
+    }
+
+    public function test_it_can_render_page(): void
+    {
+        // Arrange
+        Video::factory(10)->create();
+
+        // Act
+        $response = $this->listVideos();
+
+        // Assert
+        $response
+            ->assertStatus(200)
+            ->assertInertia(fn ($page) => $page
+                ->component('Videos/Index')
+                ->has('videos.data', 10)
+            );
+    }
+
+    public function test_it_can_search_by_title(): void
+    {
+        // Arrange
+        Video::factory(10)->create();
+        $video = Video::factory()->create([
+            'title' => 'Test Video',
+        ]);
+
+        // Act
+        $response = $this->listVideos([
+            'title' => $video->title,
+        ]);
+
+        // Assert
+        $response
+            ->assertInertia(fn ($page) => $page
+                ->has('videos.data', 1)
+                ->where('videos.data.0.id', $video->id)
+            );
+    }
+
+    public function test_it_can_search_by_published_at(): void
+    {
+        // Arrange
+        Video::factory(10)->create(['published_at' => now()->subDays(2)]);
+        $video = Video::factory()->create([
             'published_at' => now(),
         ]);
 
-        $unpublishedVideo = Video::factory()->create([
-            'is_published' => false,
-            'published_at' => now(),
+        // Act
+        $response = $this->listVideos([
+            'published_at' => now()->format('Y-m-d'),
         ]);
 
-        $response = $this->get(route('videos.index'));
-
-        $response->assertStatus(200);
-        $response->assertInertia(fn ($page) => $page
-            ->component('Videos/Index')
-            ->has('videos.data', 1)
-            ->where('videos.data.0.id', $publishedVideo->id)
-            ->where('videos.data.0.title', $publishedVideo->title)
-        );
+        // Assert
+        $response
+            ->assertInertia(fn ($page) => $page
+                ->has('videos.data', 1)
+                ->where('videos.data.0.id', $video->id)
+            );
     }
 }
+

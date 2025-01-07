@@ -12,7 +12,7 @@ class VideoFactory extends Factory
             'title' => $this->faker->sentence(),
             'url' => $this->faker->url(),
             'is_published' => true,
-            'published_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'published_at' => $this->faker->dateTimeBetween('-7 days', 'now'),
         ];
     }
 }

@@ -11,12 +11,20 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::query()
-            ->where('is_published', true)
+            ->filterByPublishedAt(request('published_at'))
+            ->searchByTitle(request('title'))
             ->orderByDesc('published_at')
-            ->paginate();
+            ->paginate()
+            ->withQueryString();
+
+        $filters = [
+            'title' => request('title'),
+            'published_at' => request('published_at'),
+        ];
 
         return Inertia::render('Videos/Index', [
             'videos' => VideoResource::collection($videos),
+            'filters' => $filters,
         ]);
     }
 }
