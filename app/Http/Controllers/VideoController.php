@@ -27,4 +27,13 @@ class VideoController extends Controller
             'filters' => $filters,
         ]);
     }
+
+    public function show(Video $video)
+    {
+        $video->load('posts');
+
+        return Inertia::render('Videos/Show', [
+            'video' => VideoResource::make($video),
+        ]);
+    }
 }

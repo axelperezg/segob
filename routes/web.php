@@ -18,6 +18,7 @@ Route::get('/galerias', [PhotoGalleryController::class, 'index'])->name('photo-g
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
 Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
 
+Route::get('/videos/{video:slug}', [VideoController::class, 'show'])->name('videos.show');
 Route::get('/galerias/{photoGallery:slug}', [PhotoGalleryController::class, 'show'])->name('photo-galleries.show');
 Route::get('/documentos/{document:slug}', [DocumentController::class, 'show'])->name('documents.show');
 Route::get('/posts/{post:slug}', PostController::class)->name('posts.show');

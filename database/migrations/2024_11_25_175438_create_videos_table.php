@@ -16,6 +16,7 @@ return new class extends Migration
             $table->boolean('is_published')->default(false);
             $table->date('published_at')->nullable();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->string('url');
             $table->timestamps();
         });

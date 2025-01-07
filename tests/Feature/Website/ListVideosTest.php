@@ -3,10 +3,9 @@
 namespace Tests\Feature\Website;
 
 use App\Models\Video;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class VideosTest extends TestCase
+class ListVideosTest extends TestCase
 {
     private function listVideos($data = [])
     {
@@ -74,4 +73,3 @@ class VideosTest extends TestCase
             );
     }
 }
-
