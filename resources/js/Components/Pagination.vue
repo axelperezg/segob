@@ -24,7 +24,7 @@ const handleClick = (url) => {
                 :class="[
                     'px-4 py-2 rounded-md cursor-pointer transition-colors',
                     link.active
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-burgundy text-white'
                         : 'bg-gray-100 hover:bg-gray-200 text-gray-700',
                     // Hide numbered pages on mobile, only show Previous/Next
                     !['Anterior', 'Siguiente'].includes(link.label) ? 'hidden sm:block' : ''

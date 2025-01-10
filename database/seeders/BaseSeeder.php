@@ -69,11 +69,11 @@ class BaseSeeder extends Seeder
             'sort' => 6,
         ]);
 
-        PhotoGallery::factory(12)->withImage()->create();
-        Video::factory(6)->withImage()->create();
+        PhotoGallery::factory(12)->create();
+        Video::factory(6)->create();
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
-        Document::factory(10)->withImage()->create(['type' => DocumentTypeEnum::PRESENTATION]);
-        Banner::factory(4)->withImage()->create();
+        Document::factory(10)->create(['type' => DocumentTypeEnum::PRESENTATION]);
+        Banner::factory(4)->create();
     }
 
     private function createActions()
@@ -131,7 +131,7 @@ class BaseSeeder extends Seeder
 
     private function createAdditionalPosts(): void
     {
-        Post::factory()->withImage()->createMany([
+        Post::factory()->createMany([
             [
                 'title' => 'Nuevo sistema de transporte sustentable',
                 'content' => '<p>La Secretaría de Movilidad presenta un innovador sistema de transporte público que integra energías limpias y tecnologías inteligentes para mejorar la movilidad urbana.</p>',
@@ -272,7 +272,7 @@ class BaseSeeder extends Seeder
 
     private function createInitialPosts(): void
     {
-        Post::factory()->withImage()->createMany([
+        Post::factory()->createMany([
             [
                 'title' => 'México fortalece lazos comerciales con América Latina',
                 'content' => '<p>El gobierno mexicano anunció hoy nuevos acuerdos comerciales con países de América Latina, fortaleciendo la integración económica regional. Durante la cumbre realizada en Ciudad de México, representantes de diversos países firmaron convenios que facilitarán el intercambio comercial y la cooperación económica.</p>',
@@ -419,7 +419,7 @@ class BaseSeeder extends Seeder
             ],
         ]);
 
-        Post::factory(30)->withImage()->create([
+        Post::factory(30)->create([
             'content_type' => ContentTypeEnum::STENOGRAPHIC_VERSION,
         ]);
     }
