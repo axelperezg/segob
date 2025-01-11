@@ -26,7 +26,7 @@ defineProps({
         <div class="grid grid-cols-1 gap-6 pb-8 pt-4 lg:flex">
             <div class="space-y-6 lg:w-2/3">
                 <!-- Main posts -->
-                <a :href="route('posts.show', post.slug)" v-for="post in mainPosts.data" :key="post.id">
+                <Link :href="route('posts.show', post.slug)" v-for="post in mainPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
                         <img :src="post.featured_image" :alt="post.title" class="w-full" />
                         <div class="p-4">
@@ -48,11 +48,11 @@ defineProps({
                             <div class="prose max-w-6xl" v-html="post.excerpt"></div>
                         </div>
                     </article>
-                </a>
+                </Link>
             </div>
             <!-- Secondary posts -->
             <div class="space-y-6 lg:w-1/3">
-                <a :href="route('posts.show', post.slug)" v-for="post in secondaryPosts.data" :key="post.id">
+                <Link :href="route('posts.show', post.slug)" v-for="post in secondaryPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
                         <img :src="post.featured_image" :alt="post.title" class="w-full" />
                         <div class="p-4">
@@ -73,13 +73,13 @@ defineProps({
                             </p>
                         </div>
                     </article>
-                </a>
+                </Link>
             </div>
         </div>
 
         <!-- Tertiary posts -->
         <div class="space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
-            <a :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts.data" :key="post.id">
+            <Link :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts.data" :key="post.id">
                 <article class="overflow-hidden border rounded-lg">
                     <img :src="post.featured_image" :alt="post.title" class="w-full" />
                     <div class="p-4">
@@ -100,7 +100,7 @@ defineProps({
                         </p>
                     </div>
                 </article>
-            </a>
+            </Link>
         </div>
 
         <div class="flex justify-center mt-8">
