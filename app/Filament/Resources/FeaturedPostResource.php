@@ -55,9 +55,9 @@ class FeaturedPostResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\EditAction::make(),
             ])
-            ->bulkActions([
-            ]);
+            ->bulkActions([]);
     }
 
     public static function getPages(): array
