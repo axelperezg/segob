@@ -8,6 +8,7 @@ use App\Http\Resources\BannerResource;
 use App\Http\Resources\DependencyResource;
 use App\Http\Resources\DocumentResource;
 use App\Http\Resources\PhotoGalleryResource;
+use App\Http\Resources\PostResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Action;
 use App\Models\Banner;
@@ -39,9 +40,9 @@ class HomeController extends Controller
             ->get();
 
         return Inertia::render('Home', [
-            'mainPosts' => $featuredPosts->slice(0, 1),
-            'secondaryPosts' => $featuredPosts->slice(1, 2),
-            'tertiaryPosts' => $featuredPosts->slice(3),
+            'mainPosts' => PostResource::collection($featuredPosts->slice(0, 1)),
+            'secondaryPosts' => PostResource::collection($featuredPosts->slice(1, 2)),
+            'tertiaryPosts' => PostResource::collection($featuredPosts->slice(3)),
             'actions' => ActionResource::collection(Action::query()->get()->reverse()),
             'banners' => BannerResource::collection(Banner::query()->get()->reverse()),
             'dependencies' => DependencyResource::collection(Dependency::query()->get()->reverse()),

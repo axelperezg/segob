@@ -16,7 +16,7 @@ const toggleMenu = () => {
         <div class="border-b border-burgundy bg-burgundy -mx-4">
             <div class="flex items-center justify-between px-6 py-2 -mt-8 max-w-7xl mx-auto">
                 <div class="flex items-center">
-                    <img class="w-[9rem]" src="/assets/esados-unidos-mexicanos.svg" alt="Logo Gobierno de México" />
+                    <img class="w-[9rem]" :src="`/storage/${appSettings.mexico_logo}`" alt="Logo Gobierno de México" />
                 </div>
                 <div class="flex items-center space-x-4 text-white">
                     <a href="#" class="text-sm hover:text-gold">Noticias</a>

@@ -35,6 +35,7 @@ class GeneralSettingsTest extends TestCase
         // Act
         $component->fillForm([
             'logo' => UploadedFile::fake()->image('logo.jpg'),
+            'mexico_logo' => UploadedFile::fake()->image('mexico-logo.jpg'),
             'social_networks' => [
                 [
                     'network' => 'facebook',
@@ -54,6 +55,7 @@ class GeneralSettingsTest extends TestCase
 
         $settings = app(AppSettings::class);
         $this->assertNotNull($settings->logo);
+        $this->assertNotNull($settings->mexico_logo);
         $this->assertCount(2, $settings->social_networks);
         $this->assertEquals('facebook', $settings->social_networks[0]['network']);
         $this->assertEquals('https://facebook.com/test', $settings->social_networks[0]['url']);

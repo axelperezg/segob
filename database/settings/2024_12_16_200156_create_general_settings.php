@@ -8,9 +8,12 @@ return new class extends SettingsMigration
     public function up(): void
     {
         $logo = asset('assets/segob-noticias.png');
+        $logoMexico = asset('assets/estados-unidos-mexicanos.svg');
         Storage::disk('public')->put('logo.png', file_get_contents($logo));
+        Storage::disk('public')->put('logo-mexico.svg', file_get_contents($logoMexico));
 
         $this->migrator->add('general.logo', 'logo.png');
+        $this->migrator->add('general.mexico_logo', 'logo-mexico.svg');
         $this->migrator->add('general.social_networks', [
             [
                 'network' => 'facebook',

@@ -14,12 +14,4 @@ class BannerFactory extends Factory
             'external_url' => fake()->url(),
         ];
     }
-
-    public function withImage(): self
-    {
-        return $this->afterCreating(function (Banner $banner) {
-            $banner->addMediaFromUrl('https://picsum.photos/1200/300')
-                ->toMediaCollection('banner');
-        });
-    }
 }

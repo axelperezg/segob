@@ -87,6 +87,7 @@ class HandleInertiaRequests extends Middleware
                 'social_networks' => app(AppSettings::class)->social_networks,
                 'map_url' => app(AppSettings::class)->map_url,
                 'contact_content' => app(AppSettings::class)->contact_content,
+                'mexico_logo' => app(AppSettings::class)->mexico_logo,
             ],
         ]);
     }

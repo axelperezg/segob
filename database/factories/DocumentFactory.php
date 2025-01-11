@@ -21,11 +21,4 @@ class DocumentFactory extends Factory
             'document_section' => fake()->randomElement(DocumentSectionEnum::cases()),
         ];
     }
-
-    public function withImage(): self
-    {
-        return $this->afterCreating(function (Document $document) {
-            $document->addMediaFromUrl('https://picsum.photos/600/400')->toMediaCollection('image');
-        });
-    }
 }

@@ -33,6 +33,10 @@ class GeneralSettings extends SettingsPage
                             ->hiddenLabel()
                             ->image()
                             ->columnSpanFull(),
+                        Fileupload::make('mexico_logo')
+                            ->label('Logo Gobierno de México')
+                            ->image()
+                            ->columnSpanFull(),
                     ]),
                 Section::make('social')
                     ->heading('Redes Sociales')

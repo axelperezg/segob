@@ -13,13 +13,8 @@ class ActionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'banner' => $this->getFirstMediaUrl('banner') == null
-                ? 'https://placehold.co/600x350'
-                : $this->getFirstMediaUrl('banner'),
-            'image' => $this->getFirstMediaUrl('image') == null
-                ? 'https://placehold.co/600x350'
-                : $this->getFirstMediaUrl('image'),
-
+            'banner' => $this->getFirstMedia('banner')?->getFullUrl() ?? 'https://placehold.co/600x350',
+            'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];
     }

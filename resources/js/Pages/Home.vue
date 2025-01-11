@@ -6,6 +6,7 @@ import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
 import Infographics from '@/Components/Home/Infographics.vue';
 import MediaGallery from '@/Components/Home/MediaGallery.vue';
 import Contact from '@/Components/Home/Contact.vue';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
     mainPosts: Object,
@@ -25,9 +26,9 @@ defineProps({
         <div class="grid grid-cols-1 gap-6 pb-8 pt-4 lg:flex">
             <div class="space-y-6 lg:w-2/3">
                 <!-- Main posts -->
-                <a :href="route('posts.show', post.slug)" v-for="post in mainPosts" :key="post.id">
+                <a :href="route('posts.show', post.slug)" v-for="post in mainPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
-                        <img :src="post.image" :alt="post.title" class="w-full" />
+                        <img :src="post.featured_image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-xl font-bold lg:text-4xl">{{ post.title }}</h2>
                             <p class="mb-1 text-xs italic text-gray-600">
@@ -51,9 +52,9 @@ defineProps({
             </div>
             <!-- Secondary posts -->
             <div class="space-y-6 lg:w-1/3">
-                <a :href="route('posts.show', post.slug)" v-for="post in secondaryPosts" :key="post.id">
+                <a :href="route('posts.show', post.slug)" v-for="post in secondaryPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
-                        <img :src="post.image" :alt="post.title" class="w-full" />
+                        <img :src="post.featured_image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-lg font-bold leading-tight">{{ post.title }}</h2>
                             <p class="mb-1 text-xs italic text-gray-600">
@@ -78,9 +79,9 @@ defineProps({
 
         <!-- Tertiary posts -->
         <div class="space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
-            <a :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts" :key="post.id">
+            <a :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts.data" :key="post.id">
                 <article class="overflow-hidden border rounded-lg">
-                    <img :src="post.image" :alt="post.title" class="w-full" />
+                    <img :src="post.featured_image" :alt="post.title" class="w-full" />
                     <div class="p-4">
                         <h2 class="mb-2 text-lg font-bold">{{ post.title }}</h2>
                         <p class="mb-1 text-xs italic text-gray-600">
@@ -103,9 +104,9 @@ defineProps({
         </div>
 
         <div class="flex justify-center mt-8">
-            <button class="px-8 py-2 font-medium text-white transition-colors rounded bg-burgundy hover:bg-gold">
+            <Link href="/noticias" class="px-8 py-2 font-medium text-white transition-colors rounded bg-burgundy hover:bg-gold">
                 Ver más
-            </button>
+            </Link>
         </div>
     </section>
 

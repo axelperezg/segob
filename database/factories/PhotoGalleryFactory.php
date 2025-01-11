@@ -20,11 +20,4 @@ class PhotoGalleryFactory extends Factory
             'published_at' => fake()->dateTimeBetween('-7 days', 'now'),
         ];
     }
-
-    public function withImage()
-    {
-        return $this->afterCreating(function (PhotoGallery $photoGallery) {
-            $photoGallery->addMediaFromUrl('https://picsum.photos/600/400')->toMediaCollection('image');
-        });
-    }
 }

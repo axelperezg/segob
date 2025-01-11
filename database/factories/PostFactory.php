@@ -31,13 +31,4 @@ class PostFactory extends Factory
             'document_id' => Document::factory(),
         ];
     }
-
-    public function withImage()
-    {
-        return $this->afterCreating(function (Post $post) {
-            $post
-                ->addMediaFromUrl('https://picsum.photos/1600/900')
-                ->toMediaCollection('image');
-        });
-    }
 }

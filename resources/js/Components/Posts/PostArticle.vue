@@ -14,7 +14,7 @@ const presenter = new PostPresenter(props.post);
 
 <template>
     <Link :href="route('posts.show', { post: presenter.slug })" class="hover:opacity-95">
-        <article class="flex flex-col gap-6 border-b border-gray-200 pb-6 md:flex-row">
+        <article class="flex flex-col gap-6 border-b border-gray-200 py-3 md:flex-row">
             <img :src="presenter.featuredImage" :alt="presenter.title" class="w-48 h-32 object-cover rounded">
             <div>
                 <h2 class="text-xl font-medium mt-1">{{ presenter.title }}</h2>
@@ -37,4 +37,4 @@ const presenter = new PostPresenter(props.post);
             </div>
         </article>
     </Link>
-</template> 
+</template>
