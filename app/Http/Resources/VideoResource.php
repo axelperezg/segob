@@ -15,7 +15,7 @@ class VideoResource extends JsonResource
             'slug' => $this->slug,
             'url' => $this->url,
             'published_at' => $this->published_at,
-            'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://via.placeholder.com/600x350',
+            'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
 
             'posts' => PostResource::collection($this->whenLoaded('posts')),
         ];
