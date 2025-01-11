@@ -57,7 +57,6 @@ class FeaturedPostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([]);
     }
@@ -66,8 +65,6 @@ class FeaturedPostResource extends Resource
     {
         return [
             'index' => Pages\ListFeaturedPosts::route('/'),
-            'create' => Pages\CreateFeaturedPost::route('/create'),
-            'edit' => Pages\EditFeaturedPost::route('/{record}/edit'),
             'edit-all' => Pages\EditAllFeaturedPosts::route('/edit-all'),
         ];
     }

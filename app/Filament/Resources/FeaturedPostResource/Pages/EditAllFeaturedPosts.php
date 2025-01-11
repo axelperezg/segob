@@ -38,18 +38,28 @@ class EditAllFeaturedPosts extends Page
             ->schema([
                 Repeater::make('featured_posts')
                     ->hiddenLabel()
+                    ->maxItems(6)
                     ->columnSpanFull()
+                    ->addActionLabel('Agregar post destacado')
                     ->simple(
                         Select::make('post_id')
                             ->label('Noticia')
                             ->required()
                             ->searchable()
                             ->options(
-                                Post::query()
-                                    ->orderBy('created_at', 'desc')
-                                    ->get()
-                                    ->pluck('title', 'id')
-                                    ->toArray()
+                                function () {
+                                    $selectedPostIds = collect($this->data['featured_posts'] ?? [])
+                                        ->filter(fn($post) => !empty($post['post_id']))
+                                        ->pluck('post_id')
+                                        ->toArray();
+
+                                    return Post::query()
+                                        ->whereNotIn('id', $selectedPostIds)
+                                        ->orderBy('created_at', 'desc')
+                                        ->get()
+                                        ->pluck('title', 'id')
+                                        ->toArray();
+                                }
                             )
                     ),
             ])
@@ -68,10 +78,23 @@ class EditAllFeaturedPosts extends Page
     public function save(): void
     {
         $data = $this->form->getState();
+
+        $totalData = count($data['featured_posts']);
+
+        if ($totalData !== 6 && $totalData !== 0) {
+            Notification::make()
+                ->danger()
+                ->title('Error')
+                ->body('Debe seleccionar exactamente 6 posts destacados.')
+                ->send();
+
+            return;
+        }
+
         FeaturedPost::query()->delete();
 
         foreach ($data['featured_posts'] as $index => $postId) {
-            FeaturedPost::create([
+            FeaturedPost::query()->create([
                 'post_id' => $postId,
                 'sort' => $index + 1,
                 'is_active' => true,
