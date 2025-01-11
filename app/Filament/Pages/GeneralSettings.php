@@ -17,7 +17,7 @@ class GeneralSettings extends SettingsPage
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?int $navigationSort = 7;
-
+    protected static ?string $title = 'Configuración del Sitio';
     protected static string $settings = AppSettings::class;
 
     protected static ?string $navigationLabel = 'Configuración del Sitio';
@@ -27,16 +27,15 @@ class GeneralSettings extends SettingsPage
         return $form
             ->schema([
                 Section::make('Logo')
+                    ->columns(2)
                     ->schema([
                         Fileupload::make('logo')
                             ->label('Logo')
                             ->hiddenLabel()
-                            ->image()
-                            ->columnSpanFull(),
+                            ->image(),
                         Fileupload::make('mexico_logo')
                             ->label('Logo Gobierno de México')
-                            ->image()
-                            ->columnSpanFull(),
+                            ->image(),
                     ]),
                 Section::make('social')
                     ->heading('Redes Sociales')

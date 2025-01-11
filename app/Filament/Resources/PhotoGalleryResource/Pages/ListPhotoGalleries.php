@@ -13,12 +13,14 @@ class ListPhotoGalleries extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Nueva fotogalería')
+                ->icon('heroicon-o-plus'),
         ];
     }
 
     public function getTitle(): string
     {
-        return 'Galerías de fotos';
+        return 'Fotogalerías';
     }
 }

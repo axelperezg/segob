@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateAction extends CreateRecord
 {
     protected static string $resource = ActionResource::class;
+
+    public function getTitle(): string
+    {
+        return 'Nueva acción';
+    }
 }

@@ -24,6 +24,8 @@ class ActionResource extends Resource
 
     protected static ?string $navigationLabel = 'Acciones';
 
+    protected static ?string $breadcrumb = 'Acciones';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -31,6 +33,7 @@ class ActionResource extends Resource
         return $form
             ->schema([
                 Section::make()
+                    ->columns(2)
                     ->schema([
                         TextInput::make('name')
                             ->required()

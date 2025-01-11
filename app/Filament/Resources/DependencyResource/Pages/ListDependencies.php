@@ -10,10 +10,17 @@ class ListDependencies extends ListRecords
 {
     protected static string $resource = DependencyResource::class;
 
+    public function getTitle(): string
+    {
+        return 'Dependencias';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Nueva dependencia')
+                ->icon('heroicon-o-plus'),
         ];
     }
 }

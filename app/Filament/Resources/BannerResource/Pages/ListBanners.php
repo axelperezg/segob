@@ -10,10 +10,17 @@ class ListBanners extends ListRecords
 {
     protected static string $resource = BannerResource::class;
 
+    public function getTitle(): string
+    {
+        return 'Banners';
+    }
+
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Nuevo banner')
+                ->icon('heroicon-o-plus'),
         ];
     }
 }

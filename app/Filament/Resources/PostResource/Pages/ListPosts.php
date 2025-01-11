@@ -13,13 +13,15 @@ class ListPosts extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Nuevo contenido')
+                ->icon('heroicon-o-plus'),
         ];
     }
 
     public function getTitle(): string
     {
-        return 'Posts';
+        return 'Contenido';
     }
 
     protected function getRedirectUrl(): string

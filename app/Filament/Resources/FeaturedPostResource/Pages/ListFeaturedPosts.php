@@ -14,7 +14,9 @@ class ListFeaturedPosts extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->label('Nuevo destacado')
+                ->icon('heroicon-o-plus'),
             Action::make('editFeaturedPosts')
                 ->label('Editar posts destacados')
                 ->url(route('filament.admin.resources.featured-posts.edit-all'))

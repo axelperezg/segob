@@ -19,6 +19,8 @@ class DependencyResource extends Resource
 
     protected static ?string $navigationLabel = 'Dependencias';
 
+    protected static ?string $breadcrumb = 'Dependencias';
+
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Form $form): Form
@@ -29,6 +31,7 @@ class DependencyResource extends Resource
                     ->columns()
                     ->schema([
                         TextInput::make('name')
+                            ->label('Nombre')
                             ->required()
                             ->maxLength(255),
                         SpatieMediaLibraryFileUpload::make('image')

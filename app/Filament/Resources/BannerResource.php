@@ -20,6 +20,10 @@ class BannerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $navigationLabel = 'Banners';
+
+    protected static ?string $breadcrumb = 'Banners';
+
     public static function form(Form $form): Form
     {
         return $form

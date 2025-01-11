@@ -18,6 +18,8 @@ class FeaturedPostResource extends Resource
 
     protected static ?string $navigationLabel = 'Noticias';
 
+    protected static ?string $breadcrumb = 'Noticias';
+
     protected static ?string $navigationGroup = 'Home';
 
     protected static ?int $navigationSort = 1;
