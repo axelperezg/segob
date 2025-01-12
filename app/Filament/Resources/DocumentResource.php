@@ -98,7 +98,8 @@ class DocumentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Nombre'),
+                    ->label('Nombre')
+                    ->searchable(),
                 TextColumn::make('type')
                     ->label('Tipo')
                     ->formatStateUsing(fn (DocumentTypeEnum $state) => $state->getLabel()),
