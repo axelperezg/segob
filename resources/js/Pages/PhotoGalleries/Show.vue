@@ -51,7 +51,7 @@ onMounted(() => {
                 </div>
             </div>
 
-            <div class="lg:col-span-1">
+            <div v-if="props.gallery.data.posts.length > 0" class="lg:col-span-1">
                 <div class="bg-white rounded-lg border border-gray-100 shadow p-6">
                     <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Contenido relacionado</h2>
                     <div class="mb-2">

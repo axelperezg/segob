@@ -110,7 +110,7 @@ const downloadPDF = () => {
                     </button>
                 </div>
 
-                <div class="bg-white rounded-lg border border-gray-100 shadow p-6">
+                <div v-if="document.data.posts.length > 0" class="bg-white rounded-lg border border-gray-100 shadow p-6">
                     <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">Contenido relacionado</h2>
 
                     <div class="mb-2">
