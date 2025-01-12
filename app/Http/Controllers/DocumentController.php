@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Documents\DocumentTypeEnum;
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\Request;
@@ -12,6 +13,10 @@ class DocumentController extends Controller
     public function index(Request $request)
     {
         $documents = Document::query()
+            ->whereIn('type', [
+                DocumentTypeEnum::PRESENTATION,
+                DocumentTypeEnum::PUBLICATION,
+            ])
             ->searchByName(request('title'))
             ->searchByDocumentSection(request('document_section'))
             ->orderByDesc('published_at')
