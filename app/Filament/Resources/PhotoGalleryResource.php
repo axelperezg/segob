@@ -86,6 +86,7 @@ class PhotoGalleryResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->searchable()
                     ->label('Título'),
                 IconColumn::make('is_published')
                     ->label('Publicado')

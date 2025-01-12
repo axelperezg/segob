@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ActionResource\Pages;
+use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 use App\Models\Action;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -20,7 +21,7 @@ class ActionResource extends Resource
 {
     protected static ?string $model = Action::class;
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 7;
 
     protected static ?string $navigationLabel = 'Acciones';
 
@@ -67,6 +68,9 @@ class ActionResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('posts_count')
+                    ->counts('posts')
+                    ->label('Publicaciones'),
                 TextColumn::make('slug')
                     ->searchable(),
                 SpatieMediaLibraryImageColumn::make('banner')

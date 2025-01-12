@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -25,5 +27,10 @@ class Dependency extends Model implements HasMedia
         $this->addMediaCollection('image')
             ->singleFile()
             ->useDisk('public');
+    }
+
+    public function posts(): BelongsToMany
+    {
+        return $this->belongsToMany(Post::class);
     }
 }

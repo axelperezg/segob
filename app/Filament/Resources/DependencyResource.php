@@ -10,6 +10,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -18,6 +19,8 @@ class DependencyResource extends Resource
     protected static ?string $model = Dependency::class;
 
     protected static ?string $navigationLabel = 'Dependencias';
+
+    protected static ?int $navigationSort = 6;
 
     protected static ?string $breadcrumb = 'Dependencias';
 
@@ -52,6 +55,15 @@ class DependencyResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('posts_count')
+                    ->counts('posts')
+                    ->label('Publicaciones'),
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->collection('image')
+                    ->label('Imagen'),
+                SpatieMediaLibraryImageColumn::make('banner')
+                    ->collection('banner')
+                    ->label('Banner'),
             ])
             ->filters([
                 //

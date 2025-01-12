@@ -13,6 +13,10 @@ export default class PhotoGalleryPresenter {
         return this.photoGallery.name;
     }
 
+    get slug() {
+        return this.photoGallery.slug;
+    }
+
     get is_published() {
         return this.photoGallery.is_published;
     }
@@ -36,4 +40,4 @@ export default class PhotoGalleryPresenter {
     get thumbnail() {
         return this.photoGallery.image;
     }
-} 
+}
