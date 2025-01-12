@@ -37,6 +37,8 @@ class HomeController extends Controller
 
         $infographics = Document::query()
             ->where('type', DocumentTypeEnum::INFOGRAPHIC)
+            ->latest()
+            ->limit(10)
             ->get();
 
         return Inertia::render('Home', [
@@ -44,12 +46,12 @@ class HomeController extends Controller
             'secondaryPosts' => PostResource::collection($featuredPosts->slice(1, 2)),
             'tertiaryPosts' => PostResource::collection($featuredPosts->slice(3)),
             'actions' => ActionResource::collection(Action::query()->get()->reverse()),
-            'banners' => BannerResource::collection(Banner::query()->get()->reverse()),
-            'dependencies' => DependencyResource::collection(Dependency::query()->get()->reverse()),
+            'banners' => BannerResource::collection(Banner::query()->limit(4)->latest()->get()),
+            'dependencies' => DependencyResource::collection(Dependency::query()->latest()->get()),
             'infographics' => DocumentResource::collection($infographics),
             'mediaGallery' => [
-                'photos' => PhotoGalleryResource::collection(PhotoGallery::query()->latest()->get()),
-                'videos' => VideoResource::collection(Video::query()->latest()->get()),
+                'photos' => PhotoGalleryResource::collection(PhotoGallery::query()->latest()->limit(8)->get()),
+                'videos' => VideoResource::collection(Video::query()->latest()->limit(8)->get()),
             ],
         ]);
     }
