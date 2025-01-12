@@ -40,9 +40,7 @@ class NewsTest extends TestCase
 
         // Act
         $response = $this->getNewsPage([
-            'filter' => [
-                'title' => $post->title,
-            ],
+            'title' => $post->title,
         ]);
 
         // Assert

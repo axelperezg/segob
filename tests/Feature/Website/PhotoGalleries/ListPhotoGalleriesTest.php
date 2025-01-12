@@ -41,7 +41,7 @@ class ListPhotoGalleriesTest extends TestCase
         $photoGallery = PhotoGallery::factory()->create();
 
         // Act
-        $response = $this->listPhotoGalleries(['name' => $photoGallery->name]);
+        $response = $this->listPhotoGalleries(['title' => $photoGallery->name]);
 
         // Assert
         $response

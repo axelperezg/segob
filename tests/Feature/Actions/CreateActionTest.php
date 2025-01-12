@@ -26,7 +26,8 @@ it('can create an action', function () {
     // Act
     $component->fillForm([
         'name' => $data->name,
-        'banner' => UploadedFile::fake()->image('image.jpg'),
+        'banner' => UploadedFile::fake()->image('banner.jpg'),
+        'image' => UploadedFile::fake()->image('image.jpg'),
     ])->call('create');
 
     // Assert
@@ -39,4 +40,5 @@ it('can create an action', function () {
         ->slug->toBe(Str::slug($data->name));
 
     expect($action->getFirstMedia('banner')->getFullUrl())->not->toBeNull();
+    expect($action->getFirstMedia('image')->getFullUrl())->not->toBeNull();
 });
