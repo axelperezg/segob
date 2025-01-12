@@ -16,6 +16,8 @@ class AppSettings extends Settings
 
     public ?string $contact_content = '';
 
+    public array $footer_links = [];
+    
     public static function group(): string
     {
         return 'general';

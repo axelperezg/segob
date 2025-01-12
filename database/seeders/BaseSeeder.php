@@ -28,8 +28,8 @@ class BaseSeeder extends Seeder
             'email' => 'miguel@gmail.com',
         ]);
         $audio = Audio::factory()->create();
-        $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
-        $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
+        // $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
+        // $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
 
         $this->createInitialPosts();
         $this->createAdditionalPosts();

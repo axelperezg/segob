@@ -81,6 +81,31 @@ class GeneralSettings extends SettingsPage
                             ->toolbarButtons(['bold'])
                             ->columnSpanFull(),
                     ]),
+                Section::make('footer')
+                    ->heading('Footer')
+                    ->schema([
+                        Repeater::make('footer_links')
+                            ->hiddenLabel()
+                            ->columns(12)
+                            ->collapsible()
+                            ->schema([
+                                TextInput::make('title')
+                                    ->columnSpan(3)
+                                    ->label('Título')
+                                    ->required(),
+                                Repeater::make('links')
+                                    ->columnSpan(9)
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('title')
+                                            ->label('Título')
+                                            ->required(),
+                                        TextInput::make('url')
+                                            ->label('URL')
+                                            ->required(),
+                                    ]),
+                            ]),
+                    ]),
             ]);
     }
 }

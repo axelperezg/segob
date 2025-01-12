@@ -48,6 +48,12 @@ class GeneralSettingsTest extends TestCase
             ],
             'map_url' => 'https://www.google.com/maps',
             'contact_content' => 'Contenido de contacto',
+            'footer_links' => [
+                [
+                    'title' => 'Título 1',
+                    'url' => 'https://www.google.com/maps',
+                ],
+            ],
         ])->call('save');
 
         // Assert
