@@ -4,7 +4,6 @@ namespace App\Filament\Resources\FeaturedPostResource\Pages;
 
 use App\Filament\Resources\FeaturedPostResource;
 use Filament\Actions\Action;
-use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListFeaturedPosts extends ListRecords

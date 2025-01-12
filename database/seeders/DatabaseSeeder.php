@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\PhotoGallery;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
 

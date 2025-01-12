@@ -3,7 +3,6 @@
 namespace Tests\Feature\Website;
 
 use App\Models\PhotoGallery;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class PhotoGalleriesTest extends TestCase

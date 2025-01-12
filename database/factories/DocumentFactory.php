@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
-use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

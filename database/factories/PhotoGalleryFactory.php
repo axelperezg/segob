@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\PhotoGallery;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 

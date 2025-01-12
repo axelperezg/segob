@@ -49,7 +49,7 @@ class EditAllFeaturedPosts extends Page
                             ->options(
                                 function () {
                                     $selectedPostIds = collect($this->data['featured_posts'] ?? [])
-                                        ->filter(fn($post) => !empty($post['post_id']))
+                                        ->filter(fn ($post) => ! empty($post['post_id']))
                                         ->pluck('post_id')
                                         ->toArray();
 

@@ -6,7 +6,6 @@ use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Audio;
 use App\Models\Document;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

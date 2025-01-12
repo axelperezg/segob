@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ActionResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 use App\Models\Action;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
