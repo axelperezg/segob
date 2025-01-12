@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import DocumentPresenter from '@/Presenters/DocumentPresenter'
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     document: {
@@ -13,7 +14,7 @@ const documentPresenter = computed(() => new DocumentPresenter(props.document))
 </script>
 
 <template>
-    <div class="px-2">
+    <Link :href="route('documents.show', documentPresenter.slug)" class="px-2 block">
         <img :src="documentPresenter.image" :alt="documentPresenter.name" class="w-full mb-4 rounded-lg">
         <p class="font-semibold text-xl text-left text-gray-700">{{ documentPresenter.name }}</p>
         <p class="mb-1 text-sm text-gray-600 font-semibold">
@@ -24,5 +25,5 @@ const documentPresenter = computed(() => new DocumentPresenter(props.document))
             </svg>
             {{ documentPresenter.published_at }}
         </p>
-    </div>
-</template> 
+    </Link>
+</template>

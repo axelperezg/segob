@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Enums\Documents\DocumentTypeEnum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,6 +22,11 @@ class DocumentResource extends JsonResource
             'document' => $this->getFirstMedia('document')?->getFullUrl(),
 
             'posts' => PostResource::collection($this->whenLoaded('posts')),
+
+            'isInfographic' => $this->type === DocumentTypeEnum::INFOGRAPHIC,
+            'isPresentation' => $this->type === DocumentTypeEnum::PRESENTATION,
+            'isPublication' => $this->type === DocumentTypeEnum::PUBLICATION,
         ];
     }
 }
+

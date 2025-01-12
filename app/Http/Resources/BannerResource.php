@@ -13,7 +13,7 @@ class BannerResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'external_url' => $this->external_url,
-            'image' => $this->getFirstMedia('banner')?->getFullUrl() ?? 'https://placehold.co/600x350',
+            'image' => $this->getFirstMedia('banner')?->getFullUrl() ?? 'https://placehold.co/600x100',
         ];
     }
 }
