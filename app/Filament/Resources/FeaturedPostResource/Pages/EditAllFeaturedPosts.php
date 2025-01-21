@@ -51,14 +51,15 @@ class EditAllFeaturedPosts extends Page
                                     $selectedPostIds = collect($this->data['featured_posts'] ?? [])
                                         ->filter(fn ($post) => ! empty($post['post_id']))
                                         ->pluck('post_id')
+                                        ->values()
                                         ->toArray();
 
                                     return Post::query()
-                                        ->whereNotIn('id', $selectedPostIds)
+                                        // ->whereNotIn('id', $selectedPostIds)
                                         ->orderBy('created_at', 'desc')
+                                        ->where('is_published', true)
                                         ->get()
-                                        ->pluck('title', 'id')
-                                        ->toArray();
+                                        ->pluck('title', 'id');
                                 }
                             )
                     ),

@@ -44,68 +44,68 @@ return new class extends SettingsMigration
                 'links' => [
                     [
                         'title' => 'Participa',
-                        'url' => '/participa'
+                        'url' => '/participa',
                     ],
                     [
-                        'title' => 'Publicaciones Oficiales', 
-                        'url' => '/publicaciones'
+                        'title' => 'Publicaciones Oficiales',
+                        'url' => '/publicaciones',
                     ],
                     [
                         'title' => 'Marco Jurídico',
-                        'url' => '/marco-juridico'
+                        'url' => '/marco-juridico',
                     ],
                     [
                         'title' => 'Plataforma Nacional de Transparencia',
-                        'url' => '/transparencia'
-                    ]
-                ]
+                        'url' => '/transparencia',
+                    ],
+                ],
             ],
             [
                 'title' => '¿Qué es gob.mx?',
                 'links' => [
                     [
                         'title' => 'Es el portal único de trámites, información y participación ciudadana',
-                        'url' => '/que-es-gobmx'
+                        'url' => '/que-es-gobmx',
                     ],
                     [
                         'title' => 'Portal de datos abiertos',
-                        'url' => '/datos'
+                        'url' => '/datos',
                     ],
                     [
                         'title' => 'Declaración de accesibilidad',
-                        'url' => '/accesibilidad'
+                        'url' => '/accesibilidad',
                     ],
                     [
                         'title' => 'Aviso de privacidad integral',
-                        'url' => '/privacidad'
+                        'url' => '/privacidad',
                     ],
                     [
                         'title' => 'Aviso de privacidad simplificado',
-                        'url' => '/privacidad-simplificado'
+                        'url' => '/privacidad-simplificado',
                     ],
                     [
                         'title' => 'Términos y Condiciones',
-                        'url' => '/terminos'
+                        'url' => '/terminos',
                     ],
                     [
                         'title' => 'Política de seguridad',
-                        'url' => '/seguridad'
+                        'url' => '/seguridad',
                     ],
                     [
                         'title' => 'Mapa de sitio',
-                        'url' => '/mapa-sitio'
-                    ]
-                ]
+                        'url' => '/mapa-sitio',
+                    ],
+                ],
             ],
             [
                 'title' => 'Contacto',
                 'links' => [
                     [
                         'title' => 'Dudas e información www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54',
-                        'url' => 'https://www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54'
-                    ]
-                ]
-            ]
+                        'url' => 'https://www.gob.mx/tramites/ficha/presentacion-de-quejas-y-denuncias-en-la-sfp/SFP54',
+                    ],
+                ],
+            ],
         ]);
     }
 
