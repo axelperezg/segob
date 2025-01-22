@@ -15,6 +15,16 @@ class Post extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($post) {
+            $post->last_edited_by = auth()->id();
+            $post->last_edited_at = now();
+        });
+    }
+
     protected $fillable = [
         'title',
         'content',
@@ -31,12 +41,15 @@ class Post extends Model implements HasMedia
         'document_id',
         'photo_gallery_id',
         'video_id',
+        'last_edited_by',
+        'last_edited_at',
     ];
 
     protected function casts(): array
     {
         return [
             'published_at' => 'date',
+            'last_edited_at' => 'datetime',
             'is_published' => 'boolean',
             'content_type' => ContentTypeEnum::class,
         ];
@@ -135,5 +148,10 @@ class Post extends Model implements HasMedia
     public function states(): BelongsToMany
     {
         return $this->belongsToMany(State::class)->withTimestamps();
+    }
+
+    public function lastEditedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'last_edited_by');
     }
 }

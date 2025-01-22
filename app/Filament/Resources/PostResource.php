@@ -14,6 +14,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -203,6 +204,19 @@ class PostResource extends Resource
                             ->hiddenLabel()
                             ->relationship('video', 'title'),
                     ]),
+                Section::make('Información de edición')
+                    ->columns()
+                    ->schema([
+                        Placeholder::make('created_info')
+                            ->content(fn (Post $record): string => "Creado por {$record->createdBy->name} el {$record->created_at->format('d/m/Y H:i:s')}")
+                            ->hiddenLabel(),
+                        Placeholder::make('last_edited_info')
+                            ->content(fn (Post $record): string => $record->last_edited_by ? "Última edición por {$record->lastEditedBy->name} el {$record->last_edited_at->format('d/m/Y H:i:s')}" : null)
+                            ->hiddenLabel()
+                            ->visible(fn (Post $record): bool => $record->last_edited_by !== null),
+                    ])
+                    ->hidden(fn (?Post $record) => $record === null)
+                    ->columnSpanFull(),
             ]);
     }
 
