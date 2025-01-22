@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function __invoke()
     {
         $featuredPosts = FeaturedPost::query()
-            ->with('post.media')
+            ->with('post.media', 'post.states')
             ->whereHas('post', fn ($query) => $query->where('is_published', true))
             ->orderBy('sort')
             ->get()

@@ -215,7 +215,7 @@ class PostResource extends Resource
                     ->searchable()
                     ->label('Título'),
                 TextColumn::make('createdBy.name')
-                    ->label('Autor'),
+                    ->label('Usuario'),
                 TextColumn::make('published_at')
                     ->label('Fecha de publicación')
                     ->dateTime('d/m/Y'),

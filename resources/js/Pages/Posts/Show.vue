@@ -88,8 +88,12 @@ const activeTab = ref(1);
                     <div class="prose-lg max-w-7xl" v-html="postPresenter.content">
                     </div>
                     <div class="flex justify-center">
-                    <h5 class="text-sm text-center italic font-normal border-l border-gray-400 pl-2 mt-10">{{ postPresenter.createdBy }}</h5>
-                </div>
+                        <div class="flex flex-wrap gap-2 items-center border-l border-gray-400 pl-2 mt-10">
+                            <span v-for="dependency in postPresenter.dependencies" :key="dependency.id" class="text-sm italic font-normal">
+                                {{ dependency.name }}{{ !$last ? ',' : '' }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="pt-10" v-if="postPresenter.contentType === 'Boletín'">
                     <p class="text-lg font-bold">Boletín No. {{ postPresenter.bulletin }}</p>

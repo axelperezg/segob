@@ -24,7 +24,7 @@ class PostResource extends JsonResource
                 'name' => $state->name,
             ]),
             'published_at' => $this->published_at,
-            'created_by' => UserResource::make($this->whenLoaded('createdBy')),
+            'dependencies' => DependencyResource::collection($this->whenLoaded('dependencies')),
             'bulletin' => $this->bulletin,
             'year' => $this->year,
 
