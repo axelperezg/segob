@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
@@ -83,11 +82,12 @@ class PostResource extends Resource
                         TextInput::make('year')
                             ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
                             ->label('Año'),
-                        Select::make('state')
-                            ->nullable()
+                        Select::make('states')
+                            ->multiple()
+                            ->relationship('states', 'name')
+                            ->preload()
                             ->searchable()
-                            ->options(MexicanStateEnum::class)
-                            ->label('Estado'),
+                            ->label('Estados'),
                         DatePicker::make('published_at')
                             ->required()
                             ->default(now())

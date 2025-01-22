@@ -49,8 +49,8 @@ export default class PostPresenter {
         return this.post.content_type;
     }
 
-    get state() {
-        return this.post.state;
+    get states() {
+        return this.post.states;
     }
 
     get keywords() {

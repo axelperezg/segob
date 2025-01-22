@@ -19,7 +19,10 @@ class PostResource extends JsonResource
             'featured_image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
             'content_type' => $this->content_type->getLabel(),
-            'state' => $this->state,
+            'states' => $this->states->map(fn ($state) => [
+                'id' => $state->id,
+                'name' => $state->name,
+            ]),
             'published_at' => $this->published_at,
             'created_by' => UserResource::make($this->whenLoaded('createdBy')),
             'bulletin' => $this->bulletin,

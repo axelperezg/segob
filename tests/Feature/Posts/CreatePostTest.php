@@ -8,6 +8,7 @@ use App\Models\Audio;
 use App\Models\Dependency;
 use App\Models\Document;
 use App\Models\Post;
+use App\Models\State;
 use App\Models\Video;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
@@ -33,6 +34,7 @@ it('can create a post', function () {
     $audio = Audio::factory()->create();
     $document = Document::factory()->create();
     $video = Video::factory()->create();
+    $states = State::factory(2)->create()->pluck('id')->toArray();
 
     // Act
     $this->component->fillForm([
@@ -42,7 +44,7 @@ it('can create a post', function () {
         'excerpt' => $data->excerpt,
         'content_type' => $data->content_type,
         'keywords' => $data->keywords,
-        'state' => $data->state,
+        'states' => $states,
         'published_at' => $data->published_at,
         'created_by' => $data->created_by,
         'actions' => [$action->id],
@@ -64,11 +66,13 @@ it('can create a post', function () {
         ->excerpt->toBe($data->excerpt)
         ->keywords->toBe($data->keywords)
         ->content_type->toBe($data->content_type)
-        ->state->toBe($data->state)
         ->published_at->format('Y-m-d H:i')->toBe($data->published_at->format('Y-m-d H:i'))
         ->created_by->toBe($data->created_by)
         ->bulletin->toBeNull()
         ->year->toBeNull();
+
+    assertCount(2, $post->states);
+    expect($post->states->pluck('id')->toArray())->toEqualCanonicalizing($states);
 
     assertCount(1, $post->actions);
     expect($post->actions->first())->id->toBe($action->id);
@@ -94,6 +98,7 @@ it('can create a bulletin post', function () {
     $audio = Audio::factory()->create();
     $document = Document::factory()->create();
     $video = Video::factory()->create();
+    $states = State::factory(2)->create()->pluck('id')->toArray();
 
     // Act
     $this->component->fillForm([
@@ -105,7 +110,7 @@ it('can create a bulletin post', function () {
         'bulletin' => $data->bulletin,
         'year' => $data->year,
         'keywords' => $data->keywords,
-        'state' => $data->state->value,
+        'states' => $states,
         'published_at' => $data->published_at,
         'created_by' => $data->created_by,
         'actions' => [$action->id],

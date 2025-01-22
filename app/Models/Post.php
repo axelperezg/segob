@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\MexicanStateEnum;
 use App\Enums\Posts\ContentTypeEnum;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,7 +25,6 @@ class Post extends Model implements HasMedia
         'content_type',
         'bulletin',
         'year',
-        'state',
         'published_at',
         'created_by',
         'audio_id',
@@ -41,7 +39,6 @@ class Post extends Model implements HasMedia
             'published_at' => 'date',
             'is_published' => 'boolean',
             'content_type' => ContentTypeEnum::class,
-            'state' => MexicanStateEnum::class,
         ];
     }
 
@@ -133,5 +130,10 @@ class Post extends Model implements HasMedia
                 fn (Builder $query) => $query->where('dependency_id', $dependencyId)
             )
         );
+    }
+
+    public function states(): BelongsToMany
+    {
+        return $this->belongsToMany(State::class)->withTimestamps();
     }
 }

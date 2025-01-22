@@ -12,6 +12,7 @@ use App\Models\Document;
 use App\Models\FeaturedPost;
 use App\Models\PhotoGallery;
 use App\Models\Post;
+use App\Models\State;
 use App\Models\User;
 use App\Models\Video;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,8 @@ class BaseSeeder extends Seeder
             'name' => 'Miguel Bonifaz',
             'email' => 'miguel@gmail.com',
         ]);
+
+        $this->createStates();
         $audio = Audio::factory()->create();
         // $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
         // $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
@@ -42,6 +45,10 @@ class BaseSeeder extends Seeder
             $post->actions()->attach($actions);
             $dependencies = Dependency::query()->where('slug', 'unidad-de-analisis-estrategicos-y-vinculacion-interinstitucional')->get();
             $post->dependencies()->attach($dependencies);
+
+            $states = State::query()->inRandomOrder()->limit(rand(1, 3))->pluck('id')->toArray();
+
+            $post->states()->attach($states);
         });
 
         FeaturedPost::query()->create([
@@ -74,6 +81,48 @@ class BaseSeeder extends Seeder
         Document::factory(6)->create(['type' => DocumentTypeEnum::INFOGRAPHIC]);
         Document::factory(10)->create(['type' => DocumentTypeEnum::PRESENTATION]);
         Banner::factory(4)->create();
+    }
+
+    private function createStates(): void
+    {
+        $states = [
+            ['name' => 'Aguascalientes'],
+            ['name' => 'Baja California'],
+            ['name' => 'Baja California Sur'],
+            ['name' => 'Campeche'],
+            ['name' => 'Chiapas'],
+            ['name' => 'Chihuahua'],
+            ['name' => 'Ciudad de México'],
+            ['name' => 'Coahuila'],
+            ['name' => 'Colima'],
+            ['name' => 'Durango'],
+            ['name' => 'Estado de México'],
+            ['name' => 'Guanajuato'],
+            ['name' => 'Guerrero'],
+            ['name' => 'Hidalgo'],
+            ['name' => 'Jalisco'],
+            ['name' => 'Michoacán'],
+            ['name' => 'Morelos'],
+            ['name' => 'Nayarit'],
+            ['name' => 'Nuevo León'],
+            ['name' => 'Oaxaca'],
+            ['name' => 'Puebla'],
+            ['name' => 'Querétaro'],
+            ['name' => 'Quintana Roo'],
+            ['name' => 'San Luis Potosí'],
+            ['name' => 'Sinaloa'],
+            ['name' => 'Sonora'],
+            ['name' => 'Tabasco'],
+            ['name' => 'Tamaulipas'],
+            ['name' => 'Tlaxcala'],
+            ['name' => 'Veracruz'],
+            ['name' => 'Yucatán'],
+            ['name' => 'Zacatecas'],
+        ];
+
+        foreach ($states as $state) {
+            State::query()->create($state);
+        }
     }
 
     private function createActions()
