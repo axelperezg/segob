@@ -12,8 +12,8 @@ enum DocumentSectionEnum: int implements HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            self::ZERO_IMPUNITY => 'Cero impunidad',
-            self::SECURITY_REPORTS => 'Informes de seguridad',
+            self::ZERO_IMPUNITY => 'Sección 1: Cero impunidad',
+            self::SECURITY_REPORTS => 'Sección 2: Informes de seguridad',
         };
     }
 }

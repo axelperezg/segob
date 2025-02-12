@@ -13,6 +13,9 @@ use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 
 class DependencyResource extends Resource
 {
@@ -33,10 +36,23 @@ class DependencyResource extends Resource
                 Section::make('Información')
                     ->columns()
                     ->schema([
-                        TextInput::make('name')
-                            ->label('Nombre')
+                            
+                            TextInput::make('name')
                             ->required()
-                            ->maxLength(255),
+                            ->live(onBlur: true)
+                            ->maxLength(255)
+                            ->label('Nombre')
+                            ->afterStateUpdated(
+                                fn (string $operation, $state, Set $set) => $operation === 'create'
+                                    ? $set('slug', Str::slug($state))
+                                    : null
+                            ),
+                        TextInput::make('slug')
+                            ->disabled()
+                            ->dehydrated()
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(Dependency::class, 'slug', ignoreRecord: true),
                         SpatieMediaLibraryFileUpload::make('image')
                             ->collection('image')
                             ->required()

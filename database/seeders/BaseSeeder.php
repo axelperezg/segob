@@ -25,14 +25,16 @@ class BaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Miguel Bonifaz',
-            'email' => 'miguel@gmail.com',
+            'name' => 'Axel Pérez',
+            'email' => 'axelperezg@gmail.com',
         ]);
 
         $this->createStates();
         $audio = Audio::factory()->create();
         // $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
         // $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
+
+
 
         $this->createInitialPosts();
         $this->createAdditionalPosts();
