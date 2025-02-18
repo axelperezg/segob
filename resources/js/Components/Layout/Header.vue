@@ -25,7 +25,7 @@ const appSettings = usePage().props.app_settings
                 </div>
             </div>
             <figure class="hidden md:inline-block w-[6rem] -my-8">
-                <img class="-mb-[9px]" src="/assets/pleca.jpg" alt="" />
+                <img class="-mb-[9px]" src="/assets/grecaGuinda.png" alt="" />
             </figure>
         </div>
     </div>

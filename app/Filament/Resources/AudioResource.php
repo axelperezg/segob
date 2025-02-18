@@ -49,7 +49,7 @@ class AudioResource extends Resource
                         SpatieMediaLibraryFileUpload::make('audio')
                             ->label('Audio')
                             ->collection('audio')
-                            ->maxSize(5120)
+                            ->maxSize(15120)
                             ->acceptedFileTypes(['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp3'])
                             ->required(),
                     ]),
