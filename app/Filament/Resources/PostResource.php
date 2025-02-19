@@ -205,6 +205,7 @@ class PostResource extends Resource
                             ->relationship('video', 'title'),
                     ]),
                 Section::make('Versión Estenográfica')
+                    ->hidden(fn (Get $get) => $get('content_type') == ContentTypeEnum::STENOGRAPHIC_VERSION->value)
                     ->heading(function (Get $get) {
                         return $get('stenographic_version_id')
                             ? 'Versión Estenográfica Relacionada'
