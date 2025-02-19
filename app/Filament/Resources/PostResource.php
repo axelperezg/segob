@@ -204,6 +204,22 @@ class PostResource extends Resource
                             ->hiddenLabel()
                             ->relationship('video', 'title'),
                     ]),
+                Section::make('Versión Estenográfica')
+                    ->heading(function (Get $get) {
+                        return $get('stenographic_version_id')
+                            ? 'Versión Estenográfica Relacionada'
+                            : 'Relacionar Versión Estenográfica';
+                    })
+                    ->schema([
+                        Select::make('stenographic_version_id')
+                            ->searchable()
+                            ->hiddenLabel()
+                            ->options(
+                                Post::query()
+                                    ->where('content_type', ContentTypeEnum::STENOGRAPHIC_VERSION)
+                                    ->pluck('title', 'id')
+                            ),
+                    ]),
                 Section::make('Información de edición')
                     ->columns()
                     ->schema([

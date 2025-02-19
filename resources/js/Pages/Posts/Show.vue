@@ -80,6 +80,16 @@ const activeTab = ref(1);
                     >
                         Video
                     </button>
+                    <button
+                        v-if="postPresenter.hasStenographicVersion"
+                        @click="activeTab = 6"
+                        :class="[
+                            'py-2 font-[400] text-lg border-b-4 transition-colors',
+                            activeTab === 6 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                        ]"
+                    >
+                        Versión Estenográfica
+                    </button>
                 </nav>
             </div>
 
@@ -158,6 +168,11 @@ const activeTab = ref(1);
                                 allowfullscreen
                             ></iframe>
                         </div>
+                    </div>
+                </div>
+                <div v-show="activeTab === 6" class="max-w-5xl mx-auto">
+                    <div v-if="post.data?.stenographicVersion" class="prose-lg">
+                        <div v-html="post.data.stenographicVersion.content"></div>
                     </div>
                 </div>
             </div>

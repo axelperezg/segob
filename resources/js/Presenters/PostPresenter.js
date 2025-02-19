@@ -100,4 +100,8 @@ export default class PostPresenter {
     get hasVideo() {
         return this.post.video_id;
     }
+
+    get hasStenographicVersion() {
+        return this.post.stenographic_version_id;
+    }
 }

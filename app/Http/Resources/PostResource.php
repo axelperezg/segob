@@ -33,12 +33,14 @@ class PostResource extends JsonResource
             'photo_gallery_id' => $this->photo_gallery_id,
             'video_id' => $this->video_id,
             'created_by' => $this->created_by,
+            'stenographic_version_id' => $this->stenographic_version_id,
 
             'photoGallery' => PhotoGalleryResource::make($this->whenLoaded('photoGallery')),
             'document' => DocumentResource::make($this->whenLoaded('document')),
             'audio' => AudioResource::make($this->whenLoaded('audio')),
             'video' => VideoResource::make($this->whenLoaded('video')),
             'createdBy' => UserResource::make($this->whenLoaded('createdBy')),
+            'stenographicVersion' => PostResource::make($this->whenLoaded('stenographicVersion')),
         ];
     }
 }

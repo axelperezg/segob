@@ -28,6 +28,7 @@ class PostFactory extends Factory
             'keywords' => fake()->words(3, true),
             'audio_id' => Audio::factory(),
             'document_id' => Document::factory(),
+            'stenographic_version_id' => null,
             'last_edited_by' => null,
             'last_edited_at' => null,
         ];

@@ -41,6 +41,7 @@ class Post extends Model implements HasMedia
         'document_id',
         'photo_gallery_id',
         'video_id',
+        'stenographic_version_id',
         'last_edited_by',
         'last_edited_at',
     ];
@@ -73,6 +74,11 @@ class Post extends Model implements HasMedia
     public function video(): BelongsTo
     {
         return $this->belongsTo(Video::class);
+    }
+
+    public function stenographicVersion(): BelongsTo
+    {
+        return $this->belongsTo(Post::class, 'stenographic_version_id');
     }
 
     public function createdBy(): BelongsTo

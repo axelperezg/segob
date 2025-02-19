@@ -35,6 +35,7 @@ it('can create a post', function () {
     $document = Document::factory()->create();
     $video = Video::factory()->create();
     $states = State::factory(2)->create()->pluck('id')->toArray();
+    $stenographicVersion = Post::factory()->create(['content_type' => ContentTypeEnum::STENOGRAPHIC_VERSION]);
 
     // Act
     $this->component->fillForm([
@@ -54,6 +55,7 @@ it('can create a post', function () {
         'audio_id' => $audio->id,
         'document_id' => $document->id,
         'video_id' => $video->id,
+        'stenographic_version_id' => $stenographicVersion->id,
     ])->call('create');
 
     // Assert
@@ -88,6 +90,9 @@ it('can create a post', function () {
 
     assertNotNull($post->video_id);
     assertEquals($video->id, $post->video_id);
+
+    assertNotNull($post->stenographic_version_id);
+    assertEquals($stenographicVersion->id, $post->stenographic_version_id);
 });
 
 it('can create a bulletin post', function () {
