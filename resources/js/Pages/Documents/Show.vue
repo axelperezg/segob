@@ -2,8 +2,8 @@
 import DocumentPresenter from '@/Presenters/DocumentPresenter';
 import PostPresenter from '@/Presenters/PostPresenter';
 import { Link } from '@inertiajs/vue3';
-import { ref, onMounted } from 'vue';
-import VuePdfEmbed from 'vue-pdf-embed';
+import { ref, onMounted, defineAsyncComponent } from 'vue';
+const VuePdfEmbed = defineAsyncComponent(() => import('vue-pdf-embed'));
 
 let props = defineProps({
     document: {
@@ -52,13 +52,15 @@ const downloadPDF = () => {
 
                     <div v-if="!document.data.isInfographic">
                         <div class="bg-gray-100 rounded-lg p-4 mb-6" style="min-height: 600px">
-                            <VuePdfEmbed
-                                ref="pdfComponent"
-                                :source="documentPresent.document_file"
-                                :page="currentPage"
-                                @loaded="handleDocumentLoad"
-                                class="w-full h-full"
-                            />
+                            <client-only>
+                                <VuePdfEmbed
+                                    ref="pdfComponent"
+                                    :source="documentPresent.document_file"
+                                    :page="currentPage"
+                                    @loaded="handleDocumentLoad"
+                                    class="w-full h-full"
+                                />
+                            </client-only>
                         </div>
 
                         <div class="flex flex-col space-y-4 items-center justify-between">

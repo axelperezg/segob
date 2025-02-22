@@ -1,12 +1,14 @@
 <script setup>
 import PhotoGalleryPresenter from '@/Presenters/PhotoGalleryPresenter';
 import { onMounted } from 'vue';
+// CSS imports are fine since they don't execute JavaScript
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import $ from 'jquery';
-import 'slick-carousel';
+// Remove direct import of slick-carousel
 import PostPresenter from '@/Presenters/PostPresenter';
 import { Link } from '@inertiajs/vue3';
+
 const props = defineProps({
     gallery: {
         type: Object,
@@ -16,18 +18,22 @@ const props = defineProps({
 
 const galleryPresent = new PhotoGalleryPresenter(props.gallery.data);
 
-onMounted(() => {
-    $('.photo-slider').slick({
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: true,
-        adaptiveHeight: true,
-    });
+onMounted(async () => {
+    // Dynamically import slick-carousel only on client-side
+    if (typeof window !== 'undefined') {
+        await import('slick-carousel');
+        $('.photo-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: true,
+            adaptiveHeight: true,
+        });
+    }
 });
 </script>
 

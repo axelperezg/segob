@@ -1,3 +1,140 @@
 {
-  "resources/js/ssr.js": []
+  "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
+  "node_modules/slick-carousel/slick/slick-theme.css": [
+    "/build/assets/Show-BZ-m14tc.js",
+    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/ajax-loader-BcnMEykj.gif",
+    "/build/assets/slick-Bi9J8BMx.eot",
+    "/build/assets/slick-BlUtDIuC.woff",
+    "/build/assets/slick-DWzRxEMf.ttf",
+    "/build/assets/slick-BlzDm7g2.svg"
+  ],
+  "node_modules/slick-carousel/slick/slick.css": [
+    "/build/assets/Show-BZ-m14tc.js",
+    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/ajax-loader-BcnMEykj.gif",
+    "/build/assets/slick-Bi9J8BMx.eot",
+    "/build/assets/slick-BlUtDIuC.woff",
+    "/build/assets/slick-DWzRxEMf.ttf",
+    "/build/assets/slick-BlzDm7g2.svg"
+  ],
+  "resources/js/Components/Documents/DocumentArticle.vue": [
+    "/build/assets/Index--3l6Tc5v.js"
+  ],
+  "resources/js/Components/Home/Actions.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/Banners.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/Contact.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/Dependecies.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/Infographic.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/Infographics.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/MediaGallery.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/NoticiasMx.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/PhotoGalleryItem.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Home/VideoItem.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Components/Pagination.vue": [
+    "/build/assets/Pagination-Dr_Z5Ai4.js"
+  ],
+  "resources/js/Components/PhotoGalleries/PhotoGalleryArticle.vue": [
+    "/build/assets/Index-CO3Yp5wK.js"
+  ],
+  "resources/js/Components/Posts/PostArticle.vue": [
+    "/build/assets/PostsLayout-BjXzNxEW.js"
+  ],
+  "resources/js/Components/Posts/PostsFilter.vue": [
+    "/build/assets/Pagination-Dr_Z5Ai4.js"
+  ],
+  "resources/js/Components/Posts/PostsLayout.vue": [
+    "/build/assets/PostsLayout-BjXzNxEW.js"
+  ],
+  "resources/js/Components/Videos/VideoArticle.vue": [
+    "/build/assets/Index-CMHzeEF5.js"
+  ],
+  "resources/js/Composables/useContentTypes.js": [
+    "/build/assets/Pagination-Dr_Z5Ai4.js"
+  ],
+  "resources/js/Composables/useDependencies.js": [
+    "/build/assets/Pagination-Dr_Z5Ai4.js"
+  ],
+  "resources/js/Enums/DocumentSectionType.js": [
+    "/build/assets/Pagination-Dr_Z5Ai4.js"
+  ],
+  "resources/js/Pages/Actions/Show.vue": [
+    "/build/assets/Show-B0PRYj9T.js"
+  ],
+  "resources/js/Pages/Dependencies/Show.vue": [
+    "/build/assets/Show-mlatilc_.js"
+  ],
+  "resources/js/Pages/Documents/Index.vue": [
+    "/build/assets/Index--3l6Tc5v.js"
+  ],
+  "resources/js/Pages/Documents/Show.vue": [
+    "/build/assets/Show-DrEiTAWT.js"
+  ],
+  "resources/js/Pages/Home.vue": [
+    "/build/assets/Home-CtzTEFnZ.js"
+  ],
+  "resources/js/Pages/News/Index.vue": [
+    "/build/assets/Index-DslyVJf9.js"
+  ],
+  "resources/js/Pages/PhotoGalleries/Index.vue": [
+    "/build/assets/Index-CO3Yp5wK.js"
+  ],
+  "resources/js/Pages/PhotoGalleries/Show.vue": [
+    "/build/assets/Show-BZ-m14tc.js",
+    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/ajax-loader-BcnMEykj.gif",
+    "/build/assets/slick-Bi9J8BMx.eot",
+    "/build/assets/slick-BlUtDIuC.woff",
+    "/build/assets/slick-DWzRxEMf.ttf",
+    "/build/assets/slick-BlzDm7g2.svg"
+  ],
+  "resources/js/Pages/Posts/Show.vue": [
+    "/build/assets/Show-CUneazb4.js"
+  ],
+  "resources/js/Pages/Version.vue": [
+    "/build/assets/Version-DNdodKm7.js"
+  ],
+  "resources/js/Pages/Videos/Index.vue": [
+    "/build/assets/Index-CMHzeEF5.js"
+  ],
+  "resources/js/Pages/Videos/Show.vue": [
+    "/build/assets/Show-BgXCM4Nt.js"
+  ],
+  "resources/js/Presenters/DependencyPresenter.js": [
+    "/build/assets/Show-mlatilc_.js"
+  ],
+  "resources/js/Presenters/DocumentPresenter.js": [
+    "/build/assets/DocumentPresenter-DCQ2LTEh.js"
+  ],
+  "resources/js/Presenters/PhotoGalleryPresenter.js": [
+    "/build/assets/PhotoGalleryPresenter-Bv1CGcSi.js"
+  ],
+  "resources/js/Presenters/PostPresenter.js": [
+    "/build/assets/PostPresenter-DsSddg_8.js"
+  ],
+  "resources/js/Presenters/VideoPresenter.js": [
+    "/build/assets/VideoPresenter-BYlXMlKk.js"
+  ],
+  "resources/js/ssr.js": [],
+  "vendor/tightenco/ziggy/dist/index.js": []
 }
