@@ -23,4 +23,4 @@ return new class extends Migration
             $table->dropColumn('stenographic_version_id');
         });
     }
-}; 
+};

@@ -34,8 +34,6 @@ class BaseSeeder extends Seeder
         // $audioUrl = 'https://sample-files.com/downloads/audio/mp3/sample-files.com_tone_test_audio.mp3';
         // $audio->addMediaFromUrl($audioUrl)->toMediaCollection('audio');
 
-
-
         $this->createInitialPosts();
         $this->createAdditionalPosts();
 

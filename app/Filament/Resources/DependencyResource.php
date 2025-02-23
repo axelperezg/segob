@@ -8,14 +8,13 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Filament\Forms\Get;
-use Filament\Forms\Set;
 
 class DependencyResource extends Resource
 {
@@ -36,8 +35,8 @@ class DependencyResource extends Resource
                 Section::make('Información')
                     ->columns()
                     ->schema([
-                            
-                            TextInput::make('name')
+
+                        TextInput::make('name')
                             ->required()
                             ->live(onBlur: true)
                             ->maxLength(255)

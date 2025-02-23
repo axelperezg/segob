@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class State extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
     ];

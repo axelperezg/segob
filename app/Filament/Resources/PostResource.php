@@ -8,13 +8,13 @@ use App\Models\Post;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
@@ -23,8 +23,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Michaeld555\FilamentCroppie\Components\Croppie;
 
@@ -149,7 +147,7 @@ class PostResource extends Resource
                                     ->viewportWidth(400)
                                     ->modalTitle('Recortar imagen')
                                     ->modalDescription('Ajusta la imagen al tamaño deseado')
-                                    ->disk('public')
+                                    ->disk('public'),
                             ])
                             ->collapsible()
                             ->columnSpan(1),
