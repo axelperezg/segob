@@ -50,7 +50,7 @@ it('can create a post', function () {
         'created_by' => $data->created_by,
         'actions' => [$action->id],
         'dependencies' => [$dependency->id],
-        'image' => UploadedFile::fake()->image('image.jpg'),
+        'image' => $image = UploadedFile::fake()->image('image.jpg'),
         'document' => UploadedFile::fake()->create('document.pdf'),
         'audio_id' => $audio->id,
         'document_id' => $document->id,
@@ -59,8 +59,8 @@ it('can create a post', function () {
     ])->call('create');
 
     // Assert
-    assertCount(1, Post::all());
-    $post = Post::first();
+    assertCount(1, Post::where('title', $data->title)->get());
+    $post = Post::query()->firstWhere('title', $data->title);
     expect($post)
         ->is_published->toBeTrue()
         ->title->toBe($data->title)
@@ -70,6 +70,7 @@ it('can create a post', function () {
         ->content_type->toBe($data->content_type)
         ->published_at->format('Y-m-d H:i')->toBe($data->published_at->format('Y-m-d H:i'))
         ->created_by->toBe($data->created_by)
+        ->image->not->toBeNull()
         ->bulletin->toBeNull()
         ->year->toBeNull();
 

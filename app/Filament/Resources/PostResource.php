@@ -23,7 +23,10 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class PostResource extends Resource
 {
@@ -140,10 +143,13 @@ class PostResource extends Resource
                     ->schema([
                         Section::make('Imagen')
                             ->schema([
-                                SpatieMediaLibraryFileUpload::make('image')
-                                    ->image()
-                                    ->collection('image')
-                                    ->hiddenLabel(),
+                                Croppie::make('image')
+                                    ->viewportType('square')
+                                    ->viewportHeight(250)
+                                    ->viewportWidth(400)
+                                    ->modalTitle('Recortar imagen')
+                                    ->modalDescription('Ajusta la imagen al tamaño deseado')
+                                    ->disk('public')
                             ])
                             ->collapsible()
                             ->columnSpan(1),

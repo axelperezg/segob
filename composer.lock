@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b50fd73e2e3c85cc7edb0179a7528de",
+    "content-hash": "890a3fe70577dd466821e1a83219ff07",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3766,6 +3766,81 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.9.0"
             },
             "time": "2024-03-31T07:05:07+00:00"
+        },
+        {
+            "name": "michaeld555/filament-croppie",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michaeld555/filament-croppie.git",
+                "reference": "4cd5433d67e6a354afbc45f89f1f9b1e93fa9e6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michaeld555/filament-croppie/zipball/4cd5433d67e6a354afbc45f89f1f9b1e93fa9e6c",
+                "reference": "4cd5433d67e6a354afbc45f89f1f9b1e93fa9e6c",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "filament/forms": "^3.0",
+                "illuminate/contracts": "^10.0|^11.0",
+                "league/commonmark": "^2.4",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.0.1",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "orchestra/testbench": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Croppie": "Michaeld555\\FilamentCroppie\\Facades\\FilamentCroppie"
+                    },
+                    "providers": [
+                        "Michaeld555\\FilamentCroppie\\FilamentCroppieServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Michaeld555\\FilamentCroppie\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Douglas",
+                    "email": "usermich999@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Croppie Js Implementation Field for Filament forms",
+            "homepage": "https://github.com/michaeld555/filament-croppie",
+            "keywords": [
+                "cropperjs",
+                "croppie",
+                "croppie-image",
+                "croppie-image-resize",
+                "croppie-js",
+                "field",
+                "filament",
+                "image",
+                "image-resize",
+                "michaeld555"
+            ],
+            "support": {
+                "issues": "https://github.com/michaeld555/filament-croppie/issues",
+                "source": "https://github.com/michaeld555/filament-croppie/tree/v1.0.2"
+            },
+            "time": "2025-01-23T15:40:50+00:00"
         },
         {
             "name": "monolog/monolog",

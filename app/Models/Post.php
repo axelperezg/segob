@@ -44,6 +44,7 @@ class Post extends Model implements HasMedia
         'stenographic_version_id',
         'last_edited_by',
         'last_edited_at',
+        'image',
     ];
 
     protected function casts(): array

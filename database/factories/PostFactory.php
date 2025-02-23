@@ -31,6 +31,7 @@ class PostFactory extends Factory
             'stenographic_version_id' => null,
             'last_edited_by' => null,
             'last_edited_at' => null,
+            'image' => null,
         ];
     }
 
