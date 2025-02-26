@@ -28,7 +28,7 @@ defineProps({
                 <!-- Main posts -->
                 <Link :href="route('posts.show', post.slug)" v-for="post in mainPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
-                        <img :src="post.featured_image" :alt="post.title" class="w-full" />
+                        <img :src="post.image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-xl font-bold lg:text-4xl">{{ post.title }}</h2>
                             <p class="mb-1 text-xs italic text-gray-600">
@@ -54,7 +54,7 @@ defineProps({
             <div class="space-y-6 lg:w-1/3">
                 <Link :href="route('posts.show', post.slug)" v-for="post in secondaryPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
-                        <img :src="post.featured_image" :alt="post.title" class="w-full" />
+                        <img :src="post.image" :alt="post.title" class="w-full" />
                         <div class="p-4">
                             <h2 class="mb-2 text-lg font-bold leading-tight">{{ post.title }}</h2>
                             <p class="mb-1 text-xs italic text-gray-600">
@@ -81,7 +81,7 @@ defineProps({
         <div class="space-y-6 md:grid md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
             <Link :href="route('posts.show', post.slug)" v-for="post in tertiaryPosts.data" :key="post.id">
                 <article class="overflow-hidden border rounded-lg">
-                    <img :src="post.featured_image" :alt="post.title" class="w-full" />
+                    <img :src="post.image" :alt="post.title" class="w-full" />
                     <div class="p-4">
                         <h2 class="mb-2 text-lg font-bold">{{ post.title }}</h2>
                         <p class="mb-1 text-xs italic text-gray-600">

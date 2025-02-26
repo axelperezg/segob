@@ -142,11 +142,13 @@ class PostResource extends Resource
                         Section::make('Imagen')
                             ->schema([
                                 Croppie::make('image')
+                                    ->hiddenLabel()
                                     ->viewportType('square')
-                                    ->viewportHeight(250)
-                                    ->viewportWidth(400)
+                                    ->imageSize('original')
                                     ->modalTitle('Recortar imagen')
-                                    ->modalDescription('Ajusta la imagen al tamaño deseado')
+                                    ->viewportWidth(250)
+                                    ->viewportHeight(140.625)
+                                    ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
                                     ->disk('public'),
                             ])
                             ->collapsible()

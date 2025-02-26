@@ -17,6 +17,7 @@ use App\Models\Document;
 use App\Models\FeaturedPost;
 use App\Models\PhotoGallery;
 use App\Models\Video;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -28,12 +29,7 @@ class HomeController extends Controller
             ->whereHas('post', fn ($query) => $query->where('is_published', true))
             ->orderBy('sort')
             ->get()
-            ->map(function ($featuredPost) {
-                $post = $featuredPost->post;
-                $post->setAttribute('image', $post->getFirstMedia('image')?->getFullUrl());
-
-                return $post;
-            });
+            ->map(fn ($featuredPost) => $featuredPost->post);
 
         $infographics = Document::query()
             ->where('type', DocumentTypeEnum::INFOGRAPHIC)

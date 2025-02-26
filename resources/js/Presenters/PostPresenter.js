@@ -70,7 +70,7 @@ export default class PostPresenter {
     }
 
     get featuredImage() {
-        return this.post.featured_image;
+        return this.post.image;
     }
 
     get actions() {

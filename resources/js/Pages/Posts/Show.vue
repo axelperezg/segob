@@ -23,8 +23,8 @@ const activeTab = ref(1);
             </p>
         </div>
 
-        <section class="py-8">
-            <img :src="postPresenter.featuredImage" alt="Featured Image" />
+        <section class="py-8 flex justify-center">
+            <img class="w-full" :src="postPresenter.featuredImage" alt="Featured Image" />
         </section>
 
 

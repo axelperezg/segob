@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class PostResource extends JsonResource
 {
@@ -19,6 +20,9 @@ class PostResource extends JsonResource
             'featured_image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
             'content_type' => $this->content_type->getLabel(),
+            'image' => $this->image
+                ? Storage::disk('public')->url($this->image)
+                 : 'https://placehold.co/600x350',
             'states' => $this->states->map(fn ($state) => [
                 'id' => $state->id,
                 'name' => $state->name,
