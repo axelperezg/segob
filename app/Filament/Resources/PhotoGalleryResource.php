@@ -19,6 +19,7 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class PhotoGalleryResource extends Resource
 {
@@ -38,10 +39,15 @@ class PhotoGalleryResource extends Resource
             ->schema([
                 Section::make('Imagen')
                     ->schema([
-                        SpatieMediaLibraryFileUpload::make('image')
-                            ->image()
-                            ->collection('image')
-                            ->hiddenLabel(),
+                        Croppie::make('image')
+                            ->hiddenLabel()
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar imagen')
+                            ->viewportWidth(250)
+                            ->viewportHeight(140.625)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public'),
                     ]),
                 Section::make('Información')
                     ->columns()
@@ -92,10 +98,7 @@ class PhotoGalleryResource extends Resource
                     ->boolean(),
                 TextColumn::make('published_at')
                     ->label('Fecha')
-                    ->dateTime('d/m/Y'),
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Imagen')
-                    ->collection('image'),
+                    ->dateTime('d/m/Y')
             ])
             ->filters([
                 //

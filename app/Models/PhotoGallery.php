@@ -18,6 +18,7 @@ class PhotoGallery extends Model implements HasMedia
         'published_at',
         'name',
         'slug',
+        'image',
     ];
 
     protected function casts(): array
