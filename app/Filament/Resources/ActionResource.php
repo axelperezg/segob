@@ -5,16 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ActionResource\Pages;
 use App\Models\Action;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class ActionResource extends Resource
 {
@@ -32,8 +31,8 @@ class ActionResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->columns(2)
+                Section::make('Información')
+                    ->columns()
                     ->schema([
                         TextInput::make('name')
                             ->required()
@@ -50,13 +49,32 @@ class ActionResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->unique(Action::class, 'slug', ignoreRecord: true),
-                        SpatieMediaLibraryFileUpload::make('banner')
-                            ->image()
-                            ->collection('banner'),
-                        SpatieMediaLibraryFileUpload::make('image')
-                            ->image()
-                            ->required()
-                            ->collection('image'),
+                    ]),
+                Section::make('Imagen')
+                    ->schema([
+                        Croppie::make('image')
+                            ->label('Imagen')
+                            ->hiddenLabel()
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar imagen')
+                            ->viewportWidth(250)
+                            ->viewportHeight(140.625)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public'),
+                    ]),
+                Section::make('Banner')
+                    ->schema([
+                        Croppie::make('banner')
+                            ->label('Banner')
+                            ->hiddenLabel()
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar banner')
+                            ->viewportWidth(540)
+                            ->viewportHeight(130)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public'),
                     ]),
             ]);
     }
@@ -72,10 +90,6 @@ class ActionResource extends Resource
                     ->label('Publicaciones'),
                 TextColumn::make('slug')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('banner')
-                    ->collection('banner'),
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->collection('image'),
             ])
             ->filters([
                 //
