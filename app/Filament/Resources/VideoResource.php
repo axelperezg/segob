@@ -6,16 +6,15 @@ use App\Filament\Resources\VideoResource\Pages;
 use App\Models\Video;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class VideoResource extends Resource
 {
@@ -53,9 +52,15 @@ class VideoResource extends Resource
                     ]),
                 Section::make('Imagen')
                     ->schema([
-                        SpatieMediaLibraryFileUpload::make('image')
+                        Croppie::make('image')
                             ->hiddenLabel()
-                            ->collection('image'),
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar imagen')
+                            ->viewportWidth(250)
+                            ->viewportHeight(140.625)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public'),
                     ]),
             ]);
     }
@@ -74,9 +79,6 @@ class VideoResource extends Resource
                 TextColumn::make('published_at')
                     ->label('Fecha')
                     ->dateTime('d/m/Y'),
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->collection('image')
-                    ->label('Imagen'),
             ])
             ->filters([
                 //

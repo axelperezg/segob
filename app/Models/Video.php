@@ -17,6 +17,8 @@ class Video extends Model implements HasMedia
         'published_at',
         'title',
         'url',
+        'image',
+        'slug',
     ];
 
     protected function casts(): array
