@@ -22,6 +22,7 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class DocumentResource extends Resource
 {
@@ -71,12 +72,16 @@ class DocumentResource extends Resource
                     ]),
                 Section::make('Imagen')
                     ->schema([
-                        SpatieMediaLibraryFileUpload::make('image')
-                            ->image()
-                            ->collection('image')
+                        Croppie::make('image')
                             ->hiddenLabel()
-                            ->required(),
-                    ])->collapsible(),
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar imagen')
+                            ->viewportWidth(250)
+                            ->viewportHeight(140.625)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public'),
+                    ]),
                 SpatieMediaLibraryFileUpload::make('document')
                     ->label('Documento')
                     ->collection('document')
@@ -106,9 +111,6 @@ class DocumentResource extends Resource
                 TextColumn::make('published_at')
                     ->label('Fecha')
                     ->dateTime('d/m/Y'),
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->label('Imagen')
-                    ->collection('image'),
                 IconColumn::make('is_published')
                     ->label('Publicado')
                     ->boolean(),

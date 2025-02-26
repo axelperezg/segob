@@ -2,6 +2,7 @@
 import DocumentArticle from '@/Components/Documents/DocumentArticle.vue';
 import Pagination from '@/Components/Pagination.vue';
 import PostsFilter from '@/Components/Posts/PostsFilter.vue';
+import { router } from '@inertiajs/vue3';
 
 let props = defineProps({
     documents: Object,

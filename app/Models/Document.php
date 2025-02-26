@@ -22,6 +22,7 @@ class Document extends Model implements HasMedia
         'slug',
         'type',
         'document_section',
+        'image',
     ];
 
     protected function casts(): array

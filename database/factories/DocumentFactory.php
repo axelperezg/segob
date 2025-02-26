@@ -18,6 +18,7 @@ class DocumentFactory extends Factory
             'slug' => fn ($data) => Str::slug($data['name']),
             'type' => fake()->randomElement(DocumentTypeEnum::cases()),
             'document_section' => fake()->randomElement(DocumentSectionEnum::cases()),
+            'image' => null,
         ];
     }
 }

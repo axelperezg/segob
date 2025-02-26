@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Enums\Documents\DocumentTypeEnum;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentResource extends JsonResource
 {
@@ -16,7 +17,9 @@ class DocumentResource extends JsonResource
             'slug' => $this->slug,
             'type' => $this->type,
             'document_section' => $this->document_section,
-            'image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
+            'image' => $this->image 
+                ? Storage::disk('public')->url($this->image)
+                : 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
             'published_at' => $this->published_at,
             'document' => $this->getFirstMedia('document')?->getFullUrl(),
