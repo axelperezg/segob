@@ -14,6 +14,7 @@ class Banner extends Model implements HasMedia
     protected $fillable = [
         'title',
         'external_url',
+        'image',
     ];
 
     public function registerMediaCollections(): void

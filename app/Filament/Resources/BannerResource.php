@@ -5,14 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BannerResource\Pages;
 use App\Models\Banner;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class BannerResource extends Resource
 {
@@ -42,12 +41,18 @@ class BannerResource extends Resource
                             ->url()
                             ->required()
                             ->maxLength(255),
-                        SpatieMediaLibraryFileUpload::make('banner')
+                        Croppie::make('image')
                             ->label('Imagen')
-                            ->collection('banner')
-                            ->image()
-                            ->columnSpanFull()
-                            ->required(),
+                            ->hiddenLabel()
+                            ->viewportType('square')
+                            ->imageSize('original')
+                            ->modalTitle('Recortar imagen')
+                            ->viewportWidth(540)
+                            ->viewportHeight(130)
+                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                            ->disk('public')
+                            ->required()
+                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -62,9 +67,6 @@ class BannerResource extends Resource
                 TextColumn::make('external_url')
                     ->label('URL Externa')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('banner')
-                    ->label('Imagen')
-                    ->collection('banner'),
             ])
             ->filters([
                 //
