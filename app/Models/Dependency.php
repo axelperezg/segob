@@ -15,6 +15,8 @@ class Dependency extends Model implements HasMedia
     protected $fillable = [
         'name',
         'slug',
+        'image',
+        'banner',
     ];
 
     public function registerMediaCollections(): void
