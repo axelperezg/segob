@@ -25,7 +25,7 @@ var e = String.prototype.replace, r = /%20/g, n = "RFC3986", o = { default: n, f
   return e.call(t4, r, "+");
 }, RFC3986: function(t4) {
   return String(t4);
-} }, RFC1738: "RFC1738", RFC3986: n }, i = Object.prototype.hasOwnProperty, u = Array.isArray, a = function() {
+} }, RFC1738: "RFC1738" }, i = Object.prototype.hasOwnProperty, u = Array.isArray, a = function() {
   for (var t4 = [], e2 = 0; e2 < 256; ++e2) t4.push("%" + ((e2 < 16 ? "0" : "") + e2.toString(16)).toUpperCase());
   return t4;
 }(), s = function(t4, e2) {
@@ -349,7 +349,7 @@ createServer(
     page,
     render: renderToString,
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, /* @__PURE__ */ Object.assign({ "./Pages/Actions/Show.vue": () => import("./assets/Show-B0PRYj9T.js"), "./Pages/Dependencies/Show.vue": () => import("./assets/Show-mlatilc_.js"), "./Pages/Documents/Index.vue": () => import("./assets/Index--3l6Tc5v.js"), "./Pages/Documents/Show.vue": () => import("./assets/Show-DrEiTAWT.js"), "./Pages/Home.vue": () => import("./assets/Home-CtzTEFnZ.js"), "./Pages/News/Index.vue": () => import("./assets/Index-DslyVJf9.js"), "./Pages/PhotoGalleries/Index.vue": () => import("./assets/Index-CO3Yp5wK.js"), "./Pages/PhotoGalleries/Show.vue": () => import("./assets/Show-BZ-m14tc.js"), "./Pages/Posts/Show.vue": () => import("./assets/Show-CUneazb4.js"), "./Pages/Version.vue": () => import("./assets/Version-DNdodKm7.js"), "./Pages/Videos/Index.vue": () => import("./assets/Index-CMHzeEF5.js"), "./Pages/Videos/Show.vue": () => import("./assets/Show-BgXCM4Nt.js") })),
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, /* @__PURE__ */ Object.assign({ "./Pages/Actions/Show.vue": () => import("./assets/Show-Cwnjl9GK.js"), "./Pages/Dependencies/Show.vue": () => import("./assets/Show-BQv2K2ma.js"), "./Pages/Documents/Index.vue": () => import("./assets/Index-B0vESvT1.js"), "./Pages/Documents/Show.vue": () => import("./assets/Show-CvsDNY0x.js"), "./Pages/Home.vue": () => import("./assets/Home-D6T-fs-0.js"), "./Pages/News/Index.vue": () => import("./assets/Index-Ui1vCRzC.js"), "./Pages/PhotoGalleries/Index.vue": () => import("./assets/Index-DyzlLeHC.js"), "./Pages/PhotoGalleries/Show.vue": () => import("./assets/Show-ZXLkJ6nT.js"), "./Pages/Posts/Show.vue": () => import("./assets/Show-D6YVnA1p.js"), "./Pages/Version.vue": () => import("./assets/Version-CE9ix6fM.js"), "./Pages/Videos/Index.vue": () => import("./assets/Index-m08rBheO.js"), "./Pages/Videos/Show.vue": () => import("./assets/Show-m6aV5S0L.js") })),
     setup({ App, props, plugin }) {
       return createSSRApp({ render: () => h$1(App, props) }).use(plugin).use(k, {
         ...page.props.ziggy,

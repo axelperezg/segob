@@ -1,8 +1,8 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
   "node_modules/slick-carousel/slick/slick-theme.css": [
-    "/build/assets/Show-BZ-m14tc.js",
-    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/Show-ZXLkJ6nT.js",
+    "/build/assets/Show-DkBSsmpK.css",
     "/build/assets/ajax-loader-BcnMEykj.gif",
     "/build/assets/slick-Bi9J8BMx.eot",
     "/build/assets/slick-BlUtDIuC.woff",
@@ -10,8 +10,8 @@
     "/build/assets/slick-BlzDm7g2.svg"
   ],
   "node_modules/slick-carousel/slick/slick.css": [
-    "/build/assets/Show-BZ-m14tc.js",
-    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/Show-ZXLkJ6nT.js",
+    "/build/assets/Show-DkBSsmpK.css",
     "/build/assets/ajax-loader-BcnMEykj.gif",
     "/build/assets/slick-Bi9J8BMx.eot",
     "/build/assets/slick-BlUtDIuC.woff",
@@ -19,89 +19,89 @@
     "/build/assets/slick-BlzDm7g2.svg"
   ],
   "resources/js/Components/Documents/DocumentArticle.vue": [
-    "/build/assets/Index--3l6Tc5v.js"
+    "/build/assets/Index-B0vESvT1.js"
   ],
   "resources/js/Components/Home/Actions.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/Banners.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/Contact.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/Dependecies.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/Infographic.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/Infographics.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/MediaGallery.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/NoticiasMx.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/PhotoGalleryItem.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Home/VideoItem.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Components/Pagination.vue": [
-    "/build/assets/Pagination-Dr_Z5Ai4.js"
+    "/build/assets/Pagination-DaruHqGp.js"
   ],
   "resources/js/Components/PhotoGalleries/PhotoGalleryArticle.vue": [
-    "/build/assets/Index-CO3Yp5wK.js"
+    "/build/assets/Index-DyzlLeHC.js"
   ],
   "resources/js/Components/Posts/PostArticle.vue": [
-    "/build/assets/PostsLayout-BjXzNxEW.js"
+    "/build/assets/PostsLayout-BsJo-jcT.js"
   ],
   "resources/js/Components/Posts/PostsFilter.vue": [
-    "/build/assets/Pagination-Dr_Z5Ai4.js"
+    "/build/assets/Pagination-DaruHqGp.js"
   ],
   "resources/js/Components/Posts/PostsLayout.vue": [
-    "/build/assets/PostsLayout-BjXzNxEW.js"
+    "/build/assets/PostsLayout-BsJo-jcT.js"
   ],
   "resources/js/Components/Videos/VideoArticle.vue": [
-    "/build/assets/Index-CMHzeEF5.js"
+    "/build/assets/Index-m08rBheO.js"
   ],
   "resources/js/Composables/useContentTypes.js": [
-    "/build/assets/Pagination-Dr_Z5Ai4.js"
+    "/build/assets/Pagination-DaruHqGp.js"
   ],
   "resources/js/Composables/useDependencies.js": [
-    "/build/assets/Pagination-Dr_Z5Ai4.js"
+    "/build/assets/Pagination-DaruHqGp.js"
   ],
   "resources/js/Enums/DocumentSectionType.js": [
-    "/build/assets/Pagination-Dr_Z5Ai4.js"
+    "/build/assets/Pagination-DaruHqGp.js"
   ],
   "resources/js/Pages/Actions/Show.vue": [
-    "/build/assets/Show-B0PRYj9T.js"
+    "/build/assets/Show-Cwnjl9GK.js"
   ],
   "resources/js/Pages/Dependencies/Show.vue": [
-    "/build/assets/Show-mlatilc_.js"
+    "/build/assets/Show-BQv2K2ma.js"
   ],
   "resources/js/Pages/Documents/Index.vue": [
-    "/build/assets/Index--3l6Tc5v.js"
+    "/build/assets/Index-B0vESvT1.js"
   ],
   "resources/js/Pages/Documents/Show.vue": [
-    "/build/assets/Show-DrEiTAWT.js"
+    "/build/assets/Show-CvsDNY0x.js"
   ],
   "resources/js/Pages/Home.vue": [
-    "/build/assets/Home-CtzTEFnZ.js"
+    "/build/assets/Home-D6T-fs-0.js"
   ],
   "resources/js/Pages/News/Index.vue": [
-    "/build/assets/Index-DslyVJf9.js"
+    "/build/assets/Index-Ui1vCRzC.js"
   ],
   "resources/js/Pages/PhotoGalleries/Index.vue": [
-    "/build/assets/Index-CO3Yp5wK.js"
+    "/build/assets/Index-DyzlLeHC.js"
   ],
   "resources/js/Pages/PhotoGalleries/Show.vue": [
-    "/build/assets/Show-BZ-m14tc.js",
-    "/build/assets/Show-DP7g_tn1.css",
+    "/build/assets/Show-ZXLkJ6nT.js",
+    "/build/assets/Show-DkBSsmpK.css",
     "/build/assets/ajax-loader-BcnMEykj.gif",
     "/build/assets/slick-Bi9J8BMx.eot",
     "/build/assets/slick-BlUtDIuC.woff",
@@ -109,19 +109,19 @@
     "/build/assets/slick-BlzDm7g2.svg"
   ],
   "resources/js/Pages/Posts/Show.vue": [
-    "/build/assets/Show-CUneazb4.js"
+    "/build/assets/Show-D6YVnA1p.js"
   ],
   "resources/js/Pages/Version.vue": [
-    "/build/assets/Version-DNdodKm7.js"
+    "/build/assets/Version-CE9ix6fM.js"
   ],
   "resources/js/Pages/Videos/Index.vue": [
-    "/build/assets/Index-CMHzeEF5.js"
+    "/build/assets/Index-m08rBheO.js"
   ],
   "resources/js/Pages/Videos/Show.vue": [
-    "/build/assets/Show-BgXCM4Nt.js"
+    "/build/assets/Show-m6aV5S0L.js"
   ],
   "resources/js/Presenters/DependencyPresenter.js": [
-    "/build/assets/Show-mlatilc_.js"
+    "/build/assets/Show-BQv2K2ma.js"
   ],
   "resources/js/Presenters/DocumentPresenter.js": [
     "/build/assets/DocumentPresenter-DCQ2LTEh.js"
@@ -130,7 +130,7 @@
     "/build/assets/PhotoGalleryPresenter-Bv1CGcSi.js"
   ],
   "resources/js/Presenters/PostPresenter.js": [
-    "/build/assets/PostPresenter-DsSddg_8.js"
+    "/build/assets/PostPresenter-Dg3Lsb9s.js"
   ],
   "resources/js/Presenters/VideoPresenter.js": [
     "/build/assets/VideoPresenter-BYlXMlKk.js"
