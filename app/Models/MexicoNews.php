@@ -15,19 +15,18 @@ class MexicoNews extends Model implements HasMedia
     protected $fillable = [
         'title',
         'url',
+        'pdf_url',
         'published_at',
-        'dependency_id',
-        'is_published',
+        'mexico_dependency_id',
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
-        'is_published' => 'boolean',
     ];
 
-    public function dependency(): BelongsTo
+    public function mexicoDependency(): BelongsTo
     {
-        return $this->belongsTo(Dependency::class);
+        return $this->belongsTo(MexicoDependency::class);
     }
 
     public function registerMediaCollections(): void

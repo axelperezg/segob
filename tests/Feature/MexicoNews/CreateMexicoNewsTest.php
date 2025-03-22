@@ -4,7 +4,7 @@ namespace Tests\Feature\MexicoNews;
 
 use App\Filament\Resources\MexicoNewsResource;
 use App\Filament\Resources\MexicoNewsResource\Pages\CreateMexicoNews;
-use App\Models\Dependency;
+use App\Models\MexicoDependency;
 use App\Models\MexicoNews;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
@@ -22,9 +22,9 @@ class CreateMexicoNewsTest extends TestCase
     public function test_can_create_mexico_news()
     {
         // Arrange
-        $dependency = Dependency::factory()->create();
+        $mexicoDependency = MexicoDependency::factory()->create();
         $data = MexicoNews::factory()->make([
-            'dependency_id' => $dependency->id
+            'mexico_dependency_id' => $mexicoDependency->id
         ]);
         
         $component = Livewire::test(CreateMexicoNews::class);
@@ -33,9 +33,9 @@ class CreateMexicoNewsTest extends TestCase
         $component->fillForm([
             'title' => $data->title,
             'url' => $data->url,
+            'pdf_url' => 'https://example.com/documento.pdf',
             'published_at' => $data->published_at,
-            'dependency_id' => $data->dependency_id,
-            'is_published' => true,
+            'mexico_dependency_id' => $data->mexico_dependency_id,
             'image' => UploadedFile::fake()->image('news.jpg'),
         ])->call('create');
 
@@ -47,7 +47,8 @@ class CreateMexicoNewsTest extends TestCase
         $news = MexicoNews::first();
         $this->assertEquals($data->title, $news->title);
         $this->assertEquals($data->url, $news->url);
-        $this->assertEquals($data->dependency_id, $news->dependency_id);
+        $this->assertEquals('https://example.com/documento.pdf', $news->pdf_url);
+        $this->assertEquals($data->mexico_dependency_id, $news->mexico_dependency_id);
         $this->assertNotNull($news->getFirstMedia('image'));
     }
 
@@ -86,6 +87,25 @@ class CreateMexicoNewsTest extends TestCase
         // Assert
         $component->assertHasFormErrors([
             'url' => 'url',
+        ]);
+    }
+
+    public function test_pdf_url_must_be_valid_if_provided()
+    {
+        // Arrange
+        $component = Livewire::test(CreateMexicoNews::class);
+
+        // Act
+        $component->fillForm([
+            'title' => 'Test News',
+            'url' => 'https://example.com',
+            'pdf_url' => 'invalid-url',
+            'published_at' => now(),
+        ])->call('create');
+
+        // Assert
+        $component->assertHasFormErrors([
+            'pdf_url' => 'url',
         ]);
     }
 } 

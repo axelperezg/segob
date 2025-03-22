@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Dependency;
+use App\Models\MexicoDependency;
 use App\Models\MexicoNews;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,9 +23,9 @@ class MexicoNewsFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'url' => fake()->url(),
+            'pdf_url' => fake()->boolean(70) ? fake()->url() . '.pdf' : null,
             'published_at' => fake()->dateTimeBetween('-1 month', 'now'),
-            'dependency_id' => Dependency::factory(),
-            'is_published' => true,
+            'mexico_dependency_id' => MexicoDependency::factory(),
         ];
     }
 }

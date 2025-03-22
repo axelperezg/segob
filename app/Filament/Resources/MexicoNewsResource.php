@@ -8,11 +8,9 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Michaeld555\FilamentCroppie\Components\Croppie;
@@ -36,10 +34,6 @@ class MexicoNewsResource extends Resource
                 Section::make('Información')
                     ->columns()
                     ->schema([
-                        Toggle::make('is_published')
-                            ->label('Publicado')
-                            ->default(true)
-                            ->columnSpanFull(),
                         TextInput::make('title')
                             ->required()
                             ->label('Título')
@@ -53,8 +47,12 @@ class MexicoNewsResource extends Resource
                             ->label('Enlace')
                             ->url()
                             ->columnSpanFull(),
-                        Select::make('dependency_id')
-                            ->relationship('dependency', 'name')
+                        TextInput::make('pdf_url')
+                            ->label('Enlace PDF')
+                            ->url()
+                            ->columnSpanFull(),
+                        Select::make('mexico_dependency_id')
+                            ->relationship('mexicoDependency', 'name')
                             ->searchable()
                             ->preload()
                             ->label('Dependencia'),
@@ -82,13 +80,9 @@ class MexicoNewsResource extends Resource
                     ->label('Título')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('dependency.name')
+                TextColumn::make('mexicoDependency.name')
                     ->label('Dependencia')
                     ->searchable(),
-                IconColumn::make('is_published')
-                    ->label('Publicado')
-                    ->boolean()
-                    ->sortable(),
                 TextColumn::make('published_at')
                     ->label('Fecha de publicación')
                     ->dateTime('d/m/Y H:i')
