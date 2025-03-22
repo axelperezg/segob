@@ -100,7 +100,7 @@ class PostResource extends Resource
                             ->required()
                             ->default(auth()->id())
                             ->options(User::all()->pluck('name', 'id'))
-                            ->label('Autor')
+                            ->label('Usuario que registra')
                             ->createOptionForm([
                                 TextInput::make('name')
                                     ->required()
