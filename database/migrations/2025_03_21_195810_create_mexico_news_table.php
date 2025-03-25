@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('url');
-            $table->string('pdf_url')->nullable();
             $table->dateTime('published_at');
             $table->foreignId('mexico_dependency_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();

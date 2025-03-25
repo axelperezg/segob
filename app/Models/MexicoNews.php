@@ -15,7 +15,6 @@ class MexicoNews extends Model implements HasMedia
     protected $fillable = [
         'title',
         'url',
-        'pdf_url',
         'published_at',
         'mexico_dependency_id',
     ];
@@ -33,6 +32,9 @@ class MexicoNews extends Model implements HasMedia
     {
         $this->addMediaCollection('image')
             ->singleFile()
+            ->useDisk('public');
+
+        $this->addMediaCollection('documents')
             ->useDisk('public');
     }
 }

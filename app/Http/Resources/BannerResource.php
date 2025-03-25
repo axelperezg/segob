@@ -14,7 +14,7 @@ class BannerResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'external_url' => $this->external_url,
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x100',
         ];

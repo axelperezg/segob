@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MexicoNewsResource\Pages;
 use App\Models\MexicoNews;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -47,27 +49,39 @@ class MexicoNewsResource extends Resource
                             ->label('Enlace')
                             ->url()
                             ->columnSpanFull(),
-                        TextInput::make('pdf_url')
-                            ->label('Enlace PDF')
-                            ->url()
-                            ->columnSpanFull(),
                         Select::make('mexico_dependency_id')
                             ->relationship('mexicoDependency', 'name')
                             ->searchable()
                             ->preload()
                             ->label('Dependencia'),
                     ]),
-                Section::make('Imagen')
+                Grid::make([
+                    'sm' => 2,
+                ])
                     ->schema([
-                        Croppie::make('image')
-                            ->hiddenLabel()
-                            ->viewportType('square')
-                            ->imageSize('original')
-                            ->modalTitle('Recortar imagen')
-                            ->viewportWidth(250)
-                            ->viewportHeight(140.625)
-                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
-                            ->disk('public'),
+                        Section::make('Imagen')
+                            ->schema([
+                                Croppie::make('image')
+                                    ->hiddenLabel()
+                                    ->viewportType('square')
+                                    ->imageSize('original')
+                                    ->modalTitle('Recortar imagen')
+                                    ->viewportWidth(250)
+                                    ->viewportHeight(140.625)
+                                    ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                    ->disk('public'),
+                            ])
+                            ->collapsible()
+                            ->columnSpan(1),
+                        Section::make('Documento PDF')
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('documents')
+                                    ->collection('documents')
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->hiddenLabel(),
+                            ])
+                            ->collapsible()
+                            ->columnSpan(1),
                     ]),
             ]);
     }
@@ -78,18 +92,13 @@ class MexicoNewsResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Título')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 TextColumn::make('mexicoDependency.name')
                     ->label('Dependencia')
                     ->searchable(),
                 TextColumn::make('published_at')
                     ->label('Fecha de publicación')
                     ->dateTime('d/m/Y H:i')
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->label('Fecha de creación')
-                    ->dateTime('d/m/Y')
                     ->sortable(),
             ])
             ->filters([
@@ -116,4 +125,4 @@ class MexicoNewsResource extends Resource
             'edit' => Pages\EditMexicoNews::route('/{record}/edit'),
         ];
     }
-} 
+}

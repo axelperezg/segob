@@ -14,10 +14,10 @@ class DependencyResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
-            'banner' => $this->banner 
+            'banner' => $this->banner
                 ? Storage::disk('public')->url($this->banner)
                 : 'https://placehold.co/600x200',
         ];

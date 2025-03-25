@@ -86,4 +86,4 @@ class EditMexicoDependencyTest extends TestCase
             'name' => 'max',
         ]);
     }
-} 
+}

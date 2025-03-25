@@ -28,4 +28,4 @@ class ListMexicoNews extends ListRecords
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

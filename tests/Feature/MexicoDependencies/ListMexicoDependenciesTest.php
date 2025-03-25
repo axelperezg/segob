@@ -69,4 +69,4 @@ class ListMexicoDependenciesTest extends TestCase
                 ['name' => 'Gobierno Central'],
             ]);
     }
-} 
+}

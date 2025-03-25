@@ -23,9 +23,9 @@ class ListMexicoNewsTest extends TestCase
         // Arrange
         $mexicoDependency = MexicoDependency::factory()->create();
         $news = MexicoNews::factory()->count(3)->create([
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
-        
+
         $component = Livewire::test(ListMexicoNews::class);
 
         // Assert
@@ -40,15 +40,15 @@ class ListMexicoNewsTest extends TestCase
         $mexicoDependency = MexicoDependency::factory()->create();
         MexicoNews::factory()->create([
             'title' => 'Z News',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
         MexicoNews::factory()->create([
             'title' => 'A News',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
         MexicoNews::factory()->create([
             'title' => 'M News',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
 
         // Act & Assert
@@ -72,15 +72,15 @@ class ListMexicoNewsTest extends TestCase
         $mexicoDependency = MexicoDependency::factory()->create();
         MexicoNews::factory()->create([
             'title' => 'Primera noticia',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
         MexicoNews::factory()->create([
             'title' => 'Segunda noticia',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
         MexicoNews::factory()->create([
             'title' => 'Noticia importante',
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
 
         // Act & Assert
@@ -94,4 +94,4 @@ class ListMexicoNewsTest extends TestCase
                 ['title' => 'Segunda noticia'],
             ]);
     }
-} 
+}

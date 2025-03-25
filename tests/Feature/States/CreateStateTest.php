@@ -52,4 +52,4 @@ class CreateStateTest extends TestCase
             'name' => 'required',
         ]);
     }
-} 
+}

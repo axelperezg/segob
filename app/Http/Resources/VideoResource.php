@@ -16,7 +16,7 @@ class VideoResource extends JsonResource
             'slug' => $this->slug,
             'url' => $this->url,
             'published_at' => $this->published_at,
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
 

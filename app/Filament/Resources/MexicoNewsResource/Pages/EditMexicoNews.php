@@ -26,4 +26,4 @@ class EditMexicoNews extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

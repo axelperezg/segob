@@ -23,4 +23,4 @@ class ListStates extends ListRecords
                 ->icon('heroicon-o-plus'),
         ];
     }
-} 
+}

@@ -17,7 +17,7 @@ class PhotoGalleryResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'photos' => $this->getMedia('gallery')->map(fn ($photo) => $photo->getFullUrl()),
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
 

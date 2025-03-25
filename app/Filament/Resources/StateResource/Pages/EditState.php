@@ -26,4 +26,4 @@ class EditState extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

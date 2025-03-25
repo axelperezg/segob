@@ -74,7 +74,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'NOTICIAS MÉXICO',
-                    'url' => '#',
+                    'url' => route('mexico-news.index'),
                 ],
                 [
                     'name' => 'ACCIONES',

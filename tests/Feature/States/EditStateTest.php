@@ -67,4 +67,4 @@ class EditStateTest extends TestCase
             'name' => 'required',
         ]);
     }
-} 
+}

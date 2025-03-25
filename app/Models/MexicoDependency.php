@@ -18,4 +18,11 @@ class MexicoDependency extends Model
     {
         return $this->hasMany(MexicoNews::class);
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('image')
+            ->singleFile()
+            ->useDisk('public');
+    }
 }

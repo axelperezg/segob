@@ -18,4 +18,4 @@ class CreateState extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

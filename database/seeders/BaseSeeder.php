@@ -10,6 +10,8 @@ use App\Models\Banner;
 use App\Models\Dependency;
 use App\Models\Document;
 use App\Models\FeaturedPost;
+use App\Models\MexicoDependency;
+use App\Models\MexicoNews;
 use App\Models\PhotoGallery;
 use App\Models\Post;
 use App\Models\State;
@@ -471,5 +473,30 @@ class BaseSeeder extends Seeder
         Post::factory(30)->create([
             'content_type' => ContentTypeEnum::STENOGRAPHIC_VERSION,
         ]);
+
+        $dependenciesMexico = MexicoDependency::factory()->createMany([
+            [
+                'name' => 'Secretaría de Economía',
+            ],
+            [
+                'name' => 'Secretaría de Bienestar',
+            ],
+            [
+                'name' => 'Secretaría de Educación Pública',
+            ],
+            [
+                'name' => 'Secretaría de Salud',
+            ],
+            [
+                'name' => 'Secretaría de Hacienda',
+            ],
+        ]);
+        
+        foreach (range(1, 10) as $i) {
+            MexicoNews::factory()->create([
+                'url' => 'https://www.google.com',
+                'mexico_dependency_id' => $dependenciesMexico->random()->id,
+            ]);
+        }
     }
 }

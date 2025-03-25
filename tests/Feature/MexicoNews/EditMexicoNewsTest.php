@@ -13,14 +13,14 @@ use Tests\TestCase;
 class EditMexicoNewsTest extends TestCase
 {
     public MexicoNews $news;
-    
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $mexicoDependency = MexicoDependency::factory()->create();
         $this->news = MexicoNews::factory()->create([
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
     }
 
@@ -38,9 +38,9 @@ class EditMexicoNewsTest extends TestCase
         // Arrange
         $newMexicoDependency = MexicoDependency::factory()->create();
         $newData = MexicoNews::factory()->make([
-            'mexico_dependency_id' => $newMexicoDependency->id
+            'mexico_dependency_id' => $newMexicoDependency->id,
         ]);
-        
+
         $component = Livewire::test(EditMexicoNews::class, [
             'record' => $this->news->id,
         ]);
@@ -49,10 +49,12 @@ class EditMexicoNewsTest extends TestCase
         $component->fillForm([
             'title' => $newData->title,
             'url' => $newData->url,
-            'pdf_url' => 'https://example.com/documento.pdf',
             'published_at' => $newData->published_at,
             'mexico_dependency_id' => $newData->mexico_dependency_id,
             'image' => UploadedFile::fake()->image('news.jpg'),
+            'documents' => [
+                UploadedFile::fake()->create('documento.pdf', 1024, 'application/pdf'),
+            ],
         ])->call('save');
 
         // Assert
@@ -61,7 +63,6 @@ class EditMexicoNewsTest extends TestCase
         $this->news->refresh();
         $this->assertEquals($newData->title, $this->news->title);
         $this->assertEquals($newData->url, $this->news->url);
-        $this->assertEquals('https://example.com/documento.pdf', $this->news->pdf_url);
         $this->assertEquals($newData->mexico_dependency_id, $this->news->mexico_dependency_id);
     }
 
@@ -127,4 +128,4 @@ class EditMexicoNewsTest extends TestCase
             'pdf_url' => 'url',
         ]);
     }
-} 
+}

@@ -17,7 +17,7 @@ class DocumentResource extends JsonResource
             'slug' => $this->slug,
             'type' => $this->type,
             'document_section' => $this->document_section,
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
             'is_published' => $this->is_published,

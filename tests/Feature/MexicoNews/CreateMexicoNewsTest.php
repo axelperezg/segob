@@ -24,19 +24,21 @@ class CreateMexicoNewsTest extends TestCase
         // Arrange
         $mexicoDependency = MexicoDependency::factory()->create();
         $data = MexicoNews::factory()->make([
-            'mexico_dependency_id' => $mexicoDependency->id
+            'mexico_dependency_id' => $mexicoDependency->id,
         ]);
-        
+
         $component = Livewire::test(CreateMexicoNews::class);
 
         // Act
         $component->fillForm([
             'title' => $data->title,
             'url' => $data->url,
-            'pdf_url' => 'https://example.com/documento.pdf',
             'published_at' => $data->published_at,
             'mexico_dependency_id' => $data->mexico_dependency_id,
             'image' => UploadedFile::fake()->image('news.jpg'),
+            'documents' => [
+                UploadedFile::fake()->create('documento.pdf', 1024, 'application/pdf'),
+            ],
         ])->call('create');
 
         // Assert
@@ -47,9 +49,9 @@ class CreateMexicoNewsTest extends TestCase
         $news = MexicoNews::first();
         $this->assertEquals($data->title, $news->title);
         $this->assertEquals($data->url, $news->url);
-        $this->assertEquals('https://example.com/documento.pdf', $news->pdf_url);
         $this->assertEquals($data->mexico_dependency_id, $news->mexico_dependency_id);
         $this->assertNotNull($news->getFirstMedia('image'));
+        $this->assertNotNull($news->getFirstMedia('documents'));
     }
 
     public function test_fields_are_required()
@@ -108,4 +110,4 @@ class CreateMexicoNewsTest extends TestCase
             'pdf_url' => 'url',
         ]);
     }
-} 
+}

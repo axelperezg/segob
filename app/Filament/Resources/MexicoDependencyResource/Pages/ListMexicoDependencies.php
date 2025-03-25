@@ -28,4 +28,4 @@ class ListMexicoDependencies extends ListRecords
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

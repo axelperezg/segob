@@ -14,10 +14,10 @@ class ActionResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'banner' => $this->banner 
+            'banner' => $this->banner
                 ? Storage::disk('public')->url($this->banner)
                 : 'https://placehold.co/600x350',
-            'image' => $this->image 
+            'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
             'posts' => PostResource::collection($this->whenLoaded('posts')),

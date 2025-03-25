@@ -69,4 +69,4 @@ class CreateMexicoDependencyTest extends TestCase
             'name' => 'max',
         ]);
     }
-} 
+}

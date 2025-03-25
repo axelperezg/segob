@@ -9,6 +9,7 @@ use App\Http\Controllers\PhotoGalleryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\MexicoNewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
@@ -17,6 +18,7 @@ Route::get('/versiones', VersionController::class)->name('versions.index');
 Route::get('/galerias', [PhotoGalleryController::class, 'index'])->name('photo-galleries.index');
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
 Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
+Route::get('/noticias-mexico', MexicoNewsController::class)->name('mexico-news.index');
 
 Route::get('/videos/{video:slug}', [VideoController::class, 'show'])->name('videos.show');
 Route::get('/galerias/{photoGallery:slug}', [PhotoGalleryController::class, 'show'])->name('photo-galleries.show');

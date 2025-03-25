@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MexicoDependencyResource\Pages;
 use App\Models\MexicoDependency;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,11 +30,16 @@ class MexicoDependencyResource extends Resource
         return $form
             ->schema([
                 Section::make('Información')
+                    ->columns(2)
                     ->schema([
                         TextInput::make('name')
                             ->required()
                             ->maxLength(255)
                             ->label('Nombre'),
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->label('Imagen')
+                            ->collection('image')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
                     ]),
             ]);
     }
@@ -79,4 +85,4 @@ class MexicoDependencyResource extends Resource
             'edit' => Pages\EditMexicoDependency::route('/{record}/edit'),
         ];
     }
-} 
+}
