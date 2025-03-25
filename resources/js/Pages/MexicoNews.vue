@@ -1,122 +1,15 @@
 <script setup>
 import { ref } from 'vue';
 
-// Fake news data to display
-const newsItems = ref([
-    {
-        id: 1,
-        time: '14:11 h',
-        category: 'GN-GQB',
-        title: 'En Nayarit, Guardia Nacional asegura armas largas, granadas de fragmentación, cartuchos y diverso material bélico',
-        image: 'https://placehold.co/600x400/gray/white?text=Armas+Aseguradas',
-        hasImage: true,
-        hasPdf: true,
-        featured: true,
-        date: '2024-06-15'
-    },
-    {
-        id: 2,
-        time: '13:32 h',
-        category: 'SALUD',
-        title: 'Seguridad del paciente evita bajas laborales, días extra de estancia hospitalaria y daños irreversibles a la salud',
-        image: 'https://placehold.co/600x400/lightblue/white?text=Salud',
-        hasImage: true,
-        hasPdf: true,
-        featured: false,
-        date: '2024-06-15'
-    },
-    {
-        id: 3,
-        time: '14:11 h',
-        category: 'GN-GQB',
-        title: 'En Campeche, Guardia Nacional asegura vehículo de carga con 21.6 toneladas de carbón vegetal',
-        image: 'https://placehold.co/600x400/darkgray/white?text=Carbón+Vegetal',
-        hasImage: true,
-        hasPdf: true,
-        featured: false,
-        date: '2024-06-15'
-    },
-    {
-        id: 4,
-        time: '12:28 h',
-        category: 'CULTURA',
-        title: 'El Sistema Creación pública resultados de México en Escena-Grupos Artísticos (MEGA) 2024',
-        hasImage: false,
-        hasPdf: true,
-        date: '2024-06-14'
-    },
-    {
-        id: 5,
-        time: '12:02 h',
-        category: 'SECTUR',
-        title: 'Llegan a México más de 48 millones de turistas a cuartos de hotel durante enero-julio de 2024',
-        hasImage: false,
-        hasPdf: true,
-        date: '2024-06-14'
-    },
-    {
-        id: 6,
-        time: '11:43 h',
-        category: 'IMSS-GQB',
-        title: 'Garantiza IMSS-Bienestar seguridad y calidad en atención médica a pacientes',
-        hasImage: false,
-        hasPdf: true,
-        date: '2024-06-13'
-    },
-    {
-        id: 7,
-        time: '11:04 h',
-        category: 'CULTURA',
-        title: 'La Fonoteca Nacional celebra 50 años de la fundación del trío Los Panchos con una sesión de escucha',
-        hasImage: false,
-        hasPdf: true,
-        date: '2024-06-13'
-    },
-    {
-        id: 8,
-        time: '10:58 h',
-        category: 'ISSSTE-GQB',
-        title: 'Inaugura Issste acelerador lineal y actualiza tres más para mejorar atención en CMN "20 de Noviembre"',
-        hasImage: false,
-        hasPdf: true,
-        date: '2024-06-12'
-    }
-]);
+const props = defineProps({
+    mainPosts: Object,
+    posts: Object,
+});
 
-// Date filter functionality
-const selectedDate = ref('');
-const formattedSelectedDate = ref('');
+const selectedDate = ref(null);
 
-// Filter news items based on selected date
-const filteredNewsItems = ref([]);
-
-const updateFilteredItems = () => {
-    if (selectedDate.value === '') {
-        filteredNewsItems.value = newsItems.value;
-        formattedSelectedDate.value = '';
-    } else {
-        filteredNewsItems.value = newsItems.value.filter(item => item.date === selectedDate.value);
-
-        // Format date for display (e.g., "15 de junio, 2024")
-        const dateObj = new Date(selectedDate.value);
-        const options = { day: 'numeric', month: 'long', year: 'numeric' };
-        formattedSelectedDate.value = dateObj.toLocaleDateString('es-MX', options);
-    }
-};
-
-// Initialize with all items
-updateFilteredItems();
-
-// Clear date filter
-const clearDateFilter = () => {
-    selectedDate.value = '';
-    updateFilteredItems();
-};
-
-// Handle date change
-const handleDateChange = (event) => {
-    selectedDate.value = event.target.value;
-    updateFilteredItems();
+const handleDateChange = () => {
+    console.log(selectedDate.value);
 };
 </script>
 
@@ -150,25 +43,26 @@ const handleDateChange = (event) => {
         </div>
 
         <!-- Main two-column layout -->
-        <div v-if="filteredNewsItems.length > 0" class="flex flex-col md:flex-row md:gap-6">
+        <div v-if="true" class="flex flex-col md:flex-row md:gap-6">
             <!-- Left column - wider, with featured post at top and two columns below -->
             <div class="w-full md:w-2/3">
                 <!-- Featured post (large) -->
-                <div v-if="filteredNewsItems.some(item => item.featured)" class="mb-6">
-                    <div v-for="item in filteredNewsItems.filter(item => item.featured)" :key="item.id"
-                        class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                <div class="mb-6">
+                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img :src="item.image" :alt="item.title" class="object-cover w-full h-80">
+                            <img src="https://picsum.photos/800/400" alt="Noticia destacada"
+                                class="object-cover w-full h-80">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ item.time }}</span>
+                                <span class="text-sm text-gray-600">10:30 AM</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ item.category }}
+                                Política
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ item.title }}</h2>
-                            <div v-if="item.hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
+                            <h2 class="mb-3 text-xl font-semibold text-gray-800">Importante anuncio sobre reforma
+                                energética en México</h2>
+                            <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -182,21 +76,46 @@ const handleDateChange = (event) => {
 
                 <!-- Two columns below the featured post -->
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <!-- Posts with images (excluding featured) -->
-                    <div v-for="item in filteredNewsItems.filter(item => item.hasImage && !item.featured)"
-                        :key="item.id" class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img :src="item.image" :alt="item.title" class="object-cover w-full h-48">
+                            <img src="https://picsum.photos/400/300" alt="Noticia secundaria"
+                                class="object-cover w-full h-48">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ item.time }}</span>
+                                <span class="text-sm text-gray-600">9:15 AM</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ item.category }}
+                                Economía
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ item.title }}</h2>
-                            <div v-if="item.hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
+                            <h2 class="mb-3 text-lg font-semibold text-gray-800">Nuevo récord en la Bolsa Mexicana de
+                                Valores</h2>
+                            <div class="flex items-center text-gray-600 hover:text-red-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                                </svg>
+                                <span class="text-sm">Descargar PDF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                        <div class="relative">
+                            <img src="https://picsum.photos/401/300" alt="Otra noticia"
+                                class="object-cover w-full h-48">
+                            <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
+                                <span class="text-sm text-gray-600">11:45 AM</span>
+                            </div>
+                            <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
+                                Deportes
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h2 class="mb-3 text-lg font-semibold text-gray-800">México clasifica para el Mundial 2026
+                            </h2>
+                            <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -212,8 +131,7 @@ const handleDateChange = (event) => {
             <!-- Right column - narrower with stacked text items -->
             <div class="w-full mt-6 md:mt-0 md:w-1/3">
                 <div class="flex flex-col space-y-4">
-                    <div v-for="item in filteredNewsItems.filter(item => !item.hasImage)" :key="item.id"
-                        class="p-4 border border-gray-200 rounded-md shadow-sm">
+                    <div class="p-4 border border-gray-200 rounded-md shadow-sm">
                         <div class="flex items-center mb-2 space-x-1">
                             <div class="flex items-center text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
@@ -221,12 +139,37 @@ const handleDateChange = (event) => {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span class="text-sm">{{ item.time }}</span>
+                                <span class="text-sm">8:30 AM</span>
                             </div>
-                            <div class="text-sm font-medium text-red-700">{{ item.category }}</div>
+                            <div class="text-sm font-medium text-red-700">Cultura</div>
                         </div>
-                        <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ item.title }}</h2>
-                        <div v-if="item.hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
+                        <h2 class="mb-3 text-lg font-semibold text-gray-800">Nueva exposición en el Museo Nacional de
+                            Arte</h2>
+                        <div class="flex items-center text-gray-600 hover:text-red-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+                            </svg>
+                            <span class="text-sm">Descargar PDF</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-gray-200 rounded-md shadow-sm">
+                        <div class="flex items-center mb-2 space-x-1">
+                            <div class="flex items-center text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-sm">12:00 PM</span>
+                            </div>
+                            <div class="text-sm font-medium text-red-700">Tecnología</div>
+                        </div>
+                        <h2 class="mb-3 text-lg font-semibold text-gray-800">Lanzan nuevo satélite mexicano al espacio
+                        </h2>
+                        <div class="flex items-center text-gray-600 hover:text-red-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,7 +192,7 @@ const handleDateChange = (event) => {
         </div>
 
         <!-- Pagination -->
-        <div v-if="filteredNewsItems.length > 0" class="flex justify-center mt-10">
+        <div v-if="true" class="flex justify-center mt-10">
             <nav class="inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                 <a href="#"
                     class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50">
