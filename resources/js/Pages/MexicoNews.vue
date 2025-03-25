@@ -6,13 +6,14 @@ import { router } from '@inertiajs/vue3';
 const props = defineProps({
     mainPosts: Object,
     posts: Object,
+    filters: Object,
 });
 
 let featuredPost = props.mainPosts.data[0];
 let secondaryPosts = props.mainPosts.data.slice(1, 3);
 let tertiaryPosts = props.posts.data;
 
-const selectedDate = ref(null);
+const selectedDate = ref(props.filters.published_at);
 
 // Format date helper function
 const formatDate = (dateString) => {
@@ -32,10 +33,18 @@ const formattedSelectedDate = computed(() => {
 
 const handleDateChange = () => {
     console.log(selectedDate.value);
+    router.get(route('mexico-news.index'), {
+        published_at: selectedDate.value,
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+    });
 };
 
 const handlePageChange = (url) => {
-    router.get(url, {}, {
+    router.get(url, {
+        published_at: selectedDate.value || new Date().toISOString().split('T')[0]
+    }, {
         preserveState: true,
         preserveScroll: true,
     });
@@ -43,6 +52,12 @@ const handlePageChange = (url) => {
 
 const clearDateFilter = () => {
     selectedDate.value = null;
+    router.get(route('mexico-news.index'), {
+        published_at: null,
+    }, {
+        preserveState: true,
+        preserveScroll: true,
+    });
 };
 </script>
 
@@ -68,11 +83,6 @@ const clearDateFilter = () => {
                     </button>
                 </div>
             </div>
-
-            <!-- Show selected date if filtering -->
-            <div v-if="formattedSelectedDate" class="mt-2 text-sm text-gray-600">
-                Mostrando noticias del: <span class="font-medium">{{ formattedSelectedDate }}</span>
-            </div>
         </div>
 
         <!-- Main two-column layout -->
@@ -81,7 +91,7 @@ const clearDateFilter = () => {
             <div class="w-full md:w-2/3">
                 <!-- Featured post (large) -->
                 <div class="mb-6">
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                    <div v-if="featuredPost" class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <a :href="featuredPost.url" target="_blank" class="block cursor-pointer">
                             <div class="relative">
                                 <img :src="featuredPost.featured_image" alt="Noticia destacada"
@@ -98,7 +108,7 @@ const clearDateFilter = () => {
                                 <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
                             </div>
                         </a>
-                        <div class="px-4 pb-4">
+                        <div v-if="featuredPost" class="px-4 pb-4">
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -107,6 +117,14 @@ const clearDateFilter = () => {
                                 </svg>
                                 <a :href="featuredPost.pdf" target="_blank" class="text-sm">Descargar PDF</a>
                             </div>
+                        </div>
+                    </div>
+
+                    <div v-else class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                        <div class="p-4">
+                            <h2 class="mb-3 text-xl font-semibold text-gray-800">No hay noticias disponibles para la
+                                fecha
+                                seleccionada.</h2>
                         </div>
                     </div>
                 </div>
