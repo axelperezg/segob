@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MexicoNews;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin MexicoNews
+ */
 class MexicoNewsResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -12,20 +16,14 @@ class MexicoNewsResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'content' => $this->content,
-            'excerpt' => $this->excerpt,
-            'keywords' => $this->keywords,
-            'slug' => $this->slug,
+            'url' => $this->url,
             'featured_image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
-            'is_published' => $this->is_published,
-            'image' => $this->image ?? 'https://placehold.co/600x350',
-            'states' => $this->states->map(fn ($state) => [
-                'id' => $state->id,
-                'name' => $state->name,
-            ]),
             'published_at' => $this->published_at,
-            'created_by' => $this->created_by,
-            'createdBy' => UserResource::make($this->whenLoaded('createdBy')),
+            'mexico_dependency_id' => $this->mexico_dependency_id,
+            'mexicoDependency' => new MexicoDependencyResource($this->whenLoaded('mexicoDependency')),
+            'documents' => $this->getMedia('documents')->map->getFullUrl(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 } 
