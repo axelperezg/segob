@@ -21,7 +21,7 @@ class DocumentController extends Controller
             ->searchByDocumentSection(request('document_section'))
             ->orderByDesc('published_at')
             ->paginate(12)
-            ->withQueryString();
+            ->appends($request->all());
 
         $filters = [
             'name' => request('title', ''),

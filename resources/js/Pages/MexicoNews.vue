@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import Pagination from '@/Components/Pagination.vue';
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
     mainPosts: Object,
@@ -12,8 +14,35 @@ let tertiaryPosts = props.posts.data;
 
 const selectedDate = ref(null);
 
+// Format date helper function
+const formatDate = (dateString) => {
+    if (!dateString) return '';
+
+    const date = new Date(dateString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${hours}:${minutes}`;
+};
+
+const formattedSelectedDate = computed(() => {
+    if (!selectedDate.value) return '';
+    return formatDate(selectedDate.value);
+});
+
 const handleDateChange = () => {
     console.log(selectedDate.value);
+};
+
+const handlePageChange = (url) => {
+    router.get(url, {}, {
+        preserveState: true,
+        preserveScroll: true,
+    });
+};
+
+const clearDateFilter = () => {
+    selectedDate.value = null;
 };
 </script>
 
@@ -57,7 +86,7 @@ const handleDateChange = () => {
                             <img :src="featuredPost.featured_image" alt="Noticia destacada"
                                 class="object-cover w-full h-80">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">10:30 AM</span>
+                                <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at) }}</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                 {{ featuredPost.mexicoDependency.name }}
@@ -84,7 +113,7 @@ const handleDateChange = () => {
                         <div class="relative">
                             <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ post.published_at }}</span>
+                                <span class="text-sm text-gray-600">{{ formatDate(post.published_at) }}</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                 {{ post.mexicoDependency.name }}
@@ -117,7 +146,7 @@ const handleDateChange = () => {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span class="text-sm">{{ post.published_at }}</span>
+                                <span class="text-sm">{{ formatDate(post.published_at) }}</span>
                             </div>
                             <div class="text-sm font-medium text-red-700">{{ post.mexicoDependency.name }}</div>
                         </div>
@@ -145,44 +174,8 @@ const handleDateChange = () => {
         </div>
 
         <!-- Pagination -->
-        <div v-if="true" class="flex justify-center mt-10">
-            <nav class="inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                <a href="#"
-                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50">
-                    <span class="sr-only">Previous</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                        aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <a href="#" aria-current="page"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-red-700 border border-gray-300">1</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">2</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">3</a>
-                <span
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300">...</span>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">8</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">9</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50">10</a>
-                <a href="#"
-                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50">
-                    <span class="sr-only">Next</span>
-                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                        aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </nav>
-        </div>
+        <Pagination v-if="posts.meta.links.length > 3" :links="posts.meta.links" @page-changed="handlePageChange"
+            class="mt-10" />
     </div>
 </template>
 

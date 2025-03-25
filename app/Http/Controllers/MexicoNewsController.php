@@ -21,7 +21,8 @@ class MexicoNewsController extends Controller
             ->with('mexicoDependency', 'media')
             ->orderBy('published_at', 'desc')
             ->skip(3)
-            ->paginate(5);
+            ->paginate(5)
+            ->appends($request->all());
 
         return Inertia::render('MexicoNews', [
             'mainPosts' => MexicoNewsResource::collection($mainPosts),
