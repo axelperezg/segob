@@ -12,14 +12,12 @@ class MexicoNewsController extends Controller
     public function __invoke(Request $request)
     {
         $mainPosts = MexicoNews::query()
-            ->where('is_published', true)
-            ->orderBy('date', 'desc')
+            ->orderBy('published_at', 'desc')
             ->take(3)
             ->get();
 
         $posts = MexicoNews::query()
-            ->where('is_published', true)
-            ->orderBy('date', 'desc')
+            ->orderBy('published_at', 'desc')
             ->skip(3)
             ->paginate(10);
 

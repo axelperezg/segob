@@ -1,4 +1,123 @@
 <script setup>
+import { ref } from 'vue';
+
+// Fake news data to display
+const newsItems = ref([
+    {
+        id: 1,
+        time: '14:11 h',
+        category: 'GN-GQB',
+        title: 'En Nayarit, Guardia Nacional asegura armas largas, granadas de fragmentación, cartuchos y diverso material bélico',
+        image: 'https://placehold.co/600x400/gray/white?text=Armas+Aseguradas',
+        hasImage: true,
+        hasPdf: true,
+        featured: true,
+        date: '2024-06-15'
+    },
+    {
+        id: 2,
+        time: '13:32 h',
+        category: 'SALUD',
+        title: 'Seguridad del paciente evita bajas laborales, días extra de estancia hospitalaria y daños irreversibles a la salud',
+        image: 'https://placehold.co/600x400/lightblue/white?text=Salud',
+        hasImage: true,
+        hasPdf: true,
+        featured: false,
+        date: '2024-06-15'
+    },
+    {
+        id: 3,
+        time: '14:11 h',
+        category: 'GN-GQB',
+        title: 'En Campeche, Guardia Nacional asegura vehículo de carga con 21.6 toneladas de carbón vegetal',
+        image: 'https://placehold.co/600x400/darkgray/white?text=Carbón+Vegetal',
+        hasImage: true,
+        hasPdf: true,
+        featured: false,
+        date: '2024-06-15'
+    },
+    {
+        id: 4,
+        time: '12:28 h',
+        category: 'CULTURA',
+        title: 'El Sistema Creación pública resultados de México en Escena-Grupos Artísticos (MEGA) 2024',
+        hasImage: false,
+        hasPdf: true,
+        date: '2024-06-14'
+    },
+    {
+        id: 5,
+        time: '12:02 h',
+        category: 'SECTUR',
+        title: 'Llegan a México más de 48 millones de turistas a cuartos de hotel durante enero-julio de 2024',
+        hasImage: false,
+        hasPdf: true,
+        date: '2024-06-14'
+    },
+    {
+        id: 6,
+        time: '11:43 h',
+        category: 'IMSS-GQB',
+        title: 'Garantiza IMSS-Bienestar seguridad y calidad en atención médica a pacientes',
+        hasImage: false,
+        hasPdf: true,
+        date: '2024-06-13'
+    },
+    {
+        id: 7,
+        time: '11:04 h',
+        category: 'CULTURA',
+        title: 'La Fonoteca Nacional celebra 50 años de la fundación del trío Los Panchos con una sesión de escucha',
+        hasImage: false,
+        hasPdf: true,
+        date: '2024-06-13'
+    },
+    {
+        id: 8,
+        time: '10:58 h',
+        category: 'ISSSTE-GQB',
+        title: 'Inaugura Issste acelerador lineal y actualiza tres más para mejorar atención en CMN "20 de Noviembre"',
+        hasImage: false,
+        hasPdf: true,
+        date: '2024-06-12'
+    }
+]);
+
+// Date filter functionality
+const selectedDate = ref('');
+const formattedSelectedDate = ref('');
+
+// Filter news items based on selected date
+const filteredNewsItems = ref([]);
+
+const updateFilteredItems = () => {
+    if (selectedDate.value === '') {
+        filteredNewsItems.value = newsItems.value;
+        formattedSelectedDate.value = '';
+    } else {
+        filteredNewsItems.value = newsItems.value.filter(item => item.date === selectedDate.value);
+
+        // Format date for display (e.g., "15 de junio, 2024")
+        const dateObj = new Date(selectedDate.value);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        formattedSelectedDate.value = dateObj.toLocaleDateString('es-MX', options);
+    }
+};
+
+// Initialize with all items
+updateFilteredItems();
+
+// Clear date filter
+const clearDateFilter = () => {
+    selectedDate.value = '';
+    updateFilteredItems();
+};
+
+// Handle date change
+const handleDateChange = (event) => {
+    selectedDate.value = event.target.value;
+    updateFilteredItems();
+};
 </script>
 
 <template>
