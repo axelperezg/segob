@@ -12,14 +12,16 @@ class MexicoNewsController extends Controller
     public function __invoke(Request $request)
     {
         $mainPosts = MexicoNews::query()
+            ->with('mexicoDependency', 'media')
             ->orderBy('published_at', 'desc')
             ->take(3)
             ->get();
 
         $posts = MexicoNews::query()
+            ->with('mexicoDependency', 'media')
             ->orderBy('published_at', 'desc')
             ->skip(3)
-            ->paginate(10);
+            ->paginate(5);
 
         return Inertia::render('MexicoNews', [
             'mainPosts' => MexicoNewsResource::collection($mainPosts),

@@ -6,6 +6,10 @@ const props = defineProps({
     posts: Object,
 });
 
+let featuredPost = props.mainPosts.data[0];
+let secondaryPosts = props.mainPosts.data.slice(1, 3);
+let tertiaryPosts = props.posts.data;
+
 const selectedDate = ref(null);
 
 const handleDateChange = () => {
@@ -50,25 +54,24 @@ const handleDateChange = () => {
                 <div class="mb-6">
                     <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img src="https://picsum.photos/800/400" alt="Noticia destacada"
+                            <img :src="featuredPost.featured_image" alt="Noticia destacada"
                                 class="object-cover w-full h-80">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                 <span class="text-sm text-gray-600">10:30 AM</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                Política
+                                {{ featuredPost.mexicoDependency.name }}
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-xl font-semibold text-gray-800">Importante anuncio sobre reforma
-                                energética en México</h2>
+                            <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                 </svg>
-                                <span class="text-sm">Descargar PDF</span>
+                                <a :href="featuredPost.pdf" target="_blank" class="text-sm">Descargar PDF</a>
                             </div>
                         </div>
                     </div>
@@ -76,52 +79,26 @@ const handleDateChange = () => {
 
                 <!-- Two columns below the featured post -->
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                    <div v-for="post in secondaryPosts" :key="post.id"
+                        class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img src="https://picsum.photos/400/300" alt="Noticia secundaria"
-                                class="object-cover w-full h-48">
+                            <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">9:15 AM</span>
+                                <span class="text-sm text-gray-600">{{ post.published_at }}</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                Economía
+                                {{ post.mexicoDependency.name }}
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">Nuevo récord en la Bolsa Mexicana de
-                                Valores</h2>
+                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                 </svg>
-                                <span class="text-sm">Descargar PDF</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
-                        <div class="relative">
-                            <img src="https://picsum.photos/401/300" alt="Otra noticia"
-                                class="object-cover w-full h-48">
-                            <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">11:45 AM</span>
-                            </div>
-                            <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                Deportes
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">México clasifica para el Mundial 2026
-                            </h2>
-                            <div class="flex items-center text-gray-600 hover:text-red-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                                </svg>
-                                <span class="text-sm">Descargar PDF</span>
+                                <a :href="post.pdf" target="_blank" class="text-sm">Descargar PDF</a>
                             </div>
                         </div>
                     </div>
@@ -131,7 +108,8 @@ const handleDateChange = () => {
             <!-- Right column - narrower with stacked text items -->
             <div class="w-full mt-6 md:mt-0 md:w-1/3">
                 <div class="flex flex-col space-y-4">
-                    <div class="p-4 border border-gray-200 rounded-md shadow-sm">
+                    <div v-for="post in tertiaryPosts" :key="post.id"
+                        class="p-4 border border-gray-200 rounded-md shadow-sm">
                         <div class="flex items-center mb-2 space-x-1">
                             <div class="flex items-center text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
@@ -139,43 +117,18 @@ const handleDateChange = () => {
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span class="text-sm">8:30 AM</span>
+                                <span class="text-sm">{{ post.published_at }}</span>
                             </div>
-                            <div class="text-sm font-medium text-red-700">Cultura</div>
+                            <div class="text-sm font-medium text-red-700">{{ post.mexicoDependency.name }}</div>
                         </div>
-                        <h2 class="mb-3 text-lg font-semibold text-gray-800">Nueva exposición en el Museo Nacional de
-                            Arte</h2>
+                        <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
                         <div class="flex items-center text-gray-600 hover:text-red-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                             </svg>
-                            <span class="text-sm">Descargar PDF</span>
-                        </div>
-                    </div>
-
-                    <div class="p-4 border border-gray-200 rounded-md shadow-sm">
-                        <div class="flex items-center mb-2 space-x-1">
-                            <div class="flex items-center text-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <span class="text-sm">12:00 PM</span>
-                            </div>
-                            <div class="text-sm font-medium text-red-700">Tecnología</div>
-                        </div>
-                        <h2 class="mb-3 text-lg font-semibold text-gray-800">Lanzan nuevo satélite mexicano al espacio
-                        </h2>
-                        <div class="flex items-center text-gray-600 hover:text-red-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                            </svg>
-                            <span class="text-sm">Descargar PDF</span>
+                            <a :href="post.pdf" target="_blank" class="text-sm">Descargar PDF</a>
                         </div>
                     </div>
                 </div>

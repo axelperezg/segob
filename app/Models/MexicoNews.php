@@ -34,7 +34,8 @@ class MexicoNews extends Model implements HasMedia
             ->singleFile()
             ->useDisk('public');
 
-        $this->addMediaCollection('documents')
+        $this->addMediaCollection('document')
+            ->singleFile()
             ->useDisk('public');
     }
 }
