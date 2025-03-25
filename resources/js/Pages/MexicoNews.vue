@@ -11,7 +11,8 @@ const newsItems = ref([
         image: 'https://placehold.co/600x400/gray/white?text=Armas+Aseguradas',
         hasImage: true,
         hasPdf: true,
-        featured: true
+        featured: true,
+        date: '2024-06-15'
     },
     {
         id: 2,
@@ -21,7 +22,8 @@ const newsItems = ref([
         image: 'https://placehold.co/600x400/lightblue/white?text=Salud',
         hasImage: true,
         hasPdf: true,
-        featured: false
+        featured: false,
+        date: '2024-06-15'
     },
     {
         id: 3,
@@ -31,7 +33,8 @@ const newsItems = ref([
         image: 'https://placehold.co/600x400/darkgray/white?text=Carbón+Vegetal',
         hasImage: true,
         hasPdf: true,
-        featured: false
+        featured: false,
+        date: '2024-06-15'
     },
     {
         id: 4,
@@ -39,7 +42,8 @@ const newsItems = ref([
         category: 'CULTURA',
         title: 'El Sistema Creación pública resultados de México en Escena-Grupos Artísticos (MEGA) 2024',
         hasImage: false,
-        hasPdf: true
+        hasPdf: true,
+        date: '2024-06-14'
     },
     {
         id: 5,
@@ -47,7 +51,8 @@ const newsItems = ref([
         category: 'SECTUR',
         title: 'Llegan a México más de 48 millones de turistas a cuartos de hotel durante enero-julio de 2024',
         hasImage: false,
-        hasPdf: true
+        hasPdf: true,
+        date: '2024-06-14'
     },
     {
         id: 6,
@@ -55,7 +60,8 @@ const newsItems = ref([
         category: 'IMSS-GQB',
         title: 'Garantiza IMSS-Bienestar seguridad y calidad en atención médica a pacientes',
         hasImage: false,
-        hasPdf: true
+        hasPdf: true,
+        date: '2024-06-13'
     },
     {
         id: 7,
@@ -63,7 +69,8 @@ const newsItems = ref([
         category: 'CULTURA',
         title: 'La Fonoteca Nacional celebra 50 años de la fundación del trío Los Panchos con una sesión de escucha',
         hasImage: false,
-        hasPdf: true
+        hasPdf: true,
+        date: '2024-06-13'
     },
     {
         id: 8,
@@ -71,34 +78,97 @@ const newsItems = ref([
         category: 'ISSSTE-GQB',
         title: 'Inaugura Issste acelerador lineal y actualiza tres más para mejorar atención en CMN "20 de Noviembre"',
         hasImage: false,
-        hasPdf: true
+        hasPdf: true,
+        date: '2024-06-12'
     }
 ]);
+
+// Date filter functionality
+const selectedDate = ref('');
+const formattedSelectedDate = ref('');
+
+// Filter news items based on selected date
+const filteredNewsItems = ref([]);
+
+const updateFilteredItems = () => {
+    if (selectedDate.value === '') {
+        filteredNewsItems.value = newsItems.value;
+        formattedSelectedDate.value = '';
+    } else {
+        filteredNewsItems.value = newsItems.value.filter(item => item.date === selectedDate.value);
+
+        // Format date for display (e.g., "15 de junio, 2024")
+        const dateObj = new Date(selectedDate.value);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        formattedSelectedDate.value = dateObj.toLocaleDateString('es-MX', options);
+    }
+};
+
+// Initialize with all items
+updateFilteredItems();
+
+// Clear date filter
+const clearDateFilter = () => {
+    selectedDate.value = '';
+    updateFilteredItems();
+};
+
+// Handle date change
+const handleDateChange = (event) => {
+    selectedDate.value = event.target.value;
+    updateFilteredItems();
+};
 </script>
 
 <template>
     <div class="px-4 py-8 mx-auto max-w-7xl">
-        <h1 class="mb-8 text-3xl font-bold text-gray-800">Noticias México</h1>
+        <h1 class="mb-6 text-3xl font-bold text-gray-800">Noticias México</h1>
+
+        <!-- Date filter using input type="date" -->
+        <div class="mb-8">
+            <div class="flex flex-col items-center gap-4 sm:flex-row sm:items-stretch">
+                <label for="date-filter" class="font-medium text-gray-700">Filtrar por fecha:</label>
+                <div class="flex w-full sm:w-auto">
+                    <input type="date" id="date-filter" v-model="selectedDate" @change="handleDateChange"
+                        class="px-3 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                    <button v-if="selectedDate" @click="clearDateFilter"
+                        class="px-3 py-2 text-white bg-red-700 rounded-r-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                        title="Limpiar filtro">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Show selected date if filtering -->
+            <div v-if="formattedSelectedDate" class="mt-2 text-sm text-gray-600">
+                Mostrando noticias del: <span class="font-medium">{{ formattedSelectedDate }}</span>
+            </div>
+        </div>
 
         <!-- Main two-column layout -->
-        <div class="flex flex-col md:flex-row md:gap-6">
+        <div v-if="filteredNewsItems.length > 0" class="flex flex-col md:flex-row md:gap-6">
             <!-- Left column - wider, with featured post at top and two columns below -->
             <div class="w-full md:w-2/3">
                 <!-- Featured post (large) -->
-                <div class="mb-6">
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                <div v-if="filteredNewsItems.some(item => item.featured)" class="mb-6">
+                    <div v-for="item in filteredNewsItems.filter(item => item.featured)" :key="item.id"
+                        class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img :src="newsItems[0].image" :alt="newsItems[0].title" class="object-cover w-full h-80">
+                            <img :src="item.image" :alt="item.title" class="object-cover w-full h-80">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ newsItems[0].time }}</span>
+                                <span class="text-sm text-gray-600">{{ item.time }}</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ newsItems[0].category }}
+                                {{ item.category }}
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ newsItems[0].title }}</h2>
-                            <div v-if="newsItems[0].hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
+                            <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ item.title }}</h2>
+                            <div v-if="item.hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -112,44 +182,21 @@ const newsItems = ref([
 
                 <!-- Two columns below the featured post -->
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                    <!-- Second post with image -->
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
+                    <!-- Posts with images (excluding featured) -->
+                    <div v-for="item in filteredNewsItems.filter(item => item.hasImage && !item.featured)"
+                        :key="item.id" class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
                         <div class="relative">
-                            <img :src="newsItems[1].image" :alt="newsItems[1].title" class="object-cover w-full h-48">
+                            <img :src="item.image" :alt="item.title" class="object-cover w-full h-48">
                             <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ newsItems[1].time }}</span>
+                                <span class="text-sm text-gray-600">{{ item.time }}</span>
                             </div>
                             <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ newsItems[1].category }}
+                                {{ item.category }}
                             </div>
                         </div>
                         <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ newsItems[1].title }}</h2>
-                            <div v-if="newsItems[1].hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
-                                </svg>
-                                <span class="text-sm">Descargar PDF</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Third post with image -->
-                    <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
-                        <div class="relative">
-                            <img :src="newsItems[2].image" :alt="newsItems[2].title" class="object-cover w-full h-48">
-                            <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ newsItems[2].time }}</span>
-                            </div>
-                            <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ newsItems[2].category }}
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ newsItems[2].title }}</h2>
-                            <div v-if="newsItems[2].hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
+                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ item.title }}</h2>
+                            <div v-if="item.hasPdf" class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -165,7 +212,7 @@ const newsItems = ref([
             <!-- Right column - narrower with stacked text items -->
             <div class="w-full mt-6 md:mt-0 md:w-1/3">
                 <div class="flex flex-col space-y-4">
-                    <div v-for="item in newsItems.slice(3)" :key="item.id"
+                    <div v-for="item in filteredNewsItems.filter(item => !item.hasImage)" :key="item.id"
                         class="p-4 border border-gray-200 rounded-md shadow-sm">
                         <div class="flex items-center mb-2 space-x-1">
                             <div class="flex items-center text-gray-500">
@@ -192,8 +239,17 @@ const newsItems = ref([
             </div>
         </div>
 
+        <!-- Empty state when no news items match the filter -->
+        <div v-else class="py-10 text-center">
+            <p class="text-xl text-gray-600">No hay noticias disponibles para la fecha seleccionada.</p>
+            <button @click="clearDateFilter"
+                class="px-4 py-2 mt-4 text-white bg-red-700 rounded-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                Ver todas las noticias
+            </button>
+        </div>
+
         <!-- Pagination -->
-        <div class="flex justify-center mt-10">
+        <div v-if="filteredNewsItems.length > 0" class="flex justify-center mt-10">
             <nav class="inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                 <a href="#"
                     class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50">
@@ -235,5 +291,13 @@ const newsItems = ref([
 </template>
 
 <style scoped>
-/* You can add custom styles here if needed */
+/* Style input[type="date"] for better cross-browser appearance */
+input[type="date"] {
+    min-width: 200px;
+}
+
+/* Override default date input appearance in some browsers */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
 </style>
