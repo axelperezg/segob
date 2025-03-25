@@ -82,18 +82,23 @@ const clearDateFilter = () => {
                 <!-- Featured post (large) -->
                 <div class="mb-6">
                     <div class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
-                        <div class="relative">
-                            <img :src="featuredPost.featured_image" alt="Noticia destacada"
-                                class="object-cover w-full h-80">
-                            <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at) }}</span>
+                        <a :href="featuredPost.url" target="_blank" class="block cursor-pointer">
+                            <div class="relative">
+                                <img :src="featuredPost.featured_image" alt="Noticia destacada"
+                                    class="object-cover w-full h-80">
+                                <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
+                                    <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at)
+                                    }}</span>
+                                </div>
+                                <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
+                                    {{ featuredPost.mexicoDependency.name }}
+                                </div>
                             </div>
-                            <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ featuredPost.mexicoDependency.name }}
+                            <div class="p-4">
+                                <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
                             </div>
-                        </div>
-                        <div class="p-4">
-                            <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
+                        </a>
+                        <div class="px-4 pb-4">
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -110,17 +115,21 @@ const clearDateFilter = () => {
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div v-for="post in secondaryPosts" :key="post.id"
                         class="overflow-hidden border border-gray-200 rounded-lg shadow-sm">
-                        <div class="relative">
-                            <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48">
-                            <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                <span class="text-sm text-gray-600">{{ formatDate(post.published_at) }}</span>
+                        <a :href="post.url" target="_blank" class="block cursor-pointer">
+                            <div class="relative">
+                                <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48">
+                                <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
+                                    <span class="text-sm text-gray-600">{{ formatDate(post.published_at) }}</span>
+                                </div>
+                                <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
+                                    {{ post.mexicoDependency.name }}
+                                </div>
                             </div>
-                            <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
-                                {{ post.mexicoDependency.name }}
+                            <div class="p-4">
+                                <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
                             </div>
-                        </div>
-                        <div class="p-4">
-                            <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
+                        </a>
+                        <div class="px-4 pb-4">
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -137,8 +146,8 @@ const clearDateFilter = () => {
             <!-- Right column - narrower with stacked text items -->
             <div class="w-full mt-6 md:mt-0 md:w-1/3">
                 <div class="flex flex-col space-y-4">
-                    <div v-for="post in tertiaryPosts" :key="post.id"
-                        class="p-4 border border-gray-200 rounded-md shadow-sm">
+                    <a v-for="post in tertiaryPosts" :key="post.id" :href="post.url" target="_blank"
+                        class="p-4 transition-colors border border-gray-200 rounded-md shadow-sm hover:bg-gray-50">
                         <div class="flex items-center mb-2 space-x-1">
                             <div class="flex items-center text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none"
@@ -157,9 +166,9 @@ const clearDateFilter = () => {
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                             </svg>
-                            <a :href="post.pdf" target="_blank" class="text-sm">Descargar PDF</a>
+                            <a :href="post.pdf" target="_blank" class="text-sm" @click.stop>Descargar PDF</a>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
