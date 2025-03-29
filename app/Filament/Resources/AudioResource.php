@@ -20,13 +20,9 @@ use Filament\Tables\Table;
 class AudioResource extends Resource
 {
     protected static ?string $model = Audio::class;
-
     protected static ?int $navigationSort = 5;
-
-    protected static ?string $navigationLabel = 'Audios';
-
-    protected static ?string $breadcrumb = 'Audios';
-
+    protected static ?string $navigationLabel = 'Versiones';
+    protected static ?string $breadcrumb = 'Versiones';
     protected static ?string $navigationIcon = 'heroicon-o-speaker-wave';
 
     public static function form(Form $form): Form
