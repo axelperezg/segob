@@ -20,9 +20,9 @@ class FeaturedPostResource extends Resource
 
     protected static ?string $breadcrumb = 'Noticias';
 
-    protected static ?string $navigationGroup = 'Home';
+    protected static ?string $navigationGroup = 'Configuración del Sitio';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
