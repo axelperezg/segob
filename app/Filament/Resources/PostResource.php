@@ -38,6 +38,11 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
+    public static function getNavigationGroup(): string
+    {
+        return 'CMS Contenido | Noticias';
+    }
+
     public static function form(Form $form): Form
     {
         return $form

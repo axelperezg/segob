@@ -20,13 +20,18 @@ class VideoResource extends Resource
 {
     protected static ?string $model = Video::class;
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     protected static ?string $navigationLabel = 'Videos';
 
     protected static ?string $breadcrumb = 'Videos';
 
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CMS Contenido | Noticias';
+    }
 
     public static function form(Form $form): Form
     {

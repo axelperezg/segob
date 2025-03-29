@@ -24,13 +24,18 @@ class PhotoGalleryResource extends Resource
 {
     protected static ?string $model = PhotoGallery::class;
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $navigationLabel = 'Fotogalerías';
 
     protected static ?string $breadcrumb = 'Fotogalerías';
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CMS Contenido | Noticias';
+    }
 
     public static function form(Form $form): Form
     {

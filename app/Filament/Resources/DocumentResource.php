@@ -27,13 +27,18 @@ class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationLabel = 'Documentos';
 
     protected static ?string $breadcrumb = 'Documentos';
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CMS Contenido | Noticias';
+    }
 
     public static function form(Form $form): Form
     {

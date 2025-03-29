@@ -20,10 +20,15 @@ use Filament\Tables\Table;
 class AudioResource extends Resource
 {
     protected static ?string $model = Audio::class;
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 2;
     protected static ?string $modelLabel = 'Versión';
     protected static ?string $pluralModelLabel = 'Versiones';
     protected static ?string $navigationIcon = 'heroicon-o-speaker-wave';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'CMS Contenido | Noticias';
+    }
 
     public static function form(Form $form): Form
     {
