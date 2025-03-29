@@ -8,9 +8,4 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateAudio extends CreateRecord
 {
     protected static string $resource = AudioResource::class;
-
-    public function getTitle(): string
-    {
-        return 'Crear audio';
-    }
 }
