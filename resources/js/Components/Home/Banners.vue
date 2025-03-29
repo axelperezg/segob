@@ -27,14 +27,6 @@ const sliderConfig = {
                     </button>`,
     responsive: [
         {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-                centerPadding: '40px',
-            },
-        },
-        {
             breakpoint: 640,
             settings: {
                 slidesToShow: 1,
@@ -65,7 +57,7 @@ onMounted(() => {
                 </div>
             </div>
 
-            <div v-else class="text-center text-gray-500 py-8">
+            <div v-else class="py-8 text-center text-gray-500">
                 No hay banners disponibles en este momento.
             </div>
         </div>
