@@ -21,11 +21,16 @@ class DependencyResource extends Resource
 
     protected static ?string $navigationLabel = 'Dependencias';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $breadcrumb = 'Dependencias';
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Catálogos CMS Contenido';
+    }
 
     public static function form(Form $form): Form
     {

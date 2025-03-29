@@ -16,13 +16,18 @@ class GeneralSettings extends SettingsPage
 {
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $title = 'Configuración del Sitio';
 
     protected static string $settings = AppSettings::class;
 
     protected static ?string $navigationLabel = 'Configuración del Sitio';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Configuración del Sitio';
+    }
 
     public function form(Form $form): Form
     {

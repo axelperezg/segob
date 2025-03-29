@@ -19,13 +19,18 @@ class ActionResource extends Resource
 {
     protected static ?string $model = Action::class;
 
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Acciones';
 
     protected static ?string $breadcrumb = 'Acciones';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Acciones';
+    }
 
     public static function form(Form $form): Form
     {

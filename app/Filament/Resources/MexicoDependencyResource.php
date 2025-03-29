@@ -17,13 +17,18 @@ class MexicoDependencyResource extends Resource
 {
     protected static ?string $model = MexicoDependency::class;
 
-    protected static ?int $navigationSort = 7;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationLabel = 'Dependencias México';
 
     protected static ?string $breadcrumb = 'Dependencias México';
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Noticias MX';
+    }
 
     public static function form(Form $form): Form
     {

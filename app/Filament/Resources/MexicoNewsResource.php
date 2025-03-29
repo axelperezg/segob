@@ -21,13 +21,18 @@ class MexicoNewsResource extends Resource
 {
     protected static ?string $model = MexicoNews::class;
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationLabel = 'Noticias México';
 
     protected static ?string $breadcrumb = 'Noticias México';
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    public static function getNavigationGroup(): string
+    {
+        return 'Noticias MX';
+    }
 
     public static function form(Form $form): Form
     {
