@@ -16,7 +16,7 @@ class FeaturedPostResource extends Resource
 {
     protected static ?string $model = FeaturedPost::class;
 
-    protected static ?string $navigationLabel = 'Noticias';
+    protected static ?string $navigationLabel = 'Configurar Inicio';
 
     protected static ?string $breadcrumb = 'Noticias';
 
@@ -25,6 +25,8 @@ class FeaturedPostResource extends Resource
     protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    
 
     public static function form(Form $form): Form
     {

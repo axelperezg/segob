@@ -22,7 +22,7 @@ class GeneralSettings extends SettingsPage
 
     protected static string $settings = AppSettings::class;
 
-    protected static ?string $navigationLabel = 'Configuración del Sitio';
+    protected static ?string $navigationLabel = 'Configuración';
 
     public static function getNavigationGroup(): ?string
     {
