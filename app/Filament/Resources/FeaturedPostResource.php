@@ -26,8 +26,6 @@ class FeaturedPostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
-    
-
     public static function form(Form $form): Form
     {
         return $form

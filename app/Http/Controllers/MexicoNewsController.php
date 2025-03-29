@@ -31,7 +31,7 @@ class MexicoNewsController extends Controller
             ->appends($request->all());
 
         $filters = [
-            'published_at' => request('published_at', today()->format('Y-m-d')),
+            'published_at' => request('published_at', null),
         ];
 
         return Inertia::render('MexicoNews', [

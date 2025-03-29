@@ -32,11 +32,9 @@ const formattedSelectedDate = computed(() => {
 });
 
 const handleDateChange = () => {
-    console.log(selectedDate.value);
     router.get(route('mexico-news.index'), {
         published_at: selectedDate.value,
     }, {
-        preserveState: true,
         preserveScroll: true,
     });
 };
@@ -45,7 +43,6 @@ const handlePageChange = (url) => {
     router.get(url, {
         published_at: selectedDate.value || new Date().toISOString().split('T')[0]
     }, {
-        preserveState: true,
         preserveScroll: true,
     });
 };
@@ -55,7 +52,6 @@ const clearDateFilter = () => {
     router.get(route('mexico-news.index'), {
         published_at: null,
     }, {
-        preserveState: true,
         preserveScroll: true,
     });
 };
