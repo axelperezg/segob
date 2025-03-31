@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource\Pages;
+use App\Models\Dependency;
 use App\Models\Post;
 use App\Models\User;
 use Filament\Forms\Components\DatePicker;
@@ -137,6 +138,16 @@ class PostResource extends Resource
                             ->multiple()
                             ->preload()
                             ->label('Dependencias')
+                            ->default(function () {
+                                $isSegobPage = str_contains(request()->url(), '/admin/segob-posts/');
+                                $segobDependency = Dependency::where('name', 'segob')->first();
+                                
+                                if ($isSegobPage && $segobDependency) {
+                                    return [$segobDependency->id];
+                                }
+                                
+                                return [];
+                            })
                             ->columnSpan(1),
                     ])
                     ->columns(2),
