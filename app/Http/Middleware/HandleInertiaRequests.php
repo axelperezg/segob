@@ -62,7 +62,7 @@ class HandleInertiaRequests extends Middleware
                 ],
                 [
                     'name' => 'SEGOB',
-                    'url' => '#',
+                    'url' => route('segob-news.index'),
                 ],
                 [
                     'name' => 'GALERÍAS',

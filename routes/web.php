@@ -10,10 +10,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\MexicoNewsController;
+use App\Http\Controllers\SegobNewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
 Route::get('/noticias', NewsController::class)->name('news.index');
+Route::get('/noticias-segob', SegobNewsController::class)->name('segob-news.index');
 Route::get('/versiones', VersionController::class)->name('versions.index');
 Route::get('/galerias', [PhotoGalleryController::class, 'index'])->name('photo-galleries.index');
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');

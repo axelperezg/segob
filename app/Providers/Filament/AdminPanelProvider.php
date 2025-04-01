@@ -18,6 +18,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Filament\Navigation\NavigationGroup;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -42,11 +43,21 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
             ])
             ->navigationGroups([
-                'CMS Contenido | Noticias',
-                'Catálogos CMS Contenido',
-                'Noticias MX',
-                'Acciones',
-                'Configuración del Sitio',
+                NavigationGroup::make()
+                    ->label('CMS Contenido | Noticias')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Catálogos CMS Contenido')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Noticias MX')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Acciones')
+                    ->collapsed(false),
+                NavigationGroup::make()
+                    ->label('Configuración del Sitio')
+                    ->collapsed(false),
             ])
             ->middleware([
                 EncryptCookies::class,
