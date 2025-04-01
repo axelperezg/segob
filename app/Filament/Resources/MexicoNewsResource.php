@@ -80,8 +80,8 @@ class MexicoNewsResource extends Resource
                             ->columnSpan(1),
                         Section::make('Documento PDF')
                             ->schema([
-                                SpatieMediaLibraryFileUpload::make('documents')
-                                    ->collection('documents')
+                                SpatieMediaLibraryFileUpload::make('document')
+                                    ->collection('document')
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->hiddenLabel(),
                             ])

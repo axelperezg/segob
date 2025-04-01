@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import Pagination from '@/Components/Pagination.vue';
+import PdfViewerModal from '@/Components/PdfViewerModal.vue';
 import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -14,6 +15,27 @@ let secondaryPosts = props.mainPosts.data.slice(1, 3);
 let tertiaryPosts = props.posts.data;
 
 const selectedDate = ref(props.filters.published_at);
+
+// PDF Viewer Modal 
+const isPdfModalOpen = ref(false);
+const currentPdf = ref({
+    url: '',
+    pageUrl: '',
+    title: ''
+});
+
+const openPdfModal = (post) => {
+    currentPdf.value = {
+        url: post.pdf,
+        pageUrl: post.url,
+        title: post.title || 'Boletín'
+    };
+    isPdfModalOpen.value = true;
+};
+
+const closePdfModal = () => {
+    isPdfModalOpen.value = false;
+};
 
 // Format date helper function
 const formatDate = (dateString) => {
@@ -94,7 +116,7 @@ const clearDateFilter = () => {
                                     class="object-cover w-full h-80">
                                 <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at)
-                                    }}</span>
+                                        }}</span>
                                 </div>
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ featuredPost.mexicoDependency.name }}
@@ -104,14 +126,15 @@ const clearDateFilter = () => {
                                 <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
                             </div>
                         </a>
-                        <div v-if="featuredPost" class="px-4 pb-4">
+                        <div v-if="featuredPost.pdf" class="px-4 pb-4">
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                 </svg>
-                                <a :href="featuredPost.pdf" target="_blank" class="text-sm">Descargar PDF</a>
+                                <a href="#" @click.prevent="openPdfModal(featuredPost)" class="text-sm">Descargar
+                                    PDF</a>
                             </div>
                         </div>
                     </div>
@@ -143,14 +166,14 @@ const clearDateFilter = () => {
                                 <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
                             </div>
                         </a>
-                        <div class="px-4 pb-4">
+                        <div v-if="post.pdf" class="px-4 pb-4">
                             <div class="flex items-center text-gray-600 hover:text-red-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                 </svg>
-                                <a :href="post.pdf" target="_blank" class="text-sm">Descargar PDF</a>
+                                <a href="#" @click.prevent="openPdfModal(post)" class="text-sm">Descargar PDF</a>
                             </div>
                         </div>
                     </div>
@@ -174,13 +197,13 @@ const clearDateFilter = () => {
                             <div class="text-sm font-medium text-red-700">{{ post.mexicoDependency.name }}</div>
                         </div>
                         <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
-                        <div class="flex items-center text-gray-600 hover:text-red-700">
+                        <div v-if="post.pdf" class="flex items-center text-gray-600 hover:text-red-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                             </svg>
-                            <a :href="post.pdf" target="_blank" class="text-sm" @click.stop>Descargar PDF</a>
+                            <a href="#" @click.stop.prevent="openPdfModal(post)" class="text-sm">Descargar PDF</a>
                         </div>
                     </a>
                 </div>
@@ -199,6 +222,10 @@ const clearDateFilter = () => {
         <!-- Pagination -->
         <Pagination v-if="posts.meta.links.length > 3" :links="posts.meta.links" @page-changed="handlePageChange"
             class="mt-10" />
+
+        <!-- PDF Viewer Modal -->
+        <PdfViewerModal :is-open="isPdfModalOpen" :pdf-url="currentPdf.url" :page-url="currentPdf.pageUrl"
+            :title="currentPdf.title" @close="closePdfModal" />
     </div>
 </template>
 
