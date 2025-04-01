@@ -15,6 +15,7 @@ class MexicoNewsFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'url' => fake()->url(),
+            'image' => null,
             'published_at' => fake()->dateTimeBetween('-1 month', 'now'),
             'mexico_dependency_id' => MexicoDependency::factory(),
         ];
