@@ -48,6 +48,7 @@ class GeneralSettings extends SettingsPage
                     ->heading('Redes Sociales')
                     ->schema([
                         Repeater::make('social_networks')
+                            ->hiddenLabel()
                             ->maxItems(5)
                             ->schema([
                                 Select::make('network')

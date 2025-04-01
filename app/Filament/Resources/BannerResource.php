@@ -48,7 +48,6 @@ class BannerResource extends Resource
                             ->maxLength(255),
                         Croppie::make('image')
                             ->label('Imagen')
-                            ->hiddenLabel()
                             ->viewportType('square')
                             ->imageSize('original')
                             ->modalTitle('Recortar imagen')

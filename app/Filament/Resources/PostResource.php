@@ -71,6 +71,7 @@ class PostResource extends Resource
                             ->maxLength(255)
                             ->unique(Post::class, 'slug', ignoreRecord: true),
                         RichEditor::make('content')
+                            ->label('Contenido')
                             ->required()
                             ->columnSpanFull(),
                         RichEditor::make('excerpt')

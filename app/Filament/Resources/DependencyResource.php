@@ -90,6 +90,7 @@ class DependencyResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nombre')
                     ->searchable(),
                 TextColumn::make('posts_count')
                     ->counts('posts')
