@@ -9,11 +9,13 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Michaeld555\FilamentCroppie\Components\Croppie;
 
 class VideoResource extends Resource
@@ -45,8 +47,20 @@ class VideoResource extends Resource
                             ->columnSpanFull()
                             ->default(true),
                         TextInput::make('title')
+                            ->live(onBlur: true)
                             ->required()
-                            ->label('Título'),
+                            ->label('Título')
+                            ->afterStateUpdated(
+                                fn (string $operation, $state, Set $set) => $operation === 'create'
+                                    ? $set('slug', Str::slug($state))
+                                    : null
+                            ),
+                        TextInput::make('slug')
+                            ->disabled()
+                            ->dehydrated()
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(Video::class, 'slug', ignoreRecord: true),
                         DatePicker::make('published_at')
                             ->default(now())
                             ->label('Fecha'),
