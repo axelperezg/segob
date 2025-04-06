@@ -78,7 +78,7 @@ export default class PostPresenter {
     }
 
     get dependencies() {
-        return this.post.dependencies;
+        return this.post.dependencies.map(dependency => dependency.name).join(', ');
     }
 
     get documents() {

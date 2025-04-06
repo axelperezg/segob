@@ -11,14 +11,14 @@ class NewsController extends Controller
     public function __invoke()
     {
         $posts = Post::query()
-            ->with('media', 'createdBy')
+            ->with('media', 'createdBy', 'dependencies')
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
             ->filterByContentType(request('content_type', []))
             ->orderByDesc('published_at')
             ->paginate(10)
             ->withQueryString();
-
+            
         $filters = [
             'title' => request('title', ''),
             'published_at' => request('published_at', ''),
