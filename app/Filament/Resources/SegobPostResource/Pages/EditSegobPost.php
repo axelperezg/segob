@@ -3,10 +3,8 @@
 namespace App\Filament\Resources\SegobPostResource\Pages;
 
 use App\Filament\Resources\SegobPostResource;
-use App\Models\Dependency;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class EditSegobPost extends EditRecord
 {
@@ -23,4 +21,4 @@ class EditSegobPost extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

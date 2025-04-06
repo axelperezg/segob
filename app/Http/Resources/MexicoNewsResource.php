@@ -19,7 +19,7 @@ class MexicoNewsResource extends JsonResource
         } else {
             $featuredImage = $this->mexicoDependency->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350';
         }
-        
+
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -33,4 +33,4 @@ class MexicoNewsResource extends JsonResource
             'updated_at' => $this->updated_at,
         ];
     }
-} 
+}

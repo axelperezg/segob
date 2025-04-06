@@ -491,7 +491,7 @@ class BaseSeeder extends Seeder
                 'name' => 'Secretaría de Hacienda',
             ],
         ]);
-        
+
         foreach (range(1, 10) as $i) {
             MexicoNews::factory()->create([
                 'url' => 'https://www.google.com',

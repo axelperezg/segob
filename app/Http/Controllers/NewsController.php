@@ -18,7 +18,7 @@ class NewsController extends Controller
             ->orderByDesc('published_at')
             ->paginate(10)
             ->withQueryString();
-            
+
         $filters = [
             'title' => request('title', ''),
             'published_at' => request('published_at', ''),

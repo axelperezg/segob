@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SegobPostResource\Pages;
-use App\Models\Dependency;
 use App\Models\Post;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -43,29 +42,29 @@ class SegobPostResource extends Resource
             ->modifyQueryUsing(
                 fn (Builder $query) => $query
                     ->whereHas('dependencies', fn ($query) => $query->where('name', 'segob'))
-                )
+            )
             ->columns([
-                TextColumn::make('title')
-                    ->wrap()
-                    ->searchable()
-                    ->label('Título'),
-                TextColumn::make('createdBy.name')
-                    ->label('Usuario'),
-                TextColumn::make('published_at')
-                    ->label('Fecha de publicación')
-                    ->dateTime('d/m/Y'),
-                TextColumn::make('created_at')
-                    ->label('Fecha de creación')
-                    ->dateTime('d/m/Y'),
-                IconColumn::make('is_published')
-                    ->label('Publicado')
-                    ->boolean(),
+            TextColumn::make('title')
+                ->wrap()
+                ->searchable()
+                ->label('Título'),
+            TextColumn::make('createdBy.name')
+                ->label('Usuario'),
+            TextColumn::make('published_at')
+                ->label('Fecha de publicación')
+                ->dateTime('d/m/Y'),
+            TextColumn::make('created_at')
+                ->label('Fecha de creación')
+                ->dateTime('d/m/Y'),
+            IconColumn::make('is_published')
+                ->label('Publicado')
+                ->boolean(),
             ])
             ->filters([
-                //
+            //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+            Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([]);
     }
@@ -85,4 +84,4 @@ class SegobPostResource extends Resource
             'edit' => Pages\EditSegobPost::route('/{record}/edit'),
         ];
     }
-} 
+}

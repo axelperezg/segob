@@ -28,4 +28,4 @@ class ListSegobPosts extends ListRecords
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

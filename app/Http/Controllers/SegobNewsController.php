@@ -12,16 +12,16 @@ class SegobNewsController extends Controller
     public function __invoke()
     {
         $segobDependency = Dependency::where('name', 'segob')->first();
-        
+
         $query = Post::query()
             ->with('media', 'createdBy')
-            ->whereHas('dependencies', function($query) use ($segobDependency) {
+            ->whereHas('dependencies', function ($query) use ($segobDependency) {
                 $query->where('dependency_id', $segobDependency->id);
             })
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
             ->filterByContentType(request('content_type', []));
-            
+
         $posts = $query
             ->orderByDesc('published_at')
             ->paginate(10)
@@ -39,4 +39,4 @@ class SegobNewsController extends Controller
             'showDependency' => false, // No mostramos selector de dependencias ya que está filtrado por Segob
         ]);
     }
-} 
+}

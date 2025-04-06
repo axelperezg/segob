@@ -142,11 +142,11 @@ class PostResource extends Resource
                             ->default(function () {
                                 $isSegobPage = str_contains(request()->url(), '/admin/segob-posts/');
                                 $segobDependency = Dependency::where('name', 'segob')->first();
-                                
+
                                 if ($isSegobPage && $segobDependency) {
                                     return [$segobDependency->id];
                                 }
-                                
+
                                 return [];
                             })
                             ->columnSpan(1),
