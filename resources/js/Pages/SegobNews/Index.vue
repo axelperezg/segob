@@ -8,11 +8,15 @@ let props = defineProps({
     filters: Object,
     showDependency: Boolean,
     dependencies: Array,
+    dependency: Object,
 });
 </script>
 
 <template>
     <div>
+        <div class="flex justify-center bg-[#F1EDE1] -mx-4 -mt-8 py-6 mb-8">
+            <img :src="dependency.data.image" alt="Banner" class="w-[20rem]">
+        </div>
         <PostsLayout :posts="posts" :filters="filters" route-name="segob-news.index" title="Noticias Segob"
             :route-params="{}" :show-dependency="showDependency" />
         <div class="mx-auto max-w-7xl">

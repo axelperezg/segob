@@ -13,7 +13,7 @@ class SegobNewsController extends Controller
     public function __invoke()
     {
         $segobDependency = Dependency::where('name', 'segob')->first();
-
+        
         $query = Post::query()
             ->with('media', 'createdBy')
             ->whereHas('dependencies', function ($query) use ($segobDependency) {
@@ -37,12 +37,13 @@ class SegobNewsController extends Controller
         ];
 
         $dependencies = Dependency::query()->latest()->get();
-        
+
         return Inertia::render('SegobNews/Index', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
             'showDependency' => false,
             'dependencies' => DependencyResource::collection($dependencies),
+            'dependency' => DependencyResource::make($segobDependency),
         ]);
     }
 }
