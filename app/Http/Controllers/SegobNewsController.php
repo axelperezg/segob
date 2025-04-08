@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DependencyResource;
 use App\Http\Resources\PostResource;
 use App\Models\Dependency;
 use App\Models\Post;
@@ -35,10 +36,13 @@ class SegobNewsController extends Controller
             'content_type' => request('content_type', []),
         ];
 
+        $dependencies = Dependency::query()->latest()->get();
+        
         return Inertia::render('SegobNews/Index', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
             'showDependency' => false,
+            'dependencies' => DependencyResource::collection($dependencies),
         ]);
     }
 }
