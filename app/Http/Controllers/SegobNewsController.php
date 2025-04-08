@@ -38,7 +38,7 @@ class SegobNewsController extends Controller
         return Inertia::render('SegobNews/Index', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
-            'showDependency' => false, // No mostramos selector de dependencias ya que está filtrado por Segob
+            'showDependency' => false,
         ]);
     }
 }
