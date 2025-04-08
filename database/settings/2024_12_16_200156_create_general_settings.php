@@ -7,10 +7,16 @@ return new class extends SettingsMigration
 {
     public function up(): void
     {
-        $logo = asset('assets/segob-noticias.png');
-        $logoMexico = asset('assets/estados-unidos-mexicanos.svg');
+        $logo = storage_path('app/public/segob-noticias.png');
+        $logoMexico = storage_path('app/public/estados-unidos-mexicanos.svg');
+
+        if (file_exists($logo)) {
         Storage::disk('public')->put('logo.png', file_get_contents($logo));
+        }
+
+        if (file_exists($logoMexico)) {
         Storage::disk('public')->put('logo-mexico.svg', file_get_contents($logoMexico));
+        }
 
         $this->migrator->add('general.logo', 'logo.png');
         $this->migrator->add('general.mexico_logo', 'logo-mexico.svg');
