@@ -57,12 +57,15 @@ onMounted(() => {
     <section class="py-12 -mx-4 bg-gold">
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-medium text-center text-white">Acciones</h2>
-            <div class="actions-slider">
+            <div v-if="actions && actions.length" class="actions-slider">
                 <div v-for="action in actions" class="px-2">
                     <Link :href="route('actions.show', action.slug)" target="_blank">
-                        <img :src="action.image" :alt="action.name" class="w-full rounded-lg" />
+                    <img :src="action.image" :alt="action.name" class="w-full rounded-lg" />
                     </Link>
                 </div>
+            </div>
+            <div v-else class="py-8 text-center">
+                <p class="text-xl text-white">No hay acciones disponibles en este momento.</p>
             </div>
         </div>
     </section>
