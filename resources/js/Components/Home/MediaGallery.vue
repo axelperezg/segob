@@ -50,8 +50,12 @@ const sliderConfig = {
 
 onMounted(() => {
     setTimeout(() => {
-        $('.photos-slider').slick(sliderConfig)
-        $('.videos-slider').slick(sliderConfig)
+        if (props.photos?.length) {
+            $('.photos-slider').slick(sliderConfig)
+        }
+        if (props.videos?.length) {
+            $('.videos-slider').slick(sliderConfig)
+        }
     }, 100)
 })
 </script>
@@ -60,22 +64,20 @@ onMounted(() => {
     <section class="py-12 -mx-4 bg-gold-lighter">
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-bold text-center">Fotos</h2>
-            <div class="photos-slider">
-                <PhotoGalleryItem
-                    v-for="photo in photos"
-                    :key="photo.id"
-                    :item="photo"
-                />
+            <div v-if="!photos || photos.length === 0" class="py-8 text-center">
+                <p class="text-xl text-gray-700">No hay fotos disponibles en este momento.</p>
+            </div>
+            <div v-else class="photos-slider">
+                <PhotoGalleryItem v-for="photo in photos" :key="photo.id" :item="photo" />
             </div>
 
             <h2 class="mt-12 mb-8 text-3xl font-bold text-center">Videos</h2>
-            <div class="videos-slider">
-                <VideoItem
-                    v-for="video in videos"
-                    :key="video.id"
-                    :item="video"
-                />
+            <div v-if="!videos || videos.length === 0" class="py-8 text-center">
+                <p class="text-xl text-gray-700">No hay videos disponibles en este momento.</p>
+            </div>
+            <div v-else class="videos-slider">
+                <VideoItem v-for="video in videos" :key="video.id" :item="video" />
             </div>
         </div>
     </section>
-</template> 
+</template>

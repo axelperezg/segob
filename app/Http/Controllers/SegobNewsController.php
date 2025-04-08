@@ -16,7 +16,9 @@ class SegobNewsController extends Controller
         $query = Post::query()
             ->with('media', 'createdBy')
             ->whereHas('dependencies', function ($query) use ($segobDependency) {
-                $query->where('dependency_id', $segobDependency->id);
+                $query->when($segobDependency, function ($query) use ($segobDependency) {
+                    $query->where('dependency_id', $segobDependency->id);
+                });
             })
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
