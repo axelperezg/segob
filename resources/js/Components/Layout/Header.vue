@@ -10,7 +10,7 @@ const appSettings = usePage().props.app_settings
             <h1 class="flex flex-col text-4xl font-bold text-gold">
                 <Link href="/">
                 <figure>
-                    <img class="w-[12rem]" :src="`/storage/${appSettings.logo}`" alt="Segob Noticias" />
+                    <img class="h-[5rem]" :src="`/storage/${appSettings.logo}`" alt="Segob Noticias" />
                 </figure>
                 </Link>
             </h1>
