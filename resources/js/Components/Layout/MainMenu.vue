@@ -11,7 +11,7 @@ const toggleMenu = () => {
 </script>
 
 <template>
-    <nav class="-mx-4 border-burgundy md:bg-gold md:border-t-[.6rem] md:border-burgundy">
+    <nav class="-mx-4 border-burgundy md:bg-gold md:border-t-[.6rem] md:border-burgundy lg:sticky lg:top-[55px] z-10">
         <div class="px-4 mx-auto max-w-7xl">
             <div class="flex flex-wrap items-center justify-between">
                 <ul class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
@@ -32,7 +32,7 @@ const toggleMenu = () => {
                             :class="{ hidden: !item.isOpen, block: item.isOpen }" @mouseleave="item.isOpen = false">
                             <li v-for="subitem in item.submenu" :key="subitem.name">
                                 <Link :href="subitem.url"
-                                    class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100">
+                                    class="block px-4 py-2 text-gray-700 text-md hover:bg-gray-100">
                                 {{ subitem.name }}
                                 </Link>
                             </li>
