@@ -31,13 +31,13 @@ defineProps({
 
         <div v-else>
             <div class="grid grid-cols-1 gap-6 pt-4 pb-8 md:flex">
-                <div class="space-y-6 lg:w-2/3">
+                <div class="space-y-6 md:w-8/12 lg:w-2/3">
                     <!-- Main posts -->
                     <Link :href="route('posts.show', post.slug)" v-for="post in mainPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
                         <img :src="post.image" :alt="post.title" class="w-full" />
                         <div class="p-4">
-                            <h2 class="mb-2 text-xl font-bold lg:text-4xl">{{ post.title }}</h2>
+                            <h2 class="mb-2 text-xl font-bold md:text-4xl">{{ post.title }}</h2>
                             <p class="mb-1 text-xs italic text-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -58,7 +58,7 @@ defineProps({
                     </Link>
                 </div>
                 <!-- Secondary posts -->
-                <div class="space-y-6 lg:w-1/3">
+                <div class="space-y-6 md:w-4/12 lg:w-1/3">
                     <Link :href="route('posts.show', post.slug)" v-for="post in secondaryPosts.data" :key="post.id">
                     <article class="overflow-hidden border rounded-lg">
                         <img :src="post.image" :alt="post.title" class="w-full" />

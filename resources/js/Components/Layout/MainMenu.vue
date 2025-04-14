@@ -16,7 +16,7 @@ const toggleMenu = () => {
             <div class="flex flex-wrap items-center justify-between">
                 <ul class="flex flex-col flex-wrap w-full md:gap-x-4 md:flex-row md:space-y-0"
                     :class="{ 'hidden md:flex': !isMenuOpen, block: isMenuOpen }">
-                    <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4">
+                    <li v-for="item in mainMenu" :key="item.name" class="relative py-2 md:py-4 text-[.8rem]">
                         <Link @click.prevent="item.isOpen = !item.isOpen" :href="item.url"
                             class="flex items-center gap-2 font-medium transition-colors md:text-white">
                         {{ item.name }}

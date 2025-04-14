@@ -44,27 +44,27 @@ class SegobPostResource extends Resource
                     ->whereHas('dependencies', fn ($query) => $query->where('name', 'segob'))
             )
             ->columns([
-            TextColumn::make('title')
-                ->wrap()
-                ->searchable()
-                ->label('Título'),
-            TextColumn::make('createdBy.name')
-                ->label('Usuario'),
-            TextColumn::make('published_at')
-                ->label('Fecha de publicación')
-                ->dateTime('d/m/Y'),
-            TextColumn::make('created_at')
-                ->label('Fecha de creación')
-                ->dateTime('d/m/Y'),
-            IconColumn::make('is_published')
-                ->label('Publicado')
-                ->boolean(),
+                TextColumn::make('title')
+                    ->wrap()
+                    ->searchable()
+                    ->label('Título'),
+                TextColumn::make('createdBy.name')
+                    ->label('Usuario'),
+                TextColumn::make('published_at')
+                    ->label('Fecha de publicación')
+                    ->dateTime('d/m/Y'),
+                TextColumn::make('created_at')
+                    ->label('Fecha de creación')
+                    ->dateTime('d/m/Y'),
+                IconColumn::make('is_published')
+                    ->label('Publicado')
+                    ->boolean(),
             ])
             ->filters([
-            //
+                //
             ])
             ->actions([
-            Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([]);
     }
