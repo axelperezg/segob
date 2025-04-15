@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandLogo(fn () => "/storage/$appSettings->logo")
             ->login()
+            ->favicon(asset('assets/favicon/favicon.svg'))
             ->colors([
                 'primary' => Color::Pink,
             ])
