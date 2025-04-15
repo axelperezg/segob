@@ -12,7 +12,7 @@ class VersionController extends Controller
     public function __invoke()
     {
         $posts = Post::query()
-            ->with('media', 'createdBy')
+            ->with('media', 'createdBy', 'dependencies')
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
             ->filterByDependency(request('dependency_id'))
