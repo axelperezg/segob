@@ -11,8 +11,10 @@ const appSettings = usePage().props.app_settings
                 <img class="w-[9rem]" :src="`/storage/${appSettings.mexico_logo}`" alt="Logo Gobierno de México" />
             </div>
             <div class="flex items-center space-x-4 text-white">
-                <a href="#" class="text-sm hover:text-gold">Noticias</a>
-                <a href="#" class="text-sm hover:text-gold">Gobierno</a>
+                <a v-for="link in appSettings.top_bar_links" :href="link.url"
+                    :target="link.external == 1 ? '_blank' : '_self'" class="text-sm hover:text-gold">
+                    {{ link.name }}
+                </a>
             </div>
         </div>
     </div>

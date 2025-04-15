@@ -18,6 +18,8 @@ class AppSettings extends Settings
 
     public array $footer_links = [];
 
+    public array $top_bar_links = [];
+    
     public static function group(): string
     {
         return 'general';

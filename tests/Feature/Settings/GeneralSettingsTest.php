@@ -54,6 +54,13 @@ class GeneralSettingsTest extends TestCase
                     'url' => 'https://www.google.com/maps',
                 ],
             ],
+            'top_bar_links' => [
+                [
+                    'name' => 'Noticias',
+                    'url' => 'https://www.google.com/maps',
+                    'external' => false,
+                ],
+            ],
         ])->call('save');
 
         // Assert
@@ -69,6 +76,10 @@ class GeneralSettingsTest extends TestCase
         $this->assertEquals('https://twitter.com/test', $settings->social_networks[1]['url']);
         $this->assertEquals('https://www.google.com/maps', $settings->map_url);
         $this->assertEquals('Contenido de contacto', $settings->contact_content);
+        $this->assertCount(1, $settings->top_bar_links);
+        $this->assertEquals('Noticias', $settings->top_bar_links[0]['name']);
+        $this->assertEquals('https://www.google.com/maps', $settings->top_bar_links[0]['url']);
+        $this->assertEquals(false, $settings->top_bar_links[0]['external']);
     }
 
     public function test_social_network_url_must_be_valid(): void

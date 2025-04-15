@@ -94,6 +94,7 @@ class HandleInertiaRequests extends Middleware
                 'contact_content' => app(AppSettings::class)->contact_content,
                 'mexico_logo' => app(AppSettings::class)->mexico_logo,
                 'footer_links' => app(AppSettings::class)->footer_links,
+                'top_bar_links' => app(AppSettings::class)->top_bar_links,
             ],
         ]);
     }

@@ -33,7 +33,41 @@ class GeneralSettings extends SettingsPage
     {
         return $form
             ->schema([
+                Section::make('Top Bar')
+                    ->collapsible()
+                    ->collapsed()
+                    ->heading('Enlaces de Top Bar')
+                    ->description('Configure los enlaces que aparecen en la barra superior (Noticias, Gobierno, etc.)')
+                    ->schema([
+                        Repeater::make('top_bar_links')
+                            ->hiddenLabel()
+                            ->schema([
+                                TextInput::make('name')
+                                    ->label('Nombre')
+                                    ->required()
+                                    ->placeholder('Ej: Noticias, Gobierno'),
+                                TextInput::make('url')
+                                    ->label('URL')
+                                    ->required()
+                                    ->url()
+                                    ->placeholder('https://ejemplo.com'),
+                                Select::make('external')
+                                    ->label('Abrir en')
+                                    ->options([
+                                        false => 'Misma pestaña',
+                                        true => 'Nueva pestaña',
+                                    ])
+                                    ->default(false)
+                                    ->required(),
+                            ])
+                            ->columns(3)
+                            ->columnSpanFull()
+                            ->defaultItems(0)
+                            ->reorderable(),
+                    ]),
                 Section::make('Logo')
+                    ->collapsible()
+                    ->collapsed()
                     ->columns(2)
                     ->schema([
                         Fileupload::make('logo')
@@ -45,6 +79,8 @@ class GeneralSettings extends SettingsPage
                             ->image(),
                     ]),
                 Section::make('social')
+                ->collapsible()
+                ->collapsed()
                     ->heading('Redes Sociales')
                     ->schema([
                         Repeater::make('social_networks')
@@ -70,6 +106,8 @@ class GeneralSettings extends SettingsPage
                             ->columnSpanFull(),
                     ]),
                 Section::make('contact')
+                ->collapsible()
+                    ->collapsed()
                     ->heading('Contacto')
                     ->schema([
                         TextInput::make('map_url')
@@ -88,6 +126,8 @@ class GeneralSettings extends SettingsPage
                             ->columnSpanFull(),
                     ]),
                 Section::make('footer')
+                ->collapsible()
+                    ->collapsed()
                     ->heading('Footer')
                     ->schema([
                         Repeater::make('footer_links')
