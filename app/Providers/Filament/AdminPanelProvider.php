@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Settings\AppSettings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -24,11 +25,13 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        $appSettings = app(AppSettings::class);
+
         return $panel
             ->default()
             ->id('admin')
             ->path('admin')
-            // ->registration()
+            ->brandLogo(fn () => "/storage/$appSettings->logo")
             ->login()
             ->colors([
                 'primary' => Color::Pink,
