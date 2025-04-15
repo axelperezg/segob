@@ -2,11 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
 use App\Filament\Resources\DocumentResource\Pages;
 use App\Filament\Resources\PostResource\RelationManagers\PostsRelationManager;
 use App\Models\Document;
+use App\Models\DocumentSection;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -70,9 +70,11 @@ class DocumentResource extends Resource
                         Select::make('type')
                             ->label('Tipo')
                             ->options(DocumentTypeEnum::class),
-                        Select::make('document_section')
+                        Select::make('document_section_id')
                             ->label('Sección')
-                            ->options(DocumentSectionEnum::class),
+                            ->options(DocumentSection::all()->pluck('name', 'id'))
+                            ->searchable()
+                            ->preload(),
                     ]),
                 Section::make('Imagen')
                     ->schema([
@@ -112,6 +114,9 @@ class DocumentResource extends Resource
                 TextColumn::make('type')
                     ->label('Tipo')
                     ->formatStateUsing(fn (DocumentTypeEnum $state) => $state->getLabel()),
+                TextColumn::make('documentSection.name')
+                    ->label('Sección')
+                    ->sortable(),
                 TextColumn::make('published_at')
                     ->label('Fecha')
                     ->dateTime('d/m/Y'),

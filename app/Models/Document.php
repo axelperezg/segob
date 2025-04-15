@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Enums\Documents\DocumentSectionEnum;
 use App\Enums\Documents\DocumentTypeEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -21,7 +21,7 @@ class Document extends Model implements HasMedia
         'name',
         'slug',
         'type',
-        'document_section',
+        'document_section_id',
         'image',
     ];
 
@@ -31,7 +31,6 @@ class Document extends Model implements HasMedia
             'published_at' => 'date',
             'is_published' => 'boolean',
             'type' => DocumentTypeEnum::class,
-            'document_section' => DocumentSectionEnum::class,
         ];
     }
 
@@ -53,6 +52,11 @@ class Document extends Model implements HasMedia
         return $this->hasMany(Post::class);
     }
 
+    public function documentSection(): BelongsTo
+    {
+        return $this->belongsTo(DocumentSection::class);
+    }
+
     public function scopeSearchByName(Builder $query, ?string $name): Builder
     {
         return $query->when(
@@ -61,11 +65,11 @@ class Document extends Model implements HasMedia
         );
     }
 
-    public function scopeSearchByDocumentSection(Builder $query, ?string $documentSection): Builder
+    public function scopeSearchByDocumentSection(Builder $query, ?int $documentSectionId): Builder
     {
         return $query->when(
-            $documentSection,
-            fn (Builder $query, string $documentSection) => $query->where('document_section', $documentSection)
+            $documentSectionId,
+            fn (Builder $query, int $documentSectionId) => $query->where('document_section_id', $documentSectionId)
         );
     }
 }
