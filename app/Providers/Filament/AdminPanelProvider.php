@@ -80,6 +80,6 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 BreezyCore::make()
                     ->myProfile(),
-            ]);
+            ])->passwordReset();
     }
 }

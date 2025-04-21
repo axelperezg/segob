@@ -20,4 +20,13 @@ class CreateUser extends CreateRecord
         
         return $data;
     }
+
+    protected function afterCreate(): void
+    {
+        /** @var User $user */
+        $user = $this->record;
+
+        $user->notify(new WelcomeNewUserNotification);
+    }
+    
 } 
