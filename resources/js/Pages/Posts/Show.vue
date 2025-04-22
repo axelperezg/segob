@@ -31,63 +31,40 @@ const activeTab = ref(1);
         <div class="pb-4">
             <div class="border-b border-gray-200">
                 <nav class="flex flex-col md:flex-row gap-6">
-                    <button
-                        @click="activeTab = 1"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 1 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button @click="activeTab = 1" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 1 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         {{ postPresenter.contentType }}
                     </button>
-                    <button
-                        v-if="postPresenter.hasPhotos"
-                        @click="activeTab = 2"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 2 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button v-if="postPresenter.hasPhotos" @click="activeTab = 2" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 2 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         Fotografías
                     </button>
-                    <button
-                        v-if="postPresenter.hasAudio"
-                        @click="activeTab = 3"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 3 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button v-if="postPresenter.hasAudio" @click="activeTab = 3" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 3 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         Audio
                     </button>
-                    <button
-                        v-if="postPresenter.hasDocument"
-                        @click="activeTab = 4"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 4 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button v-if="postPresenter.hasDocument" @click="activeTab = 4" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 4 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         Documento
                     </button>
-                    <button
-                        v-if="postPresenter.hasVideo"
-                        @click="activeTab = 5"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 5 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button v-if="postPresenter.hasVideo" @click="activeTab = 5" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 5 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         Video
                     </button>
-                    <button
-                        v-if="postPresenter.hasStenographicVersion"
-                        @click="activeTab = 6"
-                        :class="[
-                            'py-2 font-[400] text-lg border-b-4 transition-colors',
-                            activeTab === 6 ? 'border-gold' : 'border-transparent hover:border-gold/50'
-                        ]"
-                    >
+                    <button v-if="postPresenter.hasStenographicVersion" @click="activeTab = 6" :class="[
+                        'py-2 font-[400] text-lg border-b-4 transition-colors',
+                        activeTab === 6 ? 'border-gold' : 'border-transparent hover:border-gold/50'
+                    ]">
                         Versión Estenográfica
                     </button>
                 </nav>
@@ -99,9 +76,7 @@ const activeTab = ref(1);
                     </div>
                     <div class="flex justify-center">
                         <div class="flex flex-wrap gap-2 items-center border-l border-gray-400 pl-2 mt-10">
-                            <span v-for="dependency in postPresenter.dependencies" :key="dependency.id" class="text-sm italic font-normal">
-                                {{ dependency.name }}{{ !$last ? ',' : '' }}
-                            </span>
+                            {{ postPresenter.dependencies }}
                         </div>
                     </div>
                 </div>
@@ -110,46 +85,29 @@ const activeTab = ref(1);
                 </div>
 
                 <div class="grid grid-cols-3 gap-4" v-show="activeTab === 2">
-                    <a
-                        v-for="photo in post.data.photoGallery?.photos"
-                        :href="photo"
-                        :download="true"
-                    >
+                    <a v-for="photo in post.data.photoGallery?.photos" :href="photo" :download="true">
                         <img class="rounded-md" :src="photo" :alt="postPresenter.name" />
                     </a>
                 </div>
                 <div v-show="activeTab === 4" class="w-full h-screen">
-                    <iframe
-                        :src="post.data.document?.document_file"
-                        class="w-full h-[80vh]"
-                        type="application/pdf"
-                    >
+                    <iframe :src="post.data.document?.document_file" class="w-full h-[80vh]" type="application/pdf">
                     </iframe>
                     <div class="flex justify-center mb-4 mt-10">
-                        <a
-                            :href="post.data.document?.document_file"
-                            download
-                            class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center"
-                        >
+                        <a :href="post.data.document?.document_file" download
+                            class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center">
                             <span>Descargar PDF</span>
                         </a>
                     </div>
                 </div>
                 <div v-show="activeTab === 3" class="max-w-3xl mx-auto">
                     <div v-if="post.data?.audio" class="flex flex-col items-center">
-                        <audio
-                            controls
-                            class="w-full"
-                        >
+                        <audio controls class="w-full">
                             <source :src="post.data.audio.audio_file" type="audio/mpeg">
                             Tu navegador no soporta el elemento de audio.
                         </audio>
                         <div class="flex justify-center mb-4 mt-10">
-                            <a
-                                :href="post.data.audio.audio_file"
-                                download
-                                class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center"
-                            >
+                            <a :href="post.data.audio.audio_file" download
+                                class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center">
                                 <span>Descargar Audio</span>
                             </a>
                         </div>
@@ -158,15 +116,10 @@ const activeTab = ref(1);
                 <div v-show="activeTab === 5" class="max-w-5xl mx-auto h-screen">
                     <div v-if="post.data?.video" class="flex flex-col items-center">
                         <div class="relative w-full pt-[56.25%]">
-                            <iframe
-                                :src="`https://www.youtube.com/embed/${post.data.video.url.split('v=')[1]}`"
-                                class="absolute top-0 left-0 w-full h-full"
-                                title="YouTube video player"
-                                frameborder="0"
+                            <iframe :src="`https://www.youtube.com/embed/${post.data.video.url.split('v=')[1]}`"
+                                class="absolute top-0 left-0 w-full h-full" title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
