@@ -26,7 +26,7 @@ const handlePageChange = (url) => {
 <template>
 
     <Head>
-        <title>Videos</title>
+        <title>Videos - Segob</title>
     </Head>
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-8">

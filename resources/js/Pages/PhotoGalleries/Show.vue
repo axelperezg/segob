@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import $ from 'jquery';
 // Remove direct import of slick-carousel
 import PostPresenter from '@/Presenters/PostPresenter';
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     gallery: {
@@ -38,6 +38,11 @@ onMounted(async () => {
 </script>
 
 <template>
+
+    <Head>
+        <title>{{ galleryPresent.name }} - Segob</title>
+    </Head>
+
     <div class="container mx-auto py-8 px-4">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-3">
@@ -63,13 +68,14 @@ onMounted(async () => {
                     <div class="mb-2">
                         <div class="divide-y divide-gray-200">
                             <div v-for="post in props.gallery.data.posts" :key="post.id" class="py-3">
-                                <Link :href="route('posts.show', post.slug)" class="block hover:bg-gray-50 rounded-lg transition-colors">
-                                    <h3 class="font-semibold text-gray-700">
-                                        {{ new PostPresenter(post).title }}
-                                    </h3>
-                                    <p class="text-sm text-gray-600">
-                                        {{ new PostPresenter(post).publishedAt }}
-                                    </p>
+                                <Link :href="route('posts.show', post.slug)"
+                                    class="block hover:bg-gray-50 rounded-lg transition-colors">
+                                <h3 class="font-semibold text-gray-700">
+                                    {{ new PostPresenter(post).title }}
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    {{ new PostPresenter(post).publishedAt }}
+                                </p>
                                 </Link>
                             </div>
                         </div>

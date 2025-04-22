@@ -1,7 +1,7 @@
 <script setup>
 import PostPresenter from '@/Presenters/PostPresenter';
 import { ref } from 'vue';
-
+import { Head } from '@inertiajs/vue3';
 let props = defineProps({
     post: Object,
 });
@@ -11,6 +11,10 @@ const activeTab = ref(1);
 </script>
 
 <template>
+
+    <Head>
+        <title>{{ post.data.title }}</title>
+    </Head>
     <div class="max-w-7xl mx-auto">
         <h1 class="text-4xl font-medium">{{ postPresenter.title }}</h1>
         <div class="pt-3">

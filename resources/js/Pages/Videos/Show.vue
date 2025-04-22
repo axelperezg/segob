@@ -1,7 +1,7 @@
 <script setup>
 import VideoPresenter from '@/Presenters/VideoPresenter';
 import PostPresenter from '@/Presenters/PostPresenter';
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     video: {
@@ -14,6 +14,11 @@ const videoPresent = new VideoPresenter(props.video.data);
 </script>
 
 <template>
+
+    <Head>
+        <title>{{ videoPresent.title }} - Segob</title>
+    </Head>
+
     <div class="container mx-auto py-8 px-4">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-3">

@@ -1,7 +1,7 @@
 <script setup>
 import PostPresenter from '@/Presenters/PostPresenter';
 import { ref } from 'vue';
-import { router } from '@inertiajs/vue3';
+import { router, Head } from '@inertiajs/vue3';
 
 
 const props = defineProps({
@@ -20,20 +20,26 @@ let search = ref(props.search);
 let searchPost = () => {
     router.get(
         route('actions.show', props.action.data.slug), {
-            search: search.value,
-        }, {
-            preserveScroll: true,
-        }
+        search: search.value,
+    }, {
+        preserveScroll: true,
+    }
     );
 }
 </script>
 
 <template>
+
+    <Head>
+        <title>{{ action.data.name }} - Segob</title>
+    </Head>
+
     <div class="flex justify-center bg-[#F1EDE1] -mx-4 -mt-8 py-6 mb-8">
         <img :src="action.data.banner" alt="Banner" class="w-[20rem]">
     </div>
     <div class="max-w-7xl mx-auto">
-        <div v-if="mainPosts.data.length > 0" class="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[1fr_2fr_1fr]">
+        <div v-if="mainPosts.data.length > 0"
+            class="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[1fr_2fr_1fr]">
             <div class="flex gap-10 xl:order-1">
                 <article>
                     <figure>
@@ -98,8 +104,7 @@ let searchPost = () => {
         <div>
             <div class="bg-gray-50 p-6 rounded-lg shadow-sm mt-8">
                 <form class="max-w-3xl mx-auto flex gap-2" @submit.prevent="searchPost">
-                    <input type="text" placeholder="Buscar..."
-                        v-model="search"
+                    <input type="text" placeholder="Buscar..." v-model="search"
                         class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black focus:border-black">
                     <button type="submit"
                         class="px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800 transition-colors">
