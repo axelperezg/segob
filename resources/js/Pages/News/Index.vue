@@ -1,5 +1,6 @@
 <script setup>
 import PostsLayout from '@/Components/Posts/PostsLayout.vue';
+import { Head } from '@inertiajs/vue3';
 
 let props = defineProps({
     posts: Object,
@@ -10,13 +11,12 @@ let props = defineProps({
 
 <template>
     <div>
-        <PostsLayout
-            :posts="posts"
-            :filters="filters"
-            route-name="news.index"
-            title="Noticias"
-            :route-params="{}"
-            :show-dependency="showDependency"
-        />
+
+        <Head>
+            <title>Noticias - Segob</title>
+        </Head>
+
+        <PostsLayout :posts="posts" :filters="filters" route-name="news.index" title="Noticias" :route-params="{}"
+            :show-dependency="showDependency" />
     </div>
-</template> 
+</template>

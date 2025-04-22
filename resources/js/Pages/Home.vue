@@ -6,7 +6,7 @@ import NoticiasMx from '@/Components/Home/NoticiasMx.vue';
 import Infographics from '@/Components/Home/Infographics.vue';
 import MediaGallery from '@/Components/Home/MediaGallery.vue';
 import Contact from '@/Components/Home/Contact.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 
 defineProps({
     mainPosts: Object,
@@ -21,6 +21,11 @@ defineProps({
 </script>
 
 <template>
+
+    <Head>
+        <title>Inicio - Segob</title>
+    </Head>
+
     <section class="py-8 mx-auto max-w-7xl">
         <h3 class="text-2xl font-bold lg:text-3xl">Noticias</h3>
 

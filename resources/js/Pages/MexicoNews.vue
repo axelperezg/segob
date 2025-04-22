@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import Pagination from '@/Components/Pagination.vue';
 import PdfViewerModal from '@/Components/PdfViewerModal.vue';
-import { router } from '@inertiajs/vue3';
+import { router, Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     mainPosts: Object,
@@ -80,6 +80,11 @@ const clearDateFilter = () => {
 </script>
 
 <template>
+
+    <Head>
+        <title>Noticias México - Segob</title>
+    </Head>
+
     <div class="px-4 py-8 mx-auto max-w-7xl">
         <h1 class="mb-6 text-3xl font-bold text-gray-800">Noticias México</h1>
 
@@ -112,7 +117,7 @@ const clearDateFilter = () => {
                                     class="object-cover w-full h-80">
                                 <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at)
-                                    }}</span>
+                                        }}</span>
                                 </div>
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ featuredPost.mexicoDependency.name }}

@@ -1,6 +1,6 @@
 <script setup>
 import PostsLayout from '@/Components/Posts/PostsLayout.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, Head } from '@inertiajs/vue3';
 import DependenciesCarousel from '@/Components/Dependencies/DependenciesCarousel.vue';
 
 let props = defineProps({
@@ -14,6 +14,11 @@ let props = defineProps({
 
 <template>
     <div>
+
+        <Head>
+            <title>Noticias Segob - Segob</title>
+        </Head>
+
         <div class="flex justify-center bg-[#F1EDE1] -mx-4 -mt-8 py-6 mb-8">
             <img :src="dependency.data.image" alt="Banner" class="w-[20rem]">
         </div>
