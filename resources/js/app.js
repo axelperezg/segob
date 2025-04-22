@@ -7,7 +7,10 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import { ZiggyVue } from '../../vendor/tightenco/ziggy'
 import AppLayout from '@/Layouts/AppLayout.vue'
 
+const appName = 'Segob';
+
 createInertiaApp({
+    title: (title) => title ? `${title} - ${appName}` : appName,
     progress: {
         showSpinner: true,
     },

@@ -3,7 +3,7 @@ import Pagination from '@/Components/Pagination.vue';
 import PostsFilter from '@/Components/Posts/PostsFilter.vue';
 import VideoArticle from '@/Components/Videos/VideoArticle.vue';
 import { router } from '@inertiajs/vue3';
-
+import { Head } from '@inertiajs/vue3';
 const props = defineProps({
     videos: {
         type: Object,
@@ -24,6 +24,8 @@ const handlePageChange = (url) => {
 </script>
 
 <template>
+
+    <Head title="Videos" />
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-[350px_1fr] gap-8">
             <PostsFilter :show-content-type="false" :show-dependency="false" :show-published-at="true"

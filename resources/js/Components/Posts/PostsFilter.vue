@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle';
 import { router } from '@inertiajs/vue3';
 import { useContentTypes } from '@/Composables/useContentTypes';
 import { useDependencies } from '@/Composables/useDependencies';
@@ -153,8 +153,8 @@ watch(documentSectionSelected, (value) => {
                 </select>
             </div>
 
-            
-            
+
+
             <button type="button"
                 class="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium rounded-md transition-colors"
                 @click="clearFilters">

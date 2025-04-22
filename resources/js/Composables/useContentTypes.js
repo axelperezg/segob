@@ -11,7 +11,12 @@ export function useContentTypes() {
         error.value = null;
         
         try {
-            const response = await axios.get('/api/content-types');
+            // Verificar si estamos en un entorno de servidor (SSR)
+            const baseUrl = typeof window === 'undefined' 
+                ? process.env.APP_URL || 'http://localhost' 
+                : '';
+                
+            const response = await axios.get(`${baseUrl}/api/content-types`);
             contentTypes.value = response.data;
         } catch (e) {
             error.value = 'Error loading content types';
@@ -21,9 +26,15 @@ export function useContentTypes() {
         }
     };
 
-    onMounted(() => {
+    // Si estamos en SSR, ejecutamos inmediatamente
+    // Si estamos en el cliente, esperamos a mounted
+    if (typeof window === 'undefined') {
         fetchContentTypes();
-    });
+    } else {
+        onMounted(() => {
+            fetchContentTypes();
+        });
+    }
 
     return {
         contentTypes,

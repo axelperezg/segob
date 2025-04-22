@@ -6,7 +6,12 @@ export function useDependencies() {
 
     const fetchDependencies = async () => {
         try {
-            const response = await axios.get('/api/dependencies')
+            // Verificar si estamos en un entorno de servidor (SSR)
+            const baseUrl = typeof window === 'undefined' 
+                ? process.env.APP_URL || 'http://localhost' 
+                : '';
+                
+            const response = await axios.get(`${baseUrl}/api/dependencies`)
             dependencies.value = response.data
         } catch (error) {
             console.error('Error fetching dependencies:', error)
