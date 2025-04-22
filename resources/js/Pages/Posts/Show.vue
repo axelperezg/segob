@@ -94,10 +94,10 @@ const activeTab = ref(1);
                     </a>
                 </div>
                 <div v-show="activeTab === 4" class="w-full h-screen">
-                    <iframe :src="post.data.document?.document_file" class="w-full h-[80vh]" type="application/pdf">
+                    <iframe :src="post.data.document?.document" class="w-full h-[80vh]" type="application/pdf">
                     </iframe>
                     <div class="flex justify-center mb-4 mt-10">
-                        <a :href="post.data.document?.document_file" download
+                        <a :href="post.data.document?.document" download
                             class="bg-gold hover:bg-gold/90 text-lg text-white font-medium py-2 px-4 rounded inline-flex items-center">
                             <span>Descargar PDF</span>
                         </a>
