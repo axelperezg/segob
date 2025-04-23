@@ -75,9 +75,12 @@ class PostResource extends Resource
                             ->maxLength(255)
                             ->label('Título')
                             ->afterStateUpdated(
-                                fn (string $operation, $state, Set $set) => $operation === 'create'
-                                    ? $set('slug', Str::slug($state))
-                                    : null
+                                function (string $operation, $state, Set $set) {
+                                    if ($operation === 'create') {
+                                        $set('slug', Str::slug($state));
+                                    }
+                                    $set('meta_title', $state);
+                                }
                             ),
                         TextInput::make('slug')
                             ->disabled()
@@ -92,7 +95,12 @@ class PostResource extends Resource
                         RichEditor::make('excerpt')
                             ->label('Resumen')
                             ->required()
-                            ->columnSpanFull(),
+                            ->live(onBlur: true)
+                            ->columnSpanFull()
+                            ->afterStateUpdated(function ($state, Set $set) {
+                                $plainText = strip_tags($state);
+                                $set('meta_description', $plainText);
+                            }),
                         Select::make('content_type')
                             ->live()
                             ->required()
