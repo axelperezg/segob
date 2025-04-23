@@ -56,12 +56,12 @@ class PostResource extends Resource
                             ->label('Título SEO')
                             ->maxLength(60)
                             ->live(onBlur: true)
-                            ->helperText(fn (?string $state): string => strlen($state) . '/60 caracteres'),
+                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
                         Textarea::make('meta_description')
                             ->label('Descripción SEO')
                             ->maxLength(160)
                             ->live(onBlur: true)
-                            ->helperText(fn (?string $state): string => strlen($state) . '/160 caracteres'),
+                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
                     ]),
                 Section::make()
                     ->schema([

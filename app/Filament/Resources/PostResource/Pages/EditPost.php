@@ -4,8 +4,10 @@ namespace App\Filament\Resources\PostResource\Pages;
 
 use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource;
+use App\Models\Post;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use RalphJSmit\Laravel\SEO\Models\SEO;
 
 class EditPost extends EditRecord
 {
@@ -36,5 +38,15 @@ class EditPost extends EditRecord
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
+    }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $seo = SEO::where('model_id', $this->record->id)->where('model_type', Post::class)->first();
+        
+        $data['meta_title'] = $seo->title;
+        $data['meta_description'] = $seo->description;
+
+        return $data;
     }
 }
