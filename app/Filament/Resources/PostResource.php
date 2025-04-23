@@ -14,6 +14,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -48,6 +49,20 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
+                Section::make('SEO')
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('meta_title')
+                            ->label('Título SEO')
+                            ->maxLength(60)
+                            ->live(onBlur: true)
+                            ->helperText(fn (?string $state): string => strlen($state) . '/60 caracteres'),
+                        Textarea::make('meta_description')
+                            ->label('Descripción SEO')
+                            ->maxLength(160)
+                            ->live(onBlur: true)
+                            ->helperText(fn (?string $state): string => strlen($state) . '/160 caracteres'),
+                    ]),
                 Section::make()
                     ->schema([
                         Toggle::make('is_published')

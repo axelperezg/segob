@@ -29,4 +29,14 @@ class CreatePost extends CreateRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function afterCreate(): void
+    {
+        $record = $this->record;
+        
+        $record->seo()->update([
+            'title' => $this->data['meta_title'],
+            'description' => $this->data['meta_description'],
+        ]);
+    }
 }
