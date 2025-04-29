@@ -19,6 +19,9 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 
 class AudioResource extends Resource
 {
@@ -54,7 +57,15 @@ class AudioResource extends Resource
                                             ->default(true),
                                         TextInput::make('title')
                                             ->required()
-                                            ->label('Título'),
+                                            ->label('Título')
+                                            ->suffixAction(
+                                                Action::make('copyToMetaTitle')
+                                                    ->label('Copiar a Meta Título')
+                                                    ->icon('heroicon-m-clipboard')
+                                                    ->action(function (Get $get, Set $set) {
+                                                        $set('meta_title', $get('title'));
+                                                    })
+                                            ),
                                         DatePicker::make('published_at')
                                             ->default(now())
                                             ->label('Fecha'),
