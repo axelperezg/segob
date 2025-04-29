@@ -10,6 +10,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -54,9 +55,16 @@ class ActionResource extends Resource
                                                 function (string $operation, $state, Set $set) {
                                                     if ($operation === 'create') {
                                                         $set('slug', Str::slug($state));
-                                                        $set('meta_title', $state);
                                                     }
                                                 }
+                                            )
+                                            ->suffixAction(
+                                                \Filament\Forms\Components\Actions\Action::make('copyToMetaTitle')
+                                                    ->label('Copiar a Meta Título')
+                                                    ->icon('heroicon-m-clipboard')
+                                                    ->action(function (Get $get, Set $set) {
+                                                        $set('meta_title', $get('name'));
+                                                    })
                                             ),
                                         TextInput::make('slug')
                                             ->disabled()
