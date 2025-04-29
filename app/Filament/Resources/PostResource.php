@@ -98,8 +98,6 @@ class PostResource extends Resource
                                             ->required()
                                             ->options(ContentTypeEnum::class)
                                             ->label('Tipo de contenido'),
-                                        TextInput::make('keywords')
-                                            ->label('Palabras clave'),
                                         TextInput::make('bulletin')
                                             ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
                                             ->label('Boletín'),
