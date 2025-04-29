@@ -13,7 +13,7 @@ let props = defineProps({
     <div>
 
         <Head>
-            <title>Noticias - Segob</title>
+            <title>Noticias</title>
         </Head>
 
         <PostsLayout :posts="posts" :filters="filters" route-name="news.index" title="Noticias" :route-params="{}"

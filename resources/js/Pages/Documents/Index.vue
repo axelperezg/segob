@@ -21,7 +21,7 @@ const handlePageChange = (url) => {
 <template>
 
     <Head>
-        <title>Documentos - Segob</title>
+        <title>Documentos</title>
     </Head>
 
     <div class="max-w-7xl mx-auto">

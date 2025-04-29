@@ -10,7 +10,7 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 const appName = 'Segob';
 
 createInertiaApp({
-    title: (title) => title ? `${title} - ${appName}` : appName,
+    title: (title) => title ? `${title}` : appName,
     progress: {
         showSpinner: true,
     },
