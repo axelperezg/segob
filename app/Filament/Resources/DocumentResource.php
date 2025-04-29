@@ -13,6 +13,9 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -44,56 +47,80 @@ class DocumentResource extends Resource
     {
         return $form
             ->schema([
-                Section::make()
-                    ->columns()
-                    ->schema([
-                        Toggle::make('is_published')
-                            ->default(true)
-                            ->label('Publicado')
-                            ->columnSpanFull(),
-                        TextInput::make('name')
-                            ->required()
-                            ->label('Nombre')
-                            ->live(onBlur: true)
-                            ->afterStateUpdated(
-                                fn (string $operation, $state, Set $set) => $set('slug', Str::slug($state))
-                            ),
-                        TextInput::make('slug')
-                            ->disabled()
-                            ->dehydrated()
-                            ->required()
-                            ->label('Slug')
-                            ->unique(Document::class, 'slug', ignoreRecord: true),
-                        DatePicker::make('published_at')
-                            ->label('Fecha')
-                            ->default(now()),
-                        Select::make('type')
-                            ->label('Tipo')
-                            ->options(DocumentTypeEnum::class),
-                        Select::make('document_section_id')
-                            ->label('Sección')
-                            ->options(DocumentSection::all()->pluck('name', 'id'))
-                            ->searchable()
-                            ->preload(),
-                    ]),
-                Section::make('Imagen')
-                    ->schema([
-                        Croppie::make('image')
-                            ->hiddenLabel()
-                            ->viewportType('square')
-                            ->imageSize('original')
-                            ->modalTitle('Recortar imagen')
-                            ->viewportWidth(250)
-                            ->viewportHeight(140.625)
-                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
-                            ->disk('public'),
-                    ]),
-                SpatieMediaLibraryFileUpload::make('document')
-                    ->label('Documento')
-                    ->collection('document')
-                    ->maxSize(5120)
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->required(),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tab::make('Contenido')
+                            ->schema([
+                                Section::make()
+                                    ->columns()
+                                    ->schema([
+                                        Toggle::make('is_published')
+                                            ->default(true)
+                                            ->label('Publicado')
+                                            ->columnSpanFull(),
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->label('Nombre')
+                                            ->live(onBlur: true)
+                                            ->afterStateUpdated(
+                                                fn (string $operation, $state, Set $set) => $set('slug', Str::slug($state))
+                                            ),
+                                        TextInput::make('slug')
+                                            ->disabled()
+                                            ->dehydrated()
+                                            ->required()
+                                            ->label('Slug')
+                                            ->unique(Document::class, 'slug', ignoreRecord: true),
+                                        DatePicker::make('published_at')
+                                            ->label('Fecha')
+                                            ->default(now()),
+                                        Select::make('type')
+                                            ->label('Tipo')
+                                            ->options(DocumentTypeEnum::class),
+                                        Select::make('document_section_id')
+                                            ->label('Sección')
+                                            ->options(DocumentSection::all()->pluck('name', 'id'))
+                                            ->searchable()
+                                            ->preload(),
+                                    ]),
+                                Section::make('Imagen')
+                                    ->schema([
+                                        Croppie::make('image')
+                                            ->hiddenLabel()
+                                            ->viewportType('square')
+                                            ->imageSize('original')
+                                            ->modalTitle('Recortar imagen')
+                                            ->viewportWidth(250)
+                                            ->viewportHeight(140.625)
+                                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                            ->disk('public'),
+                                    ]),
+                                SpatieMediaLibraryFileUpload::make('document')
+                                    ->label('Documento')
+                                    ->collection('document')
+                                    ->maxSize(5120)
+                                    ->acceptedFileTypes(['application/pdf'])
+                                    ->required(),
+                            ]),
+                        Tab::make('SEO')
+                            ->schema([
+                                Section::make('SEO')
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('meta_title')
+                                            ->label('Título SEO')
+                                            ->maxLength(60)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
+                                        Textarea::make('meta_description')
+                                            ->label('Descripción SEO')
+                                            ->maxLength(160)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
+                                    ]),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 

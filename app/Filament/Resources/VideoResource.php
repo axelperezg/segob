@@ -8,6 +8,9 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -39,48 +42,72 @@ class VideoResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Información')
-                    ->columns()
-                    ->schema([
-                        Toggle::make('is_published')
-                            ->label('Publicado')
-                            ->columnSpanFull()
-                            ->default(true),
-                        TextInput::make('title')
-                            ->live(onBlur: true)
-                            ->required()
-                            ->label('Título')
-                            ->afterStateUpdated(
-                                fn (string $operation, $state, Set $set) => $operation === 'create'
-                                    ? $set('slug', Str::slug($state))
-                                    : null
-                            ),
-                        TextInput::make('slug')
-                            ->disabled()
-                            ->dehydrated()
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(Video::class, 'slug', ignoreRecord: true),
-                        DatePicker::make('published_at')
-                            ->default(now())
-                            ->label('Fecha'),
-                        TextInput::make('url')
-                            ->columnSpanFull()
-                            ->required()
-                            ->label('URL'),
-                    ]),
-                Section::make('Imagen')
-                    ->schema([
-                        Croppie::make('image')
-                            ->hiddenLabel()
-                            ->viewportType('square')
-                            ->imageSize('original')
-                            ->modalTitle('Recortar imagen')
-                            ->viewportWidth(250)
-                            ->viewportHeight(140.625)
-                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
-                            ->disk('public'),
-                    ]),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tab::make('Contenido')
+                            ->schema([
+                                Section::make('Información')
+                                    ->columns()
+                                    ->schema([
+                                        Toggle::make('is_published')
+                                            ->label('Publicado')
+                                            ->columnSpanFull()
+                                            ->default(true),
+                                        TextInput::make('title')
+                                            ->live(onBlur: true)
+                                            ->required()
+                                            ->label('Título')
+                                            ->afterStateUpdated(
+                                                fn (string $operation, $state, Set $set) => $operation === 'create'
+                                                    ? $set('slug', Str::slug($state))
+                                                    : null
+                                            ),
+                                        TextInput::make('slug')
+                                            ->disabled()
+                                            ->dehydrated()
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->unique(Video::class, 'slug', ignoreRecord: true),
+                                        DatePicker::make('published_at')
+                                            ->default(now())
+                                            ->label('Fecha'),
+                                        TextInput::make('url')
+                                            ->columnSpanFull()
+                                            ->required()
+                                            ->label('URL'),
+                                    ]),
+                                Section::make('Imagen')
+                                    ->schema([
+                                        Croppie::make('image')
+                                            ->hiddenLabel()
+                                            ->viewportType('square')
+                                            ->imageSize('original')
+                                            ->modalTitle('Recortar imagen')
+                                            ->viewportWidth(250)
+                                            ->viewportHeight(140.625)
+                                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                            ->disk('public'),
+                                    ]),
+                            ]),
+                        Tab::make('SEO')
+                            ->schema([
+                                Section::make('SEO')
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('meta_title')
+                                            ->label('Título SEO')
+                                            ->maxLength(60)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
+                                        Textarea::make('meta_description')
+                                            ->label('Descripción SEO')
+                                            ->maxLength(160)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
+                                    ]),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
