@@ -63,7 +63,12 @@ class DocumentResource extends Resource
                                             ->label('Nombre')
                                             ->live(onBlur: true)
                                             ->afterStateUpdated(
-                                                fn (string $operation, $state, Set $set) => $set('slug', Str::slug($state))
+                                                function (string $operation, $state, Set $set) {
+                                                    if ($operation === 'create') {
+                                                        $set('slug', Str::slug($state));
+                                                        $set('meta_title', $state);
+                                                    }
+                                                }
                                             ),
                                         TextInput::make('slug')
                                             ->disabled()

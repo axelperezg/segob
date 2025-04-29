@@ -10,6 +10,9 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -38,26 +41,50 @@ class AudioResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Información')
-                    ->columns()
-                    ->schema([
-                        Toggle::make('is_published')
-                            ->label('Publicado')
-                            ->columnSpanFull()
-                            ->default(true),
-                        TextInput::make('title')
-                            ->required()
-                            ->label('Título'),
-                        DatePicker::make('published_at')
-                            ->default(now())
-                            ->label('Fecha'),
-                        SpatieMediaLibraryFileUpload::make('audio')
-                            ->label('Audio')
-                            ->collection('audio')
-                            ->maxSize(15120)
-                            ->acceptedFileTypes(['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp3'])
-                            ->required(),
-                    ]),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tab::make('Contenido')
+                            ->schema([
+                                Section::make('Información')
+                                    ->columns()
+                                    ->schema([
+                                        Toggle::make('is_published')
+                                            ->label('Publicado')
+                                            ->columnSpanFull()
+                                            ->default(true),
+                                        TextInput::make('title')
+                                            ->required()
+                                            ->label('Título'),
+                                        DatePicker::make('published_at')
+                                            ->default(now())
+                                            ->label('Fecha'),
+                                        SpatieMediaLibraryFileUpload::make('audio')
+                                            ->label('Audio')
+                                            ->collection('audio')
+                                            ->maxSize(15120)
+                                            ->acceptedFileTypes(['audio/mpeg', 'audio/wav', 'audio/ogg', 'audio/mp3'])
+                                            ->required(),
+                                    ]),
+                            ]),
+                        Tab::make('SEO')
+                            ->schema([
+                                Section::make('SEO')
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('meta_title')
+                                            ->label('Título SEO')
+                                            ->maxLength(60)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
+                                        Textarea::make('meta_description')
+                                            ->label('Descripción SEO')
+                                            ->maxLength(160)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
+                                    ]),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
