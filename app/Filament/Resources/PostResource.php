@@ -15,6 +15,7 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -272,7 +273,7 @@ class PostResource extends Resource
                                     ->hidden(fn (?Post $record) => $record === null)
                                     ->columnSpanFull(),
                             ]),
-                        \Filament\Forms\Components\Tabs\Tab::make('SEO')
+                        Tab::make('SEO')
                             ->schema([
                                 Section::make('SEO')
                                     ->columns(2)

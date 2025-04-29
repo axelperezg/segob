@@ -4,7 +4,9 @@ namespace App\Filament\Resources\PostResource\Pages;
 
 use App\Enums\Posts\ContentTypeEnum;
 use App\Filament\Resources\PostResource;
+use App\Models\Post;
 use Filament\Resources\Pages\CreateRecord;
+use RalphJSmit\Laravel\SEO\Models\SEO;
 
 class CreatePost extends CreateRecord
 {
@@ -32,9 +34,10 @@ class CreatePost extends CreateRecord
 
     protected function afterCreate(): void
     {
-        $record = $this->record;
-        
-        $record->seo()->update([
+        SEO::updateOrCreate([
+            'model_id' => $this->record->id,
+            'model_type' => Post::class,
+        ], [
             'title' => $this->data['meta_title'],
             'description' => $this->data['meta_description'],
         ]);
