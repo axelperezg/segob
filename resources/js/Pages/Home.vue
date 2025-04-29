@@ -18,12 +18,20 @@ defineProps({
     infographics: Object,
     mediaGallery: Object,
 })
+
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const metaTitle = page.props.app_settings.meta_title;
+const metaDescription = page.props.app_settings.meta_description;
+
 </script>
 
 <template>
 
     <Head>
-        <title>Inicio - Segob</title>
+        <title>{{ metaTitle }}</title>
+        <meta name="description" :content="metaDescription" />
     </Head>
 
     <section class="py-8 mx-auto max-w-7xl">

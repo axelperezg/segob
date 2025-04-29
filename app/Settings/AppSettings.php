@@ -20,6 +20,10 @@ class AppSettings extends Settings
 
     public array $top_bar_links = [];
     
+    public ?string $meta_title = '';
+    
+    public ?string $meta_description = '';
+    
     public static function group(): string
     {
         return 'general';

@@ -113,6 +113,10 @@ return new class extends SettingsMigration
                 ],
             ],
         ]);
+
+        $this->migrator->add('general.top_bar_links', []);
+        $this->migrator->add('general.meta_title', 'Secretaría de Gobernación');
+        $this->migrator->add('general.meta_description', 'Secretaría de Gobernación');
     }
 
     public function down(): void

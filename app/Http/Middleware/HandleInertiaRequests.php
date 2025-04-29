@@ -95,6 +95,8 @@ class HandleInertiaRequests extends Middleware
                 'mexico_logo' => app(AppSettings::class)->mexico_logo,
                 'footer_links' => app(AppSettings::class)->footer_links,
                 'top_bar_links' => app(AppSettings::class)->top_bar_links,
+                'meta_title' => app(AppSettings::class)->meta_title,
+                'meta_description' => app(AppSettings::class)->meta_description,
             ],
         ]);
     }

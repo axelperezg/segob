@@ -9,6 +9,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Pages\SettingsPage;
 
@@ -151,6 +152,23 @@ class GeneralSettings extends SettingsPage
                                             ->required(),
                                     ]),
                             ]),
+                    ]),
+                Section::make('SEO')
+                ->collapsible()
+                    ->collapsed()
+                    ->heading('Configuración SEO')
+                    ->description('Configure los metadatos SEO para el sitio web')
+                    ->schema([
+                        TextInput::make('meta_title')
+                            ->label('Título SEO')
+                            ->maxLength(60)
+                            ->live(onBlur: true)
+                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
+                        Textarea::make('meta_description')
+                            ->label('Descripción SEO')
+                            ->maxLength(160)
+                            ->live(onBlur: true)
+                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
                     ]),
             ]);
     }
