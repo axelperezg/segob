@@ -71,8 +71,15 @@ class PostResource extends Resource
                                                     if ($operation === 'create') {
                                                         $set('slug', Str::slug($state));
                                                     }
-                                                    $set('meta_title', $state);
                                                 }
+                                            )
+                                            ->suffixAction(
+                                                \Filament\Forms\Components\Actions\Action::make('copyToMetaTitle')
+                                                    ->label('Copiar a Meta Título')
+                                                    ->icon('heroicon-m-clipboard')
+                                                    ->action(function (Get $get, Set $set) {
+                                                        $set('meta_title', $get('title'));
+                                                    })
                                             ),
                                         TextInput::make('slug')
                                             ->disabled()
@@ -88,11 +95,17 @@ class PostResource extends Resource
                                             ->label('Resumen')
                                             ->required()
                                             ->live(onBlur: true)
-                                            ->columnSpanFull()
-                                            ->afterStateUpdated(function ($state, Set $set) {
-                                                $plainText = strip_tags($state);
-                                                $set('meta_description', $plainText);
-                                            }),
+                                            ->columnSpanFull(),
+                                        \Filament\Forms\Components\Actions::make([
+                                            \Filament\Forms\Components\Actions\Action::make('copyToMetaDescription')
+                                                ->label('Copiar resumen a Meta Descripción')
+                                                ->icon('heroicon-m-clipboard')
+                                                ->action(function (Get $get, Set $set) {
+                                                    $plainText = strip_tags($get('excerpt'));
+                                                    $set('meta_description', $plainText);
+                                                })
+                                        ])
+                                        ->columnSpanFull(),
                                         Select::make('content_type')
                                             ->live()
                                             ->required()
