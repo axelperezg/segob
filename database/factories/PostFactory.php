@@ -25,7 +25,6 @@ class PostFactory extends Factory
             'content_type' => collect(ContentTypeEnum::cases())->random(),
             'published_at' => fake()->dateTimeBetween('-2 weeks', 'now'),
             'created_by' => User::factory(),
-            'keywords' => fake()->words(3, true),
             'audio_id' => Audio::factory(),
             'document_id' => Document::factory(),
             'stenographic_version_id' => null,

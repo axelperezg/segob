@@ -15,7 +15,6 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'excerpt' => $this->excerpt,
-            'keywords' => $this->keywords,
             'slug' => $this->slug,
             'featured_image' => $this->getFirstMedia('image')?->getFullUrl() ?? 'https://placehold.co/600x350',
             'is_published' => $this->is_published,
