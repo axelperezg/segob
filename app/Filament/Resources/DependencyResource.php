@@ -6,6 +6,9 @@ use App\Filament\Resources\DependencyResource\Pages;
 use App\Models\Dependency;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Tabs;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -36,52 +39,79 @@ class DependencyResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Información')
-                    ->columns()
-                    ->schema([
-                        TextInput::make('name')
-                            ->required()
-                            ->live(onBlur: true)
-                            ->maxLength(255)
-                            ->label('Nombre')
-                            ->afterStateUpdated(
-                                fn (string $operation, $state, Set $set) => $operation === 'create'
-                                    ? $set('slug', Str::slug($state))
-                                    : null
-                            ),
-                        TextInput::make('slug')
-                            ->disabled()
-                            ->dehydrated()
-                            ->required()
-                            ->maxLength(255)
-                            ->unique(Dependency::class, 'slug', ignoreRecord: true),
-                    ]),
-                Section::make('Imagen')
-                    ->schema([
-                        Croppie::make('image')
-                            ->label('Imagen')
-                            ->hiddenLabel()
-                            ->viewportType('square')
-                            ->imageSize('original')
-                            ->modalTitle('Recortar imagen')
-                            ->viewportWidth(250)
-                            ->viewportHeight(140.625)
-                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
-                            ->disk('public'),
-                    ]),
-                Section::make('Banner')
-                    ->schema([
-                        Croppie::make('banner')
-                            ->label('Banner')
-                            ->hiddenLabel()
-                            ->viewportType('square')
-                            ->imageSize('original')
-                            ->modalTitle('Recortar banner')
-                            ->viewportWidth(540)
-                            ->viewportHeight(130)
-                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
-                            ->disk('public'),
-                    ]),
+                Tabs::make('Tabs')
+                    ->tabs([
+                        Tab::make('Contenido')
+                            ->schema([
+                                Section::make('Información')
+                                    ->columns()
+                                    ->schema([
+                                        TextInput::make('name')
+                                            ->required()
+                                            ->live(onBlur: true)
+                                            ->maxLength(255)
+                                            ->label('Nombre')
+                                            ->afterStateUpdated(
+                                                function (string $operation, $state, Set $set) {
+                                                    if ($operation === 'create') {
+                                                        $set('slug', Str::slug($state));
+                                                        $set('meta_title', $state);
+                                                    }
+                                                }
+                                            ),
+                                        TextInput::make('slug')
+                                            ->disabled()
+                                            ->dehydrated()
+                                            ->required()
+                                            ->maxLength(255)
+                                            ->unique(Dependency::class, 'slug', ignoreRecord: true),
+                                    ]),
+                                Section::make('Imagen')
+                                    ->schema([
+                                        Croppie::make('image')
+                                            ->label('Imagen')
+                                            ->hiddenLabel()
+                                            ->viewportType('square')
+                                            ->imageSize('original')
+                                            ->modalTitle('Recortar imagen')
+                                            ->viewportWidth(250)
+                                            ->viewportHeight(140.625)
+                                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                            ->disk('public'),
+                                    ]),
+                                Section::make('Banner')
+                                    ->schema([
+                                        Croppie::make('banner')
+                                            ->label('Banner')
+                                            ->hiddenLabel()
+                                            ->viewportType('square')
+                                            ->imageSize('original')
+                                            ->modalTitle('Recortar banner')
+                                            ->viewportWidth(540)
+                                            ->viewportHeight(130)
+                                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                            ->disk('public'),
+                                    ]),
+                            ]),
+                        Tab::make('SEO')
+                            ->schema([
+                                Section::make('SEO')
+                                    ->columns(2)
+                                    ->schema([
+                                        TextInput::make('meta_title')
+                                            ->label('Título SEO')
+                                            ->maxLength(60)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/60 caracteres'),
+                                        Textarea::make('meta_description')
+                                            ->label('Descripción SEO')
+                                            ->maxLength(160)
+                                            ->live(onBlur: true)
+                                            ->helperText(fn (?string $state): string => strlen($state ?? '') . '/160 caracteres'),
+                                    ]),
+                            ]),
+                    ])
+                    ->columnSpanFull(),
             ]);
     }
 
