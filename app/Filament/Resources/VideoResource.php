@@ -58,9 +58,12 @@ class VideoResource extends Resource
                                             ->required()
                                             ->label('Título')
                                             ->afterStateUpdated(
-                                                fn (string $operation, $state, Set $set) => $operation === 'create'
-                                                    ? $set('slug', Str::slug($state))
-                                                    : null
+                                                function (string $operation, $state, Set $set) {
+                                                    if ($operation === 'create') {
+                                                        $set('slug', Str::slug($state));
+                                                        $set('meta_title', $state);
+                                                    }
+                                                }
                                             ),
                                         TextInput::make('slug')
                                             ->disabled()
