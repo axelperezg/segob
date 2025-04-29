@@ -32,6 +32,16 @@ onMounted(async () => {
             autoplaySpeed: 3000,
             arrows: true,
             adaptiveHeight: true,
+            prevArrow: `<button type="button" class="slick-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#C59426" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>`,
+            nextArrow: `<button type="button" class="slick-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#C59426" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>`,
         });
     }
 });
@@ -46,7 +56,7 @@ onMounted(async () => {
     <div class="container mx-auto py-8 px-4">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-3">
-                <div class="bg-white rounded-lg border border-gray-100 shadow-lg p-6">
+                <div class="bg-white rounded-lg border border-gray-100 shadow-lg py-6 px-12">
                     <h1 class="text-3xl font-bold text-gray-800 mb-4">
                         {{ galleryPresent.name }}
                     </h1>
