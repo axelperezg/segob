@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import PhotoGalleryItem from './PhotoGalleryItem.vue';
 import VideoItem from './VideoItem.vue';
+import { Link } from '@inertiajs/vue3';
 
 let props = defineProps({
     photos: Array,
@@ -63,7 +64,10 @@ onMounted(() => {
 <template>
     <section class="py-12 -mx-4 bg-gold-lighter">
         <div class="container px-16 mx-auto">
-            <h2 class="mb-8 text-3xl font-bold text-center">Fotos</h2>
+            <Link as="h2" :href="route('photo-galleries.index')"
+                class="block mb-8 text-3xl font-bold text-center hover:text-gold transition-colors hover:underline hover:cursor-pointer">
+            Fotos
+            </Link>
             <div v-if="!photos || photos.length === 0" class="py-8 text-center">
                 <p class="text-xl text-gray-700">No hay fotos disponibles en este momento.</p>
             </div>
@@ -71,7 +75,10 @@ onMounted(() => {
                 <PhotoGalleryItem v-for="photo in photos" :key="photo.id" :item="photo" />
             </div>
 
-            <h2 class="mt-12 mb-8 text-3xl font-bold text-center">Videos</h2>
+            <Link as="h2" :href="route('videos.index')"
+                class="block mt-24 mb-8 text-3xl font-bold text-center hover:text-gold transition-colors hover:underline hover:cursor-pointer">
+            Videos
+            </Link>
             <div v-if="!videos || videos.length === 0" class="py-8 text-center">
                 <p class="text-xl text-gray-700">No hay videos disponibles en este momento.</p>
             </div>

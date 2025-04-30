@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import Infographic from '@/Components/Home/Infographic.vue'
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     infographics: {
@@ -59,13 +60,12 @@ onMounted(() => {
 <template>
     <section class="py-12 -mx-4">
         <div class="container px-16 mx-auto">
-            <h2 class="mb-8 text-3xl font-bold text-center">Infografías</h2>
+            <Link as="h2" :href="route('documents.index')"
+                class="block mb-8 text-3xl font-bold text-center hover:text-gold transition-colors hover:underline hover:cursor-pointer">
+            Infografías
+            </Link>
             <div v-if="infographics && infographics.length > 0" class="infographics-slider">
-                <Infographic
-                    v-for="document in infographics"
-                    :key="document.id"
-                    :document="document"
-                />
+                <Infographic v-for="document in infographics" :key="document.id" :document="document" />
             </div>
 
             <div v-else class="text-center text-gray-500 py-8">
@@ -73,4 +73,4 @@ onMounted(() => {
             </div>
         </div>
     </section>
-</template> 
+</template>

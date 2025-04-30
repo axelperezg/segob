@@ -57,11 +57,14 @@ onMounted(() => {
 <template>
     <section class="py-12 -mx-4">
         <div class="container px-16 mx-auto">
-            <h2 class="mb-8 text-3xl font-bold text-center">Segob</h2>
+            <Link as="h2" :href="route('segob-news.index')"
+                class="block mb-8 text-3xl font-bold text-center hover:text-gold transition-colors hover:underline hover:cursor-pointer">
+            Segob
+            </Link>
             <div v-if="dependencies && dependencies.length > 0" class="segob-slider">
                 <div v-for="dependency in dependencies" class="px-2">
                     <Link :href="route('dependencies.show', dependency.slug)" target="_blank" rel="noopener noreferrer">
-                        <img :src="dependency.image" :alt="dependency.name" class="w-full rounded-lg">
+                    <img :src="dependency.image" :alt="dependency.name" class="w-full rounded-lg">
                     </Link>
                 </div>
             </div>

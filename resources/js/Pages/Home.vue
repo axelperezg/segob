@@ -35,7 +35,8 @@ const metaDescription = page.props.app_settings.meta_description;
     </Head>
 
     <section class="py-8 mx-auto max-w-7xl">
-        <Link :href="route('news.index')" class="text-2xl font-bold lg:text-3xl hover:text-gold transition-colors">
+        <Link as="h2" :href="route('news.index')"
+            class="text-2xl font-bold lg:text-3xl hover:text-gold transition-colors hover:underline hover:cursor-pointer">
         Noticias</Link>
 
         <div v-if="!mainPosts.data.length && !secondaryPosts.data.length && !tertiaryPosts.data.length"
