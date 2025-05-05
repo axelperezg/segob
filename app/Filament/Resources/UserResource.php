@@ -48,6 +48,12 @@ class UserResource extends Resource
                             ->maxLength(255)
                             ->unique(User::class, 'email', ignoreRecord: true)
                             ->label('Correo electrónico'),
+                        TextInput::make('password')
+                            ->password()
+                            ->required(fn (string $operation): bool => $operation === 'create')
+                            ->minLength(8)
+                            ->maxLength(255)
+                            ->label('Contraseña'),
                     ]),
             ]);
     }

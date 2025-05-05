@@ -17,17 +17,8 @@ class CreateUser extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['password'] = bcrypt(time());
+        $data['password'] = bcrypt($data['password']);
         
         return $data;
     }
-
-    protected function afterCreate(): void
-    {
-        /** @var User $user */
-        $user = $this->record;
-
-        $user->notify(new WelcomeNewUserNotification);
-    }
-    
 } 
