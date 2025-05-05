@@ -24,6 +24,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Michaeld555\FilamentCroppie\Components\Croppie;
 
@@ -88,6 +89,7 @@ class DocumentResource extends Resource
                                             ->label('Fecha')
                                             ->default(now()),
                                         Select::make('type')
+                                            ->live(onBlur: false)
                                             ->label('Tipo')
                                             ->options(DocumentTypeEnum::class),
                                         Select::make('document_section_id')
@@ -95,11 +97,10 @@ class DocumentResource extends Resource
                                             ->options(DocumentSection::all()->pluck('name', 'id'))
                                             ->searchable()
                                             ->preload(),
-                                    ]),
-                                Section::make('Imagen')
-                                    ->schema([
-                                        Croppie::make('image')
-                                            ->hiddenLabel()
+                                        Croppie::make('rectangular_image')
+                                            ->hidden(fn (Get $get) => (int) $get('type') === DocumentTypeEnum::INFOGRAPHIC->value)
+                                            ->columnSpanFull()
+                                            ->label('Imagen Destacada')
                                             ->viewportType('square')
                                             ->imageSize('original')
                                             ->modalTitle('Recortar imagen')
@@ -107,8 +108,29 @@ class DocumentResource extends Resource
                                             ->viewportHeight(140.625)
                                             ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
                                             ->disk('public'),
+                                        Croppie::make('square_image')
+                                            ->hidden(fn (Get $get) => (int) $get('type') !== DocumentTypeEnum::INFOGRAPHIC->value)
+                                            ->columnSpanFull()
+                                            ->label('Imagen Destacada')
+                                            ->viewportType('square')
+                                            ->imageSize('original')
+                                            ->modalTitle('Recortar imagen')
+                                            ->viewportWidth(250)
+                                            ->viewportHeight(250)
+                                            ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
+                                            ->disk('public'),
+                                        SpatieMediaLibraryFileUpload::make('images')
+                                            ->columnSpanFull()
+                                            ->hidden(fn (Get $get) => (int) $get('type') !== DocumentTypeEnum::INFOGRAPHIC->value)
+                                            ->label('Galería')
+                                            ->collection('images')
+                                            ->multiple()
+                                            ->maxSize(5120)
+                                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                            ->required(),
                                     ]),
                                 SpatieMediaLibraryFileUpload::make('document')
+                                    ->hidden(fn (Get $get) => (int) $get('type') === DocumentTypeEnum::INFOGRAPHIC->value)
                                     ->label('Documento')
                                     ->collection('document')
                                     ->maxSize(5120)

@@ -4,13 +4,12 @@ import PostPresenter from '@/Presenters/PostPresenter';
 import { Link, Head } from '@inertiajs/vue3';
 import { ref, onMounted, defineAsyncComponent } from 'vue';
 const VuePdfEmbed = defineAsyncComponent(() => import('vue-pdf-embed'));
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import $ from 'jquery';
+import JSZip from 'jszip';
 
-let props = defineProps({
-    document: {
-        type: Object,
-        required: true
-    }
-});
+let props = defineProps(['document']);
 
 let documentPresent = new DocumentPresenter(props.document.data);
 const currentPage = ref(1);
@@ -34,8 +33,63 @@ const handleDocumentLoad = (pdfDoc) => {
 };
 
 const downloadPDF = () => {
-    window.open(documentPresent.document_file, '_blank');
+    if (!props.document.data.isInfographic) {
+        window.open(documentPresent.document_file, '_blank');
+    } else {
+        // Crear un archivo ZIP con todas las imágenes
+        const zip = new JSZip();
+        const img = zip.folder("images");
+
+        // Descargar cada imagen y agregarla al ZIP
+        props.document.data.images.forEach((imageUrl, index) => {
+            fetch(imageUrl)
+                .then(response => response.blob())
+                .then(blob => {
+                    img.file(`image-${index + 1}.jpg`, blob);
+                    if (index === props.document.data.images.length - 1) {
+                        zip.generateAsync({ type: "blob" })
+                            .then(content => {
+                                const url = window.URL.createObjectURL(content);
+                                const link = document.createElement('a');
+                                link.href = url;
+                                link.download = `${documentPresent.name}-galeria.zip`;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(url);
+                            });
+                    }
+                });
+        });
+    }
 };
+
+onMounted(async () => {
+    if (typeof window !== 'undefined') {
+        await import('slick-carousel');
+        $('.document-slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            arrows: true,
+            adaptiveHeight: true,
+            prevArrow: `<button type="button" class="slick-prev">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#C59426" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                        </svg>
+                    </button>`,
+            nextArrow: `<button type="button" class="slick-next">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#C59426" class="w-10 h-10">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>`,
+        });
+    }
+});
 </script>
 
 <template>
@@ -47,7 +101,7 @@ const downloadPDF = () => {
     <div class="container mx-auto py-8 px-4">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div class="lg:col-span-3">
-                <div class="bg-white rounded-lg border border-gray-100 shadow-lg p-6">
+                <div class="bg-white rounded-lg border border-gray-100 shadow-lg py-6 px-12">
                     <h1 class="text-3xl font-bold text-gray-800 mb-4">
                         {{ documentPresent.name }}
                     </h1>
@@ -88,9 +142,12 @@ const downloadPDF = () => {
                         </div>
                     </div>
                     <div v-else>
-                        <figure>
-                            <img :src="documentPresent.image" :alt="documentPresent.name">
-                        </figure>
+                        <div class="document-slider">
+                            <div v-for="image in document.data.images" :key="image.id" class="px-2">
+                                <img :src="image" class="w-full rounded-lg"
+                                    style="max-height: 600px; object-fit: contain;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +156,7 @@ const downloadPDF = () => {
                 <div class="bg-white rounded-lg border border-gray-100 shadow p-6 mb-4">
                     <button @click="downloadPDF"
                         class="w-full px-6 py-3 bg-burgundy text-white rounded-md hover:bg-burgundy-soft transition-colors flex items-center justify-center gap-2">
-                        <span>Descargar PDF</span>
+                        <span>{{ !document.data.isInfographic ? 'Descargar PDF' : 'Descargar Galería' }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round"

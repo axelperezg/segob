@@ -42,6 +42,10 @@ class Document extends Model implements HasMedia
             ->useDisk('public');
 
         $this
+            ->addMediaCollection('images')
+            ->useDisk('public');
+
+        $this
             ->addMediaCollection('document')
             ->singleFile()
             ->useDisk('public');

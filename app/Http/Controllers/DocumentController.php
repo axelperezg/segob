@@ -22,7 +22,7 @@ class DocumentController extends Controller
             ->orderByDesc('published_at')
             ->paginate(12)
             ->appends($request->all());
-
+            
         $filters = [
             'name' => request('title', ''),
             'document_section' => request('document_section', ''),
@@ -36,8 +36,8 @@ class DocumentController extends Controller
 
     public function show(Document $document)
     {
-        $document->load('posts');
-
+        $document->load(['posts', 'media']);
+        
         return Inertia::render('Documents/Show', [
             'document' => DocumentResource::make($document),
         ]);

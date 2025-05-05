@@ -20,6 +20,7 @@ class DocumentResource extends JsonResource
             'image' => $this->image
                 ? Storage::disk('public')->url($this->image)
                 : 'https://placehold.co/600x350',
+            'images' => $this->getMedia('images')->map(fn ($image) => $image->getFullUrl()),
             'is_published' => $this->is_published,
             'published_at' => $this->published_at,
             'document' => $this->getFirstMedia('document')?->getFullUrl(),
