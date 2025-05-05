@@ -121,7 +121,6 @@ class DocumentResource extends Resource
                                             ->disk('public'),
                                         SpatieMediaLibraryFileUpload::make('images')
                                             ->columnSpanFull()
-                                            ->hidden(fn (Get $get) => (int) $get('type') !== DocumentTypeEnum::INFOGRAPHIC->value)
                                             ->label('Galería')
                                             ->collection('images')
                                             ->multiple()

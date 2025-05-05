@@ -33,35 +33,35 @@ const handleDocumentLoad = (pdfDoc) => {
 };
 
 const downloadPDF = () => {
-    if (!props.document.data.isInfographic) {
-        window.open(documentPresent.document_file, '_blank');
-    } else {
-        // Crear un archivo ZIP con todas las imágenes
-        const zip = new JSZip();
-        const img = zip.folder("images");
+    window.open(documentPresent.document_file, '_blank');
+};
 
-        // Descargar cada imagen y agregarla al ZIP
-        props.document.data.images.forEach((imageUrl, index) => {
-            fetch(imageUrl)
-                .then(response => response.blob())
-                .then(blob => {
-                    img.file(`image-${index + 1}.jpg`, blob);
-                    if (index === props.document.data.images.length - 1) {
-                        zip.generateAsync({ type: "blob" })
-                            .then(content => {
-                                const url = window.URL.createObjectURL(content);
-                                const link = document.createElement('a');
-                                link.href = url;
-                                link.download = `${documentPresent.name}-galeria.zip`;
-                                document.body.appendChild(link);
-                                link.click();
-                                document.body.removeChild(link);
-                                window.URL.revokeObjectURL(url);
-                            });
-                    }
-                });
-        });
-    }
+const downloadGallery = () => {
+    // Crear un archivo ZIP con todas las imágenes
+    const zip = new JSZip();
+    const img = zip.folder("images");
+
+    // Descargar cada imagen y agregarla al ZIP
+    props.document.data.images.forEach((imageUrl, index) => {
+        fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                img.file(`image-${index + 1}.jpg`, blob);
+                if (index === props.document.data.images.length - 1) {
+                    zip.generateAsync({ type: "blob" })
+                        .then(content => {
+                            const url = window.URL.createObjectURL(content);
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.download = `${documentPresent.name}-galeria.zip`;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            window.URL.revokeObjectURL(url);
+                        });
+                }
+            });
+    });
 };
 
 onMounted(async () => {
@@ -141,7 +141,7 @@ onMounted(async () => {
                             </div>
                         </div>
                     </div>
-                    <div v-else>
+                    <div :class="{ 'pt-24': !document.data.isInfographic }">
                         <div class="document-slider">
                             <div v-for="image in document.data.images" :key="image.id" class="px-2">
                                 <img :src="image" class="w-full rounded-lg"
@@ -154,15 +154,30 @@ onMounted(async () => {
 
             <div class="lg:col-span-1">
                 <div class="bg-white rounded-lg border border-gray-100 shadow p-6 mb-4">
-                    <button @click="downloadPDF"
-                        class="w-full px-6 py-3 bg-burgundy text-white rounded-md hover:bg-burgundy-soft transition-colors flex items-center justify-center gap-2">
-                        <span>{{ !document.data.isInfographic ? 'Descargar PDF' : 'Descargar Galería' }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                        </svg>
-                    </button>
+                    <div class="space-y-4">
+                        <!-- Botón de PDF (siempre visible excepto en infografías) -->
+                        <button v-if="!document.data.isInfographic" @click="downloadPDF"
+                            class="w-full px-6 py-3 bg-burgundy text-white rounded-md hover:bg-burgundy-soft transition-colors flex items-center justify-center gap-2">
+                            <span>Descargar PDF</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                        </button>
+
+                        <!-- Botón de Galería (visible en infografías o si tiene imágenes) -->
+                        <button v-if="document.data.isInfographic || document.data.images?.length > 0"
+                            @click="downloadGallery"
+                            class="w-full px-6 py-3 bg-burgundy text-white rounded-md hover:bg-burgundy-soft transition-colors flex items-center justify-center gap-2">
+                            <span>Descargar Galería</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div v-if="document.data.posts.length > 0"
