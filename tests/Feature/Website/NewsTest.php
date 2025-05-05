@@ -55,25 +55,25 @@ class NewsTest extends TestCase
     {
         // Arrange
         Post::factory(5)
-            ->create(['content_type' => ContentTypeEnum::BULLETIN]);
+            ->create(['content_type' => ContentTypeEnum::COMMUNIQUE]);
 
         Post::factory(5)
             ->create(['content_type' => ContentTypeEnum::JOINT_STATEMENT]);
 
         // Act
         $response = $this->getNewsPage([
-            'content_type' => [ContentTypeEnum::BULLETIN->value],
+            'content_type' => [ContentTypeEnum::COMMUNIQUE->value],
         ]);
 
         // Assert
         $response
             ->assertInertia(fn (AssertableInertia $page) => $page
                 ->has('posts.data', 5)
-                ->where('posts.data.0.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.1.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.2.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.3.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.4.content_type', ContentTypeEnum::BULLETIN->getLabel())
+                ->where('posts.data.0.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.1.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.2.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.3.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.4.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
             );
     }
 

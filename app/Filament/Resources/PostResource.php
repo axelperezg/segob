@@ -112,10 +112,10 @@ class PostResource extends Resource
                                             ->options(ContentTypeEnum::class)
                                             ->label('Tipo de contenido'),
                                         TextInput::make('bulletin')
-                                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
-                                            ->label('Boletín'),
+                                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::COMMUNIQUE->value)
+                                            ->label('Número de comunicado'),
                                         TextInput::make('year')
-                                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::BULLETIN->value)
+                                            ->hidden(fn (Get $get) => $get('content_type') != ContentTypeEnum::COMMUNIQUE->value)
                                             ->label('Año'),
                                         Select::make('states')
                                             ->multiple()

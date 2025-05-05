@@ -98,7 +98,46 @@ it('can create a post', function () {
 
 it('can create a bulletin post', function () {
     // Arrange
-    $data = Post::factory()->make(['content_type' => ContentTypeEnum::BULLETIN->value]);
+    $data = Post::factory()->make(['content_type' => ContentTypeEnum::COMMUNIQUE->value]);
+    $action = Action::factory()->create();
+    $dependency = Dependency::factory()->create();
+    $audio = Audio::factory()->create();
+    $document = Document::factory()->create();
+    $video = Video::factory()->create();
+    $states = State::factory(2)->create()->pluck('id')->toArray();
+
+    // Act
+    $this->component->fillForm([
+        'is_published' => true,
+        'title' => $data->title,
+        'content' => $data->content,
+        'excerpt' => $data->excerpt,
+        'content_type' => $data->content_type->value,
+        'bulletin' => $data->bulletin,
+        'year' => $data->year,
+        'keywords' => $data->keywords,
+        'states' => $states,
+        'published_at' => $data->published_at,
+        'created_by' => $data->created_by,
+        'actions' => [$action->id],
+        'dependencies' => [$dependency->id],
+        'image' => UploadedFile::fake()->image('image.jpg'),
+        'document' => UploadedFile::fake()->create('document.pdf'),
+        'audio_id' => $audio->id,
+        'document_id' => $document->id,
+        'video_id' => $video->id,
+    ])->call('create');
+
+    // Assert
+    $post = Post::first();
+    expect($post)
+        ->bulletin->toBe($data->bulletin)
+        ->year->toBe($data->year);
+});
+
+it('can create a communique post', function () {
+    // Arrange
+    $data = Post::factory()->make(['content_type' => ContentTypeEnum::COMMUNIQUE->value]);
     $action = Action::factory()->create();
     $dependency = Dependency::factory()->create();
     $audio = Audio::factory()->create();

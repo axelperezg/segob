@@ -28,7 +28,7 @@ const openPdfModal = (post) => {
     currentPdf.value = {
         url: post.pdf,
         pageUrl: post.url,
-        title: post.title || 'Boletín'
+        title: post.title || 'Comunicado'
     };
     isPdfModalOpen.value = true;
 };
@@ -117,7 +117,7 @@ const clearDateFilter = () => {
                                     class="object-cover w-full h-80">
                                 <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">{{ formatDate(featuredPost.published_at)
-                                        }}</span>
+                                    }}</span>
                                 </div>
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ featuredPost.mexicoDependency.name }}

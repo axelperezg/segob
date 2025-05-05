@@ -19,7 +19,7 @@ class CreatePost extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if ($data['content_type'] != ContentTypeEnum::BULLETIN->value) {
+        if ($data['content_type'] != ContentTypeEnum::COMMUNIQUE->value) {
             $data['bulletin'] = null;
             $data['year'] = null;
         }

@@ -6,7 +6,7 @@ use Filament\Support\Contracts\HasLabel;
 
 enum ContentTypeEnum: int implements HasLabel
 {
-    case BULLETIN = 1;
+    case COMMUNIQUE = 1;
     case JOINT_STATEMENT = 2;
     case PRESS_RELEASE = 3;
     case EMERGENCY_DECLARATION = 4;
@@ -17,7 +17,7 @@ enum ContentTypeEnum: int implements HasLabel
     public function getLabel(): string
     {
         return match ($this) {
-            self::BULLETIN => 'Boletín',
+            self::COMMUNIQUE => 'Comunicado',
             self::JOINT_STATEMENT => 'Comunicado conjunto',
             self::PRESS_RELEASE => 'Comunicado de prensa',
             self::EMERGENCY_DECLARATION => 'Declaratoria de Emergencia',

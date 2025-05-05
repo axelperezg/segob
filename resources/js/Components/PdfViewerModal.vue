@@ -16,7 +16,7 @@ const props = defineProps({
     },
     title: {
         type: String,
-        default: 'Boletín'
+        default: 'Comunicado'
     }
 });
 

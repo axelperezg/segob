@@ -84,8 +84,8 @@ const activeTab = ref(1);
                         </div>
                     </div>
                 </div>
-                <div class="pt-10" v-if="postPresenter.contentType === 'Boletín'">
-                    <p class="text-lg font-bold">Boletín No. {{ postPresenter.bulletin }}</p>
+                <div class="pt-10" v-if="postPresenter.contentType === 'Comunicado'">
+                    <p class="text-lg font-bold">Comunicado No. {{ postPresenter.bulletin }}</p>
                 </div>
 
                 <div class="grid grid-cols-3 gap-4" v-show="activeTab === 2">

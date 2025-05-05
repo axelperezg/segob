@@ -73,7 +73,7 @@ class DependenciesTest extends TestCase
         // Arrange
         Post::factory(5)
             ->hasAttached($this->dependency)
-            ->create(['content_type' => ContentTypeEnum::BULLETIN]);
+            ->create(['content_type' => ContentTypeEnum::COMMUNIQUE]);
 
         Post::factory(5)
             ->hasAttached($this->dependency)
@@ -81,18 +81,18 @@ class DependenciesTest extends TestCase
 
         // Act
         $response = $this->getDependencyPage([
-            'content_type' => [ContentTypeEnum::BULLETIN->value],
+            'content_type' => [ContentTypeEnum::COMMUNIQUE->value],
         ]);
 
         // Assert
         $response
             ->assertInertia(fn (AssertableInertia $page) => $page
                 ->has('posts.data', 5)
-                ->where('posts.data.0.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.1.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.2.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.3.content_type', ContentTypeEnum::BULLETIN->getLabel())
-                ->where('posts.data.4.content_type', ContentTypeEnum::BULLETIN->getLabel())
+                ->where('posts.data.0.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.1.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.2.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.3.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
+                ->where('posts.data.4.content_type', ContentTypeEnum::COMMUNIQUE->getLabel())
             );
     }
 
