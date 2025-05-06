@@ -44,6 +44,7 @@ class MexicoDependencyResource extends Resource
                         SpatieMediaLibraryFileUpload::make('image')
                             ->label('Imagen')
                             ->collection('image')
+                            ->maxSize(5120)
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
                     ]),
             ]);

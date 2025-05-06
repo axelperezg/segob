@@ -201,6 +201,7 @@ class PostResource extends Resource
                                             ->schema([
                                                 SpatieMediaLibraryFileUpload::make('documents')
                                                     ->collection('documents')
+                                                    ->maxSize(5120)
                                                     ->hiddenLabel(),
                                             ])
                                             ->collapsible()

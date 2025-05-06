@@ -86,6 +86,7 @@ class DependencyResource extends Resource
                                             ->modalTitle('Recortar imagen')
                                             ->viewportWidth(250)
                                             ->viewportHeight(140.625)
+                                            ->maxSize(5120)
                                             ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
                                             ->disk('public'),
                                     ]),
@@ -96,6 +97,7 @@ class DependencyResource extends Resource
                                             ->hiddenLabel()
                                             ->viewportType('square')
                                             ->imageSize('original')
+                                            ->maxSize(5120)
                                             ->modalTitle('Recortar banner')
                                             ->viewportWidth(540)
                                             ->viewportHeight(130)

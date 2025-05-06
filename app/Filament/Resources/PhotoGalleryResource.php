@@ -55,6 +55,7 @@ class PhotoGalleryResource extends Resource
                                             ->hiddenLabel()
                                             ->viewportType('square')
                                             ->imageSize('original')
+                                            ->maxSize(5120)
                                             ->modalTitle('Recortar imagen')
                                             ->viewportWidth(250)
                                             ->viewportHeight(140.625)
@@ -103,6 +104,7 @@ class PhotoGalleryResource extends Resource
                                         SpatieMediaLibraryFileUpload::make('gallery')
                                             ->multiple()
                                             ->collection('gallery')
+                                            ->maxSize(5120)
                                             ->hiddenLabel(),
                                     ]),
                             ]),

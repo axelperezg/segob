@@ -50,6 +50,7 @@ class BannerResource extends Resource
                             ->label('Imagen')
                             ->viewportType('square')
                             ->imageSize('original')
+                            ->maxSize(5120)
                             ->modalTitle('Recortar imagen')
                             ->viewportWidth(540)
                             ->viewportHeight(130)

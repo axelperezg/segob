@@ -70,6 +70,7 @@ class MexicoNewsResource extends Resource
                                     ->hiddenLabel()
                                     ->viewportType('square')
                                     ->imageSize('original')
+                                    ->maxSize(5120)
                                     ->modalTitle('Recortar imagen')
                                     ->viewportWidth(250)
                                     ->viewportHeight(140.625)
@@ -82,6 +83,7 @@ class MexicoNewsResource extends Resource
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('document')
                                     ->collection('document')
+                                    ->maxSize(5120)
                                     ->acceptedFileTypes(['application/pdf'])
                                     ->hiddenLabel(),
                             ])

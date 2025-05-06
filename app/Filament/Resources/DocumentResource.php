@@ -106,6 +106,7 @@ class DocumentResource extends Resource
                                             ->modalTitle('Recortar imagen')
                                             ->viewportWidth(250)
                                             ->viewportHeight(140.625)
+                                            ->maxSize(5120)
                                             ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
                                             ->disk('public'),
                                         Croppie::make('square_image')
@@ -113,6 +114,7 @@ class DocumentResource extends Resource
                                             ->columnSpanFull()
                                             ->label('Imagen Destacada')
                                             ->viewportType('square')
+                                            ->maxSize(5120)
                                             ->imageSize('original')
                                             ->modalTitle('Recortar imagen')
                                             ->viewportWidth(250)

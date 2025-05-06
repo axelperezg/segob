@@ -93,6 +93,7 @@ class VideoResource extends Resource
                                             ->hiddenLabel()
                                             ->viewportType('square')
                                             ->imageSize('original')
+                                            ->maxSize(5120)
                                             ->modalTitle('Recortar imagen')
                                             ->viewportWidth(250)
                                             ->viewportHeight(140.625)
