@@ -191,6 +191,7 @@ class PostResource extends Resource
                                                     ->modalTitle('Recortar imagen')
                                                     ->viewportWidth(250)
                                                     ->viewportHeight(140.625)
+                                                    ->maxSize(5120)
                                                     ->modalDescription('Ajusta la imagen manteniendo proporción 16:9')
                                                     ->disk('public'),
                                             ])
