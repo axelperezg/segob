@@ -4,6 +4,7 @@ use App\Http\Controllers\ActionController;
 use App\Http\Controllers\DependencyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InfographicController;
 use App\Http\Controllers\MexicoNewsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
@@ -19,6 +20,7 @@ Route::get('/noticias-segob', SegobNewsController::class)->name('segob-news.inde
 Route::get('/versiones', VersionController::class)->name('versions.index');
 Route::get('/galerias', [PhotoGalleryController::class, 'index'])->name('photo-galleries.index');
 Route::get('/documentos', [DocumentController::class, 'index'])->name('documents.index');
+Route::get('/infografias', [InfographicController::class, 'index'])->name('infographics.index');
 Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
 Route::get('/noticias-mexico', MexicoNewsController::class)->name('mexico-news.index');
 

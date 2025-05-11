@@ -5,19 +5,15 @@ namespace App\Http\Controllers;
 use App\Enums\Documents\DocumentTypeEnum;
 use App\Http\Resources\DocumentResource;
 use App\Models\Document;
-use App\Models\DocumentSection;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class DocumentController extends Controller
+class InfographicController extends Controller
 {
     public function index(Request $request)
     {
-        $documents = Document::query()
-            ->whereIn('type', [
-                DocumentTypeEnum::PRESENTATION,
-                DocumentTypeEnum::PUBLICATION,
-            ])
+        $infographics = Document::query()
+            ->where('type', DocumentTypeEnum::INFOGRAPHIC)
             ->searchByName(request('title'))
             ->searchByDocumentSection(request('document_section'))
             ->orderByDesc('published_at')
@@ -29,19 +25,9 @@ class DocumentController extends Controller
             'document_section' => request('document_section', ''),
         ];
 
-        return Inertia::render('Documents/Index', [
-            'documents' => DocumentResource::collection($documents),
+        return Inertia::render('Infographics/Index', [
+            'infographics' => DocumentResource::collection($infographics),
             'filters' => $filters,
-            'documentSections' => DocumentSection::all(),
         ]);
     }
-
-    public function show(Document $document)
-    {
-        $document->load(['posts', 'media']);
-        
-        return Inertia::render('Documents/Show', [
-            'document' => DocumentResource::make($document),
-        ]);
-    }
-}
+} 

@@ -59,6 +59,12 @@ class HandleInertiaRequests extends Middleware
                 [
                     'name' => 'DOCUMENTOS',
                     'url' => route('documents.index'),
+                    'submenu' => [
+                        [
+                            'name' => 'Infografías',
+                            'url' => route('infographics.index'),
+                        ],
+                    ],
                 ],
                 [
                     'name' => 'SEGOB',
