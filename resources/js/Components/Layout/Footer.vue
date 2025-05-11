@@ -1,7 +1,7 @@
 <script setup>
-import { usePage } from '@inertiajs/vue3'
+    import { usePage } from '@inertiajs/vue3'
 
-const appSettings = usePage().props.app_settings
+    const appSettings = usePage().props.app_settings
 </script>
 
 <template>
@@ -14,7 +14,9 @@ const appSettings = usePage().props.app_settings
                 <div v-for="link in appSettings.footer_links">
                     <h4 class="mb-4 font-bold text-white">{{ link.title }}</h4>
                     <ul class="space-y-2 text-sm text-white">
-                        <li v-for="item in link.links"><a :href="item.url" class="hover:underline">{{ item.title }}</a></li>
+                        <li v-for="item in link.links">
+                            <a :href="item.url" class="hover:underline">{{ item.title }}</a>
+                        </li>
                     </ul>
                 </div>
             </div>

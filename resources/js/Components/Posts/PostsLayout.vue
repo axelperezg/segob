@@ -1,38 +1,42 @@
 <script setup>
-import PostArticle from '@/Components/Posts/PostArticle.vue';
-import PostsFilter from '@/Components/Posts/PostsFilter.vue';
-import Pagination from '@/Components/Pagination.vue';
-import { router } from '@inertiajs/vue3';
+    import PostArticle from '@/Components/Posts/PostArticle.vue'
+    import PostsFilter from '@/Components/Posts/PostsFilter.vue'
+    import Pagination from '@/Components/Pagination.vue'
+    import { router } from '@inertiajs/vue3'
 
-const props = defineProps({
-    showContentType: {
-        type: Boolean,
-        default: true,
-    },
-    showDependency: {
-        type: Boolean,
-        default: true,
-    },
-    posts: Object,
-    routeName: String,
-    routeParams: {
-        type: Object,
-        required: true,
-        default: {},
-    },
-    filters: Object,
-    title: {
-        type: String,
-        required: false,
-    },
-});
+    const props = defineProps({
+        showContentType: {
+            type: Boolean,
+            default: true,
+        },
+        showDependency: {
+            type: Boolean,
+            default: true,
+        },
+        posts: Object,
+        routeName: String,
+        routeParams: {
+            type: Object,
+            required: true,
+            default: {},
+        },
+        filters: Object,
+        title: {
+            type: String,
+            required: false,
+        },
+    })
 
-const handlePageChange = (url) => {
-    router.get(url, {}, {
-        preserveState: true,
-        preserveScroll: true,
-    });
-};
+    const handlePageChange = (url) => {
+        router.get(
+            url,
+            {},
+            {
+                preserveState: true,
+                preserveScroll: true,
+            },
+        )
+    }
 </script>
 
 <template>
@@ -58,8 +62,12 @@ const handlePageChange = (url) => {
                     <PostArticle v-else v-for="post in posts.data" :key="post.id" :post="post" />
 
                     <!-- Add pagination component -->
-                    <Pagination v-if="posts.meta.links.length > 3" :links="posts.meta.links"
-                        @page-changed="handlePageChange" class="mt-6" />
+                    <Pagination
+                        v-if="posts.meta.links.length > 3"
+                        :links="posts.meta.links"
+                        @page-changed="handlePageChange"
+                        class="mt-6"
+                    />
                 </div>
             </div>
         </div>

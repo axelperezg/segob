@@ -1,43 +1,53 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 
 export default class PhotoGalleryPresenter {
     constructor(photoGallery) {
-        this.photoGallery = photoGallery;
+        this.photoGallery = photoGallery
     }
 
     get id() {
-        return this.photoGallery.id;
+        return this.photoGallery.id
     }
 
     get name() {
-        return this.photoGallery.name;
+        return this.photoGallery.name
     }
 
     get slug() {
-        return this.photoGallery.slug;
+        return this.photoGallery.slug
     }
 
     get is_published() {
-        return this.photoGallery.is_published;
+        return this.photoGallery.is_published
     }
 
     get published_at() {
         const months = [
-            'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-            'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-        ];
-        const date = dayjs(this.photoGallery.published_at);
-        const day = date.date().toString().padStart(2, '0');
-        const month = months[date.month()];
-        const year = date.year();
-        return `${day} de ${month} de ${year}`;
+            'enero',
+            'febrero',
+            'marzo',
+            'abril',
+            'mayo',
+            'junio',
+            'julio',
+            'agosto',
+            'septiembre',
+            'octubre',
+            'noviembre',
+            'diciembre',
+        ]
+        const date = dayjs(this.photoGallery.published_at)
+        const day = date.date().toString().padStart(2, '0')
+        const month = months[date.month()]
+        const year = date.year()
+        return `${day} de ${month} de ${year}`
     }
 
     get photos() {
-        return this.photoGallery.photos;
+        return this.photoGallery.photos
     }
 
     get thumbnail() {
-        return this.photoGallery.image;
+        return this.photoGallery.image
     }
 }

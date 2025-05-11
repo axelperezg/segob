@@ -1,20 +1,19 @@
 <script setup>
-import VideoPresenter from '@/Presenters/VideoPresenter';
-import PostPresenter from '@/Presenters/PostPresenter';
-import { Link, Head } from '@inertiajs/vue3';
+    import VideoPresenter from '@/Presenters/VideoPresenter'
+    import PostPresenter from '@/Presenters/PostPresenter'
+    import { Link, Head } from '@inertiajs/vue3'
 
-const props = defineProps({
-    video: {
-        type: Object,
-        required: true,
-    },
-});
+    const props = defineProps({
+        video: {
+            type: Object,
+            required: true,
+        },
+    })
 
-const videoPresent = new VideoPresenter(props.video.data);
+    const videoPresent = new VideoPresenter(props.video.data)
 </script>
 
 <template>
-
     <Head>
         <title>{{ videoPresent.title }} - Segob</title>
     </Head>
@@ -31,10 +30,13 @@ const videoPresent = new VideoPresenter(props.video.data);
                     </p>
 
                     <div class="video-container aspect-video mb-6">
-                        <iframe :src="videoPresent.url.replace('watch?v=', 'embed/')" class="w-full h-full rounded-lg"
+                        <iframe
+                            :src="videoPresent.url.replace('watch?v=', 'embed/')"
+                            class="w-full h-full rounded-lg"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                            allowfullscreen
+                        ></iframe>
                     </div>
                 </div>
             </div>
@@ -45,14 +47,16 @@ const videoPresent = new VideoPresenter(props.video.data);
                     <div class="mb-2">
                         <div class="divide-y divide-gray-200">
                             <div v-for="post in props.video.data.posts" :key="post.id" class="py-3">
-                                <Link :href="route('posts.show', post.slug)"
-                                    class="block hover:bg-gray-50 rounded-lg transition-colors">
-                                <h3 class="font-semibold text-gray-700">
-                                    {{ new PostPresenter(post).title }}
-                                </h3>
-                                <p class="text-sm text-gray-600">
-                                    {{ new PostPresenter(post).publishedAt }}
-                                </p>
+                                <Link
+                                    :href="route('posts.show', post.slug)"
+                                    class="block hover:bg-gray-50 rounded-lg transition-colors"
+                                >
+                                    <h3 class="font-semibold text-gray-700">
+                                        {{ new PostPresenter(post).title }}
+                                    </h3>
+                                    <p class="text-sm text-gray-600">
+                                        {{ new PostPresenter(post).publishedAt }}
+                                    </p>
                                 </Link>
                             </div>
                         </div>

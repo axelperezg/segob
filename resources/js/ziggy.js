@@ -1,5 +1,152 @@
-const Ziggy = {"url":"http:\/\/127.0.0.1:8000","port":8000,"defaults":{},"routes":{"filament.exports.download":{"uri":"filament\/exports\/{export}\/download","methods":["GET","HEAD"],"parameters":["export"],"bindings":{"export":"id"}},"filament.imports.failed-rows.download":{"uri":"filament\/imports\/{import}\/failed-rows\/download","methods":["GET","HEAD"],"parameters":["import"],"bindings":{"import":"id"}},"filament.admin.auth.login":{"uri":"admin\/login","methods":["GET","HEAD"]},"filament.admin.auth.register":{"uri":"admin\/register","methods":["GET","HEAD"]},"filament.admin.auth.logout":{"uri":"admin\/logout","methods":["POST"]},"filament.admin.pages.dashboard":{"uri":"admin","methods":["GET","HEAD"]},"filament.admin.pages.general-settings":{"uri":"admin\/general-settings","methods":["GET","HEAD"]},"filament.admin.pages.my-profile":{"uri":"admin\/my-profile","methods":["GET","HEAD"]},"filament.admin.resources.actions.index":{"uri":"admin\/actions","methods":["GET","HEAD"]},"filament.admin.resources.actions.create":{"uri":"admin\/actions\/create","methods":["GET","HEAD"]},"filament.admin.resources.actions.edit":{"uri":"admin\/actions\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.audio.index":{"uri":"admin\/audio","methods":["GET","HEAD"]},"filament.admin.resources.audio.create":{"uri":"admin\/audio\/create","methods":["GET","HEAD"]},"filament.admin.resources.audio.edit":{"uri":"admin\/audio\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.banners.index":{"uri":"admin\/banners","methods":["GET","HEAD"]},"filament.admin.resources.banners.create":{"uri":"admin\/banners\/create","methods":["GET","HEAD"]},"filament.admin.resources.banners.edit":{"uri":"admin\/banners\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.dependencies.index":{"uri":"admin\/dependencies","methods":["GET","HEAD"]},"filament.admin.resources.dependencies.create":{"uri":"admin\/dependencies\/create","methods":["GET","HEAD"]},"filament.admin.resources.dependencies.edit":{"uri":"admin\/dependencies\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.documents.index":{"uri":"admin\/documents","methods":["GET","HEAD"]},"filament.admin.resources.documents.create":{"uri":"admin\/documents\/create","methods":["GET","HEAD"]},"filament.admin.resources.documents.edit":{"uri":"admin\/documents\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.featured-posts.index":{"uri":"admin\/featured-posts","methods":["GET","HEAD"]},"filament.admin.resources.featured-posts.edit-all":{"uri":"admin\/featured-posts\/edit-all","methods":["GET","HEAD"]},"filament.admin.resources.photo-galleries.index":{"uri":"admin\/photo-galleries","methods":["GET","HEAD"]},"filament.admin.resources.photo-galleries.create":{"uri":"admin\/photo-galleries\/create","methods":["GET","HEAD"]},"filament.admin.resources.photo-galleries.edit":{"uri":"admin\/photo-galleries\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.posts.index":{"uri":"admin\/posts","methods":["GET","HEAD"]},"filament.admin.resources.posts.create":{"uri":"admin\/posts\/create","methods":["GET","HEAD"]},"filament.admin.resources.posts.edit":{"uri":"admin\/posts\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.resources.videos.index":{"uri":"admin\/videos","methods":["GET","HEAD"]},"filament.admin.resources.videos.create":{"uri":"admin\/videos\/create","methods":["GET","HEAD"]},"filament.admin.resources.videos.edit":{"uri":"admin\/videos\/{record}\/edit","methods":["GET","HEAD"],"parameters":["record"]},"filament.admin.auth.two-factor":{"uri":"admin\/two-factor-authentication","methods":["GET","HEAD"]},"sanctum.csrf-cookie":{"uri":"sanctum\/csrf-cookie","methods":["GET","HEAD"]},"livewire.update":{"uri":"livewire\/update","methods":["POST"]},"livewire.upload-file":{"uri":"livewire\/upload-file","methods":["POST"]},"livewire.preview-file":{"uri":"livewire\/preview-file\/{filename}","methods":["GET","HEAD"],"parameters":["filename"]},"news.index":{"uri":"noticias","methods":["GET","HEAD"]},"versions.index":{"uri":"versiones","methods":["GET","HEAD"]},"photo-galleries.index":{"uri":"galerias","methods":["GET","HEAD"]},"documents.index":{"uri":"documentos","methods":["GET","HEAD"]},"videos.index":{"uri":"videos","methods":["GET","HEAD"]},"videos.show":{"uri":"videos\/{video}","methods":["GET","HEAD"],"parameters":["video"],"bindings":{"video":"slug"}},"photo-galleries.show":{"uri":"galerias\/{photoGallery}","methods":["GET","HEAD"],"parameters":["photoGallery"],"bindings":{"photoGallery":"slug"}},"documents.show":{"uri":"documentos\/{document}","methods":["GET","HEAD"],"parameters":["document"],"bindings":{"document":"slug"}},"posts.show":{"uri":"posts\/{post}","methods":["GET","HEAD"],"parameters":["post"],"bindings":{"post":"slug"}},"actions.show":{"uri":"acciones\/{action}","methods":["GET","HEAD"],"parameters":["action"],"bindings":{"action":"slug"}},"dependencies.show":{"uri":"dependencias\/{dependency}","methods":["GET","HEAD"],"parameters":["dependency"],"bindings":{"dependency":"slug"}},"storage.local":{"uri":"storage\/{path}","methods":["GET","HEAD"],"wheres":{"path":".*"},"parameters":["path"]}}};
-if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
-  Object.assign(Ziggy.routes, window.Ziggy.routes);
+const Ziggy = {
+    url: 'http:\/\/127.0.0.1:8000',
+    port: 8000,
+    defaults: {},
+    routes: {
+        'filament.exports.download': {
+            uri: 'filament\/exports\/{export}\/download',
+            methods: ['GET', 'HEAD'],
+            parameters: ['export'],
+            bindings: { export: 'id' },
+        },
+        'filament.imports.failed-rows.download': {
+            uri: 'filament\/imports\/{import}\/failed-rows\/download',
+            methods: ['GET', 'HEAD'],
+            parameters: ['import'],
+            bindings: { import: 'id' },
+        },
+        'filament.admin.auth.login': { uri: 'admin\/login', methods: ['GET', 'HEAD'] },
+        'filament.admin.auth.register': { uri: 'admin\/register', methods: ['GET', 'HEAD'] },
+        'filament.admin.auth.logout': { uri: 'admin\/logout', methods: ['POST'] },
+        'filament.admin.pages.dashboard': { uri: 'admin', methods: ['GET', 'HEAD'] },
+        'filament.admin.pages.general-settings': { uri: 'admin\/general-settings', methods: ['GET', 'HEAD'] },
+        'filament.admin.pages.my-profile': { uri: 'admin\/my-profile', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.actions.index': { uri: 'admin\/actions', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.actions.create': { uri: 'admin\/actions\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.actions.edit': {
+            uri: 'admin\/actions\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.audio.index': { uri: 'admin\/audio', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.audio.create': { uri: 'admin\/audio\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.audio.edit': {
+            uri: 'admin\/audio\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.banners.index': { uri: 'admin\/banners', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.banners.create': { uri: 'admin\/banners\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.banners.edit': {
+            uri: 'admin\/banners\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.dependencies.index': { uri: 'admin\/dependencies', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.dependencies.create': {
+            uri: 'admin\/dependencies\/create',
+            methods: ['GET', 'HEAD'],
+        },
+        'filament.admin.resources.dependencies.edit': {
+            uri: 'admin\/dependencies\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.documents.index': { uri: 'admin\/documents', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.documents.create': { uri: 'admin\/documents\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.documents.edit': {
+            uri: 'admin\/documents\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.featured-posts.index': { uri: 'admin\/featured-posts', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.featured-posts.edit-all': {
+            uri: 'admin\/featured-posts\/edit-all',
+            methods: ['GET', 'HEAD'],
+        },
+        'filament.admin.resources.photo-galleries.index': { uri: 'admin\/photo-galleries', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.photo-galleries.create': {
+            uri: 'admin\/photo-galleries\/create',
+            methods: ['GET', 'HEAD'],
+        },
+        'filament.admin.resources.photo-galleries.edit': {
+            uri: 'admin\/photo-galleries\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.posts.index': { uri: 'admin\/posts', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.posts.create': { uri: 'admin\/posts\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.posts.edit': {
+            uri: 'admin\/posts\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.resources.videos.index': { uri: 'admin\/videos', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.videos.create': { uri: 'admin\/videos\/create', methods: ['GET', 'HEAD'] },
+        'filament.admin.resources.videos.edit': {
+            uri: 'admin\/videos\/{record}\/edit',
+            methods: ['GET', 'HEAD'],
+            parameters: ['record'],
+        },
+        'filament.admin.auth.two-factor': { uri: 'admin\/two-factor-authentication', methods: ['GET', 'HEAD'] },
+        'sanctum.csrf-cookie': { uri: 'sanctum\/csrf-cookie', methods: ['GET', 'HEAD'] },
+        'livewire.update': { uri: 'livewire\/update', methods: ['POST'] },
+        'livewire.upload-file': { uri: 'livewire\/upload-file', methods: ['POST'] },
+        'livewire.preview-file': {
+            uri: 'livewire\/preview-file\/{filename}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['filename'],
+        },
+        'news.index': { uri: 'noticias', methods: ['GET', 'HEAD'] },
+        'versions.index': { uri: 'versiones', methods: ['GET', 'HEAD'] },
+        'photo-galleries.index': { uri: 'galerias', methods: ['GET', 'HEAD'] },
+        'documents.index': { uri: 'documentos', methods: ['GET', 'HEAD'] },
+        'videos.index': { uri: 'videos', methods: ['GET', 'HEAD'] },
+        'videos.show': {
+            uri: 'videos\/{video}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['video'],
+            bindings: { video: 'slug' },
+        },
+        'photo-galleries.show': {
+            uri: 'galerias\/{photoGallery}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['photoGallery'],
+            bindings: { photoGallery: 'slug' },
+        },
+        'documents.show': {
+            uri: 'documentos\/{document}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['document'],
+            bindings: { document: 'slug' },
+        },
+        'posts.show': {
+            uri: 'posts\/{post}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['post'],
+            bindings: { post: 'slug' },
+        },
+        'actions.show': {
+            uri: 'acciones\/{action}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['action'],
+            bindings: { action: 'slug' },
+        },
+        'dependencies.show': {
+            uri: 'dependencias\/{dependency}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['dependency'],
+            bindings: { dependency: 'slug' },
+        },
+        'storage.local': {
+            uri: 'storage\/{path}',
+            methods: ['GET', 'HEAD'],
+            wheres: { path: '.*' },
+            parameters: ['path'],
+        },
+    },
 }
-export { Ziggy };
+if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
+    Object.assign(Ziggy.routes, window.Ziggy.routes)
+}
+export { Ziggy }

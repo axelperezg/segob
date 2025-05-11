@@ -1,8 +1,8 @@
 <script setup>
-import TopBar from '@/Components/Layout/TopBar.vue'
-import Header from '@/Components/Layout/Header.vue'
-import MainMenu from '@/Components/Layout/MainMenu.vue'
-import Footer from '@/Components/Layout/Footer.vue'
+    import TopBar from '@/Components/Layout/TopBar.vue'
+    import Header from '@/Components/Layout/Header.vue'
+    import MainMenu from '@/Components/Layout/MainMenu.vue'
+    import Footer from '@/Components/Layout/Footer.vue'
 </script>
 
 <template>
