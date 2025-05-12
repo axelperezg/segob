@@ -78,8 +78,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
-                BreezyCore::make()
-                    ->myProfile(),
+                BreezyCore::make(),
             ]);
     }
 }
