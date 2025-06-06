@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build && vite build --ssr",
+        "dev": "vite",
+        "format": "prettier --write \"resources/js/**/*.{js,vue}\""
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.2.0",
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.49",
+        "prettier": "3.4.2",
+        "tailwindcss": "^3.4.15",
+        "vite": "^6.2.0"
+    },
+    "dependencies": {
+        "@inertiajs/vue3": "^1.2.0",
+        "@tailwindcss/forms": "^0.5.9",
+        "@tailwindcss/typography": "^0.5.15",
+        "@vue/server-renderer": "^3.5.13",
+        "dayjs": "^1.11.13",
+        "jquery": "^3.7.1",
+        "jszip": "^3.10.1",
+        "slick-carousel": "^1.8.1",
+        "vue-pdf-embed": "^2.1.1"
+    }
+}
