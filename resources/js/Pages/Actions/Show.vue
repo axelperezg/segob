@@ -1,7 +1,7 @@
 <script setup>
     import PostPresenter from '@/Presenters/PostPresenter'
     import { ref } from 'vue'
-    import { router, Head } from '@inertiajs/vue3'
+    import { router, Head, Link } from '@inertiajs/vue3'
 
     const props = defineProps({
         action: Object,
@@ -43,93 +43,100 @@
             class="flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[1fr_2fr_1fr]"
         >
             <div class="flex gap-10 xl:order-1">
-                <article>
-                    <figure>
-                        <img :src="mainPost.featured_image" alt="Main Post Image" class="w-full" />
-                    </figure>
-                    <h2 class="text-2xl font-medium xl:text-5xl">{{ mainPost.title }}</h2>
-                    <div class="flex italic items-center gap-2 pt-2 text-sm">
-                        <span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="inline-block w-3 h-3 mr-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                            </svg>
-                            {{ new PostPresenter(mainPost).formattedDate }}
-                        </span>
-                        <span># {{ action.data.name }}</span>
-                    </div>
-                </article>
+                <Link :href="route('posts.show', mainPost.slug)">
+                    <article>
+                        <figure>
+                            <img :src="mainPost.image" :alt="mainPost.title" class="w-full" />
+                        </figure>
+                        <h2 class="text-2xl font-medium xl:text-5xl">{{ mainPost.title }}</h2>
+                        <div class="max-w-6xl prose" v-html="mainPost.excerpt"></div>
+                        <div class="flex italic items-center gap-2 pt-2 text-sm">
+                            <span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="inline-block w-3 h-3 mr-1"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                {{ new PostPresenter(mainPost).formattedDate }}
+                            </span>
+                            <span># {{ action.data.name }}</span>
+                        </div>
+                    </article>
+                </Link>
             </div>
             <div class="flex flex-col gap-10 xl:order-0">
-                <article
-                    class="lg:border-b lg:border-gray-200 lg:pb-2"
+                <Link
+                    :href="route('posts.show', secondaryPost.slug)"
                     v-for="secondaryPost in secondaryPosts"
                     :key="secondaryPost.id"
                 >
-                    <figure>
-                        <img :src="secondaryPost.featured_image" alt="Secondary Post Image" class="w-full" />
-                    </figure>
-                    <h2 class="text-2xl font-medium">{{ secondaryPost.title }}</h2>
-                    <div class="flex italic items-center gap-2 pt-2 lg:flex-col lg:items-start text-sm">
-                        <span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="inline-block w-3 h-3 mr-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                            </svg>
-                            {{ new PostPresenter(secondaryPost).formattedDate }}
-                        </span>
-                        <span># {{ action.data.name }}</span>
-                    </div>
-                </article>
+                    <article class="lg:border-b lg:border-gray-200 lg:pb-2">
+                        <figure>
+                            <img :src="secondaryPost.image" alt="Secondary Post Image" class="w-full" />
+                        </figure>
+                        <h2 class="text-2xl font-medium">{{ secondaryPost.title }}</h2>
+                        <div class="flex italic items-center gap-2 pt-2 lg:flex-col lg:items-start text-sm">
+                            <span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="inline-block w-3 h-3 mr-1"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                {{ new PostPresenter(secondaryPost).formattedDate }}
+                            </span>
+                            <span># {{ action.data.name }}</span>
+                        </div>
+                    </article>
+                </Link>
             </div>
             <div class="flex flex-col gap-10 lg:col-span-2 xl:col-span-1 xl:order-2 xl:gap-8">
-                <article
-                    class="lg:border-b lg:border-gray-200 lg:pb-2"
+                <Link
+                    :href="route('posts.show', tertiaryPost.slug)"
                     v-for="tertiaryPost in tertiaryPosts"
                     :key="tertiaryPost.id"
                 >
-                    <h2 class="text-2xl font-medium">{{ tertiaryPost.title }}</h2>
-                    <div class="flex italic items-center gap-2 pt-2 lg:flex-col lg:items-start text-sm">
-                        <span>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="inline-block w-3 h-3 mr-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                />
-                            </svg>
-                            {{ new PostPresenter(tertiaryPost).formattedDate }}
-                        </span>
-                        <span># {{ action.data.name }}</span>
-                    </div>
-                </article>
+                    <article class="lg:border-b lg:border-gray-200 lg:pb-2">
+                        <h2 class="text-2xl font-medium">{{ tertiaryPost.title }}</h2>
+                        <div class="flex italic items-center gap-2 pt-2 lg:flex-col lg:items-start text-sm">
+                            <span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="inline-block w-3 h-3 mr-1"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                {{ new PostPresenter(tertiaryPost).formattedDate }}
+                            </span>
+                            <span># {{ action.data.name }}</span>
+                        </div>
+                    </article>
+                </Link>
             </div>
         </div>
         <div v-else class="text-center py-10">
@@ -154,12 +161,14 @@
                 </form>
             </div>
             <div v-if="posts.data.length > 0" class="lg:grid lg:grid-cols-2 lg:gap-4">
-                <article v-for="post in posts.data" :key="post.id">
-                    <a
-                        :href="route('posts.show', post.slug)"
-                        class="flex gap-4 items-start border-b border-gray-200 py-6"
-                    >
-                        <img :src="post.featured_image" alt="Post Image" class="w-48 h-32 object-cover rounded-md" />
+                <Link
+                    :href="route('posts.show', post.slug)"
+                    class="flex gap-4 items-start border-b border-gray-200 py-6"
+                    v-for="post in posts.data"
+                    :key="post.id"
+                >
+                    <article>
+                        <img :src="post.image" :alt="post.title" class="w-48 h-32 object-cover rounded-md" />
                         <div>
                             <h2 class="text-2xl font-medium">{{ post.title }}</h2>
                             <div class="flex italic items-center gap-2 pt-2 text-sm">
@@ -182,8 +191,8 @@
                                 </span>
                             </div>
                         </div>
-                    </a>
-                </article>
+                    </article>
+                </Link>
             </div>
             <div v-else class="text-center py-10">
                 <p class="text-gray-500 text-lg">No se encontraron resultados para tu búsqueda</p>
