@@ -1,5 +1,6 @@
 <script setup>
     import PostPresenter from '@/Presenters/PostPresenter'
+    import Pagination from '@/Components/Pagination.vue'
     import { ref } from 'vue'
     import { router, Head, Link } from '@inertiajs/vue3'
 
@@ -19,6 +20,18 @@
     let searchPost = () => {
         router.get(
             route('actions.show', props.action.data.slug),
+            {
+                search: search.value,
+            },
+            {
+                preserveScroll: true,
+            },
+        )
+    }
+
+    const handlePageChange = (url) => {
+        router.get(
+            url,
             {
                 search: search.value,
             },
@@ -197,6 +210,14 @@
             <div v-else class="text-center py-10">
                 <p class="text-gray-500 text-lg">No se encontraron resultados para tu búsqueda</p>
             </div>
+
+            <!-- Pagination -->
+            <Pagination
+                v-if="posts.meta.links.length > 3"
+                :links="posts.meta.links"
+                @page-changed="handlePageChange"
+                class="mt-10"
+            />
         </div>
     </div>
 </template>
