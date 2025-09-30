@@ -19,7 +19,9 @@ export default {
                 'burgundy-soft': '#8B4B5F',
                 gold: '#C59426',
                 'gold-soft': '#D4B36B',
-                'gold-lighter': '#F4E7C1'
+                'gold-lighter': '#F4E7C1',
+                'cool-gray': '#98989A',
+                'nav-green': '#1e5b4f'
             }
         },
     },

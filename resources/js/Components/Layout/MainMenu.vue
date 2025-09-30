@@ -27,7 +27,7 @@
 </script>
 
 <template>
-    <nav class="-mx-4 border-burgundy md:bg-gold md:border-t-[.6rem] md:border-burgundy lg:sticky lg:top-[55px] z-10">
+    <nav class="-mx-4 border-burgundy md:bg-nav-green md:border-t-[.6rem] md:border-burgundy lg:sticky lg:top-[55px] z-10">
         <div class="px-4 mx-auto max-w-7xl">
             <div class="flex flex-wrap items-center justify-between">
                 <ul

@@ -25,7 +25,7 @@ class MexicoNewsResource extends JsonResource
             'title' => $this->title,
             'url' => $this->url,
             'featured_image' => $featuredImage,
-            'published_at' => $this->published_at,
+            'published_at' => $this->getRawOriginal('published_at'), // Usar valor directo de la BD
             'pdf' => $this->getFirstMedia('document')?->getFullUrl(),
             'mexico_dependency_id' => $this->mexico_dependency_id,
             'mexicoDependency' => new MexicoDependencyResource($this->whenLoaded('mexicoDependency')),

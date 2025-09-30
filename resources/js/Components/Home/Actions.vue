@@ -54,7 +54,7 @@
 </script>
 
 <template>
-    <section class="py-12 -mx-4 bg-gold">
+    <section class="py-12 -mx-4 bg-nav-green">
         <div class="container px-16 mx-auto">
             <h2 class="mb-8 text-3xl font-medium text-center text-white">Acciones</h2>
             <div v-if="actions && actions.length" class="actions-slider">

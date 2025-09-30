@@ -20,13 +20,16 @@ class MexicoNewsController extends Controller
             ->take(3)
             ->get();
 
+        // Get the IDs of the main posts to exclude them from the sidebar
+        $mainPostIds = $mainPosts->pluck('id')->toArray();
+        
         $posts = MexicoNews::query()
             ->when($request->published_at, function ($query) use ($request) {
                 return $query->whereDate('published_at', $request->published_at);
             })
+            ->whereNotIn('id', $mainPostIds) // Exclude posts already shown in main area
             ->with('mexicoDependency', 'media')
             ->orderBy('published_at', 'desc')
-            ->skip(3)
             ->paginate(5)
             ->appends($request->all());
 

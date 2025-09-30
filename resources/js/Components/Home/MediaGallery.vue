@@ -62,7 +62,7 @@
 </script>
 
 <template>
-    <section class="py-12 -mx-4 bg-gold-lighter">
+    <section class="py-12 -mx-4 bg-cool-gray">
         <div class="container px-16 mx-auto">
             <Link
                 as="h2"

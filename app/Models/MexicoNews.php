@@ -21,7 +21,7 @@ class MexicoNews extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'published_at' => 'date',
+        'published_at' => 'datetime',
     ];
 
     public function mexicoDependency(): BelongsTo

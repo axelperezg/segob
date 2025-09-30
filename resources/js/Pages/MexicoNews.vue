@@ -14,6 +14,7 @@
     let secondaryPosts = props.mainPosts.data.slice(1, 3)
     let tertiaryPosts = props.posts.data
 
+
     const selectedDate = ref(props.filters.published_at)
 
     // PDF Viewer Modal
@@ -38,19 +39,25 @@
     }
 
     // Format date helper function
-    const formatDate = (dateString) => {
-        if (!dateString) return ''
+    const formatDate = (post) => {
+        if (!post || !post.published_at) return ''
 
-        const date = new Date(dateString)
-        const hours = date.getHours().toString().padStart(2, '0')
-        const minutes = date.getMinutes().toString().padStart(2, '0')
+        // Handle format from database: "2025-09-29 17:28:00"
+        const timeMatch = post.published_at.match(/(\d{2}):(\d{2}):/)
+        
+        if (timeMatch) {
+            const hours = timeMatch[1]
+            const minutes = timeMatch[2]
+            return `${hours}:${minutes}`
+        }
 
-        return `${hours}:${minutes}`
+        return ''
     }
 
     const formattedSelectedDate = computed(() => {
         if (!selectedDate.value) return ''
-        return formatDate(selectedDate.value)
+        // For the date filter, we just return the date string as is
+        return selectedDate.value
     })
 
     const handleDateChange = () => {
@@ -148,7 +155,7 @@
                                 />
                                 <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">
-                                        {{ formatDate(featuredPost.published_at) }}
+                                        {{ formatDate(featuredPost) }}
                                     </span>
                                 </div>
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
@@ -201,7 +208,7 @@
                             <div class="relative">
                                 <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48" />
                                 <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
-                                    <span class="text-sm text-gray-600">{{ formatDate(post.published_at) }}</span>
+                                    <span class="text-sm text-gray-600">{{ formatDate(post) }}</span>
                                 </div>
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ post.mexicoDependency.name }}
@@ -259,7 +266,7 @@
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                     />
                                 </svg>
-                                <span class="text-sm">{{ formatDate(post.published_at) }}</span>
+                                <span class="text-sm">{{ formatDate(post) }}</span>
                             </div>
                             <div class="text-sm font-medium text-red-700">{{ post.mexicoDependency.name }}</div>
                         </div>
