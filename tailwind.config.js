@@ -15,13 +15,14 @@ export default {
                 sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                // El error es que falta una coma después de 'head-green': '#1e5b4f'
                 burgundy: '#611232',
                 'burgundy-soft': '#8B4B5F',
                 gold: '#C59426',
                 'gold-soft': '#D4B36B',
                 'gold-lighter': '#F4E7C1',
-                'cool-gray': '#98989A',
-                'nav-green': '#1e5b4f'
+                'cool-gray': '#eae8e8',
+                'nav-green': '#1e5b4f',
             }
         },
     },

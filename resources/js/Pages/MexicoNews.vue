@@ -96,6 +96,17 @@
             },
         )
     }
+
+    // Computed property para calcular el total de noticias
+    const totalNewsCount = computed(() => {
+        // Contar noticias principales (destacada + secundarias)
+        let count = props.mainPosts.data.length
+        
+        // Contar noticias terciarias (sidebar)
+        count += props.posts.data.length
+        
+        return count
+    })
 </script>
 
 <template>
@@ -105,6 +116,13 @@
 
     <div class="px-4 py-8 mx-auto max-w-7xl">
         <h1 class="mb-6 text-3xl font-bold text-gray-800">Noticias México</h1>
+
+        <!-- Contador de noticias -->
+        <div v-if="totalNewsCount > 0" class="mb-4">
+            <p class="text-lg font-medium text-gray-700">
+                Número de noticias publicadas ({{ totalNewsCount }})
+            </p>
+        </div>
 
         <div class="mb-8">
             <div class="flex flex-col items-center gap-4 sm:flex-row sm:items-stretch">
@@ -153,16 +171,36 @@
                                     alt="Noticia destacada"
                                     class="object-cover w-full h-80"
                                 />
-                                <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
+                                <!-- <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">
                                         {{ formatDate(featuredPost) }}
                                     </span>
-                                </div>
+                                </div> -->
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ featuredPost.mexicoDependency.name }}
                                 </div>
                             </div>
                             <div class="p-4">
+                                <div class="flex items-center mb-2 space-x-1">
+                                    <div class="flex items-center text-gray-500">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-4 h-4 mr-1"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                        <span class="text-sm">{{ formatDate(featuredPost) }}</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-red-700">{{ featuredPost.mexicoDependency.name }}</div>
+                                </div>
                                 <h2 class="mb-3 text-xl font-semibold text-gray-800">{{ featuredPost.title }}</h2>
                             </div>
                         </a>
@@ -207,14 +245,34 @@
                         <a :href="post.url" target="_blank" class="block cursor-pointer">
                             <div class="relative">
                                 <img :src="post.featured_image" :alt="post.title" class="object-cover w-full h-48" />
-                                <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
+                                <!-- <div class="absolute bottom-0 left-0 flex items-center p-2 bg-white">
                                     <span class="text-sm text-gray-600">{{ formatDate(post) }}</span>
-                                </div>
+                                </div> -->
                                 <div class="absolute top-0 right-0 px-2 py-1 text-xs text-white bg-red-700">
                                     {{ post.mexicoDependency.name }}
                                 </div>
                             </div>
                             <div class="p-4">
+                                <div class="flex items-center mb-2 space-x-1">
+                                    <div class="flex items-center text-gray-500">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-4 h-4 mr-1"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                        <span class="text-sm">{{ formatDate(post) }}</span>
+                                    </div>
+                                    <div class="text-sm font-medium text-red-700">{{ post.mexicoDependency.name }}</div>
+                                </div>
                                 <h2 class="mb-3 text-lg font-semibold text-gray-800">{{ post.title }}</h2>
                             </div>
                         </a>

@@ -105,7 +105,7 @@ class MexicoNewsResource extends Resource
                     ->searchable(),
                 TextColumn::make('published_at')
                     ->label('Fecha de publicación')
-                    ->dateTime('d/m/Y H:i')
+                    ->dateTime('d/m/Y H:')
                     ->sortable(),
             ])
             ->filters([

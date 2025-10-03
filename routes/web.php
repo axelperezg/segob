@@ -6,6 +6,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfographicController;
 use App\Http\Controllers\MexicoNewsController;
+use App\Http\Controllers\MexicoNewsCountController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
 use App\Http\Controllers\PostController;
@@ -23,6 +24,7 @@ Route::get('/documentos', [DocumentController::class, 'index'])->name('documents
 Route::get('/infografias', [InfographicController::class, 'index'])->name('infographics.index');
 Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
 Route::get('/noticias-mexico', MexicoNewsController::class)->name('mexico-news.index');
+Route::get('/noticias-mexico-conteo', MexicoNewsCountController::class)->name('mexico-news.count');
 
 Route::get('/videos/{video:slug}', [VideoController::class, 'show'])->name('videos.show');
 Route::get('/galerias/{photoGallery:slug}', [PhotoGalleryController::class, 'show'])->name('photo-galleries.show');

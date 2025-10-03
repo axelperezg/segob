@@ -76,7 +76,7 @@
                         </ul>
                     </li>
                 </ul>
-                <button @click="toggleMenu" class="w-full px-4 py-2 text-white rounded md:hidden bg-burgundy">
+                <button @click="toggleMenu" class="w-full px-4 py-2 text-white rounded md:hidden bg-nav-green">
                     Menú
                 </button>
             </div>
