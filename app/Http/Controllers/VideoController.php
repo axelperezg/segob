@@ -22,6 +22,14 @@ class VideoController extends Controller
             'published_at' => request('published_at'),
         ];
 
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('videos.index', config('migration.migrated_routes', []))) {
+            return view('pages.videos.index', [
+                'videos' => $videos,
+                'filters' => $filters,
+            ]);
+        }
+
         return Inertia::render('Videos/Index', [
             'videos' => VideoResource::collection($videos),
             'filters' => $filters,

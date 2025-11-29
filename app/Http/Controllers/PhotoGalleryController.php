@@ -22,6 +22,14 @@ class PhotoGalleryController extends Controller
             'published_at' => request('published_at'),
         ];
 
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('photo-galleries.index', config('migration.migrated_routes', []))) {
+            return view('pages.photo-galleries.index', [
+                'galleries' => $galleries,
+                'filters' => $filters,
+            ]);
+        }
+
         return Inertia::render('PhotoGalleries/Index', [
             'galleries' => PhotoGalleryResource::collection($galleries),
             'filters' => $filters,

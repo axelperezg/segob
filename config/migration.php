@@ -35,9 +35,16 @@ return [
     */
 
     'migrated_routes' => [
+        // Phase 1: Show pages
         'videos.show',
         'documents.show',
         'photo-galleries.show',
+
+        // Phase 2: Index pages
+        'videos.index',
+        'photo-galleries.index',
+        'infographics.index',
+        'versions.index',
     ],
 
 ];

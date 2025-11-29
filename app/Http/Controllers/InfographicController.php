@@ -19,11 +19,20 @@ class InfographicController extends Controller
             ->orderByDesc('published_at')
             ->paginate(12)
             ->appends($request->all());
-            
+
         $filters = [
             'name' => request('title', ''),
             'document_section' => request('document_section', ''),
         ];
+
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('infographics.index', config('migration.migrated_routes', []))) {
+            return view('pages.infographics.index', [
+                'infographics' => $infographics,
+                'filters' => $filters,
+                'documentSections' => \App\Models\DocumentSection::all(),
+            ]);
+        }
 
         return Inertia::render('Infographics/Index', [
             'infographics' => DocumentResource::collection($infographics),

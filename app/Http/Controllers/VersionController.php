@@ -27,6 +27,14 @@ class VersionController extends Controller
             'dependency_id' => request('dependency_id', ''),
         ];
 
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('versions.index', config('migration.migrated_routes', []))) {
+            return view('pages.versions.index', [
+                'posts' => $posts,
+                'filters' => $filters,
+            ]);
+        }
+
         return Inertia::render('Version', [
             'posts' => PostResource::collection($posts),
             'filters' => $filters,
