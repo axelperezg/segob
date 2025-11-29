@@ -58,27 +58,27 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 **Objetivo:** Configurar el entorno para que Blade e Inertia coexistan durante la migración
 
 ### 0.1 Versionamiento y Documentación
-- [ ] Crear tag `pre-blade-migration` en el commit actual
-- [ ] Documentar estado actual con screenshots de páginas clave
-- [ ] Confirmar que branch `from-inertia-to-blade` está actualizado
-- [ ] Crear este archivo de plan con checkboxes
+- [x] Crear tag `pre-blade-migration` en el commit actual
+- [x] Documentar estado actual con screenshots de páginas clave
+- [x] Confirmar que branch `from-inertia-to-blade` está actualizado
+- [x] Crear este archivo de plan con checkboxes
 
 ### 0.2 Instalación de Dependencias Nuevas
-- [ ] Instalar Alpine.js: `npm install alpinejs`
+- [x] Instalar Alpine.js: `npm install alpinejs`
 - [ ] Instalar HTMX (opcional): `npm install htmx.org`
-- [ ] Instalar Swiper.js: `npm install swiper`
-- [ ] Ejecutar `npm ci` para verificar instalación
-- [ ] Actualizar `package.json` si es necesario
+- [x] Instalar Swiper.js: `npm install swiper`
+- [x] Ejecutar `npm ci` para verificar instalación
+- [x] Actualizar `package.json` si es necesario
 
 ### 0.3 Crear Estructura de Directorios Blade
-- [ ] Crear `resources/views/layouts/` para layouts
-- [ ] Crear `resources/views/components/` para componentes Blade
-- [ ] Crear `resources/views/components/layout/` para header, footer, menu
-- [ ] Crear `resources/views/partials/` para includes
-- [ ] Crear `resources/views/pages/` para páginas principales
+- [x] Crear `resources/views/layouts/` para layouts
+- [x] Crear `resources/views/components/` para componentes Blade
+- [x] Crear `resources/views/components/layout/` para header, footer, menu
+- [x] Crear `resources/views/partials/` para includes
+- [x] Crear `resources/views/pages/` para páginas principales
 
 ### 0.4 Configurar Sistema Dual (Blade + Inertia)
-- [ ] Crear archivo de configuración `config/migration.php`:
+- [x] Crear archivo de configuración `config/migration.php`:
   ```php
   return [
       'use_blade' => env('USE_BLADE_ROUTES', false),
@@ -86,78 +86,78 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
       'migrated_routes' => [],
   ];
   ```
-- [ ] Crear middleware `app/Http/Middleware/DetectViewEngine.php`
-- [ ] Registrar middleware en `app/Http/Kernel.php`
-- [ ] Añadir variables en `.env`: `DUAL_MODE=true`, `USE_BLADE_ROUTES=false`
+- [x] Crear middleware `app/Http/Middleware/DetectViewEngine.php`
+- [x] Registrar middleware en `app/Http/Kernel.php`
+- [x] Añadir variables en `.env`: `DUAL_MODE=true`, `USE_BLADE_ROUTES=false`
 
 ### 0.5 Crear Helper para Datos Compartidos
-- [ ] Crear `app/Helpers/ViewHelper.php` con funciones:
+- [x] Crear `app/Helpers/ViewHelper.php` con funciones:
   - `getMainMenu()` - lógica de menú principal
   - `getAppSettings()` - configuración global
   - `getSharedData()` - todos los datos compartidos
-- [ ] Registrar helper en `composer.json` autoload files
-- [ ] Ejecutar `composer dump-autoload`
+- [x] Registrar helper en `composer.json` autoload files
+- [x] Ejecutar `composer dump-autoload`
 
 ### 0.6 Configurar View Composer para Blade
-- [ ] Crear `app/Providers/ViewServiceProvider.php`
-- [ ] Registrar View::composer para compartir datos en todas las vistas Blade:
+- [x] Crear `app/Providers/ViewServiceProvider.php`
+- [x] Registrar View::composer para compartir datos en todas las vistas Blade:
   ```php
   View::composer('*', function ($view) {
       $view->with('mainMenu', ViewHelper::getMainMenu());
       $view->with('appSettings', ViewHelper::getAppSettings());
   });
   ```
-- [ ] Registrar provider en `config/app.php`
+- [x] Registrar provider en `config/app.php`
 
 ### 0.7 Configurar Vite para Dual Build
-- [ ] Crear `resources/js/app-blade.js` como nuevo entry point
-- [ ] Configurar Alpine.js en app-blade.js
-- [ ] Configurar Swiper en app-blade.js (si se usa)
-- [ ] Modificar `vite.config.js` para incluir ambos entry points
-- [ ] Crear `resources/css/app-blade.css` si es necesario
-- [ ] Probar build: `npm run build`
+- [x] Crear `resources/js/app-blade.js` como nuevo entry point
+- [x] Configurar Alpine.js en app-blade.js
+- [x] Configurar Swiper en app-blade.js (si se usa)
+- [x] Modificar `vite.config.js` para incluir ambos entry points
+- [x] Crear `resources/css/app-blade.css` si es necesario
+- [x] Probar build: `npm run build`
 
 ### 0.8 Crear Layout Maestro Blade
-- [ ] Crear `resources/views/layouts/app.blade.php`:
+- [x] Crear `resources/views/layouts/app.blade.php`:
   - Estructura HTML base
   - Meta tags dinámicos
   - @vite(['resources/js/app-blade.js', 'resources/css/app.css'])
   - @yield('content')
   - Slots para scripts adicionales
-- [ ] Verificar que Tailwind CSS funciona correctamente
-- [ ] Probar layout con página de prueba
+- [x] Verificar que Tailwind CSS funciona correctamente
+- [x] Probar layout con página de prueba
 
 ### 0.9 Crear Componentes Blade Base
-- [ ] Crear componentes atómicos reutilizables:
+- [x] Crear componentes atómicos reutilizables:
   - `components/button.blade.php`
   - `components/link.blade.php`
   - `components/card.blade.php`
   - `components/badge.blade.php`
-- [ ] Crear componente de paginación: `components/pagination.blade.php`
-- [ ] Documentar uso de cada componente
+- [x] Crear componente de paginación: `components/pagination.blade.php`
+- [x] Documentar uso de cada componente
 
 ### 0.10 Migrar Componentes de Layout
-- [ ] Crear `components/layout/header.blade.php` (de Header.vue)
-- [ ] Crear `components/layout/top-bar.blade.php` (de TopBar.vue)
-- [ ] Crear `components/layout/footer.blade.php` (de Footer.vue)
-- [ ] Crear `components/layout/main-menu.blade.php` (de MainMenu.vue)
+- [x] Crear `components/layout/header.blade.php` (de Header.vue)
+- [x] Crear `components/layout/top-bar.blade.php` (de TopBar.vue)
+- [x] Crear `components/layout/footer.blade.php` (de Footer.vue)
+- [x] Crear `components/layout/main-menu.blade.php` (de MainMenu.vue)
   - Implementar lógica de hover/mobile con Alpine.js
-- [ ] Probar componentes de layout en layout maestro
+- [x] Probar componentes de layout en layout maestro
 
 ### 0.11 Establecer Estrategia de Testing
-- [ ] Ejecutar suite de tests actual: `php artisan test`
-- [ ] Documentar tests que están pasando (baseline)
-- [ ] Crear tests E2E para páginas críticas si no existen:
+- [x] Ejecutar suite de tests actual: `php artisan test`
+- [x] Documentar tests que están pasando (baseline)
+- [x] Crear tests E2E para páginas críticas si no existen:
   - Home page
   - News/Index
   - Posts/Show
-- [ ] Definir estrategia: ¿migrar tests con cada página?
+- [x] Definir estrategia: ¿migrar tests con cada página?
 
 ### 0.12 Crear Página de Prueba Blade
-- [ ] Crear ruta de prueba en `routes/web.php`: `/blade-test`
-- [ ] Crear controller `BladeTestController`
-- [ ] Crear vista `resources/views/pages/blade-test.blade.php`
-- [ ] Verificar que:
+- [x] Crear ruta de prueba en `routes/web.php`: `/blade-test`
+- [x] Crear controller `BladeTestController`
+- [x] Crear vista `resources/views/pages/blade-test.blade.php`
+- [x] Verificar que:
   - Layout funciona
   - Alpine.js funciona
   - Tailwind CSS funciona
@@ -166,19 +166,19 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 - [ ] Eliminar ruta de prueba después de verificación
 
 ### 0.13 Documentar Convenciones y Patrones
-- [ ] Crear `plans/blade-conventions.md` con:
+- [x] Crear `plans/blade-conventions.md` con:
   - Convención de nombres para componentes
   - Patrón de uso de Alpine.js
   - Patrón de paginación
   - Patrón de filtrado
   - Patrón de manejo de media (imágenes, videos, PDFs)
-- [ ] Definir estructura de controllers (mantener invokable o cambiar)
+- [x] Definir estructura de controllers (mantener invokable o cambiar)
 
 ### 0.14 Preparar Rollback Plan
-- [ ] Documentar comando para revertir: `git checkout main`
-- [ ] Crear tag antes de cada fase importante
-- [ ] Definir feature flags si es necesario
-- [ ] Documentar cómo mantener ambas versiones corriendo
+- [x] Documentar comando para revertir: `git checkout main`
+- [x] Crear tag antes de cada fase importante
+- [x] Definir feature flags si es necesario
+- [x] Documentar cómo mantener ambas versiones corriendo
 
 **✅ Fase 0 Completa cuando todos los checkboxes estén marcados**
 
