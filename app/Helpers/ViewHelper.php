@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Enums\Posts\ContentTypeEnum;
 use App\Models\Action;
+use App\Models\Dependency;
 use App\Settings\AppSettings;
 
 class ViewHelper
@@ -80,6 +82,28 @@ class ViewHelper
             'meta_title' => $settings->meta_title,
             'meta_description' => $settings->meta_description,
         ];
+    }
+
+    /**
+     * Get content types
+     */
+    public static function getContentTypes(): array
+    {
+        return collect(ContentTypeEnum::cases())->map(fn ($type) => [
+            'id' => $type->value,
+            'name' => $type->getLabel(),
+        ])->toArray();
+    }
+
+    /**
+     * Get dependencies
+     */
+    public static function getDependencies(): array
+    {
+        return Dependency::select('id', 'name')
+            ->orderBy('name')
+            ->get()
+            ->toArray();
     }
 
     /**

@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DependencyResource;
-use App\Http\Resources\PostResource;
 use App\Models\Dependency;
 use App\Models\Post;
-use Inertia\Inertia;
 
 class SegobNewsController extends Controller
 {
@@ -16,11 +13,10 @@ class SegobNewsController extends Controller
 
         $query = Post::query()
             ->with('media', 'createdBy', 'dependencies')
-            ->whereHas('dependencies', function ($query) use ($segobDependency) {
-                $query->when($segobDependency, function ($query) use ($segobDependency) {
-                    $query->where('dependency_id', $segobDependency->id);
-                });
-            })
+            ->whereHas('dependencies', fn ($query) => $query->when(
+                $segobDependency,
+                fn ($query) => $query->where('dependency_id', $segobDependency->id)
+            ))
             ->filterByTitle(request('title'))
             ->filterByPublishedAt(request('published_at'))
             ->filterByContentType(request('content_type', []));
@@ -38,12 +34,11 @@ class SegobNewsController extends Controller
 
         $dependencies = Dependency::query()->latest()->get();
 
-        return Inertia::render('SegobNews/Index', [
-            'posts' => PostResource::collection($posts),
+        return view('pages.segob-news.index', [
+            'posts' => $posts,
             'filters' => $filters,
-            'showDependency' => false,
-            'dependencies' => DependencyResource::collection($dependencies),
-            'dependency' => DependencyResource::make($segobDependency),
+            'dependencies' => $dependencies,
+            'dependency' => $segobDependency,
         ]);
     }
 }

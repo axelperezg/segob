@@ -45,6 +45,11 @@ return [
         'photo-galleries.index',
         'infographics.index',
         'versions.index',
+
+        // Phase 3: Posts with filters
+        'news.index',
+        'segob-news.index',
+        'documents.index',
     ],
 
 ];

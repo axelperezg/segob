@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PostResource;
 use App\Models\Post;
-use Inertia\Inertia;
 
 class NewsController extends Controller
 {
@@ -25,10 +23,9 @@ class NewsController extends Controller
             'content_type' => request('content_type', []),
         ];
 
-        return Inertia::render('News/Index', [
-            'posts' => PostResource::collection($posts),
+        return view('pages.news.index', [
+            'posts' => $posts,
             'filters' => $filters,
-            'showDependency' => false,
         ]);
     }
 }

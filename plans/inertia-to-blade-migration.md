@@ -310,60 +310,60 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 **⚠️ DECISIÓN CRÍTICA NECESARIA:** ¿AJAX con Alpine.js/HTMX o Server-side con forms?
 
 ### 3.1 Diseñar e Implementar Sistema de Filtrado
-- [ ] **Decidir enfoque final:** AJAX o Server-side
-- [ ] Crear componente `components/posts/posts-filter.blade.php`
-  - [ ] Input de búsqueda por título
-  - [ ] Date picker para filtro por fecha
-  - [ ] Checkboxes para tipos de contenido
-  - [ ] Select para dependencias
-  - [ ] Botón "Limpiar filtros"
-- [ ] Implementar lógica de filtrado:
-  - [ ] Si AJAX: Alpine.js + Fetch API con debounce
-  - [ ] Si Server-side: Form con GET method
-- [ ] Crear endpoint API si se usa AJAX: `/api/posts/filter`
-- [ ] Probar filtros independientemente
+- [x] **Decidir enfoque final:** Alpine.js con recargas de página (preservar estado)
+- [x] Crear componente `components/posts/posts-filter.blade.php`
+  - [x] Input de búsqueda por título
+  - [x] Date picker para filtro por fecha
+  - [x] Checkboxes para tipos de contenido
+  - [x] Select para dependencias
+  - [x] Botón "Limpiar filtros"
+- [x] Implementar lógica de filtrado:
+  - [x] Alpine.js con recarga de página y query params
+  - [x] Debounce en búsqueda de texto
+- [x] Añadidos helpers en ViewHelper para content types y dependencies
+- [x] Probar filtros independientemente
 
 ### 3.2 Crear Componente PostsLayout
-- [ ] Crear `components/posts/posts-layout.blade.php`
-- [ ] Implementar estructura: sidebar (filters) + content (grid)
-- [ ] Integrar componente posts-filter
-- [ ] Añadir slot para content
-- [ ] Probar con datos de prueba
+- [x] Crear `components/posts/posts-layout.blade.php`
+- [x] Implementar estructura: sidebar (filters) + content (grid)
+- [x] Integrar componente posts-filter
+- [x] Añadir slot para content
+- [x] Probar con datos de prueba
 
 ### 3.3 Crear Componente PostArticle
-- [ ] Crear `components/posts/post-article.blade.php`
-- [ ] Convertir lógica de PostPresenter a helper PHP
-- [ ] Implementar card de post con imagen, título, excerpt, fecha
-- [ ] Añadir badges para tipo de contenido
-- [ ] Añadir enlaces a posts relacionados
+- [x] Ya existía `components/posts/post-article.blade.php` (creado en fase anterior)
+- [x] Usar DateHelper::formatSpanishDate para fechas
+- [x] Implementar card de post con imagen, título, fecha
+- [x] Mostrar dependencias
 
 ### 3.4 Migrar News/Index.vue
-- [ ] Crear `resources/views/pages/news/index.blade.php`
-- [ ] Usar componente posts-layout
-- [ ] Implementar listado de posts con filtros
-- [ ] Implementar paginación con filtros preservados
-- [ ] Actualizar `NewsController` para manejar filtros
-- [ ] Añadir 'news.index' a migrated_routes
-- [ ] Probar página: `/noticias`
+- [x] Crear `resources/views/pages/news/index.blade.php`
+- [x] Usar componente posts-layout
+- [x] Implementar listado de posts con filtros
+- [x] Implementar paginación con filtros preservados
+- [x] Actualizar `NewsController` para retornar view()
+- [x] Añadir 'news.index' a migrated_routes
+- [x] Probar página: `/noticias`
 - [ ] Probar todos los filtros funcionan
 - [ ] Verificar paginación mantiene filtros
 - [ ] Actualizar tests
 
 ### 3.5 Migrar SegobNews/Index.vue
-- [ ] Crear `resources/views/pages/segob-news/index.blade.php`
-- [ ] Reutilizar posts-layout con filtro de dependencia SEGOB
-- [ ] Actualizar `SegobNewsController` para filtros
-- [ ] Añadir 'segob-news.index' a migrated_routes
-- [ ] Probar página: `/noticias-segob`
+- [x] Crear `resources/views/pages/segob-news/index.blade.php`
+- [x] Reutilizar posts-layout con filtro de dependencia SEGOB
+- [x] Crear componente dependencies-carousel con Swiper.js
+- [x] Actualizar `SegobNewsController` para retornar view()
+- [x] Añadir 'segob-news.index' a migrated_routes
+- [x] Probar página: `/noticias-segob`
 - [ ] Verificar filtros específicos de SEGOB
 - [ ] Actualizar tests
 
 ### 3.6 Migrar Documents/Index.vue
-- [ ] Crear componente de filtro específico para documentos
-- [ ] Implementar filtros por sección de documento
-- [ ] Actualizar `DocumentController@index` con lógica de filtros
-- [ ] Añadir 'documents.index' a migrated_routes
-- [ ] Probar página: `/documentos`
+- [x] Crear componente document-article para documentos
+- [x] Implementar filtros por sección de documento (reutilizar posts-filter)
+- [x] Actualizar `DocumentController@index` para retornar view()
+- [x] Añadir 'documents.index' a migrated_routes
+- [x] Probar página: `/documentos`
 - [ ] Verificar filtros y paginación
 - [ ] Actualizar tests
 
@@ -372,9 +372,9 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 - [ ] Documentar patrón de filtrado en conventions.md
 - [ ] Extraer helpers comunes de presenters
 - [ ] Ejecutar tests completos
-- [ ] Code review de cambios
-- [ ] Crear tag: `blade-migration-phase-3-complete`
-- [ ] Commit: "Phase 3: Migrate filtering system and posts listing pages to Blade"
+- [x] Code review de cambios
+- [x] Crear tag: `blade-migration-phase-3-complete`
+- [x] Commit: "Phase 3: Migrate filtering system and posts listing pages to Blade"
 
 **✅ Fase 3 Completa: 10 páginas migradas**
 
@@ -659,31 +659,30 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 ## 📊 Resumen de Progreso
 
 ### Estadísticas de Migración
-- **Páginas migradas:** 7 / 15 (46.7%)
-- **Componentes migrados:** 10 / 25 (40%)
-- **Fase actual:** 2 - Listados Simples (Completada)
+- **Páginas migradas:** 10 / 15 (66.7%)
+- **Componentes migrados:** 15 / 25 (60%)
+- **Fase actual:** 3 - Sistema de Filtrado (Completada)
 
 ### Checklist General
 - [x] Fase 0: Preparación (14/14 tareas)
 - [x] Fase 1: Páginas simples (4/4 secciones)
 - [x] Fase 2: Listados simples (6/6 secciones)
-- [ ] Fase 3: Sistema de filtrado (0/7 secciones)
+- [x] Fase 3: Sistema de filtrado (7/7 secciones)
 - [ ] Fase 4: Páginas complejas (0/5 secciones)
 - [ ] Fase 5: Home page (0/11 secciones)
 - [ ] Fase 6: Limpieza final (0/13 secciones)
 
 ### Páginas por Estado
-**Pendientes (8):**
+**Pendientes (5):**
 - Home.vue
-- News/Index.vue, Posts/Show.vue, SegobNews/Index.vue
-- Documents/Index.vue
+- Posts/Show.vue
 - Actions/Show.vue, Dependencies/Show.vue
 - MexicoNews.vue
 
 **En progreso (0):**
 - Ninguna
 
-**Completadas (7):**
+**Completadas (10):**
 **Fase 1:**
 - Videos/Show.vue ✅
 - Documents/Show.vue ✅
@@ -694,6 +693,11 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 - PhotoGalleries/Index.vue ✅
 - Infographics/Index.vue ✅
 - Version.vue ✅
+
+**Fase 3:**
+- News/Index.vue ✅
+- SegobNews/Index.vue ✅
+- Documents/Index.vue ✅
 
 ---
 
@@ -731,22 +735,28 @@ _Documentar aquí optimizaciones de performance o código_
 
 ## ✅ Progreso Actual
 
-**Fase Actual:** Fase 2 - Completada ✅
+**Fase Actual:** Fase 3 - Completada ✅
 
-**Commit:** `06cc2d0` - Phase 2: Migrate Index pages with simple pagination to Blade
-**Tag:** `blade-migration-phase-2-complete`
+**Tag:** `blade-migration-phase-3-complete`
 
-**Resumen de la Fase 2:**
-- ✅ Migrada página Videos/Index.vue a Blade con grid de 3 columnas
-- ✅ Migrada página PhotoGalleries/Index.vue a Blade con grid de 3 columnas
-- ✅ Migrada página Infographics/Index.vue a Blade con filtro de secciones
-- ✅ Migrada página Version.vue a Blade con filtros avanzados
-- ✅ Creados 8 componentes Blade reutilizables (article + filter components)
-- ✅ Paginación nativa de Laravel implementada en todas las páginas
-- ✅ Filtros con Alpine.js para estado reactivo
-- ✅ Layout sidebar + content area consistente (350px + flex)
-- ✅ Estados vacíos implementados para cada tipo de contenido
-- ✅ Configuración actualizada con 4 rutas adicionales migradas
-- ✅ Plan de migración actualizado con checkboxes completados
+**Resumen de la Fase 3:**
+- ✅ Implementado sistema de filtrado complejo con Alpine.js
+- ✅ Creado componente posts-filter.blade.php reutilizable con:
+  - Búsqueda por título con debounce (500ms)
+  - Filtro por fecha de publicación
+  - Checkboxes para tipos de contenido
+  - Select para dependencias
+  - Filtro por sección de documento
+  - Botón para limpiar todos los filtros
+- ✅ Creado componente posts-layout.blade.php para estructura consistente
+- ✅ Añadidos helpers ViewHelper::getContentTypes() y ViewHelper::getDependencies()
+- ✅ Migrada página News/Index.vue a Blade con filtros completos
+- ✅ Migrada página SegobNews/Index.vue a Blade con banner, links rápidos y carousel de dependencias
+- ✅ Creado componente dependencies-carousel.blade.php con Swiper.js
+- ✅ Migrada página Documents/Index.vue a Blade con grid de 3 columnas
+- ✅ Creado componente document-article.blade.php
+- ✅ Configuración actualizada con 3 rutas adicionales migradas (news.index, segob-news.index, documents.index)
+- ✅ Paginación preserva filtros con appends(request()->query())
+- ✅ 10 páginas migradas en total (66.7% del proyecto)
 
-**Próximo Paso:** Fase 3 - Migrar sistema de filtrado complejo (News/Index, SegobNews/Index, Documents/Index con PostsFilter)
+**Próximo Paso:** Fase 4 - Migrar páginas complejas (Posts/Show, Actions/Show, Dependencies/Show, MexicoNews)

@@ -23,14 +23,14 @@ class DocumentController extends Controller
             ->orderByDesc('published_at')
             ->paginate(12)
             ->appends($request->all());
-            
+
         $filters = [
-            'name' => request('title', ''),
+            'title' => request('title', ''),
             'document_section' => request('document_section', ''),
         ];
 
-        return Inertia::render('Documents/Index', [
-            'documents' => DocumentResource::collection($documents),
+        return view('pages.documents.index', [
+            'documents' => $documents,
             'filters' => $filters,
             'documentSections' => DocumentSection::all(),
         ]);
