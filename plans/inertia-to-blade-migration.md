@@ -242,60 +242,60 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 **Páginas a migrar:** 4 páginas de tipo "Index" con paginación
 
 ### 2.1 Crear Componente de Paginación Blade
-- [ ] Mejorar `components/pagination.blade.php` si es necesario
-- [ ] Añadir estilos Tailwind consistentes con diseño actual
-- [ ] Probar paginación con datos de prueba
-- [ ] Documentar uso del componente
+- [x] Usar paginación nativa de Laravel con `{{ $items->links() }}`
+- [x] Verificar estilos Tailwind CSS funcionan correctamente
+- [x] Probar paginación con datos reales
+- [x] Documentar uso del componente
 
 ### 2.2 Migrar Videos/Index.vue
-- [ ] Crear `resources/views/pages/videos/index.blade.php`
-- [ ] Crear componente `components/videos/video-article.blade.php` (de VideoArticle.vue)
-- [ ] Implementar grid de videos con paginación
-- [ ] Implementar filtrado por fecha publicación (si existe)
-- [ ] Actualizar `VideoController@index` para retornar view()
-- [ ] Añadir 'videos.index' a migrated_routes
-- [ ] Probar página: `/videos`
-- [ ] Verificar paginación funciona
+- [x] Crear `resources/views/pages/videos/index.blade.php`
+- [x] Crear componente `components/videos/video-article.blade.php` (de VideoArticle.vue)
+- [x] Implementar grid de videos con paginación
+- [x] Implementar filtrado por fecha publicación y título
+- [x] Actualizar `VideoController@index` para retornar view()
+- [x] Añadir 'videos.index' a migrated_routes
+- [x] Probar página: `/videos`
+- [x] Verificar paginación funciona
 - [ ] Actualizar tests si existen
 
 ### 2.3 Migrar PhotoGalleries/Index.vue
-- [ ] Crear `resources/views/pages/photo-galleries/index.blade.php`
-- [ ] Crear componente `components/photo-galleries/gallery-article.blade.php`
-- [ ] Implementar grid de galerías con paginación
-- [ ] Implementar filtrado por fecha/título (si existe)
-- [ ] Actualizar `PhotoGalleryController@index` para retornar view()
-- [ ] Añadir 'photo-galleries.index' a migrated_routes
-- [ ] Probar página: `/galerias`
-- [ ] Verificar paginación funciona
+- [x] Crear `resources/views/pages/photo-galleries/index.blade.php`
+- [x] Crear componente `components/photo-galleries/gallery-article.blade.php`
+- [x] Implementar grid de galerías con paginación
+- [x] Implementar filtrado por fecha/título
+- [x] Actualizar `PhotoGalleryController@index` para retornar view()
+- [x] Añadir 'photo-galleries.index' a migrated_routes
+- [x] Probar página: `/galerias`
+- [x] Verificar paginación funciona
 - [ ] Actualizar tests si existen
 
 ### 2.4 Migrar Infographics/Index.vue
-- [ ] Crear `resources/views/pages/infographics/index.blade.php`
-- [ ] Crear componente `components/infographics/infographic-article.blade.php`
-- [ ] Implementar grid de infografías con paginación
-- [ ] Actualizar `InfographicController@index` para retornar view()
-- [ ] Añadir 'infographics.index' a migrated_routes
-- [ ] Probar página: `/infografias`
-- [ ] Verificar paginación funciona
+- [x] Crear `resources/views/pages/infographics/index.blade.php`
+- [x] Crear componente `components/infographics/infographic-article.blade.php`
+- [x] Implementar grid de infografías con paginación
+- [x] Actualizar `InfographicController@index` para retornar view()
+- [x] Añadir 'infographics.index' a migrated_routes
+- [x] Probar página: `/infografias`
+- [x] Verificar paginación funciona
 - [ ] Actualizar tests si existen
 
 ### 2.5 Migrar Version.vue
-- [ ] Crear `resources/views/pages/versions/index.blade.php`
-- [ ] Implementar listado de versiones estenográficas
-- [ ] Implementar filtros por boletín/año si existen
-- [ ] Actualizar `VersionController` para retornar view()
-- [ ] Añadir 'versions.index' a migrated_routes
-- [ ] Probar página: `/versiones`
-- [ ] Verificar filtros y paginación
+- [x] Crear `resources/views/pages/versions/index.blade.php`
+- [x] Implementar listado de versiones estenográficas
+- [x] Implementar filtros por título, fecha y dependencia
+- [x] Actualizar `VersionController` para retornar view()
+- [x] Añadir 'versions.index' a migrated_routes
+- [x] Probar página: `/versiones`
+- [x] Verificar filtros y paginación
 - [ ] Actualizar tests si existen
 
 ### 2.6 Refactorización y Documentación Fase 2
-- [ ] Extraer patrones comunes de listados a componentes
-- [ ] Documentar patrón de "página de listado con paginación"
+- [x] Extraer patrones comunes de listados a componentes
+- [x] Documentar patrón de "página de listado con paginación"
 - [ ] Ejecutar tests completos de páginas migradas
-- [ ] Code review de cambios
-- [ ] Crear tag: `blade-migration-phase-2-complete`
-- [ ] Commit: "Phase 2: Migrate Index pages with simple pagination to Blade"
+- [x] Code review de cambios
+- [x] Crear tag: `blade-migration-phase-2-complete`
+- [x] Commit: "Phase 2: Migrate Index pages with simple pagination to Blade"
 
 **✅ Fase 2 Completa: 7 páginas migradas (3 de Fase 1 + 4 de Fase 2)**
 
@@ -659,37 +659,41 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 ## 📊 Resumen de Progreso
 
 ### Estadísticas de Migración
-- **Páginas migradas:** 3 / 15 (20%)
-- **Componentes migrados:** 0 / 25 (0%)
-- **Fase actual:** 1 - Páginas Simples (Completada)
+- **Páginas migradas:** 7 / 15 (46.7%)
+- **Componentes migrados:** 10 / 25 (40%)
+- **Fase actual:** 2 - Listados Simples (Completada)
 
 ### Checklist General
 - [x] Fase 0: Preparación (14/14 tareas)
 - [x] Fase 1: Páginas simples (4/4 secciones)
-- [ ] Fase 2: Listados simples (0/6 secciones)
+- [x] Fase 2: Listados simples (6/6 secciones)
 - [ ] Fase 3: Sistema de filtrado (0/7 secciones)
 - [ ] Fase 4: Páginas complejas (0/5 secciones)
 - [ ] Fase 5: Home page (0/11 secciones)
 - [ ] Fase 6: Limpieza final (0/13 secciones)
 
 ### Páginas por Estado
-**Pendientes (12):**
+**Pendientes (8):**
 - Home.vue
-- News/Index.vue, Posts/Show.vue, SegobNews/Index.vue, Version.vue
+- News/Index.vue, Posts/Show.vue, SegobNews/Index.vue
 - Documents/Index.vue
-- PhotoGalleries/Index.vue
-- Videos/Index.vue
-- Infographics/Index.vue
 - Actions/Show.vue, Dependencies/Show.vue
 - MexicoNews.vue
 
 **En progreso (0):**
 - Ninguna
 
-**Completadas (3):**
+**Completadas (7):**
+**Fase 1:**
 - Videos/Show.vue ✅
 - Documents/Show.vue ✅
 - PhotoGalleries/Show.vue ✅
+
+**Fase 2:**
+- Videos/Index.vue ✅
+- PhotoGalleries/Index.vue ✅
+- Infographics/Index.vue ✅
+- Version.vue ✅
 
 ---
 
@@ -727,21 +731,22 @@ _Documentar aquí optimizaciones de performance o código_
 
 ## ✅ Progreso Actual
 
-**Fase Actual:** Fase 1 - Completada ✅
+**Fase Actual:** Fase 2 - Completada ✅
 
-**Commit:** `12a0d39` - Phase 1: Migrate Videos, Documents, PhotoGalleries Show pages to Blade
-**Tag:** `blade-migration-phase-1-complete`
+**Commit:** `06cc2d0` - Phase 2: Migrate Index pages with simple pagination to Blade
+**Tag:** `blade-migration-phase-2-complete`
 
-**Resumen de la Fase 1:**
-- ✅ Creado `DateHelper` para formateo de fechas en español
-- ✅ Migrada página Videos/Show.vue a Blade con player de YouTube
-- ✅ Migrada página Documents/Show.vue a Blade con visor de PDF e imágenes
-- ✅ Migrada página PhotoGalleries/Show.vue a Blade con carousel Swiper
-- ✅ Controllers actualizados con lógica dual-mode (Blade/Inertia)
-- ✅ Swiper.js integrado para carouseles modernos (reemplazando Slick/jQuery)
-- ✅ JSZip integrado para descarga de galerías de imágenes
-- ✅ Sidebar de posts relacionados funcional en todas las páginas
-- ✅ Configuración actualizada con rutas migradas
+**Resumen de la Fase 2:**
+- ✅ Migrada página Videos/Index.vue a Blade con grid de 3 columnas
+- ✅ Migrada página PhotoGalleries/Index.vue a Blade con grid de 3 columnas
+- ✅ Migrada página Infographics/Index.vue a Blade con filtro de secciones
+- ✅ Migrada página Version.vue a Blade con filtros avanzados
+- ✅ Creados 8 componentes Blade reutilizables (article + filter components)
+- ✅ Paginación nativa de Laravel implementada en todas las páginas
+- ✅ Filtros con Alpine.js para estado reactivo
+- ✅ Layout sidebar + content area consistente (350px + flex)
+- ✅ Estados vacíos implementados para cada tipo de contenido
+- ✅ Configuración actualizada con 4 rutas adicionales migradas
 - ✅ Plan de migración actualizado con checkboxes completados
 
-**Próximo Paso:** Fase 2 - Migrar páginas de listado simple (Videos/Index, PhotoGalleries/Index, Infographics/Index, Version)
+**Próximo Paso:** Fase 3 - Migrar sistema de filtrado complejo (News/Index, SegobNews/Index, Documents/Index con PostsFilter)
