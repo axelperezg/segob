@@ -34,9 +34,9 @@ class MexicoNewsController extends Controller
             'published_at' => request('published_at', null),
         ];
 
-        return Inertia::render('MexicoNews', [
-            'mainPosts' => MexicoNewsResource::collection($mainPosts),
-            'posts' => MexicoNewsResource::collection($posts),
+        return view('pages.mexico-news.index', [
+            'mainPosts' => $mainPosts,
+            'posts' => $posts,
             'filters' => $filters,
         ]);
     }

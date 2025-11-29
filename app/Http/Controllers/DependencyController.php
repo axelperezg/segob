@@ -30,10 +30,10 @@ class DependencyController extends Controller
             'content_type' => request('content_type', []),
         ];
 
-        return Inertia::render('Dependencies/Show', [
-            'dependency' => DependencyResource::make($dependency),
+        return view('pages.dependencies.show', [
+            'dependency' => $dependency,
             'filters' => $filters,
-            'posts' => PostResource::collection($posts),
+            'posts' => $posts,
         ]);
     }
 }

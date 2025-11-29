@@ -50,6 +50,12 @@ return [
         'news.index',
         'segob-news.index',
         'documents.index',
+
+        // Phase 4: Complex pages
+        'posts.show',
+        'actions.show',
+        'dependencies.show',
+        'mexico-news.index',
     ],
 
 ];

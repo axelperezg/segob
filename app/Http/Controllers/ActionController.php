@@ -11,7 +11,7 @@ class ActionController extends Controller
 {
     public function __invoke(Action $action)
     {
-        $action->load('posts', 'media');
+        $action->load('media');
 
         $mainPosts = $action->posts()->orderBy('created_at', 'desc')->take(7)->get();
         $posts = $action->posts()
@@ -20,11 +20,10 @@ class ActionController extends Controller
             ->skip(7)
             ->paginate(10);
 
-        return Inertia::render('Actions/Show', [
-            'action' => ActionResource::make($action),
-            'posts' => PostResource::collection($posts),
-            'mainPosts' => PostResource::collection($mainPosts),
-            'search' => request('search'),
+        return view('pages.actions.show', [
+            'action' => $action,
+            'posts' => $posts,
+            'mainPosts' => $mainPosts,
         ]);
     }
 }
