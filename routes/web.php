@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\BladeTestController;
 use App\Http\Controllers\DependencyController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\HomeController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
+Route::get('/blade-test', BladeTestController::class)->name('blade-test');
 Route::get('/noticias', NewsController::class)->name('news.index');
 Route::get('/noticias-segob', SegobNewsController::class)->name('segob-news.index');
 Route::get('/versiones', VersionController::class)->name('versions.index');
