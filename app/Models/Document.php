@@ -61,6 +61,16 @@ class Document extends Model implements HasMedia
         return $this->belongsTo(DocumentSection::class);
     }
 
+    public function getIsInfographicAttribute(): bool
+    {
+        return $this->type === DocumentTypeEnum::INFOGRAPHIC;
+    }
+
+    public function getDocumentFileAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('document');
+    }
+
     public function scopeSearchByName(Builder $query, ?string $name): Builder
     {
         return $query->when(

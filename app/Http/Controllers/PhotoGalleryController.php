@@ -32,6 +32,13 @@ class PhotoGalleryController extends Controller
     {
         $photoGallery->load('posts');
 
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('photo-galleries.show', config('migration.migrated_routes', []))) {
+            return view('pages.photo-galleries.show', [
+                'photoGallery' => $photoGallery,
+            ]);
+        }
+
         return Inertia::render('PhotoGalleries/Show', [
             'gallery' => PhotoGalleryResource::make($photoGallery),
         ]);

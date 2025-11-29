@@ -39,7 +39,14 @@ class DocumentController extends Controller
     public function show(Document $document)
     {
         $document->load(['posts', 'media']);
-        
+
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('documents.show', config('migration.migrated_routes', []))) {
+            return view('pages.documents.show', [
+                'document' => $document,
+            ]);
+        }
+
         return Inertia::render('Documents/Show', [
             'document' => DocumentResource::make($document),
         ]);

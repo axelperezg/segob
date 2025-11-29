@@ -35,7 +35,9 @@ return [
     */
 
     'migrated_routes' => [
-        // Example: 'videos.show' => true,
+        'videos.show',
+        'documents.show',
+        'photo-galleries.show',
     ],
 
 ];

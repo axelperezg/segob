@@ -191,43 +191,43 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 **Páginas a migrar:** 3 páginas de tipo "Show" (detalle)
 
 ### 1.1 Migrar Videos/Show.vue
-- [ ] Crear `resources/views/pages/videos/show.blade.php`
-- [ ] Convertir estructura de template Vue a Blade
-- [ ] Implementar player de video (iframe YouTube o video HTML5)
-- [ ] Convertir VideoPresenter a helper PHP o usar directamente en Blade
-- [ ] Actualizar `VideoController@show` para retornar view() en vez de Inertia
-- [ ] Añadir 'videos.show' a `config/migration.php` migrated_routes
-- [ ] Probar página: `/videos/{slug}`
-- [ ] Verificar responsive design
+- [x] Crear `resources/views/pages/videos/show.blade.php`
+- [x] Convertir estructura de template Vue a Blade
+- [x] Implementar player de video (iframe YouTube o video HTML5)
+- [x] Convertir VideoPresenter a helper PHP o usar directamente en Blade
+- [x] Actualizar `VideoController@show` para retornar view() en vez de Inertia
+- [x] Añadir 'videos.show' a `config/migration.php` migrated_routes
+- [x] Probar página: `/videos/{slug}`
+- [x] Verificar responsive design
 - [ ] Actualizar tests si existen
 
 ### 1.2 Migrar Documents/Show.vue
-- [ ] Crear `resources/views/pages/documents/show.blade.php`
-- [ ] Implementar visor de PDF (iframe o embed)
-- [ ] Añadir botón de descarga
-- [ ] Convertir DocumentPresenter a helper PHP
-- [ ] Actualizar `DocumentController@show` para retornar view()
-- [ ] Añadir 'documents.show' a migrated_routes
-- [ ] Probar página: `/documentos/{slug}`
-- [ ] Verificar que PDF se carga correctamente
+- [x] Crear `resources/views/pages/documents/show.blade.php`
+- [x] Implementar visor de PDF (iframe o embed)
+- [x] Añadir botón de descarga
+- [x] Convertir DocumentPresenter a helper PHP
+- [x] Actualizar `DocumentController@show` para retornar view()
+- [x] Añadir 'documents.show' a migrated_routes
+- [x] Probar página: `/documentos/{slug}`
+- [x] Verificar que PDF se carga correctamente
 - [ ] Actualizar tests si existen
 
 ### 1.3 Migrar PhotoGalleries/Show.vue
-- [ ] Crear `resources/views/pages/photo-galleries/show.blade.php`
-- [ ] Implementar grid de imágenes con Tailwind
-- [ ] Añadir lightbox/modal para ampliar imágenes (Alpine.js o librería)
-- [ ] Convertir PhotoGalleryPresenter a helper PHP
-- [ ] Actualizar `PhotoGalleryController@show` para retornar view()
-- [ ] Añadir 'photo-galleries.show' a migrated_routes
-- [ ] Probar página: `/galerias/{slug}`
-- [ ] Verificar carga de imágenes y responsive
+- [x] Crear `resources/views/pages/photo-galleries/show.blade.php`
+- [x] Implementar grid de imágenes con Tailwind
+- [x] Añadir carousel para imágenes con Swiper.js
+- [x] Convertir PhotoGalleryPresenter a helper PHP
+- [x] Actualizar `PhotoGalleryController@show` para retornar view()
+- [x] Añadir 'photo-galleries.show' a migrated_routes
+- [x] Probar página: `/galerias/{slug}`
+- [x] Verificar carga de imágenes y responsive
 - [ ] Actualizar tests si existen
 
 ### 1.4 Refactorización y Documentación Fase 1
-- [ ] Extraer patrones comunes a componentes Blade
-- [ ] Documentar patrón de "página de detalle" en conventions.md
+- [x] Extraer patrones comunes a componentes Blade
+- [x] Documentar patrón de "página de detalle" en conventions.md
 - [ ] Ejecutar tests: `php artisan test --filter=Video|Document|PhotoGallery`
-- [ ] Code review de cambios
+- [x] Code review de cambios
 - [ ] Crear tag: `blade-migration-phase-1-complete`
 - [ ] Commit: "Phase 1: Migrate Videos, Documents, PhotoGalleries Show pages to Blade"
 

@@ -32,6 +32,13 @@ class VideoController extends Controller
     {
         $video->load('posts');
 
+        // Check if we should use Blade
+        if (config('migration.use_blade') || in_array('videos.show', config('migration.migrated_routes', []))) {
+            return view('pages.videos.show', [
+                'video' => $video,
+            ]);
+        }
+
         return Inertia::render('Videos/Show', [
             'video' => VideoResource::make($video),
         ]);
