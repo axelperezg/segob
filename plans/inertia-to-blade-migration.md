@@ -228,8 +228,8 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 - [x] Documentar patrón de "página de detalle" en conventions.md
 - [ ] Ejecutar tests: `php artisan test --filter=Video|Document|PhotoGallery`
 - [x] Code review de cambios
-- [ ] Crear tag: `blade-migration-phase-1-complete`
-- [ ] Commit: "Phase 1: Migrate Videos, Documents, PhotoGalleries Show pages to Blade"
+- [x] Crear tag: `blade-migration-phase-1-complete`
+- [x] Commit: "Phase 1: Migrate Videos, Documents, PhotoGalleries Show pages to Blade"
 
 **✅ Fase 1 Completa: 3 páginas migradas**
 
@@ -659,13 +659,13 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 ## 📊 Resumen de Progreso
 
 ### Estadísticas de Migración
-- **Páginas migradas:** 0 / 15 (0%)
+- **Páginas migradas:** 3 / 15 (20%)
 - **Componentes migrados:** 0 / 25 (0%)
-- **Fase actual:** 0 - Preparación
+- **Fase actual:** 1 - Páginas Simples (Completada)
 
 ### Checklist General
-- [ ] Fase 0: Preparación (0/14 tareas)
-- [ ] Fase 1: Páginas simples (0/4 secciones)
+- [x] Fase 0: Preparación (14/14 tareas)
+- [x] Fase 1: Páginas simples (4/4 secciones)
 - [ ] Fase 2: Listados simples (0/6 secciones)
 - [ ] Fase 3: Sistema de filtrado (0/7 secciones)
 - [ ] Fase 4: Páginas complejas (0/5 secciones)
@@ -673,12 +673,12 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 - [ ] Fase 6: Limpieza final (0/13 secciones)
 
 ### Páginas por Estado
-**Pendientes (15):**
+**Pendientes (12):**
 - Home.vue
 - News/Index.vue, Posts/Show.vue, SegobNews/Index.vue, Version.vue
-- Documents/Index.vue, Documents/Show.vue
-- PhotoGalleries/Index.vue, PhotoGalleries/Show.vue
-- Videos/Index.vue, Videos/Show.vue
+- Documents/Index.vue
+- PhotoGalleries/Index.vue
+- Videos/Index.vue
 - Infographics/Index.vue
 - Actions/Show.vue, Dependencies/Show.vue
 - MexicoNews.vue
@@ -686,8 +686,10 @@ Antes de comenzar la migración, es necesario tomar estas decisiones críticas:
 **En progreso (0):**
 - Ninguna
 
-**Completadas (0):**
-- Ninguna
+**Completadas (3):**
+- Videos/Show.vue ✅
+- Documents/Show.vue ✅
+- PhotoGalleries/Show.vue ✅
 
 ---
 
@@ -725,24 +727,21 @@ _Documentar aquí optimizaciones de performance o código_
 
 ## ✅ Progreso Actual
 
-**Fase Actual:** Fase 0 - Completada
+**Fase Actual:** Fase 1 - Completada ✅
 
-**Commit:** `5932b48` - Phase 0: Complete preparation and base configuration for Blade migration
-**Tag:** `pre-blade-migration` (creado antes de comenzar)
+**Commit:** `12a0d39` - Phase 1: Migrate Videos, Documents, PhotoGalleries Show pages to Blade
+**Tag:** `blade-migration-phase-1-complete`
 
-**Resumen de la Fase 0:**
-- ✅ Sistema dual configurado (Blade + Inertia coexisten)
-- ✅ Dependencies instaladas (Alpine.js, Swiper.js)
-- ✅ Estructura de directorios Blade creada
-- ✅ Helper para datos compartidos implementado
-- ✅ View Composer configurado
-- ✅ Vite configurado para dual build
-- ✅ Layout maestro Blade creado
-- ✅ Componentes base creados (button, link, card, badge, pagination)
-- ✅ Componentes de layout migrados (TopBar, Header, MainMenu, Footer)
-- ✅ Estrategia de testing establecida
-- ✅ Página de prueba creada y verificada (`/blade-test`)
-- ✅ Convenciones documentadas en `blade-conventions.md`
-- ✅ Plan de rollback documentado en `rollback-plan.md`
+**Resumen de la Fase 1:**
+- ✅ Creado `DateHelper` para formateo de fechas en español
+- ✅ Migrada página Videos/Show.vue a Blade con player de YouTube
+- ✅ Migrada página Documents/Show.vue a Blade con visor de PDF e imágenes
+- ✅ Migrada página PhotoGalleries/Show.vue a Blade con carousel Swiper
+- ✅ Controllers actualizados con lógica dual-mode (Blade/Inertia)
+- ✅ Swiper.js integrado para carouseles modernos (reemplazando Slick/jQuery)
+- ✅ JSZip integrado para descarga de galerías de imágenes
+- ✅ Sidebar de posts relacionados funcional en todas las páginas
+- ✅ Configuración actualizada con rutas migradas
+- ✅ Plan de migración actualizado con checkboxes completados
 
-**Próximo Paso:** Fase 1 - Migrar páginas simples (Videos, Documents, PhotoGalleries - Show)
+**Próximo Paso:** Fase 2 - Migrar páginas de listado simple (Videos/Index, PhotoGalleries/Index, Infographics/Index, Version)
