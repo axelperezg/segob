@@ -56,6 +56,9 @@ return [
         'actions.show',
         'dependencies.show',
         'mexico-news.index',
+
+        // Phase 5: Home page
+        'home',
     ],
 
 ];
