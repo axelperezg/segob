@@ -21,7 +21,7 @@
     <x-favicon />
 
     {{-- Vite Assets --}}
-    @vite(['resources/js/app-blade.js', 'resources/css/app.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- Additional Head Content --}}
     @stack('head')

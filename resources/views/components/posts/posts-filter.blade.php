@@ -60,7 +60,7 @@
     <div class="bg-gray-100 shadow px-4 py-8 rounded-lg space-y-6">
         <!-- Search -->
         <div>
-            <h2 class="text-3xl mb-2 font-bold">Búsqueda</h2>
+            <h2 class="text-3xl mb-2 font-bold">BÃºsqueda</h2>
             <div class="relative">
                 <input
                     x-model="search"
@@ -131,7 +131,7 @@
         <!-- Document Section Filter -->
         @if($showDocumentSection && count($documentSections) > 0)
             <div>
-                <h2 class="text-xl mb-4">Sección del Documento</h2>
+                <h2 class="text-xl mb-4">SecciÃ³n del Documento</h2>
                 <select
                     x-model="documentSectionSelected"
                     @change="submitFilters()"
