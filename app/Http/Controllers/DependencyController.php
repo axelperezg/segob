@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\DependencyResource;
-use App\Http\Resources\PostResource;
 use App\Models\Dependency;
 use App\Models\Post;
-use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class DependencyController extends Controller

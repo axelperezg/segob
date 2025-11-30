@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Documents\DocumentTypeEnum;
-use App\Http\Resources\DocumentResource;
 use App\Models\Document;
 use App\Models\DocumentSection;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class DocumentController extends Controller
 {
@@ -42,13 +40,5 @@ class DocumentController extends Controller
 
         // Check if we should use Blade
         if (config('migration.use_blade') || in_array('documents.show', config('migration.migrated_routes', []))) {
-            return view('pages.documents.show', [
-                'document' => $document,
-            ]);
-        }
-
-        return Inertia::render('Documents/Show', [
-            'document' => DocumentResource::make($document),
-        ]);
-    }
+            return view(
 }

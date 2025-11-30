@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Documents\DocumentTypeEnum;
-use App\Http\Resources\DocumentResource;
 use App\Models\Document;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class InfographicController extends Controller
 {
@@ -25,18 +23,10 @@ class InfographicController extends Controller
             'document_section' => request('document_section', ''),
         ];
 
-        // Check if we should use Blade
-        if (config('migration.use_blade') || in_array('infographics.index', config('migration.migrated_routes', []))) {
-            return view('pages.infographics.index', [
-                'infographics' => $infographics,
-                'filters' => $filters,
-                'documentSections' => \App\Models\DocumentSection::all(),
-            ]);
-        }
-
-        return Inertia::render('Infographics/Index', [
-            'infographics' => DocumentResource::collection($infographics),
+        return view('pages.infographics.index', [
+            'infographics' => $infographics,
             'filters' => $filters,
+            'documentSections' => \App\Models\DocumentSection::all(),
         ]);
     }
 } 

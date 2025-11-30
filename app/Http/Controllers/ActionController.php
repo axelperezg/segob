@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ActionResource;
-use App\Http\Resources\PostResource;
 use App\Models\Action;
-use Inertia\Inertia;
 
 class ActionController extends Controller
 {

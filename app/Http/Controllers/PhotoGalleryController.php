@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PhotoGalleryResource;
 use App\Models\PhotoGallery;
-use Inertia\Inertia;
 
 class PhotoGalleryController extends Controller
 {
@@ -22,16 +20,8 @@ class PhotoGalleryController extends Controller
             'published_at' => request('published_at'),
         ];
 
-        // Check if we should use Blade
-        if (config('migration.use_blade') || in_array('photo-galleries.index', config('migration.migrated_routes', []))) {
-            return view('pages.photo-galleries.index', [
-                'galleries' => $galleries,
-                'filters' => $filters,
-            ]);
-        }
-
-        return Inertia::render('PhotoGalleries/Index', [
-            'galleries' => PhotoGalleryResource::collection($galleries),
+        return view('pages.photo-galleries.index', [
+            'galleries' => $galleries,
             'filters' => $filters,
         ]);
     }
@@ -40,15 +30,8 @@ class PhotoGalleryController extends Controller
     {
         $photoGallery->load('posts');
 
-        // Check if we should use Blade
-        if (config('migration.use_blade') || in_array('photo-galleries.show', config('migration.migrated_routes', []))) {
-            return view('pages.photo-galleries.show', [
-                'photoGallery' => $photoGallery,
-            ]);
-        }
-
-        return Inertia::render('PhotoGalleries/Show', [
-            'gallery' => PhotoGalleryResource::make($photoGallery),
+        return view('pages.photo-galleries.show', [
+            'photoGallery' => $photoGallery,
         ]);
     }
 }
